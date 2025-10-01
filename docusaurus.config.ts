@@ -174,6 +174,10 @@ const config: Config = {
                 indexBlog: false,
                 language: ["en"],
                 searchBarShortcutKeymap: "/",
+                docsRouteBasePath: [
+                    "/docs/daqem",
+                    ...projects.map((project) => `/projects/${project.slug}`),
+                ],
             },
         ],
     ],

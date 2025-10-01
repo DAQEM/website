@@ -26,7 +26,7 @@ export default function Home(): ReactNode {
                                 </div>
                             </div>
 
-                            <ul className="flex flex-col gap-1 md:gap-2 list-none p-0 text-xl md:text-2xl font-heading">
+                            <ul className="flex flex-col gap-1 md:gap-2 list-none p-0 text-xl md:text-2xl font-heading text-heading">
                                 <li className="flex gap-2 items-center">
                                     <Star />
                                     <span>10+ Unique Mods.</span>

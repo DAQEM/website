@@ -116,6 +116,7 @@ h6 {
     --color-card-background-dark: #0e1735;
 
     --color-text: var(--ifm-color-content);
+    --color-heading: var(--ifm-heading-color);
 
     --font-heading: "Montserrat", sans-serif;
 }
