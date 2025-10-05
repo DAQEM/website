@@ -1,4 +1,5 @@
 import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
+import { actionTypes, conditionTypes, rewardTypes } from "./data";
 
 const sidebar: SidebarsConfig = {
     sidebar: [
@@ -28,15 +29,20 @@ const sidebar: SidebarsConfig = {
                             label: "Advancements",
                             customProps: { emoji: "🏆" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/advancements/receive_advancement",
+                            items: Object.values(actionTypes)
+                                .filter(
+                                    (action) =>
+                                        action.category === "advancements"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((action) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/action_types/advancements/${action.id}`,
+                                    label: action.title,
                                     customProps: {
-                                        emoji: "🏆",
+                                        emoji: action.emoji,
                                     },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/action_types/advancements/index",
@@ -47,50 +53,19 @@ const sidebar: SidebarsConfig = {
                             label: "Blocks",
                             customProps: { emoji: "🧊" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/blocks/break_block",
+                            items: Object.values(actionTypes)
+                                .filter(
+                                    (action) => action.category === "blocks"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((action) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/action_types/blocks/${action.id}`,
+                                    label: action.title,
                                     customProps: {
-                                        emoji: "🪓",
+                                        emoji: action.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/blocks/place_block",
-                                    customProps: {
-                                        emoji: "🧱",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/blocks/interact_with_block",
-                                    customProps: {
-                                        emoji: "🖱️",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/blocks/harvest_crop",
-                                    customProps: {
-                                        emoji: "🌾",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/blocks/plant_crop",
-                                    customProps: {
-                                        emoji: "🌱",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/blocks/get_destroy_speed",
-                                    customProps: {
-                                        emoji: "⛏️",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/action_types/blocks/index",
@@ -101,64 +76,19 @@ const sidebar: SidebarsConfig = {
                             label: "Entities",
                             customProps: { emoji: "👤" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/entities/get_hurt",
+                            items: Object.values(actionTypes)
+                                .filter(
+                                    (action) => action.category === "entities"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((action) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/action_types/entities/${action.id}`,
+                                    label: action.title,
                                     customProps: {
-                                        emoji: "😖",
+                                        emoji: action.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/entities/hurt_entity",
-                                    customProps: {
-                                        emoji: "🗡️",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/entities/hurt_player",
-                                    customProps: {
-                                        emoji: "🩸",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/entities/interact_with_entity",
-                                    customProps: {
-                                        emoji: "🤝",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/entities/kill_entity",
-                                    customProps: {
-                                        emoji: "💀",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/entities/death",
-                                    customProps: {
-                                        emoji: "⚰️",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/entities/breed_animal",
-                                    customProps: {
-                                        emoji: "🐾",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/entities/tame_animal",
-                                    customProps: {
-                                        emoji: "🐕",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/action_types/entities/index",
@@ -169,71 +99,17 @@ const sidebar: SidebarsConfig = {
                             label: "Items",
                             customProps: { emoji: "🎒" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/items/craft_item",
+                            items: Object.values(actionTypes)
+                                .filter((action) => action.category === "items")
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((action) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/action_types/items/${action.id}`,
+                                    label: action.title,
                                     customProps: {
-                                        emoji: "🛠️",
+                                        emoji: action.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/items/drop_item",
-                                    customProps: {
-                                        emoji: "🗑️",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/items/enchant_item",
-                                    customProps: {
-                                        emoji: "✨",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/items/fish_up_item",
-                                    customProps: {
-                                        emoji: "🎣",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/items/grind_item",
-                                    customProps: {
-                                        emoji: "🔪",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/items/hurt_item",
-                                    customProps: {
-                                        emoji: "💔",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/items/smelt_item",
-                                    customProps: {
-                                        emoji: "🔥",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/items/throw_item",
-                                    customProps: {
-                                        emoji: "🏹",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/items/use_item",
-                                    customProps: {
-                                        emoji: "🖱️",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/action_types/items/index",
@@ -244,135 +120,19 @@ const sidebar: SidebarsConfig = {
                             label: "Movement",
                             customProps: { emoji: "👟" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/crouch",
+                            items: Object.values(actionTypes)
+                                .filter(
+                                    (action) => action.category === "movement"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((action) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/action_types/movement/${action.id}`,
+                                    label: action.title,
                                     customProps: {
-                                        emoji: "🧎",
+                                        emoji: action.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/crouch_start",
-                                    customProps: {
-                                        emoji: "🧎",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/crouch_stop",
-                                    customProps: {
-                                        emoji: "🧎",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/elytra_fly",
-                                    customProps: {
-                                        emoji: "🪽",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/elytra_fly_start",
-                                    customProps: {
-                                        emoji: "🪽",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/elytra_fly_stop",
-                                    customProps: {
-                                        emoji: "🪽",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/horse_ride",
-                                    customProps: {
-                                        emoji: "🐎",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/horse_ride_start",
-                                    customProps: {
-                                        emoji: "🐎",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/horse_ride_stop",
-                                    customProps: {
-                                        emoji: "🐎",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/sprint",
-                                    customProps: {
-                                        emoji: "🏃",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/sprint_start",
-                                    customProps: {
-                                        emoji: "🏃",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/sprint_stop",
-                                    customProps: {
-                                        emoji: "🏃",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/swim",
-                                    customProps: {
-                                        emoji: "🏊",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/swim_start",
-                                    customProps: {
-                                        emoji: "🏊",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/swim_stop",
-                                    customProps: {
-                                        emoji: "🏊",
-                                    },
-                                },
-
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/walk",
-                                    customProps: {
-                                        emoji: "🚶",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/walk_start",
-                                    customProps: {
-                                        emoji: "🚶",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/movement/walk_stop",
-                                    customProps: {
-                                        emoji: "🚶",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/action_types/movement/index",
@@ -383,71 +143,19 @@ const sidebar: SidebarsConfig = {
                             label: "Players",
                             customProps: { emoji: "🧑" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/players/brew_potion",
+                            items: Object.values(actionTypes)
+                                .filter(
+                                    (action) => action.category === "player"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((action) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/action_types/players/${action.id}`,
+                                    label: action.title,
                                     customProps: {
-                                        emoji: "🧪",
+                                        emoji: action.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/players/drink",
-                                    customProps: {
-                                        emoji: "🥛",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/players/eat",
-                                    customProps: {
-                                        emoji: "🍽️",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/players/effect_added",
-                                    customProps: {
-                                        emoji: "💊",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/players/get_attack_speed",
-                                    customProps: {
-                                        emoji: "⚔️",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/players/rod_reel_in",
-                                    customProps: {
-                                        emoji: "🎣",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/players/shoot_projectile",
-                                    customProps: {
-                                        emoji: "🏹",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/players/strip_log",
-                                    customProps: {
-                                        emoji: "🪵",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/action_types/players/use_anvil",
-                                    customProps: {
-                                        emoji: "⚒️",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/action_types/players/index",
@@ -462,33 +170,35 @@ const sidebar: SidebarsConfig = {
                     customProps: { emoji: "🎁" },
                     collapsed: true,
                     items: [
-                        {
-                            type: "doc",
-                            id: "wiki/reward_types/cancel_action",
-                            label: "Cancel Action",
-                            customProps: { emoji: "❌" },
-                        },
+                        ...Object.values(rewardTypes)
+                            .filter((reward) => reward.category === "none")
+                            .sort((a, b) => a.title.localeCompare(b.title))
+                            .map((reward) => ({
+                                type: "doc" as const,
+                                id: `wiki/reward_types/${reward.id}`,
+                                label: reward.title,
+                                customProps: {
+                                    emoji: reward.emoji,
+                                },
+                            })),
                         {
                             type: "category",
                             label: "Blocks",
                             customProps: { emoji: "🧊" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/blocks/block_drop_multiplier",
+                            items: Object.values(rewardTypes)
+                                .filter(
+                                    (reward) => reward.category === "blocks"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((reward) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/reward_types/blocks/${reward.id}`,
+                                    label: reward.title,
                                     customProps: {
-                                        emoji: "🎒",
+                                        emoji: reward.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/blocks/destroy_speed_multiplier",
-                                    customProps: {
-                                        emoji: "⛏️",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/reward_types/blocks/index",
@@ -499,36 +209,19 @@ const sidebar: SidebarsConfig = {
                             label: "Effects",
                             customProps: { emoji: "💊" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/effects/effect",
+                            items: Object.values(rewardTypes)
+                                .filter(
+                                    (reward) => reward.category === "effects"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((reward) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/reward_types/effects/${reward.id}`,
+                                    label: reward.title,
                                     customProps: {
-                                        emoji: "💊",
+                                        emoji: reward.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/effects/remove_effect",
-                                    customProps: {
-                                        emoji: "❌",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/effects/effect_duration_multiplier",
-                                    customProps: {
-                                        emoji: "⏳",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/effects/effect_amplifier_addition",
-                                    customProps: {
-                                        emoji: "➕",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/reward_types/effects/index",
@@ -539,29 +232,19 @@ const sidebar: SidebarsConfig = {
                             label: "Entities",
                             customProps: { emoji: "👤" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/entities/damage_multiplier",
+                            items: Object.values(rewardTypes)
+                                .filter(
+                                    (reward) => reward.category === "entities"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((reward) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/reward_types/entities/${reward.id}`,
+                                    label: reward.title,
                                     customProps: {
-                                        emoji: "🗡️",
+                                        emoji: reward.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/entities/entity_on_fire",
-                                    customProps: {
-                                        emoji: "🔥",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/entities/multiple_arrows",
-                                    customProps: {
-                                        emoji: "🏹",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/reward_types/entities/index",
@@ -572,22 +255,19 @@ const sidebar: SidebarsConfig = {
                             label: "Experience",
                             customProps: { emoji: "✨" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/experience/experience",
+                            items: Object.values(rewardTypes)
+                                .filter(
+                                    (reward) => reward.category === "experience"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((reward) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/reward_types/experience/${reward.id}`,
+                                    label: reward.title,
                                     customProps: {
-                                        emoji: "✨",
+                                        emoji: reward.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/experience/experience_multiplier",
-                                    customProps: {
-                                        emoji: "✖️",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/reward_types/experience/index",
@@ -598,22 +278,17 @@ const sidebar: SidebarsConfig = {
                             label: "Items",
                             customProps: { emoji: "🎒" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/items/item",
+                            items: Object.values(rewardTypes)
+                                .filter((reward) => reward.category === "items")
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((reward) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/reward_types/items/${reward.id}`,
+                                    label: reward.title,
                                     customProps: {
-                                        emoji: "🎒",
+                                        emoji: reward.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/items/drop_item",
-                                    customProps: {
-                                        emoji: "🌍",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/reward_types/items/index",
@@ -624,22 +299,19 @@ const sidebar: SidebarsConfig = {
                             label: "Players",
                             customProps: { emoji: "🧑" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/players/attack_speed_multiplier",
+                            items: Object.values(rewardTypes)
+                                .filter(
+                                    (reward) => reward.category === "players"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((reward) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/reward_types/players/${reward.id}`,
+                                    label: reward.title,
                                     customProps: {
-                                        emoji: "⚔️",
+                                        emoji: reward.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/players/move_to_entity",
-                                    customProps: {
-                                        emoji: "📍",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/reward_types/players/index",
@@ -650,15 +322,19 @@ const sidebar: SidebarsConfig = {
                             label: "Server",
                             customProps: { emoji: "🌐" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/reward_types/server/command",
+                            items: Object.values(rewardTypes)
+                                .filter(
+                                    (reward) => reward.category === "server"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((reward) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/reward_types/server/${reward.id}`,
+                                    label: reward.title,
                                     customProps: {
-                                        emoji: "⚙️",
+                                        emoji: reward.emoji,
                                     },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/reward_types/server/index",
@@ -673,74 +349,38 @@ const sidebar: SidebarsConfig = {
                     customProps: { emoji: "📑" },
                     collapsed: true,
                     items: [
-                        {
-                            type: "doc",
-                            id: "wiki/condition_types/or",
-                            label: "OR",
-                            customProps: { emoji: "🔀" },
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/condition_types/not",
-                            label: "NOT",
-                            customProps: { emoji: "❌" },
-                        },
+                        ...Object.values(conditionTypes)
+                            .filter(
+                                (condition) => condition.category === "none"
+                            )
+                            .sort((a, b) => a.title.localeCompare(b.title))
+                            .map((condition) => ({
+                                type: "doc" as const,
+                                id: `wiki/condition_types/${condition.id}`,
+                                label: condition.title,
+                                customProps: {
+                                    emoji: condition.emoji,
+                                },
+                            })),
                         {
                             type: "category",
                             label: "Blocks",
                             customProps: { emoji: "🧊" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/blocks/block",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "blocks"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/blocks/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "🧊",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/blocks/blocks",
-                                    customProps: {
-                                        emoji: "🧊🧊",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/blocks/block_hardness",
-                                    customProps: {
-                                        emoji: "⛏️",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/blocks/is_ore",
-                                    customProps: {
-                                        emoji: "💎",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/blocks/crop_age",
-                                    customProps: {
-                                        emoji: "🌱",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/blocks/crop_fully_grown",
-                                    customProps: {
-                                        emoji: "🌾",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/blocks/not_in_block_position_cache",
-                                    customProps: {
-                                        emoji: "💾",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/condition_types/blocks/index",
@@ -751,22 +391,20 @@ const sidebar: SidebarsConfig = {
                             label: "Effects",
                             customProps: { emoji: "💊" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/effects/effect",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "effects"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/effects/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "💊",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/effects/effect_category",
-                                    customProps: {
-                                        emoji: "📂",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/condition_types/effects/index",
@@ -777,43 +415,20 @@ const sidebar: SidebarsConfig = {
                             label: "Entities",
                             customProps: { emoji: "👤" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/entities/entity_type",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "entities"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/entities/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "👤",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/entities/entity_types",
-                                    customProps: {
-                                        emoji: "👥",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/entities/entity_in_block",
-                                    customProps: {
-                                        emoji: "🧊",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/entities/damage_source",
-                                    customProps: {
-                                        emoji: "🩸",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/entities/ready_for_shearing",
-                                    customProps: {
-                                        emoji: "✂️",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/condition_types/entities/index",
@@ -824,22 +439,20 @@ const sidebar: SidebarsConfig = {
                             label: "Experience",
                             customProps: { emoji: "✨" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/experience/dropped_experience",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "experience"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/experience/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "🌍",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/experience/experience_level",
-                                    customProps: {
-                                        emoji: "🔢",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/condition_types/experience/index",
@@ -850,43 +463,20 @@ const sidebar: SidebarsConfig = {
                             label: "Items",
                             customProps: { emoji: "🎒" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/items/item",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "items"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/items/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "🎒",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/items/items",
-                                    customProps: {
-                                        emoji: "🎒🎒",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/items/item_in_hand",
-                                    customProps: {
-                                        emoji: "🖐️",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/items/item_in_inventory",
-                                    customProps: {
-                                        emoji: "📦",
-                                    },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/items/item_equipped",
-                                    customProps: {
-                                        emoji: "👕",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/condition_types/items/index",
@@ -897,15 +487,20 @@ const sidebar: SidebarsConfig = {
                             label: "Movement",
                             customProps: { emoji: "👟" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/movement/distance",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "movement"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/movement/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "📏",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/condition_types/movement/index",
@@ -916,22 +511,20 @@ const sidebar: SidebarsConfig = {
                             label: "Recipes",
                             customProps: { emoji: "🍲" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/recipes/is_blasting_recipe",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "recipes"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/recipes/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "🔥",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/recipes/is_smoking_recipe",
-                                    customProps: {
-                                        emoji: "💨",
-                                    },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/condition_types/recipes/index",
@@ -942,15 +535,20 @@ const sidebar: SidebarsConfig = {
                             label: "Scoreboard",
                             customProps: { emoji: "📊" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/scoreboard/scoreboard",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "scoreboard"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/scoreboard/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "📊",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/condition_types/scoreboard/index",
@@ -961,18 +559,23 @@ const sidebar: SidebarsConfig = {
                             label: "Team",
                             customProps: { emoji: "👥" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/team/team",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "teams"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/teams/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "👥",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
-                                id: "wiki/condition_types/team/index",
+                                id: "wiki/condition_types/teams/index",
                             },
                         },
                         {
@@ -980,15 +583,20 @@ const sidebar: SidebarsConfig = {
                             label: "World",
                             customProps: { emoji: "🌍" },
                             collapsed: true,
-                            items: [
-                                {
-                                    type: "doc",
-                                    id: "wiki/condition_types/world/dimension",
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "world"
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/world/${condition.id}`,
+                                    label: condition.title,
                                     customProps: {
-                                        emoji: "🌍",
+                                        emoji: condition.emoji,
                                     },
-                                },
-                            ],
+                                })),
                             link: {
                                 type: "doc",
                                 id: "wiki/condition_types/world/index",

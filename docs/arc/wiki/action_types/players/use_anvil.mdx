@@ -1,3 +1,50 @@
 ---
 title: Use Anvil
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_use_anvil` action type is triggered when a player uses an anvil to repair or rename an item.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="use_anvil" />
+
+## Example
+
+The following example will give the player an anvil every time they use an anvil.
+
+```json title="data/my_datapack/arc/give_anvil.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_use_anvil",
+    "conditions": [],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:anvil"
+            }
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="use_anvil" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="use_anvil" />

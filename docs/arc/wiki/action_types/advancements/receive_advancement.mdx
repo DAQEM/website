@@ -1,3 +1,51 @@
 ---
 title: Receive Advancement
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_advancement` action type is triggered when a player receives an advancement.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="receive_advancement" />
+
+## Example
+
+The following example will give the player an apple every time they complete any advancement.
+
+```json title="data/my_datapack/arc/apple_for_any_advancement.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_advancement",
+    "rewards": [
+        {
+            "type": "arc:command",
+            "command": "give %player% minecraft:apple"
+        }
+    ]
+}
+```
+
+:::note Limitation
+As of this version, there is no built-in condition to filter by a specific advancement ID. This means the action will trigger for any advancement the player receives. To check for a specific advancement (e.g., minecraft:story/smelt_iron), you would need to create a custom ConditionType that reads the arc:advancement data provided by this action.
+:::
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="receive_advancement" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="receive_advancement" />

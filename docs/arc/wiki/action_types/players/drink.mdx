@@ -1,3 +1,66 @@
 ---
 title: Drink
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_drink` action type is triggered when a player drinks an item (e.g., potion, milk bucket, etc.).
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="drink" />
+
+## Example
+
+The following example will give the player a Night Vision effect for 60 minutes when they drink a Potion of Night Vision.
+
+```json title="data/my_datapack/arc/night_vision_on_drink.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_drink",
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:potion",
+                "components": {
+                    "minecraft:potion_contents": {
+                        "potion": "minecraft:night_vision"
+                    }
+                }
+            }
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:night_vision",
+                "duration": 72000,
+                "amplifier": 0,
+                "show_particles": false,
+                "show_icon": false
+            }
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="drink" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="drink" />

@@ -1,3 +1,66 @@
 ---
 title: Brew Potion
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_brew_potion` action type is triggered when a player brews a potion.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="brew_potion" />
+
+## Example
+
+The following example will give the player a Night Vision effect for 10 seconds when they brew a Potion of Swiftness.
+
+```json title="data/my_datapack/arc/night_vision_on_brew_swiftness_potion.json"
+{
+  "holder": {
+    "type": "arc:player",
+    "id": "arc:player"
+  },
+  "type": "arc:on_brew_potion",
+  "conditions": [
+    {
+      "type": "arc:item",
+      "item": {
+        "id": "minecraft:potion",
+        "components": {
+          "minecraft:potion_contents": {
+            "potion": "minecraft:swiftness"
+          }
+        }
+      }
+    }
+  ],
+  "rewards": [
+    {
+      "type": "arc:effect",
+      "effect": {
+        "id": "minecraft:night_vision",
+        "duration": 200,
+        "amplifier": 0,
+        "show_particles": false,
+        "show_icon": false
+      }
+    }
+  ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="brew_potion" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="brew_potion" />

@@ -1,3 +1,58 @@
 ---
 title: Harvest Crop
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_harvest_crop` action type is triggered when a player harvests a crop.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="harvest_crop" />
+
+## Example
+
+The following example will give the player a golden carrot every time they harvest a fully grown carrot crop.
+
+```json title="data/my_datapack/arc/golden_carrot_for_harvest.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_harvest_crop",
+    "conditions": [
+        {
+            "type": "arc:crop_fully_grown"
+        },
+        {
+            "type": "arc:block",
+            "block": "minecraft:carrots"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:golden_carrot"
+            }
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="harvest_crop" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="harvest_crop" />

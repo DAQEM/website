@@ -1,3 +1,53 @@
 ---
 title: Tame Animal
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_tame_animal` action type is triggered when a player tames an animal.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="tame_animal" />
+
+## Example
+
+The following example will rename the wolf closest to the player to "Spiky" every time they tame a wolf.
+
+```json title="data/my_datapack/arc/rename_wolf_on_tame.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_tame_animal",
+    "conditions": [
+        {
+            "type": "arc:entity_type",
+            "entity_type": "minecraft:wolf"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:command",
+            "command": "execute as @p[name=%player%] at @s run data modify entity @e[type=wolf,limit=1,sort=nearest] CustomName set value 'Spiky'"
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="tame_animal" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="tame_animal" />

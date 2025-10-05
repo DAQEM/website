@@ -1,35 +1,36 @@
 ---
-title: Swim Stop
+title: Hurt Player
 ---
 
 import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
 import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
 import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
 
-The `arc:on_swim_stop` action type is triggered when a player stops swimming.
+The `arc:on_hurt_player` action type is triggered when a player hurts another player.
 
 ## Action Data
 
 When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
 
-<ActionDataTable actionType="swim_stop" />
+<ActionDataTable actionType="hurt_player" />
 
 ## Example
 
-The following example will give the player a Water Breathing effect for 10 seconds as long as they are not swimming.
+The following example will give the player a Strength I effect for 10 seconds every time they hurt another player.
 
-```json title="data/my_datapack/arc/water_breathing_on_swim_stop.json"
+```json title="data/my_datapack/arc/strength_on_hurt_player.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_swim_stop",
+    "type": "arc:on_hurt_player",
+    "conditions": [],
     "rewards": [
         {
             "type": "arc:effect",
             "effect": {
-                "id": "minecraft:water_breathing",
+                "id": "minecraft:strength",
                 "duration": 200,
                 "amplifier": 0,
                 "show_particles": false,
@@ -44,10 +45,10 @@ The following example will give the player a Water Breathing effect for 10 secon
 
 The following condition types can be used with this action type:
 
-<CompatibleConditionTypes actionType="swim_stop" />
+<CompatibleConditionTypes actionType="hurt_player" />
 
 ## Compatible Reward Types
 
 The following reward types can be used with this action type:
 
-<CompatibleRewardTypes actionType="swim_stop" />
+<CompatibleRewardTypes actionType="hurt_player" />

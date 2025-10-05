@@ -1,3 +1,55 @@
 ---
 title: Hurt Entity
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_hurt_entity` action type is triggered when a player hurts an entity.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="hurt_entity" />
+
+## Example
+
+The following example will give the player a diamond every time they hurt a zombie.
+
+```json title="data/my_datapack/arc/diamond_for_hurting_zombie.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_hurt_entity",
+    "conditions": [
+        {
+            "type": "arc:entity_type",
+            "entity_type": "minecraft:zombie"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:diamond"
+            }
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="hurt_entity" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="hurt_entity" />

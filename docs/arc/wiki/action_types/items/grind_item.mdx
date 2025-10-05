@@ -1,3 +1,49 @@
 ---
 title: Grind Item
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_grind_item` action type is triggered when a player grinds an item.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="grind_item" />
+
+## Example
+
+The following example will give the player an emerald every time they grind an item.
+
+```json title="data/my_datapack/arc/grind_for_emerald.json"
+{
+  "holder": {
+    "type": "arc:player",
+    "id": "arc:player"
+  },
+  "type": "arc:on_grind_item",
+  "rewards": [
+    {
+      "type": "arc:item",
+      "item": {
+        "id": "minecraft:emerald"
+      }
+    }
+  ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="grind_item" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="grind_item" />

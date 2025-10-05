@@ -1,39 +1,42 @@
 ---
-title: Swim Stop
+title: Get Hurt
 ---
 
 import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
 import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
 import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
 
-The `arc:on_swim_stop` action type is triggered when a player stops swimming.
+The `arc:on_get_hurt` action type is triggered when a player takes damage.
 
 ## Action Data
 
 When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
 
-<ActionDataTable actionType="swim_stop" />
+<ActionDataTable actionType="get_hurt" />
 
 ## Example
 
-The following example will give the player a Water Breathing effect for 10 seconds as long as they are not swimming.
+The following example will give the player a diamond every time they take damage from a zombie.
 
-```json title="data/my_datapack/arc/water_breathing_on_swim_stop.json"
+```json title="data/my_datapack/arc/diamond_for_zombie_damage.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_swim_stop",
+    "type": "arc:on_get_hurt",
+    "conditions": [
+        {
+            "type": "arc:damage_source",
+            "source": "mob",
+            "direct_entity_type": "minecraft:zombie"
+        }
+    ],
     "rewards": [
         {
-            "type": "arc:effect",
-            "effect": {
-                "id": "minecraft:water_breathing",
-                "duration": 200,
-                "amplifier": 0,
-                "show_particles": false,
-                "show_icon": false
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:diamond"
             }
         }
     ]
@@ -44,10 +47,10 @@ The following example will give the player a Water Breathing effect for 10 secon
 
 The following condition types can be used with this action type:
 
-<CompatibleConditionTypes actionType="swim_stop" />
+<CompatibleConditionTypes actionType="get_hurt" />
 
 ## Compatible Reward Types
 
 The following reward types can be used with this action type:
 
-<CompatibleRewardTypes actionType="swim_stop" />
+<CompatibleRewardTypes actionType="get_hurt" />

@@ -1,3 +1,64 @@
 ---
 title: Effect Added
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_effect_added` action type is triggered when a player receives a new effect.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="effect_added" />
+
+## Example
+
+The following example will give the player a Regeneration II effect for 10 seconds when they receive a Speed I effect or higher.
+
+```json title="data/my_datapack/arc/speed_on_effect_added.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_effect_added",
+    "conditions": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:speed",
+                "amplifier": 0
+            },
+            "check_amplifier": true,
+            "amplifier_comparison": ">="
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:regeneration",
+                "duration": 200,
+                "amplifier": 1,
+                "show_particles": true,
+                "show_icon": true
+            }
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="effect_added" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="effect_added" />

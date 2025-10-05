@@ -1,3 +1,55 @@
 ---
 title: Interact With Block
 ---
+
+import ActionDataTable from "@site/src/components/wiki/arc/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/reward-type-list";
+
+The `arc:on_interact_block` action type is triggered when a player interacts with a block, such as right-clicking it.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable actionType="interact_with_block" />
+
+## Example
+
+The following example will give the player a diamond every time they right-click a diamond ore block.
+
+```json title="data/my_datapack/arc/diamond_for_interact.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_interact_block",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:diamond_ore"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:diamond"
+            }
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes actionType="interact_with_block" />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes actionType="interact_with_block" />
