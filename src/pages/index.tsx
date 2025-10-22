@@ -1,7 +1,7 @@
 import Layout from "@theme/Layout";
 import type { ReactNode } from "react";
 import ProjectCard from "../components/projects/project-card";
-import Anchor from "../components/ui/Anchor";
+import Anchor from "../components/ui/anchor";
 import { projects } from "../lib/projects";
 
 export default function Home(): ReactNode {

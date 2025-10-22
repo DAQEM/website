@@ -10,7 +10,7 @@ const ProjectCard = ({ name, description, slug }: ProjectCardProps) => {
     return (
         <Link
             href={`/projects/${slug}`}
-            className="grid grid-cols-[64px_1fr] md:grid-cols-[96px_1fr] grid-rows-[max-content_max-content] mc-card gap-4 no-underline"
+            className="grid grid-cols-[64px_1fr] md:grid-cols-[96px_1fr] grid-rows-[max-content_max-content] mc-button gap-4 no-underline"
         >
             <div className="size-16 md:size-24">
                 <img src={`/img/projects/${slug}.webp`} alt={name} />
