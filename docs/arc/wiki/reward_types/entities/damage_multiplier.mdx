@@ -1,3 +1,36 @@
 ---
 title: Damage Multiplier
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:damage_multiplier` reward type multiplies the amount of damage dealt or received.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will cause the player to deal double damage to other players.
+
+```json title="data/my_datapack/arc/pvp_strength.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_hurt_player",
+    "rewards": [
+        {
+            "type": "arc:damage_multiplier",
+            "multiplier": 2.0
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

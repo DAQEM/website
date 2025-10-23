@@ -1,3 +1,41 @@
 ---
 title: Is Blasting Recipe
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:is_blasting_recipe` condition type checks if a recipe is specifically for a blast furnace.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will give the player a piece of coal every time they smelt an item in a blast furnace.
+
+```json title="data/my_datapack/arc/coal_for_blasting.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_smelt_item",
+    "conditions": [
+        {
+            "type": "arc:is_blasting_recipe"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:coal" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

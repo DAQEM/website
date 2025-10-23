@@ -1,3 +1,45 @@
 ---
 title: Crop Fully Grown
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:crop_fully_grown` condition type checks if a crop is fully grown.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example doubles the drops when a player harvests a fully grown wheat crop.
+
+```json title="data/my_datapack/arc/double_wheat_drops.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_harvest_crop",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:wheat"
+        },
+        {
+            "type": "arc:crop_fully_grown"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:block_drop_multiplier",
+            "multiplier": 2
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

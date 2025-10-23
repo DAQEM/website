@@ -1,3 +1,41 @@
 ---
 title: Is Ore
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:is_ore` condition type checks if a block is considered an ore. This includes blocks in the `forge:ores` and `c:ores` tags, as well as `minecraft:ancient_debris` and blocks that drop experience.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example doubles the experience dropped when a player breaks any ore.
+
+```json title="data/my_datapack/arc/double_ore_xp.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:is_ore"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:exp_multiplier",
+            "multiplier": 2
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

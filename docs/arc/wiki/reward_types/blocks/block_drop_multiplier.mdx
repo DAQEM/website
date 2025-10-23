@@ -1,3 +1,42 @@
 ---
 title: Block Drop Multiplier
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:block_drop_multiplier` reward type multiplies the items dropped when a block is broken.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will triple the drops from diamond ore when a player breaks it.
+
+```json title="data/my_datapack/arc/triple_diamond_drops.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:diamond_ore"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:block_drop_multiplier",
+            "multiplier": 3
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

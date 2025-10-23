@@ -1,0 +1,43 @@
+---
+title: Experience Drop
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:exp_drop` condition type checks if the amount of experience dropped is within a specified range.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will double the experience dropped from killing a mob if the original drop was between 3 and 5 points.
+
+```json title="data/my_datapack/arc/double_xp_for_mid_mobs.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_kill_entity",
+    "conditions": [
+        {
+            "type": "arc:exp_drop",
+            "min": 3,
+            "max": 5
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:exp_multiplier",
+            "multiplier": 2
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

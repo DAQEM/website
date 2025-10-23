@@ -1,3 +1,41 @@
 ---
 title: Damage Source
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:damage_source` condition type checks the source of damage.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will prevent the player from taking fall damage.
+
+```json title="data/my_datapack/arc/no_fall_damage.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_hurt",
+    "conditions": [
+        {
+            "type": "arc:damage_source",
+            "source": "fall"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:cancel_action"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

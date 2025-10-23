@@ -145,7 +145,7 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(actionTypes)
                                 .filter(
-                                    (action) => action.category === "player"
+                                    (action) => action.category === "players"
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((action) => ({

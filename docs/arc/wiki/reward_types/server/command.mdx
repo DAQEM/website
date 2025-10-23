@@ -1,3 +1,52 @@
 ---
 title: Command
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:command` reward type executes a server command.
+
+## Parameters
+
+<RewardParameterTable />
+
+### Placeholders
+
+The command string can include placeholders that will be replaced with dynamic values from the action data:
+-   `%player%`: The player's name.
+-   `%uuid%`: The player's UUID.
+-   `%world%`: The resource location of the player's current world/dimension.
+-   `%player_location%`: The player's block coordinates (e.g., `100 64 -250`).
+-   `%block_location%`: The coordinates of the block from the action data.
+-   `%item%`: The resource location of the item from the action data.
+-   `%item_stack%`: The resource location of the item from the item stack in the action data.
+
+## Example
+
+The following example will say "Hello, world!" in chat whenever the player joins the game.
+
+```json title="data/my_datapack/arc/hello_world_on_join.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_advancement",
+    "conditions": [
+        {
+            "type": "arc:advancement",
+            "advancement": "minecraft:story/root"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:command",
+            "command": "say Hello, world! Welcome, %player%!"
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
