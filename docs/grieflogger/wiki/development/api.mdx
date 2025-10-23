@@ -1,0 +1,42 @@
+---
+title: API
+description: Information for developers about the GriefLogger API and how to interact with it.
+---
+
+import Admonition from '@theme/Admonition';
+
+Currently, GriefLogger **does not provide a formal, stable API** for other mods to interact with. The project is primarily focused on its functionality as a standalone server tool.
+
+### Why is there no API?
+
+-   **Stability:** Providing a stable API requires a significant commitment. The internal structure of the mod is subject to change as new features are added and existing ones are refactored. Exposing these internals as a public API would risk breaking other mods with each update.
+-   **Focus:** The development focus is on the core features of logging and data retrieval for server administrators.
+
+### Can I still interact with GriefLogger?
+
+While not officially supported, developers are free to explore the mod's open-source code. If you need to add custom logging from your own mod, you can inspect the `Services` interface (`com.daqem.grieflogger.database.service.Services`) to see how data is inserted into the database.
+
+**Example (for educational purposes only):**
+```java
+// WARNING: This is NOT a stable API and may break at any time.
+import com.daqem.grieflogger.database.service.Services;
+import com.daqem.grieflogger.model.action.BlockAction;
+
+// ...
+
+Services.BLOCK.insertMaterial(
+    player.getUUID(),
+    player.level().dimension().location().toString(),
+    pos,
+    "my_mod:custom_block",
+    BlockAction.INTERACT_BLOCK
+);
+```
+
+<Admonition type="danger" title="Use at Your Own Risk">
+    Interacting with the mod's internals this way is not supported. Your mod may break with any GriefLogger update. You will be responsible for maintaining this integration yourself.
+</Admonition>
+
+### The Future of the API
+
+If you are a developer and have a strong use case for a GriefLogger API, please **[open a feature request](https://github.com/DAQEM/GriefLogger/issues)** on our GitHub repository. Describe what functionality you need and why. If there is sufficient community interest, the development of a formal API may be considered for a future release.

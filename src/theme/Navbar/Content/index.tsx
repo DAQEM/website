@@ -16,7 +16,7 @@ import SearchBar from "@theme/SearchBar";
 import clsx from "clsx";
 import { type ReactNode } from "react";
 
-import Anchor from "@site/src/components/ui/Anchor";
+import Anchor from "@site/src/components/ui/anchor";
 import styles from "./styles.module.css";
 
 function useNavbarItems() {

@@ -1,0 +1,35 @@
+import Admonition from "@theme/Admonition";
+
+# SQLite
+
+SQLite is the default database system used by GriefLogger. It is a self-contained, serverless, zero-configuration database engine, making it incredibly easy to use.
+
+### How It Works
+
+You don't need to do anything to enable SQLite—it's the default setting. When you first start your server with GriefLogger installed, the mod will automatically create a file named `database.db` inside the `config/grieflogger/` directory.
+
+This single file contains all of your server's log data, including every table for blocks, items, sessions, and users.
+
+### Advantages
+
+-   **Simplicity:** No external database server to install, configure, or maintain. It just works.
+-   **Portability:** Your entire log history is contained in one file. Backing up or moving your server is as simple as copying the `database.db` file along with the rest of your server files.
+
+### Disadvantages
+
+-   **Performance at Scale:** While very efficient, SQLite can become a bottleneck on extremely large servers with hundreds of concurrent players and a massive amount of logged interactions. For most servers, this is not an issue, but if you run a large public network, you should consider using **[MySQL](./mysql.mdx)**.
+
+### Management
+
+#### Backing Up
+
+To back up your GriefLogger data, simply **shut down your server** and make a copy of the `database.db` file.
+
+<Admonition type="danger" title="Important">
+    Always stop your server before copying or modifying the `database.db` file
+    to prevent data corruption.
+</Admonition>
+
+#### Resetting Data
+
+To completely wipe all log data, stop your server and delete the `database.db` file. A new, empty database file will be generated the next time the server starts.

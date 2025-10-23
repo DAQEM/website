@@ -1,0 +1,31 @@
+---
+title: Radius Filter
+description: The radius filter allows you to limit your lookup results to a specific area around your current location.
+---
+
+The `radius` filter limits your search to a specific area around your character's current position. The search area is a cube, not a sphere.
+
+-   **Filter Name:** `radius`
+-   **Abbreviation:** `r`
+
+### Syntax
+
+The value is a single integer representing the distance from the player in all six directions (positive/negative X, Y, and Z).
+
+```
+radius.<number>
+```
+
+For example, `radius.10` will search in a 21x21x21 cube centered on you (10 blocks in the positive direction, 10 blocks in the negative direction, and the block you are on for each axis).
+
+### Examples
+
+-   **See all player activity within a 5-block radius of your current location:**
+```bash
+/gl lookup radius.5
+```
+
+-   **Find out who placed the TNT near you in the last 30 minutes:**
+```bash
+/gl lookup include.tnt time.30m radius.25
+```

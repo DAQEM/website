@@ -1,0 +1,83 @@
+import Admonition from '@theme/Admonition';
+import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+
+# Connecting to MySQL / MariaDB
+
+For larger servers, connecting GriefLogger to a MySQL or MariaDB database is highly recommended for optimal performance and scalability. This guide will walk you through the process of configuring the connection.
+
+### Prerequisites
+
+Before you begin, you must have:
+1.  A running MySQL or MariaDB server that your Minecraft server can connect to.
+2.  A database (also known as a schema) created on the MySQL server for GriefLogger to use.
+3.  A user account on the MySQL server with full permissions (`SELECT`, `INSERT`, `UPDATE`, `DELETE`, `CREATE`, `ALTER`, etc.) for that specific database.
+
+<Admonition type="note">
+    The setup of a MySQL server is beyond the scope of this wiki, but there are many excellent tutorials available online. Popular choices include setting it up on the same machine as your Minecraft server or using a dedicated hosting provider.
+</Admonition>
+
+### Configuration Steps
+
+1.  **Locate the Configuration File:**
+Navigate to your server's configuration directory and open `config/grieflogger/grieflogger-server.yml` with a text editor.
+
+2.  **Enable MySQL:**
+Find the `useMysql` setting and change its value from `false` to `true`.
+
+```yaml
+    useMysql: true
+```
+
+3.  **Enter Connection Details:**
+Fill in the `mysqlHost`, `mysqlPort`, `mysqlDatabase`, `mysqlUsername`, and `mysqlPassword` fields with the details from your MySQL server setup.
+
+*   `mysqlHost`: The IP address or domain name of your database server. Use `127.0.0.1` if it's on the same machine.
+*   `mysqlPort`: The port your database server is listening on. The default for MySQL is `3306`.
+*   `mysqlDatabase`: The name of the database you created for GriefLogger.
+*   `mysqlUsername`: The username of the account with permissions for the database.
+*   `mysqlPassword`: The password for that user account.
+
+### Example Configuration
+
+Here is a complete example of what the `database` section should look like:
+
+```yaml title="config/grieflogger/grieflogger-server.yml"
+database:
+  # Whether to use MySQL or SQLite
+  useMysql: true
+  # MySQL host
+  mysqlHost: '127.0.0.1'
+  # MySQL port
+  mysqlPort: 3306
+  # MySQL database
+  mysqlDatabase: 'grieflogger_db'
+  # MySQL username
+  mysqlUsername: 'gl_user'
+  # MySQL password
+  mysqlPassword: 'a_very_secure_password'
+  # MySQL timeout
+  mysqlTimeout: 5000
+  # Whether to use indexes (improves inspect/lookup speed)
+  useIndexes: true
+```
+
+4.  **Restart Your Server:**
+Save the configuration file and restart your Minecraft server. Check the server console for any connection error messages. If the connection is successful, GriefLogger will automatically create the necessary tables (`blocks`, `users`, `containers`, etc.) in the database you specified.
+
+### Troubleshooting
+
+<Tabs>
+    <TabItem value="conn-refused" label="Connection Refused">
+        If you see a "Connection Refused" error, it usually means one of three things:
+        - The `mysqlHost` IP address is incorrect.
+        - The `mysqlPort` is incorrect.
+        - A firewall on your database server or Minecraft server is blocking the connection on that port.
+    </TabItem>
+    <TabItem value="access-denied" label="Access Denied">
+        An "Access Denied" error means your credentials are wrong.
+        - Double-check your `mysqlUsername` and `mysqlPassword`.
+        - Ensure the MySQL user is allowed to connect from the Minecraft server's IP address. Many MySQL setups default to only allowing connections from `localhost`. You may need to configure the user to be accessible from `'%'` (any host) or your server's specific IP.
+        - Verify the user has sufficient permissions for the specified `mysqlDatabase`.
+    </TabItem>
+</Tabs>

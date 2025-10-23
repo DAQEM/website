@@ -1,0 +1,43 @@
+---
+title: Filters
+description: Detailed explanation of the various filters available for refining searches with the /gl lookup command.
+---
+
+Filters are the core component of the `/gl lookup` command. They are the criteria you define to narrow down your search and find the exact logs you need.
+
+### Filter Syntax
+
+Every filter follows a simple `name.value` format.
+
+-   **`name`**: The type of filter you want to apply (e.g., `user`, `radius`).
+-   **`value`**: The specific data you are searching for (e.g., `Steve`, `10`).
+
+For example, `user.Steve` is a filter that looks for actions performed by the player named Steve.
+
+### Combining Filters
+
+You can use up to five filters in a single `/gl lookup` command. The search will only return entries that match **all** of the specified filters. This allows you to construct highly precise queries.
+
+**Example:** `/gl lookup user.Steve radius.20 action.place_block`
+This command searches for logs where:
+1.  The user was **Steve**, AND
+2.  The action was within a **20-block radius** of you, AND
+3.  The action was a **`place_block`** event.
+
+### Comma-Separated Values
+
+Filters that accept specific names (like `user`, `action`, `include`, and `exclude`) allow you to provide multiple values separated by a comma, without any spaces.
+
+**Example:** `/gl lookup include.diamond_ore,gold_ore,ancient_debris`
+This will search for logs related to any of those three block types.
+
+### Available Filters
+
+Click on any filter to learn more about its specific syntax and purpose.
+
+*   **[Action Filter](./action-filter.mdx)**: Filters by the type of event (e.g., breaking a block, adding an item).
+*   **[Exclude Filter](./exclude-filter.mdx)**: Excludes specific blocks or items from the results.
+*   **[Include Filter](./include-filter.mdx)**: Restricts the search to only the specified blocks or items.
+*   **[Radius Filter](./radius-filter.mdx)**: Limits the search to a cubic area around you.
+*   **[Time Filter](./time-filter.mdx)**: Searches for logs within a specific recent timeframe.
+*   **[User Filter](./user-filter.mdx)**: Filters by the player who performed the action.```

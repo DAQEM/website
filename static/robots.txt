@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://daqem.com/sitemap.xml
+content-signal: search=yes
+content-signal: ai-input=yes
+content-signal: ai-train=yes

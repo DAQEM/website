@@ -1,0 +1,35 @@
+---
+title: Include Filter
+description: The include filter allows you to restrict lookup results to specific blocks or items, making it easier to focus on valuable materials.
+---
+
+import Admonition from '@theme/Admonition';
+
+The `include` filter is the opposite of the `exclude` filter. It restricts the search to *only* show results involving the specific blocks or items you list. This is the best way to search for actions related to valuable materials.
+
+-   **Filter Name:** `include`
+-   **Abbreviation:** `i`
+
+### Syntax
+
+The value is the Minecraft namespaced ID of the block or item you want to search for. The `minecraft:` prefix is optional. You can specify multiple items by separating them with a comma.
+
+```
+include.<item_id>[,item_id]...
+```
+
+<Admonition type="danger" title="Filter Conflict">
+    You cannot use the `include` and `exclude` filters in the same command, as they perform opposite functions.
+</Admonition>
+
+### Examples
+
+-   **Search for who has placed or broken diamond blocks in a 100-block radius:**
+```bash
+/gl lookup include.diamond_block radius.100
+```
+
+-   **Track who has taken netherite items from chests in the last day in a 50-block radius:**
+```bash
+/gl lookup action.remove_item include.netherite_sword,netherite_pickaxe,netherite_ingot time.1d radius.50
+```

@@ -1,8 +1,8 @@
 import isInternalUrl from "@docusaurus/isInternalUrl";
 import Link from "@docusaurus/Link";
 import {
-  findFirstSidebarItemLink,
-  useDocById,
+    findFirstSidebarItemLink,
+    useDocById,
 } from "@docusaurus/plugin-content-docs/client";
 import { usePluralForm } from "@docusaurus/theme-common";
 import { translate } from "@docusaurus/Translate";
@@ -10,8 +10,8 @@ import clsx from "clsx";
 import { type ReactNode } from "react";
 
 import type {
-  PropSidebarItemCategory,
-  PropSidebarItemLink,
+    PropSidebarItemCategory,
+    PropSidebarItemLink,
 } from "@docusaurus/plugin-content-docs";
 import type { Props } from "@theme/DocCard";
 import Heading from "@theme/Heading";
@@ -48,7 +48,7 @@ function CardContainer({
         <Link
             href={href}
             className={clsx(
-                "card !mc-card rounded-none !border-none padding--lg",
+                "card !mc-button rounded-none !border-none padding--lg",
                 styles.cardContainer,
                 className
             )}
