@@ -93,7 +93,7 @@ const config: Config = {
             },
             items: [
                 { to: "/#projects", label: "Projects", position: "right" },
-                { to: "/blog", label: "News", position: "right" },
+                { to: "/news", label: "News", position: "right" },
             ],
         },
         footer: {
