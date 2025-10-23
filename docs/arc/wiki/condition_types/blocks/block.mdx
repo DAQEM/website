@@ -1,3 +1,42 @@
 ---
 title: Block
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:block` condition type checks if the block involved in an action matches a specific block type.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example rewards the player with an apple when they place a dirt block.
+
+```json title="data/my_datapack/arc/apple_for_dirt.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_place_block",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:dirt"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:apple" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

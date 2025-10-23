@@ -1,3 +1,42 @@
 ---
 title: Move to Entity
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:move_to_entity` reward type pulls the player towards the target entity's location.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will pull the player towards a cow when they reel in a fishing rod that has hooked the cow.
+
+```json title="data/my_datapack/arc/grappling_hook_cow.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_rod_reel_in",
+    "conditions": [
+        {
+            "type": "arc:entity_type",
+            "entity_type": "minecraft:cow"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:move_to_entity",
+            "force": 1.5
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

@@ -1,3 +1,44 @@
 ---
 title: Attack Speed Multiplier
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:attack_speed_multiplier` reward type modifies the player's attack speed.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will double the player's attack speed when they are holding a wooden sword.
+
+```json title="data/my_datapack/arc/fast_wood_sword.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_attack_speed",
+    "conditions": [
+        {
+            "type": "arc:item_in_hand",
+            "item": {
+                "id": "minecraft:wooden_sword"
+            }
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:attack_speed_multiplier",
+            "multiplier": 2.0
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

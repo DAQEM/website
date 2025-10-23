@@ -1,3 +1,46 @@
 ---
 title: Entity Types
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:entity_types` condition type checks if an entity is one of several specified types.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will reward the player with a bone for killing any skeleton-type mob.
+
+```json title="data/my_datapack/arc/bone_from_skeletons.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_kill_entity",
+    "conditions": [
+        {
+            "type": "arc:entity_types",
+            "entity_types": [
+                "minecraft:skeleton",
+                "minecraft:stray",
+                "minecraft:wither_skeleton"
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:bone" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

@@ -2,3 +2,42 @@
 title: Items
 slug: items
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:items` condition type checks if an item is one of several specified items or belongs to a specified item tag.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example rewards the player with an extra diamond when they smelt any item from the `#forge:ores` tag.
+
+```json title="data/my_datapack/arc/extra_diamond_from_ores.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_smelt_item",
+    "conditions": [
+        {
+            "type": "arc:items",
+            "items": ["#forge:ores"]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:diamond" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

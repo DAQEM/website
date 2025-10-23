@@ -1,3 +1,42 @@
 ---
 title: Effect Category
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:effect_category` condition type checks the category of a mob effect (BENEFICIAL, HARMFUL, or NEUTRAL).
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will give the player a milk bucket every time they receive a harmful effect.
+
+```json title="data/my_datapack/arc/cure_harmful_effects.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_effect_added",
+    "conditions": [
+        {
+            "type": "arc:effect_category",
+            "category": "HARMFUL"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:milk_bucket" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

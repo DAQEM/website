@@ -1,3 +1,46 @@
 ---
 title: Crop Age
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:crop_age` condition type checks if a crop is at a specific age.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives the player a bone meal when they harvest a wheat crop that is exactly at age 6 (one stage before fully grown).
+
+```json title="data/my_datapack/arc/bonemeal_for_young_wheat.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_harvest_crop",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:wheat"
+        },
+        {
+            "type": "arc:crop_age",
+            "age": 6
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:bone_meal" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

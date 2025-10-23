@@ -1,3 +1,42 @@
 ---
 title: Entity In Block
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:entity_in_block` condition type checks if an entity is currently inside a specific block.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will pull the player towards their fishing hook only if the hook is in the air, effectively creating a grappling hook.
+
+```json title="data/my_datapack/arc/grappling_hook.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_rod_reel_in",
+    "conditions": [
+        {
+            "type": "arc:entity_in_block",
+            "block": "minecraft:air"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:move_to_entity",
+            "force": 2.0
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

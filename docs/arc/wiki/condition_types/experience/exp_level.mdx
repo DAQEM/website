@@ -1,0 +1,42 @@
+---
+title: Experience Level
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:exp_level` condition type checks if the experience level cost of an action matches a specific value.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives the player an extra diamond when they perform a level 30 enchantment.
+
+```json title="data/my_datapack/arc/reward_for_max_enchant.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_enchant_item",
+    "conditions": [
+        {
+            "type": "arc:exp_level",
+            "level": 30
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:diamond" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

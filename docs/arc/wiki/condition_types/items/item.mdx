@@ -1,3 +1,49 @@
 ---
 title: Item
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:item` condition type checks if an item matches a specific item, including optional checks for count and components.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives the player a speed boost when they drink a Potion of Swiftness.
+
+```json title="data/my_datapack/arc/boost_swiftness_potion.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_drink",
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:potion",
+                "components": {
+                    "minecraft:potion_contents": {
+                        "potion": "minecraft:swiftness"
+                    }
+                }
+            }
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect_amplifier_addition",
+            "addition": 1
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

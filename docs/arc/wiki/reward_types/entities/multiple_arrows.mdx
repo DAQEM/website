@@ -1,3 +1,42 @@
 ---
 title: Multiple Arrows
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:multiple_arrows` reward type shoots additional arrows when a player shoots a bow.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example makes the player shoot a spread of 5 arrows instead of one.
+
+```json title="data/my_datapack/arc/multishot_bow.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_shoot_projectile",
+    "conditions": [
+        {
+            "type": "arc:entity_type",
+            "entity_type": "minecraft:arrow"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:multiple_arrows",
+            "amount": 5
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

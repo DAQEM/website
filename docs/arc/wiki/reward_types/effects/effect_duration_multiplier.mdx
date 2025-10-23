@@ -1,3 +1,42 @@
 ---
 title: Effect Duration Multiplier
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:effect_duration_multiplier` reward type multiplies the duration of an effect a player receives.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will double the duration of any beneficial effect the player receives.
+
+```json title="data/my_datapack/arc/extend_buffs.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_effect_added",
+    "conditions": [
+        {
+            "type": "arc:effect_category",
+            "category": "BENEFICIAL"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect_duration_multiplier",
+            "multiplier": 2.0
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

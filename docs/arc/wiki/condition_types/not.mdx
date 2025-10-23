@@ -1,3 +1,49 @@
 ---
 title: Not
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:not` condition type inverts the result of its nested conditions. It is met if none of the specified conditions are met.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will reward the player with a diamond if they break any block that is _not_ a stone block.
+
+```json title="data/my_datapack/arc/diamond_for_not_stone.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:not",
+            "conditions": [
+                {
+                    "type": "arc:block",
+                    "block": "minecraft:stone"
+                }
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:diamond"
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
