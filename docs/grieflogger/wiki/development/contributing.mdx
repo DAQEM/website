@@ -1,0 +1,55 @@
+---
+title: Contributing
+description: Guidelines for contributing to the GriefLogger project, including setting up a development environment and submitting pull requests.
+---
+
+import Admonition from '@theme/Admonition';
+
+We appreciate you taking the time to contribute to GriefLogger! Following these guidelines helps maintain a clear and efficient development process.
+
+### Setting Up Your Development Environment
+
+1.  **Fork the Repository:**
+Start by forking the [official GriefLogger repository](https://github.com/DAQEM/GriefLogger) on GitHub to your own account.
+
+2.  **Clone Your Fork:**
+Clone your forked repository to your local machine.
+```bash
+git clone https://github.com/YourUsername/GriefLogger.git
+cd GriefLogger
+```
+
+3.  **Ensure Correct Java Version:**
+The project requires **Java 21 (Temurin/OpenJDK)**. Make sure this is the JDK your system uses for Gradle.
+
+4.  **Build the Project:**
+Run the `build` task using the Gradle wrapper. This will download all necessary dependencies and set up the project.
+```bash
+./gradlew build
+```
+This command will build both the Fabric and NeoForge versions of the mod.
+
+### Making Changes
+
+1.  **Create a New Branch:**
+Always create a new branch for your changes. Base your branch off the `-dev` branch for the relevant Minecraft version (e.g., `1.21.9-dev`).
+```bash
+git checkout -b feature/my-awesome-feature 1.21.9-dev
+```
+
+2.  **Write Your Code:**
+Implement your feature or bug fix. Try to adhere to the existing code style and structure.
+
+### Submitting a Pull Request
+
+1.  **Push to Your Fork:**
+Commit your changes and push your branch to your forked repository on GitHub.
+
+2.  **Create a Pull Request:**
+From your fork's page on GitHub, create a new Pull Request.
+-   **Target Branch:** Ensure your pull request is targeting the correct `-dev` branch (e.g., `1.21.9-dev`) of the main DAQEM/GriefLogger repository.
+-   **Title & Description:** Provide a clear title and a detailed description of the changes you've made and why. If it resolves an existing issue, be sure to mention it (e.g., `Fixes #123`).
+
+<Admonition type="info">
+    Your PR will automatically be tested by the GitHub Actions workflow. All checks must pass before it can be merged. A project maintainer will review your code, provide feedback, and merge it when it's ready.
+</Admonition>

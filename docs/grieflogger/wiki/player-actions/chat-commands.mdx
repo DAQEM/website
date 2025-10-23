@@ -1,0 +1,36 @@
+---
+title: Chat Commands
+description: Logs all player chat messages and executed commands for moderation and auditing purposes.
+---
+
+import Admonition from '@theme/Admonition';
+
+To provide a full context for player actions, GriefLogger records all public chat messages and executed commands. This is invaluable for moderation and understanding the events leading up to an incident.
+
+---
+
+## Chat Messages
+
+GriefLogger captures every message a player sends in the game's public chat.
+
+-   **Trigger:** A player sends a chat message.
+-   **What's Logged:** The player who sent the message, their location, the timestamp, and the full, unformatted content of the message string.
+
+<Admonition type="note">
+    The chat history is not currently viewable via the in-game lookup commands but is stored in the `chats` table in the database for external review.
+</Admonition>
+
+---
+
+## Commands
+
+GriefLogger records every command a player attempts to execute, regardless of whether they have permission or if the command is successful.
+
+-   **Trigger:** A player executes a command (a chat message starting with `/`).
+-   **What's Logged:** The player who executed the command, their location, the timestamp, and the entire command string as it was typed.
+
+This is extremely useful for auditing the use of potentially powerful commands.
+
+<Admonition type="note">
+    Similar to chat, command history is stored in the `commands` table in the database for external review and is not currently part of the in-game lookup results.
+</Admonition>

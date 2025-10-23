@@ -1,0 +1,56 @@
+---
+title: Action Filter
+description: The action filter allows you to search for specific types of logged events, such as block placements, item pickups, and player sessions.
+---
+
+import Admonition from '@theme/Admonition';
+
+The `action` filter allows you to search for specific types of events that have been logged. This is one of the most powerful filters for narrowing down your investigation.
+
+-   **Filter Name:** `action`
+-   **Abbreviation:** `a`
+
+### Syntax
+
+The value is the name of the action you want to find. You can specify multiple actions by separating them with a comma.
+
+```
+action.<action_name>[,action_name]...
+```
+
+### Available Actions
+
+The list of actions is extensive. Here are some of the most common ones:
+
+-   **Block Actions:**
+-   `place_block`
+-   `break_block`
+-   `interact_block`
+-   `kill_entity`
+-   **Item Actions (Containers):**
+-   `add_item`
+-   `remove_item`
+-   **Item Actions (Player):**
+-   `drop_item`
+-   `pickup_item`
+-   `craft_item`
+-   `consume_item`
+-   **Session Actions:**
+-   `join`
+-   `quit`
+
+<Admonition type="info" title="Use Tab-Completion!">
+    The game's tab-completion will show you all available actions when you type `action.` and press Tab, so you don't need to memorize them.
+</Admonition>
+
+### Examples
+
+-   **Find all blocks broken or placed in your area:**
+```bash
+/gl lookup action.break_block,place_block radius.15
+```
+
+-   **See who has joined or left the server in the last 10 minutes in a 100-block radius:**
+```bash
+/gl lookup action.join,quit time.10m radius.100
+```

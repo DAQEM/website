@@ -1,0 +1,38 @@
+---
+title: Time Filter
+description: The time filter allows you to search for logs within a specific recent timeframe, making it easier to find relevant events.
+---
+
+The `time` filter allows you to search for logs that occurred within a specific timeframe, counting backward from the moment you execute the command.
+
+-   **Filter Name:** `time`
+-   **Abbreviation:** `t`
+
+### Syntax
+
+The syntax is a number followed by a single-letter unit identifier.
+
+```
+time.<number><unit>
+```
+
+### Available Units
+
+| Unit    | Identifier |
+| ------- | :--------: |
+| Minutes | `m`        |
+| Hours   | `h`        |
+| Days    | `d`        |
+| Years   | `y`        |
+
+### Examples
+
+-   **Find all container transactions in the last 90 minutes in a 50-block radius:**
+```bash
+/gl lookup action.add_item,remove_item time.90m radius.50
+```
+
+-   **See who has joined the server in the last 3 days in a 50-block radius:**
+```bash
+/gl lookup action.join time.3d radius.50
+```

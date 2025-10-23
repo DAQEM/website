@@ -1,0 +1,48 @@
+---
+title: Inspect Command
+description: Learn how to use GriefLogger's in-game Inspector tool to quickly check the history of blocks and containers.
+---
+
+import Admonition from '@theme/Admonition';
+
+The Inspector is GriefLogger's most straightforward tool for investigating a specific location. It allows you to check the history of blocks and containers simply by interacting with them in the world.
+
+### Toggling the Inspector
+
+To enable or disable the Inspector, use the following command:
+
+```bash
+/grieflogger inspect
+```
+**Alias:** `/gl inspect`
+
+-   **Permission:** Requires permission level 2 (standard for most server operators).
+-   **Functionality:** This command acts as a toggle. Executing it once enables Inspector mode. Executing it again disables it. You will receive a chat message confirming whether it has been enabled or disabled.
+
+<Admonition type="warning" title="Gameplay Interruption">
+    While the Inspector is active, your normal ability to break and interact with blocks is disabled. You will not be able to mine blocks or open chests. Remember to toggle it off with `/gl inspect` to resume normal gameplay.
+</Admonition>
+
+### Using the Inspector
+
+Once enabled, your clicks will query the database instead of performing their usual actions.
+
+#### Left-Clicking a Block
+-   **Action:** Shows the **placement and break history** of the block you clicked.
+-   **Use Case:** Find out who placed a specific block or who recently destroyed a block that used to be in that spot.
+
+#### Right-Clicking a Block
+-   **Action:** Shows the **interaction history** of the block you clicked.
+-   **Use Case:** See who has recently used a lever, opened a door, or accessed a crafting table.
+
+### Special Cases
+
+GriefLogger has intelligent handling for more complex blocks:
+
+-   **Containers (Chests, Barrels, Furnaces, etc.):** Right-clicking a container will show a history of all items added or removed from it, as well as who accessed it.
+-   **Double Chests:** The Inspector is smart enough to know which two blocks form a double chest. Right-clicking one half will show the combined inventory transaction history for the entire double chest.
+-   **Doors:** Clicking on either the top or bottom half of a door will show the interaction and placement/break history for the entire door structure.
+
+### Viewing Results
+
+The results of an inspection are displayed directly in your chat. If the history is long, it will be broken into multiple pages. You can navigate these pages using the `/gl page` command. See the **[Pages](./pages.mdx)** documentation for more details.

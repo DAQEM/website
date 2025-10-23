@@ -1,0 +1,49 @@
+---
+title: Reporting Issues
+description: Guidelines for reporting bugs and issues with GriefLogger to help the development team address them effectively.
+---
+
+import Admonition from '@theme/Admonition';
+
+A good bug report is the first step to getting a bug fixed. By providing detailed and accurate information, you make it much easier for the developers to identify and solve the problem.
+
+**Before you post, please [search the existing issues](https://github.com/DAQEM/GriefLogger/issues) to see if someone has already reported the same problem.**
+
+### How to Create a Bug Report
+
+All bug reports should be submitted to our **[GitHub Issue Tracker](https://github.com/DAQEM/GriefLogger/issues)**.
+
+Follow these steps to create a high-quality report:
+
+1.  **Create a New Issue:**
+Click the "New Issue" button on the issue tracker page.
+
+2.  **Write a Clear Title:**
+Your title should be a brief, clear summary of the issue.
+-   **Bad Title:** `Mod crashed`
+-   **Good Title:** `[Crash] Server crashes when placing a barrel next to a hopper`
+
+3.  **Provide Essential Information:**
+In the body of the issue, please include the following details. This is the most important part of your report.
+
+*   **GriefLogger Version:** (e.g., `1.2.9`)
+*   **Minecraft Version:** (e.g., `1.21.9`)
+*   **Mod Loader:** Fabric or NeoForge, including its version number.
+*   **Full Mod List:** A list of all other mods you have installed.
+*   **Server Logs:** Copy the full crash report or the relevant section from your `logs/latest.log` file.
+*   **Configuration File:** Copy the contents of your `grieflogger-server.yml` file.
+
+<Admonition type="tip" title="Use a Paste Service">
+    For long logs or configuration files, please use a service like [Pastebin](https://pastebin.com/), [Gist](https://gist.github.com/), or [mclo.gs](https://mclo.gs/) and link to it in your issue. Do **not** paste huge walls of text directly into the issue description.
+</Admonition>
+
+<Admonition type="warning" title="Sanitize Your Data!">
+    Before posting your configuration file, be sure to remove or redact sensitive information, such as your **`mysqlPassword`**.
+</Admonition>
+
+4.  **Describe the Issue:**
+-   **What happened?** A clear description of the bug.
+-   **What did you expect to happen?** What the correct behavior should have been.
+-   **Steps to Reproduce:** Provide a precise, step-by-step list of actions to trigger the bug. This is critical for debugging.
+
+A detailed report will lead to a much faster resolution. Thank you for helping improve GriefLogger!

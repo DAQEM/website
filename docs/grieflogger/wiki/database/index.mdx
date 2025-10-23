@@ -1,0 +1,21 @@
+---
+title: Database
+description: Overview of the database options available in GriefLogger, including SQLite and MySQL/MariaDB.
+---
+
+
+At its core, GriefLogger is a powerful data logging tool that relies on a database to store all the information it collects. Understanding how the database works will help you manage your server's data effectively, ensure good performance, and even perform advanced data analysis if you choose.
+
+GriefLogger offers two distinct database solutions to fit the needs of any server, from a small private server for friends to a large public community.
+
+### Database Options
+
+*   **[SQLite](./sqlite)**
+*   **Default, Zero-Configuration:** This is the option GriefLogger uses out of the box. It stores all data in a single file (`database.db`) within your server's configuration folder.
+*   **Best for:** Small to medium-sized servers, or for server owners who want maximum simplicity and do not want to manage an external database server.
+
+*   **[MySQL / MariaDB](./mysql)**
+*   **High-Performance, Scalable:** This option allows GriefLogger to connect to an external MySQL or MariaDB server. It is the recommended choice for large servers with high player counts.
+*   **Best for:** Large, active communities where database performance and scalability are critical. This requires setting up and managing a separate database server.
+
+Choose the sub-page that best fits your server's needs to learn more about setup and management.
