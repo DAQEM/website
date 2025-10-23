@@ -172,7 +172,7 @@ const config: Config = {
                 id: "default",
                 path: "docs/daqem",
                 routeBasePath: "/docs/daqem",
-                sidebarPath: "sidebars.ts",
+                sidebarPath: "docs/daqem/sidebar.ts",
                 sidebarCollapsed: false,
                 editUrl: "https://github.com/DAQEM/website/tree/main/",
             } satisfies Partial<DocsPlugin.PluginOptions>,
