@@ -30,11 +30,8 @@ export default {
                 },
             ],
             link: {
-                type: "generated-index",
-                title: "Getting Started",
-                description:
-                    "Learn how to install and configure GriefLogger on your server.",
-                slug: "wiki/getting-started",
+                type: "doc",
+                id: "wiki/getting-started/index",
             },
         },
         {
