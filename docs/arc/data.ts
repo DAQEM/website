@@ -497,6 +497,16 @@ export type ConditionType = {
         | "teams"
         | "world";
     isActionCompatible: (action: ActionType) => boolean;
+    parameters: {
+        name: string;
+        types: {
+            type: string;
+            typeURL?: string;
+        }[];
+        required: boolean;
+        default?: string | number | boolean;
+        description: string;
+    }[];
 } & SidebarItem;
 
 export const conditionTypesDefinition = {
@@ -507,6 +517,19 @@ export const conditionTypesDefinition = {
         category: "blocks",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:blockState"),
+        parameters: [
+            {
+                name: "block",
+                types: [
+                    {
+                        type: "Block",
+                        typeURL: "/docs/daqem/wiki/json_formats/block",
+                    },
+                ],
+                required: true,
+                description: "The block to check.",
+            },
+        ],
     },
     block_hardness: {
         id: "block_hardness",
@@ -516,6 +539,22 @@ export const conditionTypesDefinition = {
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:blockState") &&
             action.producesData.includes("arc:blockPosition"),
+        parameters: [
+            {
+                name: "min",
+                type: "float",
+                required: false,
+                default: "1.4e-45",
+                description: "The minimum hardness value.",
+            },
+            {
+                name: "max",
+                type: "float",
+                required: false,
+                default: "3.4028235e+38",
+                description: "The maximum hardness value.",
+            },
+        ],
     },
     blocks: {
         id: "blocks",
@@ -524,6 +563,14 @@ export const conditionTypesDefinition = {
         category: "blocks",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:blockState"),
+        parameters: [
+            {
+                name: "blocks",
+                type: "string[]",
+                required: true,
+                description: "The blocks/block tags to check.",
+            },
+        ],
     },
     crop_age: {
         id: "crop_age",
@@ -532,6 +579,14 @@ export const conditionTypesDefinition = {
         category: "blocks",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:blockState"),
+        parameters: [
+            {
+                name: "age",
+                type: "int",
+                required: true,
+                description: "The age of the crop.",
+            },
+        ],
     },
     crop_fully_grown: {
         id: "crop_fully_grown",
@@ -540,6 +595,7 @@ export const conditionTypesDefinition = {
         category: "blocks",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:blockState"),
+        parameters: [],
     },
     is_ore: {
         id: "is_ore",
@@ -548,6 +604,7 @@ export const conditionTypesDefinition = {
         category: "blocks",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:blockState"),
+        parameters: [],
     },
     not_in_block_position_cache: {
         id: "not_in_block_position_cache",
@@ -556,6 +613,7 @@ export const conditionTypesDefinition = {
         category: "blocks",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:blockPosition"),
+        parameters: [],
     },
     effect: {
         id: "effect",
@@ -564,6 +622,44 @@ export const conditionTypesDefinition = {
         category: "effects",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:mobEffectInstance"),
+        parameters: [
+            {
+                name: "effect",
+                type: "Effect",
+                typeURL: "/projects/arc/wiki/json_formats/#effect",
+                required: true,
+                description: "The effect to check.",
+            },
+            {
+                name: "checkAmplifier",
+                type: "boolean",
+                required: false,
+                default: false,
+                description: "Whether to check the effect's amplifier.",
+            },
+            {
+                name: "checkDuration",
+                type: "boolean",
+                required: false,
+                default: false,
+                description: "Whether to check the effect's duration.",
+            },
+            {
+                name: "amplifierComparisonType",
+                type: "ComparisonType",
+                typeURL: "/projects/arc/wiki/json_formats/#comparison-type",
+                required: false,
+                default: "==",
+                description: "The comparison type for the effect's amplifier.",
+            },
+            {
+                name: "durationComparisonType",
+                type: "ComparisonType",
+                required: false,
+                default: "==",
+                description: "The comparison type for the effect's duration.",
+            },
+        ],
     },
     effect_category: {
         id: "effect_category",
@@ -572,6 +668,15 @@ export const conditionTypesDefinition = {
         category: "effects",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:mobEffectInstance"),
+        parameters: [
+            {
+                name: "category",
+                type: "EffectCategory",
+                typeURL: "/projects/arc/wiki/json_formats/#effect-category",
+                required: true,
+                description: "The category of the effect.",
+            },
+        ],
     },
     damage_source: {
         id: "damage_source",
@@ -580,6 +685,31 @@ export const conditionTypesDefinition = {
         category: "entities",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:damageSource"),
+        parameters: [
+            {
+                name: "source",
+                type: "string",
+                required: false,
+                default: "any",
+                description: "The damage source to check.",
+            },
+            {
+                name: "direct_entity_type",
+                type: "EntityType",
+                typeURL: "/projects/arc/wiki/json_formats/#entity-type",
+                required: false,
+                default: "null",
+                description: "The direct entity type to check.",
+            },
+            {
+                name: "causing_entity_type",
+                type: "EntityType",
+                typeURL: "/projects/arc/wiki/json_formats/#entity-type",
+                required: false,
+                default: "null",
+                description: "The causing entity type to check.",
+            },
+        ],
     },
     entity_in_block: {
         id: "entity_in_block",
@@ -588,6 +718,15 @@ export const conditionTypesDefinition = {
         category: "entities",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:entity"),
+        parameters: [
+            {
+                name: "block",
+                type: "Block",
+                typeURL: "https://minecraft.wiki/w/List_of_blocks_by_version",
+                required: true,
+                description: "The block to check.",
+            },
+        ],
     },
     entity_type: {
         id: "entity_type",
@@ -596,6 +735,15 @@ export const conditionTypesDefinition = {
         category: "entities",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:entity"),
+        parameters: [
+            {
+                name: "entity_type",
+                type: "EntityType",
+                typeURL: "/projects/arc/wiki/json_formats/#entity-type",
+                required: true,
+                description: "The entity type to check.",
+            },
+        ],
     },
     entity_types: {
         id: "entity_types",
@@ -604,6 +752,15 @@ export const conditionTypesDefinition = {
         category: "entities",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:entity"),
+        parameters: [
+            {
+                name: "entity_types",
+                type: "EntityType[]",
+                typeURL: "/projects/arc/wiki/json_formats/#entity-type",
+                required: true,
+                description: "A list of entity types to check.",
+            },
+        ],
     },
     ready_for_shearing: {
         id: "ready_for_shearing",
@@ -612,6 +769,7 @@ export const conditionTypesDefinition = {
         category: "entities",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:entity"),
+        parameters: [],
     },
     dropped_experience: {
         id: "dropped_experience",
@@ -620,6 +778,20 @@ export const conditionTypesDefinition = {
         category: "experience",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:expDrop"),
+        parameters: [
+            {
+                name: "min",
+                type: "int",
+                required: true,
+                description: "The minimum amount of experience dropped.",
+            },
+            {
+                name: "max",
+                type: "int",
+                required: true,
+                description: "The maximum amount of experience dropped.",
+            },
+        ],
     },
     experience_level: {
         id: "experience_level",
@@ -628,6 +800,14 @@ export const conditionTypesDefinition = {
         category: "experience",
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:expLevel"),
+        parameters: [
+            {
+                name: "level",
+                type: "int",
+                required: true,
+                description: "The experience level to check.",
+            },
+        ],
     },
     item: {
         id: "item",
@@ -637,6 +817,22 @@ export const conditionTypesDefinition = {
         isActionCompatible: (action: ActionType) =>
             action.producesData.includes("arc:item") ||
             action.producesData.includes("arc:itemStack"),
+        parameters: [
+            {
+                name: "item",
+                type: "Item",
+                typeURL: "/projects/arc/wiki/json_formats/#item",
+                required: true,
+                description: "The item to check.",
+            },
+            {
+                name: "check_components",
+                type: "boolean",
+                required: false,
+                default: true,
+                description: "Whether to check item components.",
+            },
+        ],
     },
     item_equipped: {
         id: "item_equipped",
@@ -644,6 +840,15 @@ export const conditionTypesDefinition = {
         emoji: "🪙✅",
         category: "items",
         isActionCompatible: (action: ActionType) => true,
+        parameters: [
+            {
+                name: "item",
+                type: "Item",
+                typeURL: "/projects/arc/wiki/json_formats/#item",
+                required: true,
+                description: "The item to check.",
+            },
+        ],
     },
     item_in_hand: {
         id: "item_in_hand",
@@ -651,6 +856,23 @@ export const conditionTypesDefinition = {
         emoji: "🪙✋",
         category: "items",
         isActionCompatible: (action: ActionType) => true,
+        parameters: [
+            {
+                name: "item",
+                type: "Item",
+                typeURL: "/projects/arc/wiki/json_formats/#item",
+                required: true,
+                description: "The item to check.",
+            },
+            {
+                name: "hand",
+                type: "Hand",
+                typeURL: "/projects/arc/wiki/json_formats/#hand",
+                required: false,
+                default: "null",
+                description: "The hand to check. Checks both hands if not set.",
+            },
+        ],
     },
     item_in_inventory: {
         id: "item_in_inventory",
@@ -658,6 +880,15 @@ export const conditionTypesDefinition = {
         emoji: "🪙📦",
         category: "items",
         isActionCompatible: (action: ActionType) => true,
+        parameters: [
+            {
+                name: "item",
+                type: "Item",
+                typeURL: "/projects/arc/wiki/json_formats/#item",
+                required: true,
+                description: "The item to check.",
+            },
+        ],
     },
     items: {
         id: "items",

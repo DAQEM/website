@@ -38,8 +38,11 @@
     --ifm-color-secondary-contrast-background: #1a2540;
 }
 
-html {
-    scrollbar-gutter: stable;
+@supports (scrollbar-gutter: stable) {
+    nav {
+        overflow: hidden;
+        scrollbar-gutter: stable;
+    }
 }
 
 h1,
