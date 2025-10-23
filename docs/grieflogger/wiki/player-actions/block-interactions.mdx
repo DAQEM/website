@@ -1,0 +1,96 @@
+---
+title: Block Interactions
+description: Detailed information on how GriefLogger tracks player interactions with blocks in the world.
+---
+
+import Admonition from '@theme/Admonition';
+
+GriefLogger tries to records every interaction a player has with the blocks in your world. This is crucial for identifying griefing, tracking build progress, and understanding how players interact with their environment.
+
+---
+
+## Placing Blocks
+
+**Action Name:** `PLACE_BLOCK`
+
+This action is logged whenever a player places a block in the world. This includes standard blocks, as well as liquids placed from buckets.
+
+-   **Trigger:** A player successfully places a block.
+-   **What's Logged:** The player, the type of block placed, the coordinates of the placement, and the timestamp.
+
+<Admonition type="info" title="Liquid Logging">
+    Thanks to specific handling for `BucketItem`, GriefLogger also logs when a player places a liquid (like water or lava) as a `PLACE_BLOCK` action for the corresponding liquid source block.
+</Admonition>
+
+#### Example Log Output:
+A log entry for placing a block will look similar to this when using the inspect or lookup commands:
+```
+[Time] + [Player] placed stone
+```
+
+---
+
+## Breaking Blocks
+
+**Action Name:** `BREAK_BLOCK`
+
+This is the counterpart to placing blocks. It's logged whenever a player destroys a block.
+
+-   **Trigger:** A player successfully breaks a block.
+-   **What's Logged:** The player, the type of block broken, the coordinates, and the timestamp.
+
+<Admonition type="info" title="Liquid Logging">
+    Similarly to placing liquids, GriefLogger logs a `BREAK_BLOCK` event when a player picks up a liquid source with a bucket.
+</Admonition>
+
+#### Example Log Output:
+```
+[Time] - [Player] broke dirt
+```
+
+---
+
+## Interacting with Blocks
+
+**Action Name:** `INTERACT_BLOCK`
+
+This action is logged when a player right-clicks a "functional" or "intractable" block without placing another block against it. This helps track the usage of various devices and doors.
+
+-   **Trigger:** A player right-clicks an interactive block.
+-   **What's Logged:** The player, the type of block interacted with, the coordinates, and the timestamp.
+
+The list of tracked intractable blocks is extensive and includes:
+-   Fence Gates
+-   Dispensers & Droppers
+-   Note Blocks
+-   Chests, Barrels, Shulker Boxes & Vaults
+-   Furnaces (all types)
+-   Levers & Buttons
+-   Trapdoors & Doors
+-   Brewing Stands
+-   Redstone components like Repeaters
+-   Hoppers
+-   Utility blocks like Crafting Tables, Anvils, Grindstones, etc.
+-   Signs, Beacons, Lecterns
+- And many more.
+
+#### Example Log Output:
+```
+[Time] - [Player] clicked oak_door
+```
+
+---
+
+## Killing Entities
+
+**Action Name:** `KILL_ENTITY`
+
+While not strictly a "block" interaction, this event is categorized under the `BlockAction` enum in the mod's code. It is logged whenever a player is the direct cause of a living entity's death.
+
+-   **Trigger:** A player kills a mob or another player.
+-   **What's Logged:** The player who performed the action, the type of entity that was killed, the coordinates of the entity at the time of death, and the timestamp.
+
+#### Example Log Output:
+```
+[Time] - [Player] killed zombie
+```

@@ -1,0 +1,39 @@
+---
+title: Player Sessions
+description: Records when players join and leave the server, providing a clear timeline of player activity.
+---
+
+GriefLogger tracks when players join and leave the server. This provides a simple but effective way to see who was online at any given time, which can be crucial context when investigating an incident.
+
+---
+
+## Player Join
+
+**Action Name:** `JOIN`
+
+A `JOIN` action is logged the moment a player successfully connects to the server and enters the world.
+
+-   **Trigger:** A player joins the server.
+-   **What's Logged:** The player, their location upon joining, and the timestamp.
+
+Additionally, every time a player joins, GriefLogger updates its internal user database with the player's current username to keep records accurate even if a player changes their name.
+
+#### Example Log Output:
+When viewing logs, a join event will appear as:
+```
+[Time] + [Player] joined
+```
+
+---
+
+## Player Quit
+
+**Action Name:** `QUIT`
+
+A `QUIT` action is logged when a player disconnects from the server, whether intentionally or due to a lost connection.
+
+-   **Trigger:** A player leaves the server.
+-   **What's Logged:** The player, their location at the moment of disconnecting, and the timestamp.
+
+#### Example Log Output:
+A quit event will appear as:

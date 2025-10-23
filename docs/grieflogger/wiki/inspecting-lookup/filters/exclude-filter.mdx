@@ -1,0 +1,35 @@
+---
+title: Exclude Filter
+description: The exclude filter allows you to omit specific blocks or items from your lookup results, helping to reduce noise from common materials.
+---
+
+import Admonition from '@theme/Admonition';
+
+The `exclude` filter is used to remove results involving specific blocks or items from your search. This is useful for filtering out common, "spammy" blocks like dirt and stone to focus on more valuable materials.
+
+-   **Filter Name:** `exclude`
+-   **Abbreviation:** `e`
+
+### Syntax
+
+The value is the Minecraft namespaced ID of the block or item you wish to exclude. The `minecraft:` prefix is optional. You can specify multiple items by separating them with a comma.
+
+```
+exclude.<item_id>[,item_id]...
+```
+
+<Admonition type="danger" title="Filter Conflict">
+    You cannot use the `exclude` and `include` filters in the same command, as they perform opposite functions.
+</Admonition>
+
+### Examples
+
+-   **Find all blocks broken by a player, except for common stone types in a 50-block radius:**
+```bash
+/gl lookup user.MinerJoe action.break_block exclude.stone,dirt,cobblestone,gravel radius.50
+```
+
+-   **Check container interactions in a vault, ignoring cobblestone removal:**
+```bash
+/gl lookup radius.20 action.remove_item exclude.cobblestone
+```

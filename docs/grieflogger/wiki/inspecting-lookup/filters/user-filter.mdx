@@ -1,0 +1,32 @@
+---
+title: User Filter
+description: The user filter allows you to search for actions performed by specific players, making it easier to track individual activity.
+---
+
+The `user` filter is used to search for actions performed by one or more specific players.
+
+-   **Filter Name:** `user`
+-   **Abbreviation:** `u`
+
+### Syntax
+
+The value is the in-game name of a player. You can list multiple players by separating their names with a comma.
+
+```user.<player_name>[,player_name]...
+```
+
+<Admonition type="info" title="Username Database">
+    GriefLogger maintains a database of user UUIDs and their last known usernames. This means you can still look up a player's logs even if they have since changed their Minecraft name.
+</Admonition>
+
+### Examples
+
+-   **Get a complete log of all actions by player `Notch` in a 50-block radius:**
+```bash
+/gl lookup user.Notch radius.50
+```
+
+-   **Find out if `Player1` or `Player2` broke any blocks in the last day in a 50-block radius:**
+```bash
+/gl lookup user.Player1,Player2 action.break_block time.1d radius.50
+```

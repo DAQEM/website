@@ -1,0 +1,46 @@
+---
+title: Pages
+description: How to navigate multi-page results from GriefLogger's inspect and lookup commands.
+---
+
+import Admonition from '@theme/Admonition';
+
+# Pages
+
+When you perform a query with `/gl inspect` or `/gl lookup` that returns more than a few results, GriefLogger automatically organizes the output into **pages**. This keeps your chat from being flooded and allows you to navigate the results systematically.
+
+### The Page Footer
+
+At the end of each page of results, you will see a footer that looks like this:
+
+`⯇ Page 1/5 ⯈`
+
+-   **`⯇` (Left Arrow):** Navigates to the previous page.
+-   **`Page 1/5`:** Shows your current page number and the total number of pages.
+-   **`⯈` (Right Arrow):** Navigates to the next page.
+
+<Admonition type="tip" title="Clickable Navigation">
+    The arrows in the footer are interactive! Clicking on them in your chat window will automatically execute the correct `/gl page` command to take you to the next or previous page. This is the easiest way to navigate results.
+</Admonition>
+
+### Page Command
+
+If you prefer, you can also navigate manually using the `page` command.
+
+```bash
+/grieflogger page <number>
+```
+**Alias:** `/gl page`
+
+-   **Permission:** Requires permission level 2 (standard for most server operators).
+-   **Argument:** The page number you wish to view.
+
+**Example:**
+To jump directly to the third page of your last lookup results, you would type:
+```bash
+/gl page 3
+```
+
+### Session-Specific Results
+
+Your lookup results are tied to your player session. This means two administrators can perform lookups at the same time without interfering with or overwriting each other's results. The pages you see are your own.

@@ -1,0 +1,59 @@
+---
+title: Lookup Command
+description: Master the advanced search command for complex queries in GriefLogger's log database.
+---
+
+import Admonition from '@theme/Admonition';
+
+The `lookup` command is GriefLogger's most powerful feature, providing a flexible and robust way to search the entire log database using a combination of filters. It's the essential tool for in-depth investigations that go beyond a single block.
+
+### Command Syntax
+
+The basic structure of the command is as follows:
+
+```bash
+/grieflogger lookup <filter1> [filter2] [filter3] ...
+```
+**Alias:** `/gl lookup`
+
+-   **Permission:** Requires permission level 2 (standard for most server operators).
+-   **Arguments:** You can provide one or more filters to narrow down your search. The command supports up to five filters at once.
+
+<Admonition type="danger" icon="🚨" title="Important: Radius Filter is Required">
+    To prevent accidental, performance-intensive queries across the entire database, the **`radius` filter is a mandatory component of any lookup command.** Executing a lookup without a defined radius would default to searching a tiny area at the world's origin (coordinates 0, 0, 0) and will likely return no useful results.
+
+    **Always include a `radius` filter in your lookups to define a search area.**
+</Admonition>
+
+### How It Works
+
+When you execute a `lookup` command, GriefLogger queries the database for all log entries that match **all** of the filters you provide.
+
+For example, if you search for `user.Steve radius.10`, the command will only return logs that were created by the player named "Steve" AND occurred within a 10-block radius of your current position.
+
+<Admonition type="info" title="Smart Suggestions">
+    GriefLogger provides excellent tab-completion for this command. As you type, it will suggest available filters. Once you select a filter (e.g., `action.`), it will then suggest valid values for that filter, making it easy to build complex queries without memorizing every option.
+</Admonition>
+
+### Practical Examples
+
+Here are a few examples to showcase the power of the `lookup` command:
+
+-   **Find who broke diamond ore in the area:**
+```bash
+/gl lookup action.break_block include.diamond_ore radius.50
+```
+
+-   **See everything a specific player has done in the last hour within a 100-block radius:**
+```bash
+/gl lookup user.Griefer42 time.1h radius.100
+```
+
+-   **Check for theft of valuable items from any container in a base:**
+```bash
+/gl lookup action.remove_item include.diamond,netherite_ingot radius.30 time.6h
+```
+
+### Viewing Results
+
+The results of a lookup are displayed in your chat. Because a lookup can return thousands of entries, the results are always paginated. Use the `/gl page <number>` command to navigate through them. For more details, see the **[Pages](./Pages)** documentation.

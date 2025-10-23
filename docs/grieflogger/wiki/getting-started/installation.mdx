@@ -1,0 +1,57 @@
+---
+title: Installation
+description: Instructions for installing GriefLogger on your Minecraft server.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+GriefLogger is a server-side mod. It only needs to be installed on the server. Clients do not need to have the mod installed to join.
+
+## Requirements
+Before installing GriefLogger, please ensure you have the following:
+
+*   **Minecraft Version:** `1.21.9` (as specified in `gradle.properties`)
+*   **Mod Loader:** Fabric or NeoForge
+*   **Dependencies:**
+*   [Architectury API](https://www.curseforge.com/minecraft/mc-mods/architectury-api)
+*   [Yaml Config](https://www.curseforge.com/minecraft/mc-mods/yaml-config)
+
+## Installation Steps
+
+1.  **Download the Correct Files:**
+Download GriefLogger and its dependencies for your specific mod loader (Fabric or NeoForge) and Minecraft version.
+
+*   **GriefLogger:** [CurseForge](https://www.curseforge.com/minecraft/mc-mods/grieflogger), [Modrinth](https://modrinth.com/mod/8oGVUFuX)
+*   **Architectury API:** [CurseForge](https://www.curseforge.com/minecraft/mc-mods/architectury-api), [Modrinth](https://modrinth.com/mod/architectury-api)
+*   **Yaml Config:** [CurseForge](https://www.curseforge.com/minecraft/mc-mods/yaml-config), [Modrinth](https://modrinth.com/mod/yaml-config)
+
+2.  **Install the Mod Loader:**
+Ensure you have the latest version of Fabric or NeoForge installed on your server.
+
+3.  **Place Files in `mods` Folder:**
+Move the downloaded `.jar` files for GriefLogger, Architectury API, and Yaml Config into your server's `mods` folder. If the folder doesn't exist, create it.
+
+4.  **Start Your Server:**
+Start your server. GriefLogger will generate its configuration file and create the necessary database files on the first run.
+
+<Tabs>
+    <TabItem value="fabric" label="Fabric" default>
+        **Your `mods` folder should look like this for a Fabric server:**
+        ```
+        /mods
+        ├── architectury-x.x.x-fabric.jar
+        ├── grieflogger-x.x.x-fabric.jar
+        └── yaml-config-x.x.x-fabric.jar
+        ```
+    </TabItem>
+    <TabItem value="neoforge" label="NeoForge">
+        **Your `mods` folder should look like this for a NeoForge server:**
+        ```jxs
+        /mods
+        ├── architectury-x.x.x-neoforge.jar
+        ├── grieflogger-x.x.x-neoforge.jar
+        └── yaml-config-x.x.x-neoforge.jar
+        ```
+    </TabItem>
+</Tabs>

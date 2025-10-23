@@ -1,0 +1,108 @@
+---
+title: Item Usage
+description: Monitors how players manage and use items, including container transactions, crafting, dropping, and consuming items.
+---
+
+GriefLogger provides detailed logs about how items are moved, created, and destroyed. This is especially useful for investigating theft from containers and tracking valuable resources.
+
+---
+
+## Container Transactions
+
+**Action Names:** `ADD_ITEM`, `REMOVE_ITEM`
+
+Instead of logging every single item click and drag, GriefLogger tracks the *net change* of items inside a container. The log is generated at the moment a player closes a container interface.
+
+-   **Trigger:** A player closes the GUI of a block entity with an inventory (e.g., Chest, Furnace, Hopper).
+-   **What's Logged:** For each type of item, the log records the total amount added or removed by the player during that session. It includes the player, item type (with NBT data), item count, coordinates of the container, and the timestamp.
+
+#### Example Log Output:
+If a player opens a chest, takes 16 diamonds, and deposits 32 dirt, the logs will show:
+```
+[Time] + [Player] added 32 dirt
+[Time] - [Player] removed 16 diamond
+```
+
+---
+
+## Dropping and Picking Up Items
+
+**Action Names:** `DROP_ITEM`, `PICKUP_ITEM`
+
+These actions track items that enter or leave the world as item entities from a player's action.
+
+-   **Trigger (`DROP_ITEM`):** A player drops an item from their inventory (e.g., by pressing 'Q' or dragging it out of the inventory screen).
+-   **Trigger (`PICKUP_ITEM`):** A player walks over an item entity and picks it up.
+-   **What's Logged:** The player, the item and its count, the location where the action occurred, and the timestamp.
+
+#### Example Log Output:
+```
+[Time] - [Player] dropped 1 stone_sword
+[Time] + [Player] picked up 1 stone_sword
+```
+
+---
+
+## Crafting and Smelting
+
+**Action Name:** `CRAFT_ITEM`
+
+This action is logged whenever a player creates a new item through crafting or smelting.
+
+-   **Trigger:** A player takes a finished item from a crafting table output slot, or a furnace output slot.
+-   **What's Logged:** The player, the resulting item and its count, the location of the action, and the timestamp.
+
+#### Example Log Output:
+```
+[Time] + [Player] crafted 4 oak_planks
+```
+
+---
+
+## Consuming Items
+
+**Action Name:** `CONSUME_ITEM`
+
+This is logged when a player finishes using an item that gets consumed, such as food or potions.
+
+-   **Trigger:** A player finishes the "using" animation for a consumable item.
+-   **What's Logged:** The player, the item that was consumed, the player's location, and the timestamp.
+
+#### Example Log Output:
+```
+[Time] - [Player] consumed 1 cooked_beef
+```
+
+---
+
+## Breaking Items
+
+**Action Name:** `BREAK_ITEM`
+
+This action logs when a tool, weapon, or armor piece with durability runs out and is destroyed.
+
+-   **Trigger:** An item's durability reaches zero through use.
+-   **What's Logged:** The player, the item that broke, the player's location, and the timestamp.
+
+#### Example Log Output:
+```
+[Time] - [Player] broke 1 iron_pickaxe
+```
+
+---
+
+## Throwing and Shooting Projectiles
+
+**Action Names:** `THROW_ITEM`, `SHOOT_ITEM`
+
+GriefLogger distinguishes between thrown items (like snowballs) and shot projectiles (like arrows).
+
+-   **Trigger (`THROW_ITEM`):** A player throws a projectile item like an Ender Pearl, Snowball, or Egg.
+-   **Trigger (`SHOOT_ITEM`):** A player shoots an arrow from a Bow or Crossbow.
+-   **What's Logged:** The player, the projectile item, the player's location, and the timestamp.
+
+#### Example Log Output:
+```
+[Time] - [Player] shot 1 arrow
+[Time] - [Player] threw 1 ender_pearl
+```
