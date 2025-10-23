@@ -6,7 +6,10 @@ import { projects } from "../lib/projects";
 
 export default function Home(): ReactNode {
     return (
-        <Layout>
+        <Layout
+            title="Home - The Best Minecraft Mods"
+            description="DAQEM Studios creates high-quality Minecraft mods like Jobs+, GriefLogger and iRobot to enhance your gameplay experience. 4.5M+ downloads and counting!"
+        >
             <div>
                 <div className="bg-gradient-to-t from-blue-400 dark:from-blue-800 via-75% via-header-background to-header-background h-[calc(100vh-80px)] flex items-center">
                     <div className="grid lg:grid-cols-2 gap-8 container">

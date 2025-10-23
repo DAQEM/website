@@ -15,6 +15,7 @@ const config: Config = {
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenAnchors: "ignore",
+    trailingSlash: false,
     markdown: {
         hooks: {
             onBrokenMarkdownLinks: "throw",
@@ -32,9 +33,19 @@ const config: Config = {
                 docs: false,
                 blog: {
                     showReadingTime: true,
+                    blogTitle: "DAQEM Studios News",
+                    blogDescription:
+                        "The latest news and updates from DAQEM Studios about our Minecraft mods and projects.",
+                    blogSidebarTitle: "Recent News",
+                    routeBasePath: "news",
+                    path: "blog",
                     feedOptions: {
                         type: ["rss", "atom"],
                         xslt: true,
+                        title: "DAQEM Studios News Feed",
+                        description:
+                            "The latest news and updates from DAQEM Studios about our Minecraft mods and projects.",
+                        copyright: `Copyright © ${new Date().getFullYear()} DAQEM Studios.`,
                     },
                     onInlineTags: "warn",
                     onInlineAuthors: "warn",
@@ -43,11 +54,29 @@ const config: Config = {
                 theme: {
                     customCss: "./src/css/custom.css",
                 },
+                sitemap: {
+                    changefreq: "weekly",
+                    priority: 0.5,
+                    ignorePatterns: ["/tags/**"],
+                    filename: "sitemap.xml",
+                },
             } satisfies Preset.Options,
         ],
     ],
 
     themeConfig: {
+        metadata: [
+            {
+                name: "keywords",
+                content:
+                    "minecraft, mods, daqem, irobot, grief logger, grieflogger, jobsplus, jobs+, fabric, forge, neoforge",
+            },
+            {
+                name: "description",
+                content:
+                    "DAQEM Studios creates high-quality Minecraft mods like Jobs+, GriefLogger and iRobot to enhance your gameplay experience.",
+            },
+        ],
         image: "img/social-card.jpg",
         colorMode: {
             defaultMode: "dark",
