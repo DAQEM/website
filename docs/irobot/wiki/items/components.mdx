@@ -1,0 +1,164 @@
+---
+title: Components
+description: A list of all the essential crafting components used to build robots and their upgrades.
+---
+
+import RecipeGrid from '@site/src/components/crafting/recipe-grid';
+
+These items are the fundamental building blocks for crafting [robots](../robots/index.mdx), [modules](modules.mdx), and other advanced items in the mod.
+
+## Core Components
+
+### Microchip
+A basic processing unit used in many recipes.
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+" G ",
+"RQR",
+" I "
+],
+"key": {
+"G": {
+"item": "minecraft:gold_ingot"
+},
+"R": {
+"item": "minecraft:redstone"
+},
+"Q": {
+"item": "minecraft:quartz"
+},
+"I": {
+"item": "minecraft:iron_ingot"
+}
+},
+"result": {
+"id": "irobot:microchip"
+}
+}} />
+
+### Advanced Microchip
+An upgraded version of the microchip for [high-tier modules](modules.mdx).
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+" R ",
+"DMD",
+" R "
+],
+"key": {
+"R": {
+"item": "minecraft:redstone_block"
+},
+"D": {
+"item": "minecraft:diamond"
+},
+"M": {
+"item": "irobot:microchip"
+}
+},
+"result": {
+"id": "irobot:advanced_microchip"
+}
+}} />
+
+### Module Base
+The foundation for all [upgrade modules](modules.mdx) that can be installed in robots.
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+"IGI",
+"GMG",
+"IGI"
+],
+"key": {
+"I": {
+"item": "minecraft:iron_ingot"
+},
+"G": {
+"item": "minecraft:glass_pane"
+},
+"M": {
+"item": "irobot:microchip"
+}
+},
+"result": {
+"id": "irobot:module_base"
+}
+}} />
+
+### Chassis and Mobility
+Basic Robot Chassis
+The main body for the [Mini Robot](../robots/mini-robot.mdx).
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+"I I",
+"ICI",
+"I I"
+],
+"key": {
+"I": {
+"item": "minecraft:iron_ingot"
+},
+"C": {
+"item": "minecraft:chest"
+}
+},
+"result": {
+"id": "irobot:basic_robot_chassis"
+}
+}} />
+
+### Robot Wheel
+A component for the advanced [Gyro Robot](../robots/gyro-robot.mdx).
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+" D ",
+"IDI",
+" D "
+],
+"key": {
+"D": {
+"item": "minecraft:dried_kelp"
+},
+"I": {
+"item": "minecraft:iron_ingot"
+}
+},
+"result": {
+"id": "irobot:robot_wheel"
+}
+}} />
+
+### Rolling Robot Chassis
+The main body for the [Gyro Robot](../robots/gyro-robot.mdx).
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+"I I",
+"ICI",
+"IWI"
+],
+"key": {
+"I": {
+"item": "minecraft:iron_ingot"
+},
+"C": {
+"item": "minecraft:chest"
+},
+"W": {
+"item": "irobot:robot_wheel"
+}
+},
+"result": {
+"id": "irobot:rolling_robot_chassis"
+}
+}} />

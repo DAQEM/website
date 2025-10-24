@@ -1,0 +1,73 @@
+---
+title: Batteries
+description: Learn about the different tiers of batteries used to power your robots.
+---
+
+import RecipeGrid from '@site/src/components/crafting/recipe-grid';
+
+Batteries are the power source for your robots. A robot cannot function without one installed. There are three tiers of batteries, each offering a higher energy capacity.
+
+## Tiers and Crafting
+
+### Small Battery
+The most basic battery, required for crafting robots.
+*   **Capacity:** 500 (configurable)
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+"IRI",
+"RCR",
+"IRI"
+],
+"key": {
+"I": {
+"item": "minecraft:iron_ingot"
+},
+"R": {
+"item": "minecraft:redstone"
+},
+"C": {
+"item": "minecraft:coal_block"
+}
+},
+"result": {
+"id": "irobot:small_battery"
+}
+}} />
+
+### Medium Battery
+An upgraded battery with a larger capacity.
+*   **Capacity:** 1500 (configurable)
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shapeless",
+"ingredients": [
+"irobot:small_battery",
+"minecraft:gold_ingot",
+"minecraft:gold_ingot",
+"minecraft:redstone_block",
+"minecraft:redstone_block"
+],
+"result": {
+"id": "irobot:medium_battery"
+}
+}} />
+
+### Large Battery
+The highest-tier battery, providing the most energy storage.
+*   **Capacity:** 3000 (configurable)
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shapeless",
+"ingredients": [
+"irobot:medium_battery",
+"minecraft:diamond",
+"minecraft:diamond",
+"minecraft:redstone_block",
+"minecraft:redstone_block"
+],
+"result": {
+"id": "irobot:large_battery"
+}
+}} />

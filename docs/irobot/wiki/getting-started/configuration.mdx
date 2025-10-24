@@ -1,0 +1,103 @@
+---
+title: Configuration
+description: A detailed guide on how to configure the iRobot mod using its YAML configuration files.
+---
+
+The iRobot mod offers extensive configuration options to tailor the experience to your liking. The settings are split into two files: a common config for server-side logic and a client config for visual settings.
+
+## Locating the Config Files
+
+After running the game with iRobot at least once, configuration files will be generated in your `config/irobot/` directory:
+
+*   `irobot-common.yml`: For server-side and gameplay settings (attributes, energy costs, behaviors).
+*   `irobot-client.yml`: For client-side visual settings (outlines, GUI elements).
+
+## Common Configuration (`irobot-common.yml`)
+
+These settings affect gameplay and must be the same on the server and all clients.
+
+### Robot General
+| Key                             | Default | Description                                                          |
+| ------------------------------- | ------- | -------------------------------------------------------------------- |
+| `recharge_threshold_percentage` | 0.2     | The energy percentage at which a robot will seek a charging station. |
+
+### Robot Attributes
+| Key                      | Default | Description                                                              |
+| ------------------------ | ------- | ------------------------------------------------------------------------ |
+| `max_health`             | 20.0    | The base maximum health of a robot.                                      |
+| `movement_speed`         | 0.5     | The base movement speed of a robot.                                      |
+| `attack_damage`          | 4.0     | The base attack damage of a robot.                                       |
+| `block_break_speed`      | 1.0     | A multiplier for the robot's overall block breaking speed.               |
+| `mining_efficiency`      | 0.0     | Additive bonus to block breaking speed, like the Efficiency enchantment. |
+| `submerged_mining_speed` | 0.2     | The multiplier for mining speed when the robot is in water.              |
+| `follow_range`           | 16.0    | The range at which the robot can follow its owner or track targets.      |
+
+### Energy System
+| Key                                   | Default | Description                                   |
+| ------------------------------------- | ------- | --------------------------------------------- |
+| `movement_energy_cost_per_meter`      | 0.0625  | Energy consumed per meter traveled.           |
+| `mining_energy_cost_per_block`        | 5.0     | Energy consumed for each block mined.         |
+| `farming_energy_cost_per_harvest`     | 1.0     | Energy consumed for harvesting a crop.        |
+| `farming_energy_cost_per_replant`     | 1.0     | Energy consumed for replanting a crop.        |
+| `woodcutting_energy_cost_per_log`     | 2.0     | Energy consumed for each log block broken.    |
+| `woodcutting_energy_cost_per_replant` | 1.0     | Energy consumed for replanting a sapling.     |
+| `regeneration_cooldown_ticks`         | 20      | Ticks between each health regeneration pulse. |
+| `regeneration_energy_cost`            | 10.0    | Energy cost to regenerate health.             |
+| `regeneration_amount`                 | 1.0     | Amount of health regenerated per pulse.       |
+
+### Batteries
+| Key                       | Default | Description                                    |
+| ------------------------- | ------- | ---------------------------------------------- |
+| `small_battery_capacity`  | 500     | Maximum energy capacity of the Small Battery.  |
+| `medium_battery_capacity` | 1500    | Maximum energy capacity of the Medium Battery. |
+| `large_battery_capacity`  | 3000    | Maximum energy capacity of the Large Battery.  |
+
+### Modules
+| Key                             | Default | Description                                               |
+| ------------------------------- | ------- | --------------------------------------------------------- |
+| `speed_boost_multiplier`        | 0.5     | Movement speed multiplier (+50%).                         |
+| `mining_speed_bonus`            | 2.0     | Additive mining efficiency bonus.                         |
+| `attack_damage_bonus`           | 4.0     | Additive attack damage bonus.                             |
+| `durability_health_bonus`       | 20.0    | Additive max health bonus (+10 hearts).                   |
+| `battery_efficiency_multiplier` | 0.75    | Multiplier for energy consumption (25% less energy used). |
+| `solar_panel_energy_per_second` | 2.0     | Energy generated per second by the Solar Panel Module.    |
+
+### Blocks
+| Key                                  | Default | Description                                    |
+| ------------------------------------ | ------- | ---------------------------------------------- |
+| `robot_station.charge_rate_per_tick` | 1       | Energy restored per tick by the Robot Station. |
+
+### Behaviors
+| Key                                                      | Default | Description                                                        |
+| -------------------------------------------------------- | ------- | ------------------------------------------------------------------ |
+| `poi_search_range`                                       | 128     | Max range a robot will search for a Point of Interest.             |
+| `mining.mine_block_timeout_ticks`                        | 600     | Max time a robot will spend trying to mine a single block.         |
+| `mining.mine_block_retry_attempts`                       | 5       | How many times a robot will try to move closer to a block.         |
+| `woodcutting.cut_tree_timeout_ticks`                     | 6000    | Max time a robot will spend trying to cut down a single tree.      |
+| `woodcutting.cut_tree_retry_attempts`                    | 5       | How many times a robot will try to move closer to a tree.          |
+| `farming.harvest_crop_delay_ticks`                       | 20      | Delay after reaching a crop before the robot harvests it.          |
+| `following_and_protecting.follow_owner_speed`            | 0.75    | Speed modifier when following its owner.                           |
+| `following_and_protecting.follow_start_distance`         | 6       | Distance at which the robot will start walking towards its owner.  |
+| `following_and_protecting.follow_stop_distance`          | 4       | Distance at which the robot will stop walking towards its owner.   |
+| `following_and_protecting.protect_owner_range`           | 16      | Range within which the robot will engage mobs attacking its owner. |
+| `following_and_protecting.stroll_in_area_cooldown_ticks` | 100     | Cooldown between random strolls when in 'Protecting' mode.         |
+
+## Client Configuration (`irobot-client.yml`)
+
+These settings only affect your local game's visuals.
+
+### Rendering
+| Key                        | Default | Description                                                          |
+| -------------------------- | ------- | -------------------------------------------------------------------- |
+| `render_task_area_outline` | true    | Renders a visual outline for the area selected with the Task Marker. |
+| `outline_color.red`        | 64      | The red component of the outline color (0-255).                      |
+| `outline_color.green`      | 229     | The green component of the outline color (0-255).                    |
+| `outline_color.blue`       | 242     | The blue component of the outline color (0-255).                     |
+| `outline_color.alpha`      | 255     | The alpha (transparency) of the outline color (0-255).               |
+| `outline_width`            | 0.0625  | The thickness of the rendered outline.                               |
+
+### GUI
+| Key                            | Default | Description                                              |
+| ------------------------------ | ------- | -------------------------------------------------------- |
+| `robot_screen_entity_scale`    | 40      | The scale of the robot entity in the robot's GUI screen. |
+| `robot_screen_entity_y_offset` | 0.25    | The vertical offset of the robot entity in the GUI.      |
