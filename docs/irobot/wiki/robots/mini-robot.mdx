@@ -1,0 +1,41 @@
+---
+title: Mini Robot
+description: Information about the basic, bipedal Mini Robot, your first step into robotic automation.
+---
+
+import RecipeGrid from '@site/src/components/crafting/recipe-grid';
+
+The **Mini Robot** is the first tier of robot you can craft. It's a versatile, bipedal machine that can perform all the essential tasks, serving as a great introduction to the mod's automation systems.
+
+## Crafting
+
+To craft a Mini Robot, you will need a **Basic Robot Chassis**, a **Dispenser**, a **Small Battery**, and two **Redstone Blocks**.
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+" D ",
+"RCR",
+" B "
+],
+"key": {
+"D": {
+"item": "minecraft:dispenser"
+},
+"R": {
+"item": "minecraft:redstone_block"
+},
+"C": {
+"item": "irobot:basic_robot_chassis"
+},
+"B": {
+"item": "irobot:small_battery"
+}
+},
+"result": {
+"id": "irobot:mini_robot"
+}
+}} />
+
+## Usage
+Once crafted, place the Mini Robot item on the ground to spawn it. The player who places the robot will become its owner. Right-click the robot to open its interface, where you can manage its inventory, battery, modules, and armor.
