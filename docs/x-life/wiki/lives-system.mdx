@@ -1,0 +1,37 @@
+---
+title: Lives System
+description: An in-depth explanation of the core lives, health, and death mechanics in the X-Life mod.
+---
+
+The Lives System is the core feature of the X-Life mod, introducing a high-stakes survival challenge where every death has a lasting consequence. Players begin with a set number of lives, and losing them gradually weakens you until you face your final death.
+
+### How It Works
+
+-   **Starting Lives:** By default, every player starts with 10 lives.
+-   **Losing Lives:** Each time you die, you lose one life.
+-   **Health Penalty:** Your maximum health is directly tied to your current number of lives. For every life you lose, your maximum health decreases by 2 points (one full heart).
+-   **Final Death:** If you die when you only have one life left, it's game over. You will be permanently banned from the server with the message "You are out of lives."
+
+### Gaining Lives
+
+You are not doomed to permanently lose health. There are a couple of ways to regain lost lives:
+
+1.  **Extra Life Item:** Using the [**Extra Life**](./items/extra-life.mdx) item will restore one life, up to the maximum of 10.
+2.  **Enchanted Golden Apple:** If enabled in the [**configuration**](./getting-started/configuration.mdx), eating an Enchanted Golden Apple will grant you one additional life.
+
+### Heart Colors
+
+Your current number of lives is visually represented by the color of your health bar. This allows you and other players to quickly see how many lives you have remaining. The color progression can be inverted in the mod's configuration.
+
+| Lives  | Default Color | Inverted Color (`invert_hearts: true`) |
+| :----: | :-----------: | :------------------------------------: |
+| **10** | Red           | Black                                  |
+| **9**  | Blue          | Lime                                   |
+| **8**  | Green         | Cyan                                   |
+| **7**  | Orange        | Yellow                                 |
+| **6**  | Pink          | Purple                                 |
+| **5**  | Purple        | Pink                                   |
+| **4**  | Yellow        | Orange                                 |
+| **3**  | Cyan          | Green                                  |
+| **2**  | Lime          | Blue                                   |
+| **1**  | Black         | Red                                    |
