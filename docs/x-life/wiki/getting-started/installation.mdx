@@ -1,0 +1,64 @@
+---
+title: Installation
+description: Instructions for installing the X-Life mod and its dependencies on your Minecraft server or client.
+---
+
+import Admonition from '@theme/Admonition';
+import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+
+Installing the X-Life mod is a straightforward process. It is a server-side mod, but can also be installed on the client for single-player worlds. Clients do not need the mod to join a server running it.
+
+## Requirements
+Before installing, please ensure you have the following:
+
+*   **Minecraft Version:** `1.20.1`
+*   **Mod Loader:** The latest version of Fabric or Forge for Minecraft 1.20.1.
+*   **Dependencies:**
+*   [Architectury API](https://modrinth.com/mod/architectury-api)
+*   [SuperMartijn642's Config Lib](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-config-lib)
+
+<Admonition type="danger" title="Install All Dependencies!">
+    The mod will not launch without **all** of its required dependencies. Make sure you download and install the correct version of each one for your chosen mod loader.
+</Admonition>
+
+## Installation Steps
+
+1.  **Download the Correct Files:**
+Download the X-Life mod and its dependencies for your specific mod loader (Fabric or Forge) and Minecraft version.
+
+*   **X-Life Mod:** [CurseForge](https://www.curseforge.com/minecraft/mc-mods/x-life-health-mod), [Modrinth](https://modrinth.com/mod/oWDu46gQ)
+*   **Architectury API:** [CurseForge](https://www.curseforge.com/minecraft/mc-mods/architectury-api), [Modrinth](https://modrinth.com/mod/architectury-api)
+*   **SuperMartijn642's Config Lib:** [CurseForge](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-config-lib)
+
+2.  **Install the Mod Loader:**
+Ensure you have the latest version of Fabric or Forge installed for your server or client.
+
+3.  **Place Files in `mods` Folder:**
+Move the downloaded `.jar` files for the X-Life mod and both of its dependencies into your `mods` folder. If this folder doesn't exist in your server or client directory, create it.
+
+4.  **Start Your Server or Client:**
+Start your game or server. The X-Life mod will generate its configuration file (`xlife.toml`) in the `config` folder on the first run.
+
+<Tabs>
+    <TabItem value="fabric" label="Fabric" default>
+        **Your `mods` folder should look like this for a Fabric setup:**
+        ```
+        /mods
+        ├── architectury-9.1.12-fabric.jar
+        ├── supermartijn642configlib-1.1.8-fabric-mc1.20.jar
+        └── xlife-1.2-fabric-1.20.1.jar
+        ```
+        *(Note: File versions may vary slightly)*
+    </TabItem>
+    <TabItem value="forge" label="Forge">
+        **Your `mods` folder should look like this for a Forge setup:**
+        ```
+        /mods
+        ├── architectury-9.1.12-forge.jar
+        ├── supermartijn642configlib-1.1.8-forge-mc1.20.jar
+        └── xlife-1.2-forge-1.20.1.jar
+        ```
+        *(Note: File versions may vary slightly)*
+    </TabItem>
+</Tabs>

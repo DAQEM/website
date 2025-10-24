@@ -1,0 +1,29 @@
+---
+title: Configuration
+description: A detailed guide on how to configure the X-Life mod using its TOML configuration file.
+---
+
+The X-Life mod features a straightforward configuration file that allows you to customize its core mechanics to better suit your server's needs.
+
+### Locating the Config File
+
+After running the server with the mod installed at least once, a configuration file will be generated in the following location:
+
+`<your-server-directory>/config/xlife.toml`
+
+You can edit this file with any standard text editor. Remember to **restart your server** for any changes to take effect.
+
+### Configuration Options
+
+#### General Settings
+
+| Key                                | Type    | Default | Description                                                                                                                                                                           |
+| ---------------------------------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `invert_hearts`                    | Boolean | `false` | If set to `true`, the heart color progression is inverted (e.g., 10 lives is red, 1 life is black). See the [Lives System](../lives-system.mdx) page for the full table. |
+| `enchanted_golden_apple_adds_life` | Boolean | `false` | If set to `true`, players will gain one life upon eating an Enchanted Golden Apple.                                                                                                   |
+
+#### Debug Settings
+
+| Key        | Type    | Default | Description                                                                                            |
+| ---------- | ------- | ------- | ------------------------------------------------------------------------------------------------------ |
+| `is_debug` | Boolean | `false` | Enables or disables debug mode. It is recommended to keep this `false` unless you are troubleshooting. |
