@@ -36,6 +36,10 @@ export default {
                             },
                         },
                     ],
+                    link: {
+                        type: "doc",
+                        id: "wiki/getting-started/index",
+                    },
                 },
                 {
                     type: "doc",
