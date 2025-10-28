@@ -37,6 +37,18 @@ For example, if you search for `user.Steve radius.10`, the command will only ret
 
 ### Practical Examples
 
+:::warning
+When using a colon (`:`) or a comma (`,`) in filter values, make sure to wrap the entire value in quotes to ensure proper parsing.
+
+Example:
+```bash
+/gl lookup action.place_block "include.oak_log,stone" radius.20
+```
+```bash
+/gl lookup action.place_block "include.minecraft:oak_log,minecraft:stone" radius.20
+```
+:::
+
 Here are a few examples to showcase the power of the `lookup` command:
 
 -   **Find who broke diamond ore in the area:**
@@ -51,7 +63,7 @@ Here are a few examples to showcase the power of the `lookup` command:
 
 -   **Check for theft of valuable items from any container in a base:**
 ```bash
-/gl lookup action.remove_item include.diamond,netherite_ingot radius.30 time.6h
+/gl lookup action.remove_item "include.diamond,netherite_ingot" radius.30 time.6h
 ```
 
 ### Viewing Results
