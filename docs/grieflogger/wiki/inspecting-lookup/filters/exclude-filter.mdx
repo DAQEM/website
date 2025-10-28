@@ -26,7 +26,7 @@ exclude.<item_id>[,item_id]...
 
 -   **Find all blocks broken by a player, except for common stone types in a 50-block radius:**
 ```bash
-/gl lookup user.MinerJoe action.break_block exclude.stone,dirt,cobblestone,gravel radius.50
+/gl lookup user.MinerJoe action.break_block "exclude.stone,dirt,cobblestone,gravel" radius.50
 ```
 
 -   **Check container interactions in a vault, ignoring cobblestone removal:**
