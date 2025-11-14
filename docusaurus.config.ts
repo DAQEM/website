@@ -189,13 +189,6 @@ const config: Config = {
             } satisfies Partial<DocsPlugin.PluginOptions>,
         ]),
         [
-            "@docusaurus/plugin-google-gtag",
-            {
-                trackingID: "G-W16X3LX653",
-                anonymizeIP: true,
-            },
-        ],
-        [
             "@docusaurus/plugin-pwa",
             {
                 debug: process.env.NODE_ENV !== "production",
