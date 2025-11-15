@@ -28,11 +28,11 @@ export default function CookieConsentBanner() {
 
     return (
         <div className="fixed left-0 right-0 bottom-0 z-1000 p-8">
-            <div className="mx-auto flex justify-between items-center mc-card gap-8 max-w-5xl">
+            <div className="mx-auto flex-col md:flex-row flex justify-between items-center mc-card gap-8 max-w-5xl">
                 <p>
-                    We use cookies for analytics and advertising to improve our site. By
-                    clicking "Accept," you agree to our use of cookies. For more
-                    details, see our{" "}
+                    We use cookies for analytics and advertising to improve our
+                    site. By clicking "Accept," you agree to our use of cookies.
+                    For more details, see our{" "}
                     <Link to="/privacy-policy">Privacy Policy</Link>.
                 </p>
                 <div className="flex gap-4">
