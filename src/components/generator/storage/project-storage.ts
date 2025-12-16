@@ -43,9 +43,27 @@ export const getLastActiveProjectName = (): string | null => {
     return localStorage.getItem(CURRENT_PROJECT_KEY);
 };
 
+// ... (existing code)
+
 export const setLastActiveProjectName = (name: string): void => {
     if (!isBrowser) return;
     localStorage.setItem(CURRENT_PROJECT_KEY, name);
+};
+
+export const getLastSelectedObjectId = (projectName: string): string | null => {
+    if (!isBrowser) return null;
+    return localStorage.getItem(`generator_last_selected_object_${projectName}`);
+};
+
+export const setLastSelectedObjectId = (
+    projectName: string,
+    objectId: string
+): void => {
+    if (!isBrowser) return;
+    localStorage.setItem(
+        `generator_last_selected_object_${projectName}`,
+        objectId
+    );
 };
 
 // File I/O

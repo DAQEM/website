@@ -16,7 +16,7 @@ const AddObjectButton = ({ onAdd }: AddObjectButtonProps) => {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <EmptyButton
-                    className="hover:bg-card-background-light p-0.5 rounded cursor-pointer outline-none data-[state=open]:bg-card-background-light"
+                    className="bg-transparent hover:bg-card-background-light p-0.5 rounded cursor-pointer outline-none data-[state=open]:bg-card-background-light"
                     aria-label="Add Object"
                 >
                     <FaPlus size="24px" />

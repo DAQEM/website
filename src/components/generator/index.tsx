@@ -13,11 +13,16 @@ import {
     getProjects,
     getLastActiveProjectName,
     setLastActiveProjectName,
+    getLastSelectedObjectId,
+    setLastSelectedObjectId,
 } from "./storage/project-storage";
 
 export default function Generator() {
     const [currentProject, setCurrentProject] =
         useState<GeneratorProject | null>(null);
+    const [selectedObjectId, setSelectedObjectId] = useState<string | null>(
+        null
+    );
     const panelRef = useRef<ImperativePanelGroupHandle>(null);
 
     useEffect(() => {
@@ -25,7 +30,11 @@ export default function Generator() {
         if (lastActive) {
             const projects = getProjects();
             const found = projects.find((p) => p.name === lastActive);
-            if (found) setCurrentProject(found);
+            if (found) {
+                setCurrentProject(found);
+                const lastSelected = getLastSelectedObjectId(found.name);
+                if (lastSelected) setSelectedObjectId(lastSelected);
+            }
         }
     }, []);
 
@@ -33,6 +42,15 @@ export default function Generator() {
         setCurrentProject(project);
         if (project) {
             setLastActiveProjectName(project.name);
+            const lastSelected = getLastSelectedObjectId(project.name);
+            if (lastSelected) setSelectedObjectId(lastSelected);
+        }
+    };
+
+    const handleSelectObject = (objectId: string | null) => {
+        setSelectedObjectId(objectId);
+        if (currentProject && objectId) {
+            setLastSelectedObjectId(currentProject.name, objectId);
         }
     };
 
@@ -65,14 +83,20 @@ export default function Generator() {
                         <Panel defaultSize={25} minSize={15}>
                             <GeneratorSidebar
                                 currentProject={currentProject}
+                                selectedObjectId={selectedObjectId}
                                 onUpdate={handleProjectLoaded}
+                                onSelectObject={handleSelectObject}
                             />
                         </Panel>
 
                         <PanelResizeHandle className="w-1 bg-border hover:bg-primary transition-colors" />
 
                         <Panel minSize={50}>
-                            <GeneratorContent currentProject={currentProject} />
+                            <GeneratorContent
+                                currentProject={currentProject}
+                                selectedObjectId={selectedObjectId}
+                                onUpdateProject={handleProjectLoaded}
+                            />
                         </Panel>
                     </PanelGroup>
                 </div>

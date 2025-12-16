@@ -1,6 +1,6 @@
 import Link from "@docusaurus/Link";
 import { useEffect, useState } from "react";
-import Button from "../ui/button";
+import ThemedButton from "../ui/themed-button";
 
 export default function CookieConsentBanner() {
     const [isVisible, setIsVisible] = useState(false);
@@ -36,10 +36,12 @@ export default function CookieConsentBanner() {
                     <Link to="/privacy-policy">Privacy Policy</Link>.
                 </p>
                 <div className="flex gap-4">
-                    <Button onClick={() => handleConsent(true)}>Accept</Button>
-                    <Button onClick={() => handleConsent(false)}>
+                    <ThemedButton onClick={() => handleConsent(true)}>
+                        Accept
+                    </ThemedButton>
+                    <ThemedButton onClick={() => handleConsent(false)}>
                         Decline
-                    </Button>
+                    </ThemedButton>
                 </div>
             </div>
         </div>

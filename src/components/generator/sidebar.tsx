@@ -5,10 +5,14 @@ import JobSidebarItem from "./cards/job-sidebar-item";
 
 const GeneratorSidebar = ({
     currentProject,
+    selectedObjectId,
     onUpdate,
+    onSelectObject,
 }: {
     currentProject: GeneratorProject;
+    selectedObjectId: string | null;
     onUpdate: (project: GeneratorProject) => void;
+    onSelectObject: (objectId: string | null) => void;
 }) => {
     const handleAddObject = (type: string) => {
         if (type === "job") {
@@ -59,8 +63,14 @@ const GeneratorSidebar = ({
         <div
             id="generator-sidebar"
             className="bg-card-background-dark h-full flex flex-col"
+            onClick={(e) => {
+                // Only deselect if clicking the background itself
+                if (e.target === e.currentTarget) {
+                    onSelectObject(null);
+                }
+            }}
         >
-            <div className="bg-card-background-light h-12 px-4 flex items-center justify-between border-b border-border">
+            <div className="bg-card-background-light h-12 px-4 flex items-center justify-between">
                 <p
                     className="m-0 font-medium truncate w-32"
                     title={currentProject.name}
@@ -84,6 +94,15 @@ const GeneratorSidebar = ({
                             <JobSidebarItem
                                 key={(object as GeneratorJobObject).id}
                                 object={object as GeneratorJobObject}
+                                isSelected={
+                                    selectedObjectId ===
+                                    (object as GeneratorJobObject).id
+                                }
+                                onSelect={() =>
+                                    onSelectObject(
+                                        (object as GeneratorJobObject).id
+                                    )
+                                }
                                 onRename={handleRenameObject}
                                 onDelete={handleDeleteObject}
                             />

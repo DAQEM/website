@@ -32,12 +32,16 @@ import EmptyButton from "@/components/ui/empty-button";
 
 interface JobSidebarItemProps {
     object: GeneratorJobObject;
+    isSelected: boolean;
+    onSelect: () => void;
     onRename: (id: string, newName: string) => void;
     onDelete: (id: string) => void;
 }
 
 const JobSidebarItem = ({
     object,
+    isSelected,
+    onSelect,
     onRename,
     onDelete,
 }: JobSidebarItemProps) => {
@@ -57,7 +61,14 @@ const JobSidebarItem = ({
         <>
             <ContextMenu>
                 <ContextMenuTrigger>
-                    <EmptyButton className="h-12 px-4 flex items-center justify-between !bg-card-background w-full cursor-pointer select-none group">
+                    <EmptyButton
+                        onClick={onSelect}
+                        className={`h-12 px-4 flex items-center justify-between w-full cursor-pointer select-none group transition-colors ${
+                            isSelected
+                                ? "!bg-card-background-light"
+                                : "hover:bg-card-background-light bg-card-background"
+                        }`}
+                    >
                         <p className="m-0 font-medium truncate pr-2">
                             {object.name}
                         </p>
