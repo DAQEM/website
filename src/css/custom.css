@@ -129,6 +129,11 @@ h6 {
     position: relative;
 }
 
+.rendering-pixelated {
+    image-rendering: pixelated; /* Chrome/Safari */
+    image-rendering: -moz-crisp-edges; /* Firefox */
+}
+
 @import "tailwindcss/theme.css" layer(theme);
 @import "tw-animate-css";
 @plugin 'tailwind-scrollbar';

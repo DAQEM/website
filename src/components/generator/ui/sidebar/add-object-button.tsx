@@ -1,17 +1,16 @@
-import { FaPlus } from "react-icons/fa6";
-import EmptyButton from "../../ui/empty-button";
+import EmptyButton from "@/components/ui/empty-button";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@components/ui/dropdown-menu";
+import { Plus } from "lucide-react";
+import { useGenerator } from "../../application/generator-context";
 
-interface AddObjectButtonProps {
-    onAdd: (type: string) => void;
-}
+export const AddObjectButton = () => {
+    const { availableTypes, addObject } = useGenerator();
 
-const AddObjectButton = ({ onAdd }: AddObjectButtonProps) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -19,16 +18,19 @@ const AddObjectButton = ({ onAdd }: AddObjectButtonProps) => {
                     className="bg-transparent hover:bg-card-background-light p-0.5 rounded cursor-pointer outline-none data-[state=open]:bg-card-background-light"
                     aria-label="Add Object"
                 >
-                    <FaPlus size="24px" />
+                    <Plus size="24px" />
                 </EmptyButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => onAdd("job")}>
-                    Job
-                </DropdownMenuItem>
+                {availableTypes.map((t) => (
+                    <DropdownMenuItem
+                        key={t.type}
+                        onClick={() => addObject(t.type)}
+                    >
+                        {t.label}
+                    </DropdownMenuItem>
+                ))}
             </DropdownMenuContent>
         </DropdownMenu>
     );
 };
-
-export default AddObjectButton;
