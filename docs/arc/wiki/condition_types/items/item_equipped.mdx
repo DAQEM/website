@@ -1,3 +1,56 @@
 ---
 title: Item Equipped
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:item_equipped` condition type checks if the player has a specific item equipped in any armor slot.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives the player Resistance when they take damage while wearing a full set of diamond armor.
+
+```json title="data/my_datapack/arc/diamond_armor_resistance.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_hurt",
+    "conditions": [
+        {
+            "type": "arc:item_equipped",
+            "item": { "id": "minecraft:diamond_helmet" }
+        },
+        {
+            "type": "arc:item_equipped",
+            "item": { "id": "minecraft:diamond_chestplate" }
+        },
+        {
+            "type": "arc:item_equipped",
+            "item": { "id": "minecraft:diamond_leggings" }
+        },
+        {
+            "type": "arc:item_equipped",
+            "item": { "id": "minecraft:diamond_boots" }
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": "minecraft:resistance",
+            "duration": 100,
+            "amplifier": 0
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

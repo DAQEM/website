@@ -1,0 +1,1033 @@
+---
+title: Block JSON Format
+---
+
+The `Block` JSON format is used to define blocks in Minecraft. A block is defined by its Resource Location.
+
+```json title="Block JSON Format Example"
+{
+    "block": "<block id>" // e.g. "minecraft:stone"
+}
+```
+
+## List of Blocks
+
+Below is a list of every block in Minecraft, along with their resource locations and the version they were added into the game. To keep it nice and simple, we changed the snapshot names to the version they were added in.
+
+| Block                               | Resource Location                               | Added       |
+| ----------------------------------- | ----------------------------------------------- | ----------- |
+| Air                                 | `minecraft:air`                                 | Cave game   |
+| Stone                               | `minecraft:stone`                               | Cave game   |
+| Grass Block                         | `minecraft:grass_block`                         | Cave game   |
+| Dirt                                | `minecraft:dirt`                                | pre-Classic |
+| Cobblestone                         | `minecraft:cobblestone`                         | pre-Classic |
+| Oak Planks                          | `minecraft:oak_planks`                          | pre-Classic |
+| Oak Sapling                         | `minecraft:oak_sapling`                         | pre-Classic |
+| Bedrock                             | `minecraft:bedrock`                             | Classic     |
+| Water                               | `minecraft:water`                               | Classic     |
+| Lava                                | `minecraft:lava`                                | Classic     |
+| Sand                                | `minecraft:sand`                                | Classic     |
+| Gravel                              | `minecraft:gravel`                              | Classic     |
+| Gold Ore                            | `minecraft:gold_ore`                            | Classic     |
+| Iron Ore                            | `minecraft:iron_ore`                            | Classic     |
+| Coal Ore                            | `minecraft:coal_ore`                            | Classic     |
+| Oak Log                             | `minecraft:oak_log`                             | Classic     |
+| Oak Leaves                          | `minecraft:oak_leaves`                          | Classic     |
+| Sponge                              | `minecraft:sponge`                              | Classic     |
+| Glass                               | `minecraft:glass`                               | Classic     |
+| White Wool                          | `minecraft:white_wool`                          | Classic     |
+| Dandelion                           | `minecraft:dandelion`                           | Classic     |
+| Poppy                               | `minecraft:poppy`                               | Classic     |
+| Brown Mushroom                      | `minecraft:brown_mushroom`                      | Classic     |
+| Red Mushroom                        | `minecraft:red_mushroom`                        | Classic     |
+| Block of Gold                       | `minecraft:gold_block`                          | Classic     |
+| Block of Iron                       | `minecraft:iron_block`                          | Classic     |
+| Smooth Stone Slab                   | `minecraft:smooth_stone_slab`                   | Classic     |
+| Bricks                              | `minecraft:bricks`                              | Classic     |
+| TNT                                 | `minecraft:tnt`                                 | Classic     |
+| Bookshelf                           | `minecraft:bookshelf`                           | Classic     |
+| Mossy Cobblestone                   | `minecraft:mossy_cobblestone`                   | Classic     |
+| Obsidian                            | `minecraft:obsidian`                            | Classic     |
+| Torch                               | `minecraft:torch`                               | Indev       |
+| Fire                                | `minecraft:fire`                                | Indev       |
+| Diamond Ore                         | `minecraft:diamond_ore`                         | Indev       |
+| Block of Diamond                    | `minecraft:diamond_block`                       | Indev       |
+| Crafting Table                      | `minecraft:crafting_table`                      | Indev       |
+| Wheat Crops                         | `minecraft:wheat`                               | Indev       |
+| Farmland                            | `minecraft:farmland`                            | Indev       |
+| Furnace                             | `minecraft:furnace`                             | Indev       |
+| Oak Sign                            | `minecraft:oak_sign`                            | Indev       |
+| Oak Door                            | `minecraft:oak_door`                            | Indev       |
+| Ladder                              | `minecraft:ladder`                              | Indev       |
+| Rail                                | `minecraft:rail`                                | Indev       |
+| Monster Spawner                     | `minecraft:spawner`                             | Indev       |
+| Oak Stairs                          | `minecraft:oak_stairs`                          | Indev       |
+| Cobblestone Stairs                  | `minecraft:cobblestone_stairs`                  | Indev       |
+| Redstone Wire                       | `minecraft:redstone_wire`                       | Alpha       |
+| Lever                               | `minecraft:lever`                               | Alpha       |
+| Stone Pressure Plate                | `minecraft:stone_pressure_plate`                | Alpha       |
+| Iron Door                           | `minecraft:iron_door`                           | Alpha       |
+| Oak Pressure Plate                  | `minecraft:oak_pressure_plate`                  | Alpha       |
+| Redstone Ore                        | `minecraft:redstone_ore`                        | Alpha       |
+| Redstone Torch                      | `minecraft:redstone_torch`                      | Alpha       |
+| Stone Button                        | `minecraft:stone_button`                        | Alpha       |
+| Snow                                | `minecraft:snow`                                | Alpha       |
+| Ice                                 | `minecraft:ice`                                 | Alpha       |
+| Snow Block                          | `minecraft:snow_block`                          | Alpha       |
+| Cactus                              | `minecraft:cactus`                              | Alpha       |
+| Clay                                | `minecraft:clay`                                | Alpha       |
+| Sugar Cane                          | `minecraft:sugar_cane`                          | Alpha       |
+| Jukebox                             | `minecraft:jukebox`                             | Alpha       |
+| Oak Fence                           | `minecraft:oak_fence`                           | Alpha       |
+| Carved Pumpkin                      | `minecraft:carved_pumpkin`                      | Alpha       |
+| Netherrack                          | `minecraft:netherrack`                          | Alpha       |
+| Soul Sand                           | `minecraft:soul_sand`                           | Alpha       |
+| Glowstone                           | `minecraft:glowstone`                           | Alpha       |
+| Nether Portal                       | `minecraft:nether_portal`                       | Alpha       |
+| Jack o'Lantern                      | `minecraft:jack_o_lantern`                      | Alpha       |
+| Spruce Log                          | `minecraft:spruce_log`                          | Beta        |
+| Birch Log                           | `minecraft:birch_log`                           | Beta        |
+| Spruce Leaves                       | `minecraft:spruce_leaves`                       | Beta        |
+| Birch Leaves                        | `minecraft:birch_leaves`                        | Beta        |
+| Lapis Lazuli Ore                    | `minecraft:lapis_ore`                           | Beta        |
+| Block of Lapis Lazuli               | `minecraft:lapis_block`                         | Beta        |
+| Dispenser                           | `minecraft:dispenser`                           | Beta        |
+| Sandstone                           | `minecraft:sandstone`                           | Beta        |
+| Note Block                          | `minecraft:note_block`                          | Beta        |
+| Orange Wool                         | `minecraft:orange_wool`                         | Beta        |
+| Magenta Wool                        | `minecraft:magenta_wool`                        | Beta        |
+| Light Blue Wool                     | `minecraft:light_blue_wool`                     | Beta        |
+| Yellow Wool                         | `minecraft:yellow_wool`                         | Beta        |
+| Lime Wool                           | `minecraft:lime_wool`                           | Beta        |
+| Pink Wool                           | `minecraft:pink_wool`                           | Beta        |
+| Gray Wool                           | `minecraft:gray_wool`                           | Beta        |
+| Light Gray Wool                     | `minecraft:light_gray_wool`                     | Beta        |
+| Cyan Wool                           | `minecraft:cyan_wool`                           | Beta        |
+| Purple Wool                         | `minecraft:purple_wool`                         | Beta        |
+| Blue Wool                           | `minecraft:blue_wool`                           | Beta        |
+| Brown Wool                          | `minecraft:brown_wool`                          | Beta        |
+| Green Wool                          | `minecraft:green_wool`                          | Beta        |
+| Red Wool                            | `minecraft:red_wool`                            | Beta        |
+| Black Wool                          | `minecraft:black_wool`                          | Beta        |
+| Cake                                | `minecraft:cake`                                | Beta        |
+| Red Bed                             | `minecraft:red_bed`                             | Beta        |
+| Sandstone Slab                      | `minecraft:sandstone_slab`                      | Beta        |
+| Petrified Oak Slab                  | `minecraft:petrified_oak_slab`                  | Beta        |
+| Cobblestone Slab                    | `minecraft:cobblestone_slab`                    | Beta        |
+| Redstone Repeater                   | `minecraft:repeater`                            | Beta        |
+| Spruce Sapling                      | `minecraft:spruce_sapling`                      | Beta        |
+| Birch Sapling                       | `minecraft:birch_sapling`                       | Beta        |
+| Powered Rail                        | `minecraft:powered_rail`                        | Beta        |
+| Detector Rail                       | `minecraft:detector_rail`                       | Beta        |
+| Cobweb                              | `minecraft:cobweb`                              | Beta        |
+| Short Grass                         | `minecraft:short_grass`                         | Beta        |
+| Fern                                | `minecraft:fern`                                | Beta        |
+| Dead Bush                           | `minecraft:dead_bush`                           | Beta        |
+| Oak Trapdoor                        | `minecraft:oak_trapdoor`                        | Beta        |
+| Sticky Piston                       | `minecraft:sticky_piston`                       | Beta        |
+| Piston                              | `minecraft:piston`                              | Beta        |
+| Brick Slab                          | `minecraft:brick_slab`                          | Beta        |
+| Stone Brick Slab                    | `minecraft:stone_brick_slab`                    | Beta        |
+| Infested Stone                      | `minecraft:infested_stone`                      | Beta        |
+| Infested Cobblestone                | `minecraft:infested_cobblestone`                | Beta        |
+| Infested Stone Bricks               | `minecraft:infested_stone_bricks`               | Beta        |
+| Stone Bricks                        | `minecraft:stone_bricks`                        | Beta        |
+| Brown Mushroom Block                | `minecraft:brown_mushroom_block`                | Beta        |
+| Mushroom Stem                       | `minecraft:mushroom_stem`                       | Beta        |
+| Red Mushroom Block                  | `minecraft:red_mushroom_block`                  | Beta        |
+| Iron Bars                           | `minecraft:iron_bars`                           | Beta        |
+| Glass Pane                          | `minecraft:glass_pane`                          | Beta        |
+| Melon                               | `minecraft:melon`                               | Beta        |
+| Pumpkin Stem                        | `minecraft:pumpkin_stem`                        | Beta        |
+| Melon Stem                          | `minecraft:melon_stem`                          | Beta        |
+| Vines                               | `minecraft:vine`                                | Beta        |
+| Oak Fence Gate                      | `minecraft:oak_fence_gate`                      | Beta        |
+| Brick Stairs                        | `minecraft:brick_stairs`                        | Beta        |
+| Stone Brick Stairs                  | `minecraft:stone_brick_stairs`                  | Beta        |
+| Nether Brick Slab                   | `minecraft:nether_brick_slab`                   | Beta        |
+| Mycelium                            | `minecraft:mycelium`                            | Beta        |
+| Lily Pad                            | `minecraft:lily_pad`                            | Beta        |
+| Nether Bricks                       | `minecraft:nether_bricks`                       | Beta        |
+| Nether Brick Fence                  | `minecraft:nether_brick_fence`                  | Beta        |
+| Nether Brick Stairs                 | `minecraft:nether_brick_stairs`                 | Beta        |
+| Nether Wart                         | `minecraft:nether_wart`                         | Beta        |
+| Enchanting Table                    | `minecraft:enchanting_table`                    | Beta        |
+| Brewing Stand                       | `minecraft:brewing_stand`                       | Beta        |
+| Cauldron                            | `minecraft:cauldron`                            | Beta        |
+| End Portal                          | `minecraft:end_portal`                          | Beta        |
+| End Portal Frame                    | `minecraft:end_portal_frame`                    | Beta        |
+| End Stone                           | `minecraft:end_stone`                           | Beta        |
+| Dragon Egg                          | `minecraft:dragon_egg`                          | Beta        |
+| Jungle Log                          | `minecraft:jungle_log`                          | 1.2.1       |
+| Jungle Leaves                       | `minecraft:jungle_leaves`                       | 1.2.1       |
+| Jungle Sapling                      | `minecraft:jungle_sapling`                      | 1.2.1       |
+| Redstone Lamp                       | `minecraft:redstone_lamp`                       | 1.2.1       |
+| Chiseled Stone Bricks               | `minecraft:chiseled_stone_bricks`               | 1.2.1       |
+| Spruce Planks                       | `minecraft:spruce_planks`                       | 1.2.4       |
+| Birch Planks                        | `minecraft:birch_planks`                        | 1.2.4       |
+| Jungle Planks                       | `minecraft:jungle_planks`                       | 1.2.4       |
+| Chiseled Sandstone                  | `minecraft:chiseled_sandstone`                  | 1.2.4       |
+| Cut Sandstone                       | `minecraft:cut_sandstone`                       | 1.2.4       |
+| Oak Slab                            | `minecraft:oak_slab`                            | 1.3.1       |
+| Spruce Slab                         | `minecraft:spruce_slab`                         | 1.3.1       |
+| Birch Slab                          | `minecraft:birch_slab`                          | 1.3.1       |
+| Jungle Slab                         | `minecraft:jungle_slab`                         | 1.3.1       |
+| Cocoa                               | `minecraft:cocoa`                               | 1.3.1       |
+| Sandstone Stairs                    | `minecraft:sandstone_stairs`                    | 1.3.1       |
+| Emerald Ore                         | `minecraft:emerald_ore`                         | 1.3.1       |
+| Ender Chest                         | `minecraft:ender_chest`                         | 1.3.1       |
+| Tripwire Hook                       | `minecraft:tripwire_hook`                       | 1.3.1       |
+| Tripwire                            | `minecraft:tripwire`                            | 1.3.1       |
+| Block of Emerald                    | `minecraft:emerald_block`                       | 1.3.1       |
+| Spruce Stairs                       | `minecraft:spruce_stairs`                       | 1.3.1       |
+| Birch Stairs                        | `minecraft:birch_stairs`                        | 1.3.1       |
+| Jungle Stairs                       | `minecraft:jungle_stairs`                       | 1.3.1       |
+| Oak Wood                            | `minecraft:oak_wood`                            | 1.3.1       |
+| Spruce Wood                         | `minecraft:spruce_wood`                         | 1.3.1       |
+| Birch Wood                          | `minecraft:birch_wood`                          | 1.3.1       |
+| Jungle Wood                         | `minecraft:jungle_wood`                         | 1.3.1       |
+| Beacon                              | `minecraft:beacon`                              | 1.4.2       |
+| Command Block                       | `minecraft:command_block`                       | 1.4.2       |
+| Cobblestone Wall                    | `minecraft:cobblestone_wall`                    | 1.4.2       |
+| Flower Pot                          | `minecraft:flower_pot`                          | 1.4.2       |
+| Mossy Cobblestone Wall              | `minecraft:mossy_cobblestone_wall`              | 1.4.2       |
+| Oak Button                          | `minecraft:oak_button`                          | 1.4.2       |
+| Skeleton Skull                      | `minecraft:skeleton_skull`                      | 1.4.2       |
+| Wither Skeleton Skull               | `minecraft:wither_skeleton_skull`               | 1.4.2       |
+| Zombie Head                         | `minecraft:zombie_head`                         | 1.4.2       |
+| Creeper Head                        | `minecraft:creeper_head`                        | 1.4.2       |
+| Player Head                         | `minecraft:player_head`                         | 1.4.2       |
+| Anvil                               | `minecraft:anvil`                               | 1.4.2       |
+| Nether Brick Slab                   | `minecraft:nether_brick_slab`                   | 1.4.6       |
+| Block of Redstone                   | `minecraft:redstone_block`                      | 1.5         |
+| Daylight Detector                   | `minecraft:daylight_detector`                   | 1.5         |
+| Hopper                              | `minecraft:hopper`                              | 1.5         |
+| Nether Quartz Ore                   | `minecraft:nether_quartz_ore`                   | 1.5         |
+| Redstone Comparator                 | `minecraft:comparator`                          | 1.5         |
+| Trapped Chest                       | `minecraft:trapped_chest`                       | 1.5         |
+| Light Weighted Pressure Plate       | `minecraft:light_weighted_pressure_plate`       | 1.5         |
+| Heavy Weighted Pressure Plate       | `minecraft:heavy_weighted_pressure_plate`       | 1.5         |
+| Activator Rail                      | `minecraft:activator_rail`                      | 1.5         |
+| Block of Quartz                     | `minecraft:quartz_block`                        | 1.5         |
+| Chiseled Quartz Block               | `minecraft:chiseled_quartz_block`               | 1.5         |
+| Quartz Pillar                       | `minecraft:quartz_pillar`                       | 1.5         |
+| Quartz Stairs                       | `minecraft:quartz_stairs`                       | 1.5         |
+| Quartz Slab                         | `minecraft:quartz_slab`                         | 1.5         |
+| Dropper                             | `minecraft:dropper`                             | 1.5         |
+| White Carpet                        | `minecraft:white_carpet`                        | 1.6.1       |
+| Light Gray Carpet                   | `minecraft:light_gray_carpet`                   | 1.6.1       |
+| Gray Carpet                         | `minecraft:gray_carpet`                         | 1.6.1       |
+| Black Carpet                        | `minecraft:black_carpet`                        | 1.6.1       |
+| Brown Carpet                        | `minecraft:brown_carpet`                        | 1.6.1       |
+| Red Carpet                          | `minecraft:red_carpet`                          | 1.6.1       |
+| Orange Carpet                       | `minecraft:orange_carpet`                       | 1.6.1       |
+| Yellow Carpet                       | `minecraft:yellow_carpet`                       | 1.6.1       |
+| Lime Carpet                         | `minecraft:lime_carpet`                         | 1.6.1       |
+| Green Carpet                        | `minecraft:green_carpet`                        | 1.6.1       |
+| Cyan Carpet                         | `minecraft:cyan_carpet`                         | 1.6.1       |
+| Light Blue Carpet                   | `minecraft:light_blue_carpet`                   | 1.6.1       |
+| Blue Carpet                         | `minecraft:blue_carpet`                         | 1.6.1       |
+| Purple Carpet                       | `minecraft:purple_carpet`                       | 1.6.1       |
+| Magenta Carpet                      | `minecraft:magenta_carpet`                      | 1.6.1       |
+| Pink Carpet                         | `minecraft:pink_carpet`                         | 1.6.1       |
+| Hay Bale                            | `minecraft:hay_block`                           | 1.6.1       |
+| Terracotta                          | `minecraft:terracotta`                          | 1.6.1       |
+| Block of Coal                       | `minecraft:coal_block`                          | 1.6.1       |
+| White Terracotta                    | `minecraft:white_terracotta`                    | 1.6.1       |
+| Light Gray Terracotta               | `minecraft:light_gray_terracotta`               | 1.6.1       |
+| Gray Terracotta                     | `minecraft:gray_terracotta`                     | 1.6.1       |
+| Black Terracotta                    | `minecraft:black_terracotta`                    | 1.6.1       |
+| Brown Terracotta                    | `minecraft:brown_terracotta`                    | 1.6.1       |
+| Red Terracotta                      | `minecraft:red_terracotta`                      | 1.6.1       |
+| Orange Terracotta                   | `minecraft:orange_terracotta`                   | 1.6.1       |
+| Yellow Terracotta                   | `minecraft:yellow_terracotta`                   | 1.6.1       |
+| Lime Terracotta                     | `minecraft:lime_terracotta`                     | 1.6.1       |
+| Green Terracotta                    | `minecraft:green_terracotta`                    | 1.6.1       |
+| Cyan Terracotta                     | `minecraft:cyan_terracotta`                     | 1.6.1       |
+| Light Blue Terracotta               | `minecraft:light_blue_terracotta`               | 1.6.1       |
+| Blue Terracotta                     | `minecraft:blue_terracotta`                     | 1.6.1       |
+| Purple Terracotta                   | `minecraft:purple_terracotta`                   | 1.6.1       |
+| Magenta Terracotta                  | `minecraft:magenta_terracotta`                  | 1.6.1       |
+| Pink Terracotta                     | `minecraft:pink_terracotta`                     | 1.6.1       |
+| Large Fern                          | `minecraft:large_fern`                          | 1.7.2       |
+| Allium                              | `minecraft:allium`                              | 1.7.2       |
+| Azure Bluet                         | `minecraft:azure_bluet`                         | 1.7.2       |
+| Blue Orchid                         | `minecraft:blue_orchid`                         | 1.7.2       |
+| Lilac                               | `minecraft:lilac`                               | 1.7.2       |
+| Oxeye Daisy                         | `minecraft:oxeye_daisy`                         | 1.7.2       |
+| Peony                               | `minecraft:peony`                               | 1.7.2       |
+| Rose Bush                           | `minecraft:rose_bush`                           | 1.7.2       |
+| Sunflower                           | `minecraft:sunflower`                           | 1.7.2       |
+| Red Tulip                           | `minecraft:red_tulip`                           | 1.7.2       |
+| Orange Tulip                        | `minecraft:orange_tulip`                        | 1.7.2       |
+| White Tulip                         | `minecraft:white_tulip`                         | 1.7.2       |
+| Pink Tulip                          | `minecraft:pink_tulip`                          | 1.7.2       |
+| Tall Grass                          | `minecraft:tall_grass`                          | 1.7.2       |
+| Coarse Dirt                         | `minecraft:coarse_dirt`                         | 1.7.2       |
+| Infested Mossy Stone Bricks         | `minecraft:infested_mossy_stone_bricks`         | 1.7.2       |
+| Infested Cracked Stone Bricks       | `minecraft:infested_cracked_stone_bricks`       | 1.7.2       |
+| Infested Chiseled Stone Bricks      | `minecraft:infested_chiseled_stone_bricks`      | 1.7.2       |
+| Packed Ice                          | `minecraft:packed_ice`                          | 1.7.2       |
+| Podzol                              | `minecraft:podzol`                              | 1.7.2       |
+| Red Sand                            | `minecraft:red_sand`                            | 1.7.2       |
+| White Stained Glass                 | `minecraft:white_stained_glass`                 | 1.7.2       |
+| Light Gray Stained Glass            | `minecraft:light_gray_stained_glass`            | 1.7.2       |
+| Gray Stained Glass                  | `minecraft:gray_stained_glass`                  | 1.7.2       |
+| Black Stained Glass                 | `minecraft:black_stained_glass`                 | 1.7.2       |
+| Brown Stained Glass                 | `minecraft:brown_stained_glass`                 | 1.7.2       |
+| Red Stained Glass                   | `minecraft:red_stained_glass`                   | 1.7.2       |
+| Orange Stained Glass                | `minecraft:orange_stained_glass`                | 1.7.2       |
+| Yellow Stained Glass                | `minecraft:yellow_stained_glass`                | 1.7.2       |
+| Lime Stained Glass                  | `minecraft:lime_stained_glass`                  | 1.7.2       |
+| Green Stained Glass                 | `minecraft:green_stained_glass`                 | 1.7.2       |
+| Cyan Stained Glass                  | `minecraft:cyan_stained_glass`                  | 1.7.2       |
+| Light Blue Stained Glass            | `minecraft:light_blue_stained_glass`            | 1.7.2       |
+| Blue Stained Glass                  | `minecraft:blue_stained_glass`                  | 1.7.2       |
+| Purple Stained Glass                | `minecraft:purple_stained_glass`                | 1.7.2       |
+| Magenta Stained Glass               | `minecraft:magenta_stained_glass`               | 1.7.2       |
+| Pink Stained Glass                  | `minecraft:pink_stained_glass`                  | 1.7.2       |
+| White Stained Glass Pane            | `minecraft:white_stained_glass_pane`            | 1.7.2       |
+| Light Gray Stained Glass Pane       | `minecraft:light_gray_stained_glass_pane`       | 1.7.2       |
+| Gray Stained Glass Pane             | `minecraft:gray_stained_glass_pane`             | 1.7.2       |
+| Black Stained Glass Pane            | `minecraft:black_stained_glass_pane`            | 1.7.2       |
+| Brown Stained Glass Pane            | `minecraft:brown_stained_glass_pane`            | 1.7.2       |
+| Red Stained Glass Pane              | `minecraft:red_stained_glass_pane`              | 1.7.2       |
+| Orange Stained Glass Pane           | `minecraft:orange_stained_glass_pane`           | 1.7.2       |
+| Yellow Stained Glass Pane           | `minecraft:yellow_stained_glass_pane`           | 1.7.2       |
+| Lime Stained Glass Pane             | `minecraft:lime_stained_glass_pane`             | 1.7.2       |
+| Green Stained Glass Pane            | `minecraft:green_stained_glass_pane`            | 1.7.2       |
+| Cyan Stained Glass Pane             | `minecraft:cyan_stained_glass_pane`             | 1.7.2       |
+| Light Blue Stained Glass Pane       | `minecraft:light_blue_stained_glass_pane`       | 1.7.2       |
+| Blue Stained Glass Pane             | `minecraft:blue_stained_glass_pane`             | 1.7.2       |
+| Purple Stained Glass Pane           | `minecraft:purple_stained_glass_pane`           | 1.7.2       |
+| Magenta Stained Glass Pane          | `minecraft:magenta_stained_glass_pane`          | 1.7.2       |
+| Pink Stained Glass Pane             | `minecraft:pink_stained_glass_pane`             | 1.7.2       |
+| Acacia Wood                         | `minecraft:acacia_wood`                         | 1.7.2       |
+| Acacia Log                          | `minecraft:acacia_log`                          | 1.7.2       |
+| Acacia Sapling                      | `minecraft:acacia_sapling`                      | 1.7.2       |
+| Acacia Leaves                       | `minecraft:acacia_leaves`                       | 1.7.2       |
+| Dark Oak Wood                       | `minecraft:dark_oak_wood`                       | 1.7.2       |
+| Dark Oak Log                        | `minecraft:dark_oak_log`                        | 1.7.2       |
+| Dark Oak Sapling                    | `minecraft:dark_oak_sapling`                    | 1.7.2       |
+| Dark Oak Leaves                     | `minecraft:dark_oak_leaves`                     | 1.7.2       |
+| Acacia Planks                       | `minecraft:acacia_planks`                       | 1.7.2       |
+| Acacia Slab                         | `minecraft:acacia_slab`                         | 1.7.2       |
+| Acacia Stairs                       | `minecraft:acacia_stairs`                       | 1.7.2       |
+| Dark Oak Planks                     | `minecraft:dark_oak_planks`                     | 1.7.2       |
+| Dark Oak Slab                       | `minecraft:dark_oak_slab`                       | 1.7.2       |
+| Dark Oak Stairs                     | `minecraft:dark_oak_stairs`                     | 1.7.2       |
+| Granite                             | `minecraft:granite`                             | 1.8         |
+| Polished Granite                    | `minecraft:polished_granite`                    | 1.8         |
+| Diorite                             | `minecraft:diorite`                             | 1.8         |
+| Polished Diorite                    | `minecraft:polished_diorite`                    | 1.8         |
+| Andesite                            | `minecraft:andesite`                            | 1.8         |
+| Polished Andesite                   | `minecraft:polished_andesite`                   | 1.8         |
+| Slime Block                         | `minecraft:slime_block`                         | 1.8         |
+| Barrier                             | `minecraft:barrier`                             | 1.8         |
+| Iron Trapdoor                       | `minecraft:iron_trapdoor`                       | 1.8         |
+| Prismarine                          | `minecraft:prismarine`                          | 1.8         |
+| Prismarine Bricks                   | `minecraft:prismarine_bricks`                   | 1.8         |
+| Dark Prismarine                     | `minecraft:dark_prismarine`                     | 1.8         |
+| Sea Lantern                         | `minecraft:sea_lantern`                         | 1.8         |
+| Wet Sponge                          | `minecraft:wet_sponge`                          | 1.8         |
+| White Banner                        | `minecraft:white_banner`                        | 1.8         |
+| Light Gray Banner                   | `minecraft:light_gray_banner`                   | 1.8         |
+| Gray Banner                         | `minecraft:gray_banner`                         | 1.8         |
+| Black Banner                        | `minecraft:black_banner`                        | 1.8         |
+| Brown Banner                        | `minecraft:brown_banner`                        | 1.8         |
+| Red Banner                          | `minecraft:red_banner`                          | 1.8         |
+| Orange Banner                       | `minecraft:orange_banner`                       | 1.8         |
+| Yellow Banner                       | `minecraft:yellow_banner`                       | 1.8         |
+| Lime Banner                         | `minecraft:lime_banner`                         | 1.8         |
+| Green Banner                        | `minecraft:green_banner`                        | 1.8         |
+| Cyan Banner                         | `minecraft:cyan_banner`                         | 1.8         |
+| Light Blue Banner                   | `minecraft:light_blue_banner`                   | 1.8         |
+| Blue Banner                         | `minecraft:blue_banner`                         | 1.8         |
+| Purple Banner                       | `minecraft:purple_banner`                       | 1.8         |
+| Magenta Banner                      | `minecraft:magenta_banner`                      | 1.8         |
+| Pink Banner                         | `minecraft:pink_banner`                         | 1.8         |
+| Red Sandstone                       | `minecraft:red_sandstone`                       | 1.8         |
+| Cut Red Sandstone                   | `minecraft:cut_red_sandstone`                   | 1.8         |
+| Chiseled Red Sandstone              | `minecraft:chiseled_red_sandstone`              | 1.8         |
+| Smooth Red Sandstone                | `minecraft:smooth_red_sandstone`                | 1.8         |
+| Red Sandstone Slab                  | `minecraft:red_sandstone_slab`                  | 1.8         |
+| Red Sandstone Stairs                | `minecraft:red_sandstone_stairs`                | 1.8         |
+| Spruce Fence                        | `minecraft:spruce_fence`                        | 1.8         |
+| Birch Fence                         | `minecraft:birch_fence`                         | 1.8         |
+| Jungle Fence                        | `minecraft:jungle_fence`                        | 1.8         |
+| Acacia Fence                        | `minecraft:acacia_fence`                        | 1.8         |
+| Dark Oak Fence                      | `minecraft:dark_oak_fence`                      | 1.8         |
+| Spruce Fence Gate                   | `minecraft:spruce_fence_gate`                   | 1.8         |
+| Birch Fence Gate                    | `minecraft:birch_fence_gate`                    | 1.8         |
+| Jungle Fence Gate                   | `minecraft:jungle_fence_gate`                   | 1.8         |
+| Acacia Fence Gate                   | `minecraft:acacia_fence_gate`                   | 1.8         |
+| Dark Oak Fence Gate                 | `minecraft:dark_oak_fence_gate`                 | 1.8         |
+| Spruce Door                         | `minecraft:spruce_door`                         | 1.8         |
+| Birch Door                          | `minecraft:birch_door`                          | 1.8         |
+| Jungle Door                         | `minecraft:jungle_door`                         | 1.8         |
+| Acacia Door                         | `minecraft:acacia_door`                         | 1.8         |
+| Dark Oak Door                       | `minecraft:dark_oak_dooor`                      | 1.8         |
+| Dirt Path                           | `minecraft:dirt_path`                           | 1.9         |
+| Structure Block                     | `minecraft:structure_block`                     | 1.9         |
+| Dragon Head                         | `minecraft:dragon_head`                         | 1.9         |
+| End Gateway                         | `minecraft:end_gateway`                         | 1.9         |
+| End Rod                             | `minecraft:end_rod`                             | 1.9         |
+| End Stone Bricks                    | `minecraft:end_stone_bricks`                    | 1.9         |
+| Purpur Block                        | `minecraft:purpur_block`                        | 1.9         |
+| Purpur Pillar                       | `minecraft:purpur_pillar`                       | 1.9         |
+| Purpur Slab                         | `minecraft:purpur_slab`                         | 1.9         |
+| Purpur Stairs                       | `minecraft:purpur_stairs`                       | 1.9         |
+| Chorus Plant                        | `minecraft:chorus_plant`                        | 1.9         |
+| Chorus Flower                       | `minecraft:chorus_flower`                       | 1.9         |
+| Chain Command Block                 | `minecraft:chain_command_block`                 | 1.9         |
+| Repeating Command Block             | `minecraft:repeating_commannd_block`            | 1.9         |
+| Frosted Ice                         | `minecraft:frosted_ice`                         | 1.9         |
+| Bone Block                          | `minecraft:bone_block`                          | 1.10        |
+| Magma Block                         | `minecraft:magma_block`                         | 1.10        |
+| Nether Wart Block                   | `minecraft:nether_wart_block`                   | 1.10        |
+| Red Nether Bricks                   | `minecraft:red_nether_bricks`                   | 1.10        |
+| Structure Void                      | `minecraft:structure_void`                      | 1.10        |
+| Observer                            | `minecraft:observer`                            | 1.11        |
+| White Shulker Box                   | `minecraft:white_shulker_box`                   | 1.11        |
+| Light Gray Shulker Box              | `minecraft:light_gray_shulker_box`              | 1.11        |
+| Gray Shulker Box                    | `minecraft:gray_shulker_box`                    | 1.11        |
+| Black Shulker Box                   | `minecraft:black_shulker_box`                   | 1.11        |
+| Brown Shulker Box                   | `minecraft:brown_shulker_box`                   | 1.11        |
+| Red Shulker Box                     | `minecraft:red_shulker_box`                     | 1.11        |
+| Orange Shulker Box                  | `minecraft:orange_shulker_box`                  | 1.11        |
+| Yellow Shulker Box                  | `minecraft:yellow_shulker_box`                  | 1.11        |
+| Lime Shulker Box                    | `minecraft:lime_shulker_box`                    | 1.11        |
+| Green Shulker Box                   | `minecraft:green_shulker_box`                   | 1.11        |
+| Cyan Shulker Box                    | `minecraft:cyan_shulker_box`                    | 1.11        |
+| Light Blue Shulker Box              | `minecraft:light_blue_shulker_box`              | 1.11        |
+| Blue Shulker Box                    | `minecraft:blue_shulker_box`                    | 1.11        |
+| Purple Shulker Box                  | `minecraft:purple_shulker_box`                  | 1.11        |
+| Magenta Shulker Box                 | `minecraft:magenta_shulker_box`                 | 1.11        |
+| Pink Shulker Box                    | `minecraft:pink_shulker_box`                    | 1.11        |
+| White Concrete                      | `minecraft:white_concrete`                      | 1.12        |
+| Light Gray Concrete                 | `minecraft:light_gray_concrete`                 | 1.12        |
+| Gray Concrete                       | `minecraft:gray_concrete`                       | 1.12        |
+| Black Concrete                      | `minecraft:black_concrete`                      | 1.12        |
+| Brown Concrete                      | `minecraft:brown_concrete`                      | 1.12        |
+| Red Concrete                        | `minecraft:red_concrete`                        | 1.12        |
+| Orange Concrete                     | `minecraft:orange_concrete`                     | 1.12        |
+| Yellow Concrete                     | `minecraft:yellow_concrete`                     | 1.12        |
+| Lime Concrete                       | `minecraft:lime_concrete`                       | 1.12        |
+| Green Concrete                      | `minecraft:green_concrete`                      | 1.12        |
+| Cyan Concrete                       | `minecraft:cyan_concrete`                       | 1.12        |
+| Light Blue Concrete                 | `minecraft:light_blue_concrete`                 | 1.12        |
+| Blue Concrete                       | `minecraft:blue_concrete`                       | 1.12        |
+| Purple Concrete                     | `minecraft:purple_concrete`                     | 1.12        |
+| Magenta Concrete                    | `minecraft:magenta_concrete`                    | 1.12        |
+| Pink Concrete                       | `minecraft:pink_concrete`                       | 1.12        |
+| White Concrete Powder               | `minecraft:white_concrete_powder`               | 1.12        |
+| Light Gray Concrete Powder          | `minecraft:light_gray_concrete_powder`          | 1.12        |
+| Gray Concrete Powder                | `minecraft:gray_concrete_powder`                | 1.12        |
+| Black Concrete Powder               | `minecraft:black_concrete_powder`               | 1.12        |
+| Brown Concrete Powder               | `minecraft:brown_concrete_powder`               | 1.12        |
+| Red Concrete Powder                 | `minecraft:red_concrete_powder`                 | 1.12        |
+| Orange Concrete Powder              | `minecraft:orange_concrete_powder`              | 1.12        |
+| Yellow Concrete Powder              | `minecraft:yellow_concrete_powder`              | 1.12        |
+| Lime Concrete Powder                | `minecraft:lime_concrete_powder`                | 1.12        |
+| Green Concrete Powder               | `minecraft:green_concrete_powder`               | 1.12        |
+| Cyan Concrete Powder                | `minecraft:cyan_concrete_powder`                | 1.12        |
+| Light Blue Concrete Powder          | `minecraft:light_blue_concrete_powder`          | 1.12        |
+| Blue Concrete Powder                | `minecraft:blue_concrete_powder`                | 1.12        |
+| Purple Concrete Powder              | `minecraft:purple_concrete_powder`              | 1.12        |
+| Magenta Concrete Powder             | `minecraft:magenta_concrete_powder`             | 1.12        |
+| Pink Concrete Powder                | `minecraft:pink_concrete_powder`                | 1.12        |
+| White Glazed Terracotta             | `minecraft:white_glazed_terracotta`             | 1.12        |
+| Light Gray Glazed Terracotta        | `minecraft:light_gray_glazed_terracotta`        | 1.12        |
+| Gray Glazed Terracotta              | `minecraft:gray_glazed_terracotta`              | 1.12        |
+| Black Glazed Terracotta             | `minecraft:black_glazed_terracotta`             | 1.12        |
+| Brown Glazed Terracotta             | `minecraft:brown_glazed_terracotta`             | 1.12        |
+| Red Glazed Terracotta               | `minecraft:red_glazed_terracotta`               | 1.12        |
+| Orange Glazed Terracotta            | `minecraft:orange_glazed_terracotta`            | 1.12        |
+| Yellow Glazed Terracotta            | `minecraft:yellow_glazed_terracotta`            | 1.12        |
+| Lime Glazed Terracotta              | `minecraft:lime_glazed_terracotta`              | 1.12        |
+| Green Glazed Terracotta             | `minecraft:green_glazed_terracotta`             | 1.12        |
+| Cyan Glazed Terracotta              | `minecraft:cyan_glazed_terracotta`              | 1.12        |
+| Light Blue Glazed Terracotta        | `minecraft:light_blue_glazed_terracotta`        | 1.12        |
+| Blue Glazed Terracotta              | `minecraft:blue_glazed_terracotta`              | 1.12        |
+| Purple Glazed Terracotta            | `minecraft:purple_glazed_terracotta`            | 1.12        |
+| Magenta Glazed Terracotta           | `minecraft:magenta_glazed_terracotta`           | 1.12        |
+| Pink Glazed Terracotta              | `minecraft:pink_glazed_terracotta`              | 1.12        |
+| White Bed                           | `minecraft:white_bed`                           | 1.12        |
+| Light Gray Bed                      | `minecraft:light_gray_bed`                      | 1.12        |
+| Gray Bed                            | `minecraft:gray_bed`                            | 1.12        |
+| Black Bed                           | `minecraft:black_bed`                           | 1.12        |
+| Brown Bed                           | `minecraft:brown_bed`                           | 1.12        |
+| Orange Bed                          | `minecraft:orange_bed`                          | 1.12        |
+| Yellow Bed                          | `minecraft:yellow_bed`                          | 1.12        |
+| Lime Bed                            | `minecraft:lime_bed`                            | 1.12        |
+| Green Bed                           | `minecraft:green_bed`                           | 1.12        |
+| Cyan Bed                            | `minecraft:cyan_bed`                            | 1.12        |
+| Light Blue Bed                      | `minecraft:light_blue_bed`                      | 1.12        |
+| Blue Bed                            | `minecraft:blue_bed`                            | 1.12        |
+| Purple Bed                          | `minecraft:purple_bed`                          | 1.12        |
+| Magenta Bed                         | `minecraft:magenta_bed`                         | 1.12        |
+| Pink Bed                            | `minecraft:pink_bed`                            | 1.12        |
+| Acacia Button                       | `minecraft:acacia_button`                       | 1.13        |
+| Acacia Pressure Plate               | `minecraft:acacia_pressure_plate`               | 1.13        |
+| Acacia Trapdoor                     | `minecraft:acacia_trapdoor`                     | 1.13        |
+| Birch Button                        | `minecraft:birch_button`                        | 1.13        |
+| Birch Pressure Plate                | `minecraft:birch_pressure_plate`                | 1.13        |
+| Birch Trapdoor                      | `minecraft:birch_trapdoor`                      | 1.13        |
+| Dark Oak Button                     | `minecraft:dark_oak_button`                     | 1.13        |
+| Dark Oak Pressure Plate             | `minecraft:dark_oak_pressure_plate`             | 1.13        |
+| Dark Oak Trapdoor                   | `minecraft:dark_oak_trapdoor`                   | 1.13        |
+| Jungle Button                       | `minecraft:jungle_button`                       | 1.13        |
+| Jungle Pressure Plate               | `minecraft:jungle_pressure_plate`               | 1.13        |
+| Jungle Trapdoor                     | `minecraft:jungle_trapdoor`                     | 1.13        |
+| Spruce Button                       | `minecraft:spruce_button`                       | 1.13        |
+| Spruce Pressure Plate               | `minecraft:spruce_pressure_plate`               | 1.13        |
+| Spruce Trapdoor                     | `minecraft:spruce_trapdoor`                     | 1.13        |
+| Stripped Acacia Log                 | `minecraft:stripped_acacia_log`                 | 1.13        |
+| Stripped Birch Log                  | `minecraft:stripped_birch_log`                  | 1.13        |
+| Stripped Dark Oak Log               | `minecraft:stripped_dark_oak_log`               | 1.13        |
+| Stripped Jungle Log                 | `minecraft:stripped_jungle_log`                 | 1.13        |
+| Stripped Oak Log                    | `minecraft:stripped_oak_log`                    | 1.13        |
+| Stripped Spruce Log                 | `minecraft:stripped_spruce_log`                 | 1.13        |
+| Bubble Column                       | `minecraft:bubble_column`                       | 1.13        |
+| Kelp                                | `minecraft:kelp`                                | 1.13        |
+| Seagrass                            | `minecraft:seagrass`                            | 1.13        |
+| Dried Kelp Block                    | `minecraft:dried_kelp_block`                    | 1.13        |
+| Prismarine Slab                     | `minecraft:prismarine_slab`                     | 1.13        |
+| Prismarine Stairs                   | `minecraft:prismarine_stairs`                   | 1.13        |
+| Prismarine Brick Slab               | `minecraft:prismarine_brick_slab`               | 1.13        |
+| Prismarine Brick Stairs             | `minecraft:prismarine_brick_stairs`             | 1.13        |
+| Dark Prismarine Slab                | `minecraft:dark_prismarine_slab`                | 1.13        |
+| Dark Prismarine Stairs              | `minecraft:dark_prismarine_stairs`              | 1.13        |
+| Turtle Egg                          | `minecraft:turtle_egg`                          | 1.13        |
+| Brain Coral Block                   | `minecraft:brain_coral_block`                   | 1.13        |
+| Bubble Coral Block                  | `minecraft:bubble_coral_block`                  | 1.13        |
+| Fire Coral Block                    | `minecraft:fire_coral_block`                    | 1.13        |
+| Horn Coral Block                    | `minecraft:horn_coral_block`                    | 1.13        |
+| Tube Coral Block                    | `minecraft:tube_coral_block`                    | 1.13        |
+| Tube Coral                          | `minecraft:tube_coral`                          | 1.13        |
+| Fire Coral                          | `minecraft:fire_coral`                          | 1.13        |
+| Brain Coral                         | `minecraft:brain_coral`                         | 1.13        |
+| Bubble Coral                        | `minecraft:bubble_coral`                        | 1.13        |
+| Horn Coral                          | `minecraft:horn_coral`                          | 1.13        |
+| Dead Tube Coral Block               | `minecraft:dead_tube_coral_block`               | 1.13        |
+| Dead Brain Coral Block              | `minecraft:dead_brain_coral_block`              | 1.13        |
+| Dead Bubble Coral Block             | `minecraft:dead_bubble_coral_block`             | 1.13        |
+| Dead Fire Coral Block               | `minecraft:dead_fire_coral_block`               | 1.13        |
+| Dead Horn Coral Block               | `minecraft:dead_horn_coral_block`               | 1.13        |
+| Shulker Box                         | `minecraft:shulker_box`                         | 1.13        |
+| Tube Coral Fan                      | `minecraft:tube_coral_fan`                      | 1.13        |
+| Fire Coral Fan                      | `minecraft:fire_coral_fan`                      | 1.13        |
+| Brain Coral Fan                     | `minecraft:brain_coral_fan`                     | 1.13        |
+| Bubble Coral Fan                    | `minecraft:bubble_coral_fan`                    | 1.13        |
+| Horn Coral Fan                      | `minecraft:horn_coral_fan`                      | 1.13        |
+| Sea Pickle                          | `minecraft:sea_pickle`                          | 1.13        |
+| Blue Ice                            | `minecraft:blue_ice`                            | 1.13        |
+| Conduit                             | `minecraft:conduit`                             | 1.13        |
+| Stripped Oak Wood                   | `minecraft:stripped_oak_wood`                   | 1.13        |
+| Stripped Birch Wood                 | `minecraft:stripped_birch_wood`                 | 1.13        |
+| Stripped Spruce Wood                | `minecraft:stripped_spruce_wood`                | 1.13        |
+| Stripped Jungle Wood                | `minecraft:stripped_jungle_wood`                | 1.13        |
+| Stripped Acacia Wood                | `minecraft:stripped_acacia_wood`                | 1.13        |
+| Stripped Dark Oak Wood              | `minecraft:stripped_dark_oak_wood`              | 1.13        |
+| Dead Tube Coral Fan                 | `minecraft:dead_tube_coral_fan`                 | 1.13        |
+| Dead Brain Coral Fan                | `minecraft:dead_brain_coral_fan`                | 1.13        |
+| Dead Bubble Coral Fan               | `minecraft:dead_bubble_coral_fan`               | 1.13        |
+| Dead Fire Coral Fan                 | `minecraft:dead_fire_coral_fan`                 | 1.13        |
+| Dead Horn Coral Fan                 | `minecraft:dead_horn_coral_fan`                 | 1.13        |
+| Dead Tube Coral                     | `minecraft:dead_tube_coral`                     | 1.13.1      |
+| Dead Brain Coral                    | `minecraft:dead_brain_coral`                    | 1.13.1      |
+| Dead Bubble Coral                   | `minecraft:dead_bubble_coral`                   | 1.13.1      |
+| Dead Fire Coral                     | `minecraft:dead_fire_coral`                     | 1.13.1      |
+| Dead Horn Coral                     | `minecraft:dead_horn_coral`                     | 1.13.1      |
+| Bamboo                              | `minecraft:bamboo`                              | 1.14        |
+| Cornflower                          | `minecraft:cornflower`                          | 1.14        |
+| Wither Rose                         | `minecraft:wither_rose`                         | 1.14        |
+| Lily of the Valley                  | `minecraft:lily_of_the_valley`                  | 1.14        |
+| Loom                                | `minecraft:loom`                                | 1.14        |
+| Birch Sign                          | `minecraft:birch_sign`                          | 1.14        |
+| Spruce Sign                         | `minecraft:spruce_sign`                         | 1.14        |
+| Jungle Sign                         | `minecraft:jungle_sign`                         | 1.14        |
+| Acacia Sign                         | `minecraft:acacia_sign`                         | 1.14        |
+| Dark Oak Sign                       | `minecraft:dark_oak_sign`                       | 1.14        |
+| Stone Slab                          | `minecraft:stone_slab`                          | 1.14        |
+| Andesite Slab                       | `minecraft:andesite_slab`                       | 1.14        |
+| Polished Andesite Slab              | `minecraft:polished_andesite_slab`              | 1.14        |
+| Diorite Slab                        | `minecraft:diorite_slab`                        | 1.14        |
+| Polished Diorite Slab               | `minecraft:polished_Diorite_slab`               | 1.14        |
+| Granite Slab                        | `minecraft:granite_slab`                        | 1.14        |
+| Polished Granite Slab               | `minecraft:polished_granite_slab`               | 1.14        |
+| Mossy Stone Brick Slab              | `minecraft:mossy_stone_brick_slab`              | 1.14        |
+| Mossy Cobblestone Slab              | `minecraft:mossy_cobblestone_slab`              | 1.14        |
+| Smooth Sandstone Slab               | `minecraft:smooth_sandstone_slab`               | 1.14        |
+| Smooth Red Sandstone Slab           | `minecraft:smooth_red_sandstone_slab`           | 1.14        |
+| Smooth Quartz Slab                  | `minecraft:smooth_quartz_slab`                  | 1.14        |
+| Red Nether Brick Slab               | `minecraft:red_nether_brick_slab`               | 1.14        |
+| End Stone Brick Slab                | `minecraft:end_stone_brick_slab`                | 1.14        |
+| Stone Stairs                        | `minecraft:stone_stairs`                        | 1.14        |
+| Mossy Cobblestone Stairs            | `minecraft:mossy_cobblestone_stairs`            | 1.14        |
+| Mossy Stone Brick Stairs            | `minecraft:mossy_stone_brick_stairs`            | 1.14        |
+| Granite Stairs                      | `minecraft:granite_stairs`                      | 1.14        |
+| Polished Granite Stairs             | `minecraft:polished_granite_stairs`             | 1.14        |
+| Diorite Stairs                      | `minecraft:diorite_stairs`                      | 1.14        |
+| Polished Diorite Stairs             | `minecraft:polished_diorite_stairs`             | 1.14        |
+| Andesite Stairs                     | `minecraft:andesite_stairs`                     | 1.14        |
+| Polished Andesite Stairs            | `minecraft:polished_andesite_stairs`            | 1.14        |
+| Smooth Sandstone Stairs             | `minecraft:smooth_sandstone_stairs`             | 1.14        |
+| Smooth Red Sandstone Stairs         | `minecraft:smooth_red_sandstone_stairs`         | 1.14        |
+| Red Nether Brick Stairs             | `minecraft:red_nether_brick_stairs`             | 1.14        |
+| End Stone Brick Stairs              | `minecraft:end_stone_brick_stairs`              | 1.14        |
+| Smooth Quartz Stairs                | `minecraft:smooth_quartz_stairs`                | 1.14        |
+| Brick Wall                          | `minecraft:brick_wall`                          | 1.14        |
+| Andesite Wall                       | `minecraft:andesite_wall`                       | 1.14        |
+| Diorite Wall                        | `minecraft:diorite_wall`                        | 1.14        |
+| Granite Wall                        | `minecraft:granite_wall`                        | 1.14        |
+| Prismarine Wall                     | `minecraft:prismarine_wall`                     | 1.14        |
+| Stone Brick Wall                    | `minecraft:stone_brick_wall`                    | 1.14        |
+| Mossy Stone Brick Wall              | `minecraft:mossy_stone_brick_wall`              | 1.14        |
+| Sandstone Wall                      | `minecraft:sandstone_wall`                      | 1.14        |
+| Red Sandstone Wall                  | `minecraft:red_sandstone_wall`                  | 1.14        |
+| Nether Brick Wall                   | `minecraft:nether_brick_wall`                   | 1.14        |
+| Red Nether Brick Wall               | `minecraft:red_nether_brick_wall`               | 1.14        |
+| End Stone Brick Wall                | `minecraft:end_stone_brick_wall`                | 1.14        |
+| Brick Wall                          | `minecraft:brick_wall`                          | 1.14        |
+| Barrel                              | `minecraft:barrel`                              | 1.14        |
+| Blast Furnace                       | `minecraft:blast_furnace`                       | 1.14        |
+| Bell                                | `minecraft:bell`                                | 1.14        |
+| Smoker                              | `minecraft:smoker`                              | 1.14        |
+| Cartography Table                   | `minecraft:cartography_table`                   | 1.14        |
+| Fletching Table                     | `minecraft:fletching_table`                     | 1.14        |
+| Smithing Table                      | `minecraft:smithing_table`                      | 1.14        |
+| Stonecutter                         | `minecraft:stonecutter`                         | 1.14        |
+| Grindstone                          | `minecraft:grindstone`                          | 1.14        |
+| Lectern                             | `minecraft:lectern`                             | 1.14        |
+| Scaffolding                         | `minecraft:scaffolding`                         | 1.14        |
+| Lantern                             | `minecraft:lantern`                             | 1.14        |
+| Jigsaw Block                        | `minecraft:jigsaw`                              | 1.14        |
+| Sweet Berry Bush                    | `minecraft:sweet_berry_bush`                    | 1.14        |
+| Campfire                            | `minecraft:campfire`                            | 1.14        |
+| Composter                           | `minecraft:composter`                           | 1.14        |
+| Cut Sandstone Slab                  | `minecraft:cut_sandstone_slab`                  | 1.14        |
+| Cut Red Sandstone Slab              | `minecraft:cut_red_sandstone_slab`              | 1.14        |
+| Bee Nest                            | `minecraft:bee_nest`                            | 1.15        |
+| Beehive                             | `minecraft:beehive`                             | 1.15        |
+| Honey Block                         | `minecraft:honey_block`                         | 1.15        |
+| Honeycomb Block                     | `minecraft:honeycomb_block`                     | 1.15        |
+| Ancient Debris                      | `minecraft:ancient_debris`                      | 1.16        |
+| Basalt                              | `minecraft:basalt`                              | 1.16        |
+| Block of Netherite                  | `minecraft:netherite_block`                     | 1.16        |
+| Crimson Fungus                      | `minecraft:crimson_fungus`                      | 1.16        |
+| Warped Fungus                       | `minecraft:warped_fungus`                       | 1.16        |
+| Crimson Nylium                      | `minecraft:crimson_nylium`                      | 1.16        |
+| Warped Nylium                       | `minecraft:warped_nylium`                       | 1.16        |
+| Crimson Stem                        | `minecraft:crimson_stem`                        | 1.16        |
+| Warped Stem                         | `minecraft:warped_stem`                         | 1.16        |
+| Stripped Crimson Stem               | `minecraft:stripped_crimson_stem`               | 1.16        |
+| Stripped Warped Stem                | `minecraft:stripped_warped_stem`                | 1.16        |
+| Crimson Planks                      | `minecraft:crimson_planks`                      | 1.16        |
+| Warped Planks                       | `minecraft:warped_planks`                       | 1.16        |
+| Crimson Slab                        | `minecraft:crimson_slab`                        | 1.16        |
+| Warped Slab                         | `minecraft:warped_slab`                         | 1.16        |
+| Crimson Stairs                      | `minecraft:crimson_stairs`                      | 1.16        |
+| Warped Stairs                       | `minecraft:warped_stairs`                       | 1.16        |
+| Crimson Fence                       | `minecraft:crimson_fence`                       | 1.16        |
+| Warped Fence                        | `minecraft:warped_fence`                        | 1.16        |
+| Crimson Fence Gate                  | `minecraft:crimson_fence_gate`                  | 1.16        |
+| Warped Fence Gate                   | `minecraft:warped_fence_gate`                   | 1.16        |
+| Crimson Pressure Plate              | `minecraft:crimson_pressure_plate`              | 1.16        |
+| Warped Pressure Plate               | `minecraft:warped_pressure_plate`               | 1.16        |
+| Crimson Button                      | `minecraft:crimson_button`                      | 1.16        |
+| Warped Button                       | `minecraft:warped_button`                       | 1.16        |
+| Crimson Door                        | `minecraft:crimson_door`                        | 1.16        |
+| Warped Door                         | `minecraft:warped_door`                         | 1.16        |
+| Crimson Trapdoor                    | `minecraft:crimson_trapdoor`                    | 1.16        |
+| Warped Trapdoor                     | `minecraft:warped_trapdoor`                     | 1.16        |
+| Crimson Sign                        | `minecraft:crimson_sign`                        | 1.16        |
+| Warped Sign                         | `minecraft:warped_sign`                         | 1.16        |
+| Crimson Roots                       | `minecraft:crimson_roots`                       | 1.16        |
+| Warped Roots                        | `minecraft:warped_roots`                        | 1.16        |
+| Nether Sprouts                      | `minecraft:nether_sprouts`                      | 1.16        |
+| Shroomlight                         | `minecraft:shroomlight`                         | 1.16        |
+| Soul Fire                           | `minecraft:soul` fire                           | 1.16        |
+| Soul Torch                          | `minecraft:soul_torch`                          | 1.16        |
+| Soul Lantern                        | `minecraft:soul_lantern`                        | 1.16        |
+| Soul Soil                           | `minecraft:soul_soil`                           | 1.16        |
+| Warped Wart Block                   | `minecraft:warped_wart_block`                   | 1.16        |
+| Weeping Vines                       | `minecraft:weeping_vines`                       | 1.16        |
+| Crying Obsidian                     | `minecraft:crying_obsidian`                     | 1.16        |
+| Target                              | `minecraft:target`                              | 1.16        |
+| Crimson Hyphae                      | `minecraft:crimson_hyphae`                      | 1.16        |
+| Warped Hyphae                       | `minecraft:warped_hyphae`                       | 1.16        |
+| Stripped Crimson Hyphae             | `minecraft:stripped_crimson_hyphae`             | 1.16        |
+| Stripped Warped Hyphae              | `minecraft:stripped_warped_hyphae`              | 1.16        |
+| Nether Gold Ore                     | `minecraft:nether_gold_ore`                     | 1.16        |
+| Twisting Vines                      | `minecraft:twisting_vines`                      | 1.16        |
+| Polished Basalt                     | `minecraft:polished_basalt`                     | 1.16        |
+| Respawn Anchor                      | `minecraft:respawn_anchor`                      | 1.16        |
+| Lodestone                           | `minecraft:lodestone`                           | 1.16        |
+| Chiseled Nether Bricks              | `minecraft:chiseled_nether_bricks`              | 1.16        |
+| Cracked Nether Bricks               | `minecraft:cracked_nether_bricks`               | 1.16        |
+| Blackstone                          | `minecraft:blackstone`                          | 1.16        |
+| Blackstone Slab                     | `minecraft:blackstone_slab`                     | 1.16        |
+| Blackstone Stairs                   | `minecraft:blackstone_stairs`                   | 1.16        |
+| Blackstone Wall                     | `minecraft:blackstone_wall`                     | 1.16        |
+| Polished Blackstone                 | `minecraft:polished_blackstone`                 | 1.16        |
+| Polished Blackstone Slab            | `minecraft:polished_blackstone_slab`            | 1.16        |
+| Polished Blackstone Stairs          | `minecraft:polished_blackstone_stairs`          | 1.16        |
+| Polished Blackstone Wall            | `minecraft:polished_blackstone_wall`            | 1.16        |
+| Polished Blackstone Button          | `minecraft:polished_blackstone_button`          | 1.16        |
+| Polished Blackstone Pressure Plate  | `minecraft:polished_blackstone_pressure_plate`  | 1.16        |
+| Chiseled Polished Blackstone        | `minecraft:chiseled_polished_blackstone`        | 1.16        |
+| Polished Blackstone Bricks          | `minecraft:polished_blackstone_bricks`          | 1.16        |
+| Polished Blackstone Brick Slab      | `minecraft:polished_blackstone_brick_slab`      | 1.16        |
+| Polished Blackstone Brick Stairs    | `minecraft:polished_blackstone_brick_stairs`    | 1.16        |
+| Polished Blackstone Brick Wall      | `minecraft:polished_blackstone_brick_wall`      | 1.16        |
+| Cracked Polished Blackstone Bricks  | `minecraft:cracked_polished_blackstone_bricks`  | 1.16        |
+| Gilded Blackstone                   | `minecraft:gilded_blackstone`                   | 1.16        |
+| Quartz Bricks                       | `minecraft:quartz_bricks`                       | 1.16        |
+| Soul Campfire                       | `minecraft:soul_campfire`                       | 1.16        |
+| Chain                               | `minecraft:chain`                               | 1.16        |
+| Small Amethyst Bud                  | `minecraft:small_amethyst_bud`                  | 1.17        |
+| Medium Amethyst Bud                 | `minecraft:medium_amethyst_bud`                 | 1.17        |
+| Large Amethyst Bud                  | `minecraft:large_amethyst_bud`                  | 1.17        |
+| Amethyst Cluster                    | `minecraft:amethyst_cluster`                    | 1.17        |
+| Block of Amethyst                   | `minecraft:amethyst_block`                      | 1.17        |
+| Budding Amethyst                    | `minecraft:budding_amethyst`                    | 1.17        |
+| Tinted Glass                        | `minecraft:tinted_glass`                        | 1.17        |
+| Calcite                             | `minecraft:calcite`                             | 1.17        |
+| Candle                              | `minecraft:candle`                              | 1.17        |
+| White Candle                        | `minecraft:white_candle`                        | 1.17        |
+| Light Gray Candle                   | `minecraft:light_gray_candle`                   | 1.17        |
+| Gray Candle                         | `minecraft:gray_candle`                         | 1.17        |
+| Black Candle                        | `minecraft:black_candle`                        | 1.17        |
+| Brown Candle                        | `minecraft:brown_candle`                        | 1.17        |
+| Red Candle                          | `minecraft:red_candle`                          | 1.17        |
+| Orange Candle                       | `minecraft:orange_candle`                       | 1.17        |
+| Yellow Candle                       | `minecraft:yellow_candle`                       | 1.17        |
+| Lime Candle                         | `minecraft:lime_candle`                         | 1.17        |
+| Green Candle                        | `minecraft:green_candle`                        | 1.17        |
+| Cyan Candle                         | `minecraft:cyan_candle`                         | 1.17        |
+| Light Blue Candle                   | `minecraft:light_blue_candle`                   | 1.17        |
+| Blue Candle                         | `minecraft:blue_candle`                         | 1.17        |
+| Purple Candle                       | `minecraft:purple_candle`                       | 1.17        |
+| Magenta Candle                      | `minecraft:magenta_candle`                      | 1.17        |
+| Pink Candle                         | `minecraft:pink_candle`                         | 1.17        |
+| Copper Ore                          | `minecraft:copper_ore`                          | 1.17        |
+| Block of Copper                     | `minecraft:copper_block`                        | 1.17        |
+| Exposed Copper                      | `minecraft:exposed_copper`                      | 1.17        |
+| Weathered Copper                    | `minecraft:weathered_copper`                    | 1.17        |
+| Oxidized Copper                     | `minecraft:oxidized_copper`                     | 1.17        |
+| Waxed Block of Copper               | `minecraft:waxed_copper_block`                  | 1.17        |
+| Waxed Exposed Copper                | `minecraft:waxed_exposed_copper`                | 1.17        |
+| Waxed Weathered Copper              | `minecraft:waxed_weathered_copper`              | 1.17        |
+| Cut Copper                          | `minecraft:cut_copper`                          | 1.17        |
+| Exposed Cut Copper                  | `minecraft:exposed_cut_copper`                  | 1.17        |
+| Weathered Cut Copper                | `minecraft:weathered_cut_copper`                | 1.17        |
+| Oxidized Cut Copper                 | `minecraft:oxidized_cut_copper`                 | 1.17        |
+| Waxed Cut Copper                    | `minecraft:waxed_cut_copper`                    | 1.17        |
+| Waxed Exposed Cut Copper            | `minecraft:waxed_exposed_cut_copper`            | 1.17        |
+| Waxed Weathered Cut Copper          | `minecraft:waxed_weathered_cut_copper`          | 1.17        |
+| Cut Copper Slab                     | `minecraft:cut_copper`                          | 1.17        |
+| Exposed Cut Copper Slab             | `minecraft:exposed_cut_copper_slab`             | 1.17        |
+| Weathered Cut Copper Slab           | `minecraft:weathered_cut_copper_slab`           | 1.17        |
+| Oxidized Cut Copper Slab            | `minecraft:oxidized_cut_copper_slab`            | 1.17        |
+| Waxed Cut Copper Slab               | `minecraft:waxed_cut_copper_slab`               | 1.17        |
+| Waxed Exposed Cut Copper Slab       | `minecraft:waxed_exposed_cut_copper_slab`       | 1.17        |
+| Waxed Weathered Cut Copper Slab     | `minecraft:waxed_weathered_cut_copper_slab`     | 1.17        |
+| Cut Copper Stairs                   | `minecraft:cut_copper_stairs`                   | 1.17        |
+| Exposed Cut Copper Stairs           | `minecraft:exposed_cut_copper_stairs`           | 1.17        |
+| Weathered Cut Copper Stairs         | `minecraft:weathered_cut_copper_stairs`         | 1.17        |
+| Oxidized Cut Copper Stairs          | `minecraft:oxidized_cut_copper_stairs`          | 1.17        |
+| Waxed Cut Copper Stairs             | `minecraft:waxed_cut_copper_stairs`             | 1.17        |
+| Waxed Exposed Cut Copper Stairs     | `minecraft:waxed_exposed_cut_copper_stairs`     | 1.17        |
+| Waxed Weathered Cut Copper Stairs   | `minecraft:waxed_weathered_cut_copper_stairs`   | 1.17        |
+| Lightning Rod                       | `minecraft:lightning_rod`                       | 1.17        |
+| Powder Snow                         | `minecraft:powder_snow`                         | 1.17        |
+| Dripstone Block                     | `minecraft:dripstone_block`                     | 1.17        |
+| Pointed Dripstone                   | `minecraft:pointed_dripstone`                   | 1.17        |
+| Sculk Sensor                        | `minecraft:sculk_sensor`                        | 1.17        |
+| Glow Lichen                         | `minecraft:glow_lichen`                         | 1.17        |
+| Azalea                              | `minecraft:azalea`                              | 1.17        |
+| Flowering Azalea                    | `minecraft:flowering_azalea`                    | 1.17        |
+| Azalea Leaves                       | `minecraft:azalea_leaves`                       | 1.17        |
+| Flowering Azalea Leaves             | `minecraft:flowering_azalea_leaves`             | 1.17        |
+| Cave Vines                          | `minecraft:cave_vines`                          | 1.17        |
+| Small Dripleaf                      | `minecraft:small_dripleaf`                      | 1.17        |
+| Big Dripleaf                        | `minecraft:big_dripleaf`                        | 1.17        |
+| Moss Block                          | `minecraft:moss_block`                          | 1.17        |
+| Moss Carpet                         | `minecraft:moss_carpet`                         | 1.17        |
+| Spore Blossom                       | `minecraft:spore_blossom`                       | 1.17        |
+| Rooted Dirt                         | `minecraft:rooted_dirt`                         | 1.17        |
+| Hanging Roots                       | `minecraft:hanging_roots`                       | 1.17        |
+| Deepslate                           | `minecraft:deepslate`                           | 1.17        |
+| Cobbled Deepslate Slab              | `minecraft:cobbled_deepslate_slab`              | 1.17        |
+| Cobbled Deepslate Stairs            | `minecraft:cobbled_deepslate_stairs`            | 1.17        |
+| Cobbled Deepslate Wall              | `minecraft:cobbled_deepslate_wall`              | 1.17        |
+| Chiseled Deepslate                  | `minecraft:chiseled_deepslate`                  | 1.17        |
+| Polished Deepslate                  | `minecraft:polished_deepslate`                  | 1.17        |
+| Polished Deepslate Slab             | `minecraft:polished_deepslate_slab`             | 1.17        |
+| Polished Deepslate Stairs           | `minecraft:polished_deepslate_stairs`           | 1.17        |
+| Polished Deepslate Wall             | `minecraft:polished_deepslate_wall`             | 1.17        |
+| Deepslate Bricks                    | `minecraft:deepslate_bricks`                    | 1.17        |
+| Deepslate Brick Slab                | `minecraft:deepslate_brick_slab`                | 1.17        |
+| Deepslate Brick Stairs              | `minecraft:deepslate_brick_stairs`              | 1.17        |
+| Deepslate Brick Wall                | `minecraft:deepslate_brick_wall`                | 1.17        |
+| Deepslate Tiles                     | `minecraft:deepslate_tiles`                     | 1.17        |
+| Deepslate Tile Slab                 | `minecraft:deepslate_tile_slab`                 | 1.17        |
+| Deepslate Tile Stairs               | `minecraft:deepslate_tile_stairs`               | 1.17        |
+| Deepslate Tile Wall                 | `minecraft:deepslate_tile_wall`                 | 1.17        |
+| Cobbled Deepslate                   | `minecraft:cobbled_deepslate`                   | 1.17        |
+| Deepslate Iron Ore                  | `minecraft:deepslate_iron_ore`                  | 1.17        |
+| Deepslate Gold Ore                  | `minecraft:deepslate_gold_ore`                  | 1.17        |
+| Deepslate Lapis Lazuli Ore          | `minecraft:deepslate_lapis_lazuli_ore`          | 1.17        |
+| Deepslate Redstone Ore              | `minecraft:deepslate_redstone_ore`              | 1.17        |
+| Deepslate Diamond Ore               | `minecraft:deepslate_diamond_ore`               | 1.17        |
+| Smooth Basalt                       | `minecraft:smooth_basalt`                       | 1.17        |
+| Deepslate Coal Ore                  | `minecraft:deepslate_coal_ore`                  | 1.17        |
+| Deepslate Copper Ore                | `minecraft:deepslate_copper_ore`                | 1.17        |
+| Deepslate Emerald Ore               | `minecraft:deepslate_emerald_ore`               | 1.17        |
+| Infested Deepslate                  | `minecraft:infested_deepslate`                  | 1.17        |
+| Cracked Deepslate Bricks            | `minecraft:cracked_deepslate_bricks`            | 1.17        |
+| Cracked Deepslate Tiles             | `minecraft:cracked_deepslate_tiles`             | 1.17        |
+| Light                               | `minecraft:light`                               | 1.17        |
+| Waxed Oxidized Copper               | `minecraft:waxed_oxidized_copper`               | 1.17        |
+| Waxed Oxidized Cut Copper           | `minecraft:waxed_oxidized_cut_copper`           | 1.17        |
+| Waxed Oxidized Cut Copper Slab      | `minecraft:waxed_oxidized_cut_copper_slab`      | 1.17        |
+| Waxed Oxidized Cut Copper Stairs    | `minecraft:waxed_oxidized_cut_copper_stairs`    | 1.17        |
+| Block of Raw Copper                 | `minecraft:raw_copper_block`                    | 1.17        |
+| Block of Raw Iron                   | `minecraft:raw_iron_block`                      | 1.17        |
+| Block of Raw Gold                   | `minecraft:raw_gold_block`                      | 1.17        |
+| Sculk                               | `minecraft:sculk`                               | 1.19        |
+| Sculk Catalyst                      | `minecraft:sculk_catalyst`                      | 1.19        |
+| Sculk Shrieker                      | `minecraft:sculk_shrieker`                      | 1.19        |
+| Sculk Vein                          | `minecraft:sculk_vein`                          | 1.19        |
+| Frogspawn                           | `minecraft:frogspawn`                           | 1.19        |
+| Pearlescent Froglight               | `minecraft:perlescent_froglight`                | 1.19        |
+| Verdant Froglight                   | `minecraft:verdant_froglight`                   | 1.19        |
+| Ochre Froglight                     | `minecraft:ochre_froglight`                     | 1.19        |
+| Mangrove Log                        | `minecraft:mangrove_log`                        | 1.19        |
+| Stripped Mangrove Log               | `minecraft:stripped_mangrove_log`               | 1.19        |
+| Mangrove Wood                       | `minecraft:mangrove_wood`                       | 1.19        |
+| Stripped Mangrove Wood              | `minecraft:stripped_mangrove_wood`              | 1.19        |
+| Mangrove Planks                     | `minecraft:mangrove_planks`                     | 1.19        |
+| Mangrove Slab                       | `minecraft:mangrove_slab`                       | 1.19        |
+| Mangrove Stairs                     | `minecraft:mangrove_stairs`                     | 1.19        |
+| Mangrove Fence                      | `minecraft:mangrove_fence`                      | 1.19        |
+| Mangrove Fence Gate                 | `minecraft:mangrove_fence_gate`                 | 1.19        |
+| Mangrove Pressure Plate             | `minecraft:mangrove_pressure_plate`             | 1.19        |
+| Mangrove Button                     | `minecraft:mangrove_button`                     | 1.19        |
+| Mangrove Door                       | `minecraft:mangrove_door`                       | 1.19        |
+| Mangrove Trapdoor                   | `minecraft:mangrove_trapdoor`                   | 1.19        |
+| Mangrove Sign                       | `minecraft:mangrove_sign`                       | 1.19        |
+| Mangrove Leaves                     | `minecraft:mangrove_leaves`                     | 1.19        |
+| Mangrove Propagule                  | `minecraft:mangrove_propagule`                  | 1.19        |
+| Mangrove Roots                      | `minecraft:mangrove_roots`                      | 1.19        |
+| Muddy Mangrove Roots                | `minecraft:muddy_mangrove_roots`                | 1.19        |
+| Mud                                 | `minecraft:mud`                                 | 1.19        |
+| Packed Mud                          | `minecraft:packed_mud`                          | 1.19        |
+| Mud Bricks                          | `minecraft:mud_bricks`                          | 1.19        |
+| Mud Brick Slab                      | `minecraft:mud_brick_slab`                      | 1.19        |
+| Mud Brick Stairs                    | `minecraft:mud_brick_stairs`                    | 1.19        |
+| Mud Brick Wall                      | `minecraft:mud_brick_wall`                      | 1.19        |
+| Chiseled Bookshelf                  | `minecraft:chiseled_bookshelf`                  | 1.19.3      |
+| Bamboo Button                       | `minecraft:bamboo_button`                       | 1.19.3      |
+| Bamboo Door                         | `minecraft:bamboo_door`                         | 1.19.3      |
+| Bamboo Fence                        | `minecraft:bamboo_fence`                        | 1.19.3      |
+| Bamboo Fence Gate                   | `minecraft:bamboo_fence_gate`                   | 1.19.3      |
+| Bamboo Hanging Sign                 | `minecraft:bamboo_hanging_sign`                 | 1.19.3      |
+| Bamboo Mosaic                       | `minecraft:bamboo_mosaic`                       | 1.19.3      |
+| Bamboo Planks                       | `minecraft:bamboo_planks`                       | 1.19.3      |
+| Bamboo Pressure Plate               | `minecraft:bamboo_pressure_plate`               | 1.19.3      |
+| Bamboo Sign                         | `minecraft:bamboo_sign`                         | 1.19.3      |
+| Bamboo Slab                         | `minecraft:bamboo_slab`                         | 1.19.3      |
+| Bamboo Stairs                       | `minecraft:bamboo_stairs`                       | 1.19.3      |
+| Bamboo Trapdoor                     | `minecraft:bamboo_trapdoor`                     | 1.19.3      |
+| Oak Hanging Sign                    | `minecraft:oak_hanging_sign`                    | 1.19.3      |
+| Spruce Hanging Sign                 | `minecraft:spruce_hanging_sign`                 | 1.19.3      |
+| Birch Hanging Sign                  | `minecraft:birch_hanging_sign`                  | 1.19.3      |
+| Jungle Hanging Sign                 | `minecraft:jungle_hanging_sign`                 | 1.19.3      |
+| Acacia Hanging Sign                 | `minecraft:acacia_hanging_sign`                 | 1.19.3      |
+| Dark Oak Hanging Sign               | `minecraft:dark_oak_hanging_sign`               | 1.19.3      |
+| Mangrove Hanging Sign               | `minecraft:mangrove_hanging_sign`               | 1.19.3      |
+| Crimson Hanging Sign                | `minecraft:crimson_hanging_sign`                | 1.19.3      |
+| Warped Hanging Sign                 | `minecraft:warped_hanging_sign`                 | 1.19.3      |
+| Block of Bamboo                     | `minecraft:bamboo_block`                        | 1.19.3      |
+| Block of Stripped Bamboo            | `minecraft:stripped_bamboo_block`               | 1.19.3      |
+| Piglin Head                         | `minecraft:piglin_head`                         | 1.19.3      |
+| Cherry Log                          | `minecraft:cherry_log`                          | 1.19.4      |
+| Stripped Cherry Log                 | `minecraft:stripped_cherry_log`                 | 1.19.4      |
+| Cherry Wood                         | `minecraft:cherry_wood`                         | 1.19.4      |
+| Stripped Cherry Wood                | `minecraft:stripped_cherry_wood`                | 1.19.4      |
+| Cherry Planks                       | `minecraft:cherry_planks`                       | 1.19.4      |
+| Cherry Pressure Plate               | `minecraft:cherry_pressure_plate`               | 1.19.4      |
+| Cherry Button                       | `minecraft:cherry_button`                       | 1.19.4      |
+| Cherry Door                         | `minecraft:cherry_door`                         | 1.19.4      |
+| Cherry Fence                        | `minecraft:cherry_fence`                        | 1.19.4      |
+| Cherry Fence Gate                   | `minecraft:cherry_fence_gate`                   | 1.19.4      |
+| Cherry Hanging Sign                 | `minecraft:cherry_hanging_sign`                 | 1.19.4      |
+| Cherry Sign                         | `minecraft:cherry_sign`                         | 1.19.4      |
+| Cherry Slab                         | `minecraft:cherry_slab`                         | 1.19.4      |
+| Cherry Stairs                       | `minecraft:cherry_stairs`                       | 1.19.4      |
+| Cherry Trapdoor                     | `minecraft:cherry_trapdoor`                     | 1.19.4      |
+| Cherry Leaves                       | `minecraft:cherry_leaves`                       | 1.19.4      |
+| Decorated Pot                       | `minecraft:decorated_pot`                       | 1.19.4      |
+| Pink Petals                         | `minecraft:pink_petals`                         | 1.19.4      |
+| Torchflower                         | `minecraft:torchflower`                         | 1.19.4      |
+| Suspicious Sand                     | `minecraft:suspicious_sand`                     | 1.19.4      |
+| Suspicious Gravel                   | `minecraft:suspicious_gravel`                   | 1.20        |
+| Calibrated Sculk Sensor             | `minecraft:calibrated_sculk_sensor`             | 1.20        |
+| Crafter                             | `minecraft:crafter`                             | 1.20.3      |
+| Chiseled Copper                     | `minecraft:chiseled_copper`                     | 1.20.3      |
+| Exposed Chiseled Copper             | `minecraft:exposed_chiseled_copper`             | 1.20.3      |
+| Weathered Chiseled Copper           | `minecraft:weathered_chiseled_copper`           | 1.20.3      |
+| Oxidized Chiseled Copper            | `minecraft:oxidized_chiseled_copper`            | 1.20.3      |
+| Waxed Chiseled Copper               | `minecraft:waxed_chiseled_copper`               | 1.20.3      |
+| Waxed Exposed Chiseled Copper       | `minecraft:waxed_exposed_chiseled_copper`       | 1.20.3      |
+| Waxed Weathered Chiseled Copper     | `minecraft:waxed_weathered_chiseled_copper`     | 1.20.3      |
+| Waxed Oxidized Chiseled Copper      | `minecraft:waxed_oxidized_chiseled_copper`      | 1.20.3      |
+| Copper Bulb                         | `minecraft:copper_bulb`                         | 1.20.3      |
+| Exposed Copper Bulb                 | `minecraft:exposed_copper_bulb`                 | 1.20.3      |
+| Weathered Copper Bulb               | `minecraft:weathered_copper_bulb`               | 1.20.3      |
+| Oxidized Copper Bulb                | `minecraft:oxidized_copper_bulb`                | 1.20.3      |
+| Waxed Copper Bulb                   | `minecraft:waxed_copper_bulb`                   | 1.20.3      |
+| Waxed Exposed Copper Bulb           | `minecraft:waxed_exposed_copper_bulb`           | 1.20.3      |
+| Waxed Weathered Copper Bulb         | `minecraft:waxed_weathered_copper_bulb`         | 1.20.3      |
+| Waxed Oxidized Copper Bulb          | `minecraft:waxed_oxidized_copper_bulb`          | 1.20.3      |
+| Copper Door                         | `minecraft:copper_door`                         | 1.20.3      |
+| Exposed Copper Door                 | `minecraft:exposed_copper_door`                 | 1.20.3      |
+| Weathered Copper Door               | `minecraft:weathered_copper_door`               | 1.20.3      |
+| Oxidized Copper Door                | `minecraft:oxidized_copper_door`                | 1.20.3      |
+| Waxed Copper Door                   | `minecraft:waxed_copper_door`                   | 1.20.3      |
+| Waxed Exposed Copper Door           | `minecraft:waxed_exposed_copper_door`           | 1.20.3      |
+| Waxed Weathered Copper Door         | `minecraft:waxed_weathered_copper_door`         | 1.20.3      |
+| Waxed Oxidized Copper Door          | `minecraft:waxed_oxidized_copper_door`          | 1.20.3      |
+| Copper Trapdoor                     | `minecraft:copper_trapdoor`                     | 1.20.3      |
+| Exposed Copper Trapdoor             | `minecraft:exposed_copper_trapdoor`             | 1.20.3      |
+| Weathered Copper Trapdoor           | `minecraft:weathered_copper_trapdoor`           | 1.20.3      |
+| Oxidized Copper Trapdoor            | `minecraft:oxidized_copper_trapdoor`            | 1.20.3      |
+| Waxed Copper Trapdoor               | `minecraft:waxed_copper_trapdoor`               | 1.20.3      |
+| Waxed Exposed Copper Trapdoor       | `minecraft:waxed_exposed_copper_trapdoor`       | 1.20.3      |
+| Waxed Weathered Copper Trapdoor     | `minecraft:waxed_weathered_copper_trapdoor`     | 1.20.3      |
+| Waxed Oxidized Copper Trapdoor      | `minecraft:waxed_oxidized_copper_trapdoor`      | 1.20.3      |
+| Copper Grate                        | `minecraft:copper_grate`                        | 1.20.3      |
+| Exposed Copper Grate                | `minecraft:exposed_copper_grate`                | 1.20.3      |
+| Weathered Copper Grate              | `minecraft:weathered_copper_grate`              | 1.20.3      |
+| Oxidized Copper Grate               | `minecraft:oxidized_copper_grate`               | 1.20.3      |
+| Waxed Copper Grate                  | `minecraft:waxed_copper_grate`                  | 1.20.3      |
+| Waxed Exposed Copper Grate          | `minecraft:waxed_exposed_copper_grate`          | 1.20.3      |
+| Waxed Weathered Copper Grate        | `minecraft:waxed_weathered_copper_grate`        | 1.20.3      |
+| Waxed Oxidized Copper Grate         | `minecraft:waxed_oxidized_copper_grate`         | 1.20.3      |
+| Tuff Slab                           | `minecraft:tuff_slab`                           | 1.20.3      |
+| Tuff Stairs                         | `minecraft:tuff_stairs`                         | 1.20.3      |
+| Tuff Wall                           | `minecraft:tuff_wall`                           | 1.20.3      |
+| Chiseled Tuff                       | `minecraft:chiseled_tuff`                       | 1.20.3      |
+| Polished Tuff                       | `minecraft:polished_tuff`                       | 1.20.3      |
+| Polished Tuff Slab                  | `minecraft:polished_tuff_slab`                  | 1.20.3      |
+| Polished Tuff Stairs                | `minecraft:polished_tuff_stairs`                | 1.20.3      |
+| Polished Tuff Wall                  | `minecraft:polished_tuff_wall`                  | 1.20.3      |
+| Tuff Bricks                         | `minecraft:tuff_bricks`                         | 1.20.3      |
+| Tuff Brick Slab                     | `minecraft:tuff_brick_slab`                     | 1.20.3      |
+| Tuff Brick Stairs                   | `minecraft:tuff_brick_stairs`                   | 1.20.3      |
+| Tuff Brick Wall                     | `minecraft:tuff_brick_wall`                     | 1.20.3      |
+| Chiseled Tuff Bricks                | `minecraft:chiseled_tuff_bricks`                | 1.20.3      |
+| Trial Spawner                       | `minecraft:trial_spawner`                       | 1.20.3      |
+| Vault                               | `minecraft:vault`                               | 1.20.5      |
+| Heavy Core                          | `minecraft:heavy_core`                          | 1.20.5      |
+| Creaking Heart                      | `minecraft:creaking_heart`                      | 1.21.2      |
+| Pale Hanging Moss                   | `minecraft:pale_hanging_moss`                   | 1.21.2      |
+| Pale Moss Block                     | `minecraft:pale_moss_block`                     | 1.21.2      |
+| Pale Moss Carpet                    | `minecraft:pale_moss_carpet`                    | 1.21.2      |
+| Pale Oak Leaves                     | `minecraft:pale_oak_leaves`                     | 1.21.2      |
+| Pale Oak Log                        | `minecraft:pale_oak_log`                        | 1.21.2      |
+| Stripped Pale Oak Log               | `minecraft:stripped_pale_oak_log`               | 1.21.2      |
+| Pale Oak Wood                       | `minecraft:pale_oak_wood`                       | 1.21.2      |
+| Stripped Pale Oak Wood              | `minecraft:stripped_pale_oak_wood`              | 1.21.2      |
+| Pale Oak Planks                     | `minecraft:pale_oak_planks`                     | 1.21.2      |
+| Pale Oak Slab                       | `minecraft:pale_oak_slab`                       | 1.21.2      |
+| Pale Oak Stairs                     | `minecraft:pale_oak_stairs`                     | 1.21.2      |
+| Pale Oak Sign                       | `minecraft:pale_oak_sign`                       | 1.21.2      |
+| Pale Oak Hanging Sign               | `minecraft:pale_hanging_sign`                   | 1.21.2      |
+| Pale Oak Button                     | `minecraft:pale_oak_buttom`                     | 1.21.2      |
+| Pale Oak Pressure Plate             | `minecraft:pale_pressure_plate`                 | 1.21.2      |
+| Pale Oak Door                       | `minecraft:pale_oak_door`                       | 1.21.2      |
+| Pale Oak Fence                      | `minecraft:pale_oak_fence`                      | 1.21.2      |
+| Pale Oak Fence Gate                 | `minecraft:pale_oak_fence_gate`                 | 1.21.2      |
+| Pale Oak Trapdoor                   | `minecraft:pale_oak_trapdoor`                   | 1.21.2      |
+| Pale Oak Sapling                    | `minecraft:pale_oak_sapling`                    | 1.21.2      |
+| Closed Eyeblossom                   | `minecraft:closed_eyeblossom`                   | 1.21.4      |
+| Open Eyeblossom                     | `minecraft:open_eyeblossom`                     | 1.21.4      |
+| Block of Resin                      | `minecraft:resin_block`                         | 1.21.4      |
+| Resin Bricks                        | `minecraft:resin_brick`                         | 1.21.4      |
+| Chiseled Resin Bricks               | `minecraft:chiseled_resin_brick`                | 1.21.4      |
+| Resin Brick Slab                    | `minecraft:resin_brick_slab`                    | 1.21.4      |
+| Resin Brick Stairs                  | `minecraft:resin_brick_stairs`                  | 1.21.4      |
+| Resin Brick Wall                    | `minecraft:resin_brick_wall`                    | 1.21.4      |
+| Leaf Litter                         | `minecraft:leaf_litter`                         | 1.21.5      |
+| Wildflowers                         | `minecraft:wildflowers`                         | 1.21.5      |
+| Test Block                          | `minecraft:test_block`                          | 1.21.5      |
+| Test Instance Block                 | `minecraft:test_instance_block`                 | 1.21.5      |
+| Bush                                | `minecraft:bush`                                | 1.21.5      |
+| Firefly Bush                        | `minecraft:firefly_bush`                        | 1.21.5      |
+| Cactus Flower                       | `minecraft:cactus_flower`                       | 1.21.5      |
+| Short Dry Grass                     | `minecraft:short_dry_grass`                     | 1.21.5      |
+| Tall Dry Grass                      | `minecraft:tall_dry_grass`                      | 1.21.5      |
+| Dried Ghast                         | `minecraft:dried_ghast`                         | 1.21.6      |
+| Copper Chest                        | `minecraft:copper_chest`                        | 1.21.9      |
+| Exposed Copper Chest                | `minecraft:exposed_copper_chest`                | 1.21.9      |
+| Weathered Copper Chest              | `minecraft:weathered_copper_chest`              | 1.21.9      |
+| Oxidized Copper Chest               | `minecraft:oxidized_copper_chest`               | 1.21.9      |
+| Waxed Copper Chest                  | `minecraft:waxed_copper_chest`                  | 1.21.9      |
+| Waxed Exposed Copper Chest          | `minecraft:waxed_exposed_copper_chest`          | 1.21.9      |
+| Waxed Weathered Copper Chest        | `minecraft:waxed_weathered_copper_chest`        | 1.21.9      |
+| Waxed Oxidized Copper Chest         | `minecraft:waxed_oxidized_copper_chest`         | 1.21.9      |
+| Oak Shelf                           | `minecraft:oak_shelf`                           | 1.21.9      |
+| Spruce Shelf                        | `minecraft:spruce_shelf`                        | 1.21.9      |
+| Birch Shelf                         | `minecraft:birch_shelf`                         | 1.21.9      |
+| Jungle Shelf                        | `minecraft:jungle_shelf`                        | 1.21.9      |
+| Acacia Shelf                        | `minecraft:acacia_shelf`                        | 1.21.9      |
+| Dark Oak Shelf                      | `minecraft:dark_oak_shelf`                      | 1.21.9      |
+| Mangrove Shelf                      | `minecraft:mangrove_shelf`                      | 1.21.9      |
+| Cherry Shelf                        | `minecraft:cherry_shelf`                        | 1.21.9      |
+| Pale Oak Shelf                      | `minecraft:pale_oak_shelf`                      | 1.21.9      |
+| Bamboo Shelf                        | `minecraft:bamboo_shelf`                        | 1.21.9      |
+| Crimson Shelf                       | `minecraft:crimson_shelf`                       | 1.21.9      |
+| Warped Shelf                        | `minecraft:warped_shelf`                        | 1.21.9      |
+| Copper Golem Statue                 | `minecraft:copper_golem_statue`                 | 1.21.9      |
+| Exposed Copper Golem Statue         | `minecraft:exposed_copper_golem_statue`         | 1.21.9      |
+| Weathered Copper Golem Statue       | `minecraft:weathered_copper_golem_statue`       | 1.21.9      |
+| Oxidized Copper Golem Statue        | `minecraft:oxidized_copper_golem_statue`        | 1.21.9      |
+| Waxed Copper Golem Statue           | `minecraft:waxed_copper_golem_statue`           | 1.21.9      |
+| Waxed Exposed Copper Golem Statue   | `minecraft:waxed_exposed_copper_golem_statue`   | 1.21.9      |
+| Waxed Weathered Copper Golem Statue | `minecraft:waxed_weathered_copper_golem_statue` | 1.21.9      |
+| Waxed Oxidized Copper Golem Statue  | `minecraft:waxed_oxidized_copper_golem_statue`  | 1.21.9      |
+| Exposed Lightning Rod               | `minecraft:exposed_lightning_rod`               | 1.21.9      |
+| Weathered Lightning Rod             | `minecraft:weathered_lightning_rod`             | 1.21.9      |
+| Oxidized Lightning Rod              | `minecraft:oxidized_lightning_rod`              | 1.21.9      |
+| Waxed Lightning Rod                 | `minecraft:waxed_lightning_rod`                 | 1.21.9      |
+| Waxed Exposed Lightning Rod         | `minecraft:waxed_exposed_lightning_rod`         | 1.21.9      |
+| Waxed Weathered Lightning Rod       | `minecraft:waxed_weathered_lightning_rod`       | 1.21.9      |
+| Waxed Oxidized Lightning Rod        | `minecraft:waxed_oxidized_lightning_rod`        | 1.21.9      |
+| Copper Torch                        | `minecraft:copper_torch`                        | 1.21.9      |
+| Copper Bars                         | `minecraft:copper_bars`                         | 1.21.9      |
+| Exposed Copper Bars                 | `minecraft:exposed_copper_bars`                 | 1.21.9      |
+| Weathered Copper Bars               | `minecraft:weathered_copper_bars`               | 1.21.9      |
+| Oxidized Copper Bars                | `minecraft:oxidized_copper_bars`                | 1.21.9      |
+| Waxed Copper Bars                   | `minecraft:waxed_copper_bars`                   | 1.21.9      |
+| Waxed Exposed Copper Bars           | `minecraft:waxed_exposed_copper_bars`           | 1.21.9      |
+| Waxed Weathered Copper Bars         | `minecraft:waxed_weathered_copper_bars`         | 1.21.9      |
+| Waxed Oxidized Copper Bars          | `minecraft:waxed_oxidized_copper_bars`          | 1.21.9      |
+| Copper Chain                        | `minecraft:copper_chain`                        | 1.21.9      |
+| Exposed Copper Chain                | `minecraft:exposed_copper_chain`                | 1.21.9      |
+| Weathered Copper Chain              | `minecraft:weathered_copper_chain`              | 1.21.9      |
+| Oxidized Copper Chain               | `minecraft:oxidized_copper_chain`               | 1.21.9      |
+| Waxed Copper Chain                  | `minecraft:waxed_copper_chain`                  | 1.21.9      |
+| Waxed Exposed Copper Chain          | `minecraft:waxed_exposed_copper_chain`          | 1.21.9      |
+| Waxed Weathered Copper Chain        | `minecraft:waxed_weathered_copper_chain`        | 1.21.9      |
+| Waxed Oxidized Copper Chain         | `minecraft:waxed_oxidized_copper_chain`         | 1.21.9      |
+| Copper Lantern                      | `minecraft:copper_lantern`                      | 1.21.9      |
+| Exposed Copper Lantern              | `minecraft:exposed_copper_lantern`              | 1.21.9      |
+| Weathered Copper Lantern            | `minecraft:weathered_copper_lantern`            | 1.21.9      |
+| Oxidized Copper Lantern             | `minecraft:oxidized_copper_lantern`             | 1.21.9      |
+| Waxed Copper Lantern                | `minecraft:waxed_copper_lantern`                | 1.21.9      |
+| Waxed Exposed Copper Lantern        | `minecraft:waxed_exposed_copper_lantern`        | 1.21.9      |
+| Waxed Weathered Copper Lantern      | `minecraft:waxed_weathered_copper_lantern`      | 1.21.9      |
+| Waxed Oxidized Copper Lantern       | `minecraft:waxed_oxidized_copper_lantern`       | 1.21.9      |

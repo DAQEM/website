@@ -1,3 +1,53 @@
 ---
 title: Or
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:or` condition type is met if at least one of its nested conditions is met.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will reward the player with a diamond if they break either a stone block or a dirt block.
+
+```json title="data/my_datapack/arc/diamond_for_stone_or_dirt.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:or",
+            "conditions": [
+                {
+                    "type": "arc:block",
+                    "block": "minecraft:stone"
+                },
+                {
+                    "type": "arc:block",
+                    "block": "minecraft:dirt"
+                }
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:diamond"
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

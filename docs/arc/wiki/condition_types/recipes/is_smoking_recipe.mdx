@@ -1,3 +1,45 @@
 ---
 title: Is Smoking Recipe
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:is_smoking_recipe` condition type checks if a recipe is specifically for a smoker.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will give the player an extra cooked beef every time they smelt beef in a smoker.
+
+```json title="data/my_datapack/arc/extra_beef_from_smoker.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_smelt_item",
+    "conditions": [
+        {
+            "type": "arc:is_smoking_recipe"
+        },
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:cooked_beef" }
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:cooked_beef" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

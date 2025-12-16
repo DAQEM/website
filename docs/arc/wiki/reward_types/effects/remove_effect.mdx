@@ -1,3 +1,41 @@
 ---
 title: Remove Effect
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:remove_effect` reward type removes a specified effect from the player.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will instantly remove any Poison effect the player receives.
+
+```json title="data/my_datapack/arc/poison_immunity.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_effect_added",
+    "conditions": [
+        {
+            "type": "arc:effect",
+            "effect": "minecraft:poison"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:remove_effect"
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

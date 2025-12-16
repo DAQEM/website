@@ -1,0 +1,44 @@
+---
+title: Task System
+description: A comprehensive guide to the task assignment system, including the Task Table, Task Marker, and available robot tasks.
+---
+
+import Admonition from '@theme/Admonition';
+
+The task system allows you to give your robots specific jobs to perform. This is managed through three key components: the **Task Marker**, the **Task Table**, and the **Task Item**.
+
+## 1. Defining an Area (If Required)
+
+Some tasks, like Mining or Farming, require a specific operational area.
+1.  **Craft a Task Marker.**
+2.  **Set the First Position:** Left-click a block with the Task Marker to set the first corner of the area.
+3.  **Set the Second Position:** Right-click another block to set the second corner. The two points will define a rectangular prism where the robot will work.
+
+<Admonition type="info">
+    While holding the Task Marker, you will see a visual outline of the selected area, which can be configured in the client settings.
+</Admonition>
+
+## 2. Creating a Task Item
+
+1.  **Craft and place a Task Table.**
+2.  **Open the Task Table UI** by right-clicking it.
+3.  **Select a Task Mode:** Click one of the icons in the UI to choose the task you want to create (e.g., Mining, Farming).
+4.  **Insert a Task Marker (if needed):** For tasks that require an area, place your configured Task Marker into the input slot.
+5.  **Take the Result:** A **Task Item** will appear in the output slot. Taking this item consumes the Task Marker and encodes the selected area and task onto the new item.
+
+## 3. Assigning the Task
+
+1.  **Right-click your Robot** to open its GUI.
+2.  **Place the Task Item** into the designated task slot.
+
+The robot will now begin performing its assigned task. It will automatically switch its activity and begin working.
+
+## Available Tasks
+
+| Task            | Requires Area | Description                                                                                                                    |
+| --------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Protecting**  | Yes           | The robot will patrol the defined area and attack any hostile mobs it finds.                                                   |
+| **Mining**      | Yes           | The robot will systematically mine all blocks within the defined area, starting from the top and working its way down.         |
+| **Woodcutting** | Yes           | The robot will find and cut down all trees within the defined area. Requires the **Reforestation Module** to replant saplings. |
+| **Farming**     | Yes           | The robot will harvest mature crops within the defined area. Requires the **Crop Replant Module** to replant seeds.            |
+| **Following**   | No            | The robot will follow its owner, protecting them from hostile mobs that attack.                                                |

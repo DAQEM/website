@@ -1,3 +1,44 @@
 ---
 title: Effect
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:effect` reward type applies a potion effect to the player.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will give the player a Speed II effect for 10 seconds when they break any log.
+
+```json title="data/my_datapack/arc/speed_on_log_break.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:blocks",
+            "blocks": ["#minecraft:logs"]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": "minecraft:speed",
+            "duration": 200,
+            "amplifier": 1
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

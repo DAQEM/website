@@ -2,3 +2,42 @@
 title: Team
 slug: team
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:team` condition type checks if a player is on a specific scoreboard team.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives players on the "blue" team a blue wool when they break a block.
+
+```json title="data/my_datapack/arc/blue_team_reward.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:team",
+            "team": "blue"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:blue_wool" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

@@ -1,0 +1,42 @@
+---
+title: Commands
+description: A reference guide for all in-game commands available in the X-Life mod.
+---
+
+import Admonition from "@theme/Admonition";
+
+The X-Life mod includes a simple but powerful command for server administrators to manage player lives.
+
+<Admonition type="info">
+    All X-Life commands require a permission level of 2 or higher (typically
+    reserved for server operators).
+</Admonition>
+
+### `/xlife` Command
+
+This is the base command for all X-Life functions.
+
+#### Set Player Lives
+
+This command allows you to manually set a player's current life count.
+
+**Syntax**
+
+```
+/xlife set lives <target_player> <lives>
+```
+
+**Arguments**
+
+-   `<target_player>`: The in-game name of the player whose lives you want to set.
+-   `<lives>`: An integer between 1 and 10 representing the new life count.
+
+**Functionality**
+Upon execution, the target player's lives will be set to the specified amount. Their maximum health and heart color will update instantly to reflect the change. A success message will be displayed in chat.
+
+**Example**
+To set player Steve's lives to 5, you would use:
+
+```
+/xlife set lives Steve 5
+```

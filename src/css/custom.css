@@ -73,8 +73,11 @@
     --ifm-color-secondary-contrast-background: #1a2540;
 }
 
-html {
-    scrollbar-gutter: stable;
+@supports (scrollbar-gutter: stable) {
+    nav {
+        overflow: hidden;
+        scrollbar-gutter: stable;
+    }
 }
 
 html:has(.no-scrollbar-gutter) {
@@ -140,6 +143,10 @@ h6 {
 
 @utility mc-button {
     @apply bg-[var(--color-card-background)] [box-shadow:2px_-2px_0_2px_var(--color-card-background-light),_-2px_2px_0_2px_var(--color-card-background-dark),_0_0_0_4px_var(--color-card-background)] p-8 hover:[box-shadow:0_0_0_4px_#ffffff];
+}
+
+@utility mc-button-primary {
+    @apply bg-[var(--color-primary)] text-white font-bold py-2 px-4 rounded hover:bg-[var(--color-primary-dark)];
 }
 
 @layer base {

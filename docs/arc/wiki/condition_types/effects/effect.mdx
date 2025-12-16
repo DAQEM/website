@@ -1,3 +1,42 @@
 ---
 title: Effect
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:effect` condition type checks for a specific mob effect.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will give the player a feather every time they receive the Slow Falling effect.
+
+```json title="data/my_datapack/arc/feather_for_slow_falling.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_effect_added",
+    "conditions": [
+        {
+            "type": "arc:effect",
+            "effect": "minecraft:slow_falling"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:feather" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

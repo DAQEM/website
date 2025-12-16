@@ -1,4 +1,9 @@
-import Admonition from '@theme/Admonition';
+---
+title: SQLite
+description: Guide to using SQLite as the database system for GriefLogger.
+---
+
+import Admonition from "@theme/Admonition";
 
 # SQLite
 
@@ -17,16 +22,19 @@ This single file contains all of your server's log data, including every table f
 
 ### Disadvantages
 
--   **Performance at Scale:** While very efficient, SQLite can become a bottleneck on extremely large servers with hundreds of concurrent players and a massive amount of logged interactions. For most servers, this is not an issue, but if you run a large public network, you should consider using **[MySQL](./mysql)**.
+-   **Performance at Scale:** While very efficient, SQLite can become a bottleneck on extremely large servers with hundreds of concurrent players and a massive amount of logged interactions. For most servers, this is not an issue, but if you run a large public network, you should consider using **[MySQL](./mysql.mdx)**.
 
 ### Management
 
 #### Backing Up
+
 To back up your GriefLogger data, simply **shut down your server** and make a copy of the `database.db` file.
 
 <Admonition type="danger" title="Important">
-    Always stop your server before copying or modifying the `database.db` file to prevent data corruption.
+    Always stop your server before copying or modifying the `database.db` file
+    to prevent data corruption.
 </Admonition>
 
 #### Resetting Data
+
 To completely wipe all log data, stop your server and delete the `database.db` file. A new, empty database file will be generated the next time the server starts.

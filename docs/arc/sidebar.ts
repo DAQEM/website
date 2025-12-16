@@ -145,7 +145,7 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(actionTypes)
                                 .filter(
-                                    (action) => action.category === "player"
+                                    (action) => action.category === "players"
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((action) => ({
@@ -618,6 +618,14 @@ const sidebar: SidebarsConfig = {
                     collapsed: true,
                     items: [],
                     link: { type: "doc", id: "wiki/action_data/index" },
+                },
+                {
+                    type: "category",
+                    label: "JSON Formats",
+                    customProps: { emoji: "📄" },
+                    collapsed: true,
+                    items: [],
+                    link: { type: "doc", id: "wiki/json_formats/index" },
                 },
             ],
             link: { type: "doc", id: "wiki/index" },

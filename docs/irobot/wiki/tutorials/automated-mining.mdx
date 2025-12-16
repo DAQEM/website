@@ -1,0 +1,40 @@
+---
+title: Automated Mining
+description: A complete tutorial on how to set up your robot to automatically mine out a designated area.
+---
+import Admonition from '@theme/Admonition';
+
+One of the most powerful features of iRobot is the ability to automate large-scale mining operations. This guide will show you how to set up a mining quarry for your robot.
+
+## Step 1: Craft the Necessary Tools
+You will need three key items:
+1.  A **Task Marker**: To define the mining area.
+2.  A **Task Table**: To create the mining task.
+3.  A **Dropoff Chest**: For the robot to store its collected items.
+
+You will also need a robot that has been crafted and placed in the world.
+
+## Step 2: Define the Mining Area
+Take your **Task Marker** in hand.
+1.  Go to one corner of the area you want to mine and **left-click** a block to set the first position.
+2.  Go to the opposite, diagonal corner of the area and **right-click** a block to set the second position.
+
+<Admonition type="tip">
+    You will see a blue outline of the selected area (this can be configured or disabled in the client settings). The area is a 3D box, so the Y-levels of your selected blocks matter! The robot will mine everything inside this box.
+</Admonition>
+
+## Step 3: Create the Mining Task
+1.  Place your **Task Table** in the world and right-click it.
+2.  In the GUI, click the icon that looks like a pickaxe. This sets the task mode to **Mining**.
+3.  Place your configured **Task Marker** into the input slot on the left.
+4.  A **Task Item** will appear in the output slot on the right. Take it. This item now contains the mining task and the area coordinates.
+
+## Step 4: Assign the Task and Prepare for Drop-off
+1.  Place one or more **Dropoff Chests** somewhere nearby. The robot will automatically detect and use them when its inventory is full.
+2.  Right-click your robot to open its interface.
+3.  Ensure it has a charged **Battery** installed.
+4.  Place a pickaxe in its main inventory. The robot will automatically select the best tool for the job.
+5.  Place the **Task Item** you just created into the robot's designated task slot.
+
+## Step 5: Watch It Work!
+The robot will now travel to the designated area and begin systematically mining everything within the boundaries, from top to bottom. When its inventory is full, it will pause mining, find the nearest Dropoff Chest, empty its items, and then return to work.

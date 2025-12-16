@@ -2,3 +2,44 @@
 title: Scoreboard
 slug: scoreboard
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:scoreboard` condition type checks if a player's score in a specific objective is within a given range.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example rewards a player with a diamond if they break a block while their `kills` score is between 10 and 20.
+
+```json title="data/my_datapack/arc/reward_for_kill_milestone.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:scoreboard",
+            "objective": "kills",
+            "min": 10,
+            "max": 20
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:diamond" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

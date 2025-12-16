@@ -1,3 +1,43 @@
 ---
 title: Block Hardness
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:block_hardness` condition type checks if the hardness of a block falls within a specified range.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example doubles the player's breaking speed for blocks with a hardness between 1.0 and 2.0.
+
+```json title="data/my_datapack/arc/fast_break_medium_blocks.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_destroy_speed",
+    "conditions": [
+        {
+            "type": "arc:block_hardness",
+            "min": 1.0,
+            "max": 2.0
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:destroy_speed_multiplier",
+            "multiplier": 2.0
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

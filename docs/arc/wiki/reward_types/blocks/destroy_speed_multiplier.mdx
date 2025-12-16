@@ -1,3 +1,42 @@
 ---
 title: Destroy Speed Multiplier
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:destroy_speed_multiplier` reward type modifies the speed at which a player breaks a block.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will make the player break obsidian five times faster.
+
+```json title="data/my_datapack/arc/fast_obsidian.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_destroy_speed",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:obsidian"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:destroy_speed_multiplier",
+            "multiplier": 5.0
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

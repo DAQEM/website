@@ -1,0 +1,159 @@
+---
+title: Modules
+description: Upgrade and specialize your robots with a variety of powerful modules.
+---
+
+import RecipeGrid from '@site/src/components/crafting/recipe-grid';
+import Admonition from '@theme/Admonition';
+
+Modules are special items that can be installed in a robot's module slots to grant it new abilities or enhance its existing stats. Each robot has two module slots.
+
+<Admonition type="note">
+    All modules first require a [**Module Base**](components.mdx#module-base) to be crafted.
+</Admonition>
+
+## Attribute Modules
+
+These modules provide direct boosts to a robot's core stats.
+
+### Speed Boost Module
+Increases the robot's movement speed.
+
+<RecipeGrid recipe={{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "irobot:module_base",
+    "minecraft:sugar",
+    "minecraft:sugar",
+    "minecraft:feather",
+    "minecraft:feather"
+  ],
+  "result": {
+    "id": "irobot:speed_boost_module"
+  }
+}} />
+
+### Mining Speed Module
+Increases the robot's block-breaking speed, making it much faster at mining and woodcutting.
+
+<RecipeGrid recipe={{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "irobot:module_base",
+    "minecraft:diamond_pickaxe",
+    "minecraft:redstone_block",
+    "minecraft:redstone_block"
+  ],
+  "result": {
+    "id": "irobot:mining_speed_module"
+  }
+}} />
+
+### Attack Damage Module
+Increases the robot's melee attack damage, making it more effective in combat.
+
+<RecipeGrid recipe={{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "irobot:module_base",
+    "minecraft:diamond_sword",
+    "minecraft:redstone_block",
+    "minecraft:redstone_block"
+  ],
+  "result": {
+    "id": "irobot:attack_damage_module"
+  }
+}} />
+
+### Durability Module
+Increases the robot's maximum health, making it more resilient to damage.
+
+<RecipeGrid recipe={{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "irobot:module_base",
+    "minecraft:diamond_chestplate",
+    "minecraft:iron_block",
+    "minecraft:iron_block"
+  ],
+  "result": {
+    "id": "irobot:durability_module"
+  }
+}} />
+
+---
+
+## Utility Modules
+
+These modules provide special abilities and improved efficiency.
+
+### Battery Efficiency Module
+Reduces the energy consumption for all of the robot's actions.
+
+<RecipeGrid recipe={{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "irobot:module_base",
+    "irobot:advanced_microchip",
+    "minecraft:redstone_block",
+    "minecraft:redstone_block"
+  ],
+  "result": {
+    "id": "irobot:battery_efficiency_module"
+  }
+}} />
+
+### Solar Panel Module
+Slowly recharges the robot's battery when it is in direct sunlight.
+
+<RecipeGrid recipe={{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "irobot:module_base",
+    "minecraft:daylight_detector",
+    "minecraft:daylight_detector",
+    "minecraft:daylight_detector",
+    "minecraft:glass_pane",
+    "minecraft:glass_pane",
+    "minecraft:glass_pane"
+  ],
+  "result": {
+    "id": "irobot:solar_panel_module"
+  }
+}} />
+
+### Reforestation Module
+Allows a robot with a Woodcutting task to automatically replant saplings after chopping down a tree.
+
+<RecipeGrid recipe={{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "irobot:module_base",
+    "minecraft:diamond_axe",
+    "minecraft:bone_meal",
+    "minecraft:bone_meal",
+    "minecraft:bone_meal",
+    "minecraft:bone_meal"
+  ],
+  "result": {
+    "id": "irobot:reforestation_module"
+  }
+}} />
+
+### Crop Replant Module
+Allows a robot with a Farming task to automatically replant crops after harvesting.
+
+<RecipeGrid recipe={{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "irobot:module_base",
+    "minecraft:diamond_hoe",
+    "minecraft:bone_meal",
+    "minecraft:bone_meal",
+    "minecraft:bone_meal",
+    "minecraft:bone_meal"
+  ],
+  "result": {
+    "id": "irobot:crop_replant_module"
+  }
+}} />

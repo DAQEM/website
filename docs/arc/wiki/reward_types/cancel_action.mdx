@@ -1,3 +1,41 @@
 ---
 title: Cancel Action
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:cancel_action` reward type prevents the default outcome of a triggered action.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example prevents the player from breaking diamond ore.
+
+```json title="data/my_datapack/arc/prevent_breaking_diamond_ore.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:diamond_ore"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:cancel_action"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

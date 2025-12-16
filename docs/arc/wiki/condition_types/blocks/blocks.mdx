@@ -2,3 +2,42 @@
 title: Blocks
 slug: blocks
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:blocks` condition type checks if a block is one of several specified blocks or belongs to a specified block tag.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example rewards the player with a diamond when they break any block that is part of the `#minecraft:logs` tag.
+
+```json title="data/my_datapack/arc/diamond_for_logs.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:blocks",
+            "blocks": ["#minecraft:logs"]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:diamond" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

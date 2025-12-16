@@ -1,0 +1,50 @@
+---
+title: Hurt Player
+---
+
+import ActionDataTable from "@site/src/components/wiki/arc/actions/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/actions/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/actions/reward-type-list";
+
+The `arc:on_hurt_player` action type is triggered when a player hurts another player.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available to be used by conditions and rewards:
+
+<ActionDataTable />
+
+## Example
+
+The following example will give the player a Strength I effect for 10 seconds every time they hurt another player.
+
+```json title="data/my_datapack/arc/strength_on_hurt_player.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_hurt_player",
+    "conditions": [],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": "minecraft:strength",
+            "duration": 200,
+            "amplifier": 0
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+The following condition types can be used with this action type:
+
+<CompatibleConditionTypes />
+
+## Compatible Reward Types
+
+The following reward types can be used with this action type:
+
+<CompatibleRewardTypes />

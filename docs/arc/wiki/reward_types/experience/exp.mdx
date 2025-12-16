@@ -1,0 +1,37 @@
+---
+title: Experience
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:exp` reward type gives the player a specified range of experience points.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will give the player between 10 and 20 experience points every time they craft an item.
+
+```json title="data/my_datapack/arc/xp_for_crafting.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_craft_item",
+    "rewards": [
+        {
+            "type": "arc:exp",
+            "min": 10,
+            "max": 20
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

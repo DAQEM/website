@@ -1,3 +1,43 @@
 ---
 title: Distance
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:distance` condition type checks if the player has traveled a certain distance while performing a continuous movement action (e.g., walking, swimming, sprinting).
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will give the player an experience point every 100 blocks they walk.
+
+```json title="data/my_datapack/arc/xp_for_walking.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_walk",
+    "conditions": [
+        {
+            "type": "arc:distance",
+            "distance_in_blocks": 100
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:exp",
+            "min": 1,
+            "max": 1
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

@@ -1,0 +1,42 @@
+---
+title: Experience Multiplier
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:exp_multiplier` reward type multiplies the amount of experience dropped from an action.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will double the experience dropped when a player breaks a coal ore block.
+
+```json title="data/my_datapack/arc/double_xp_from_coal.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:coal_ore"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:exp_multiplier",
+            "multiplier": 2
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

@@ -1,0 +1,45 @@
+---
+title: Not In Block Position Cache
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:not_in_block_pos_cache` condition type checks if a block's position is not in the player's recent placement history. This is useful for preventing rewards from blocks that the player has placed themselves.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives the player a diamond only when they break a naturally-occurring stone block, not one they placed.
+
+```json title="data/my_datapack/arc/natural_stone_reward.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:stone"
+        },
+        {
+            "type": "arc:not_in_block_pos_cache"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:diamond" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

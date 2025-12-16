@@ -1,0 +1,27 @@
+---
+title: Dropoff Chest
+description: A special chest that robots use to automatically deposit items from their inventory.
+---
+
+import RecipeGrid from '@site/src/components/crafting/recipe-grid';
+
+The **Dropoff Chest** acts as a designated repository for your robots. When a robot's inventory becomes full, or when it completes a task, it will automatically search for the nearest Dropoff Chest to empty its contents.
+
+### Crafting
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shapeless",
+"ingredients": [
+"minecraft:chest",
+"minecraft:hopper"
+],
+"result": {
+"id": "irobot:dropoff_chest",
+"count": 1
+}
+}} />
+
+### Functionality
+* **Automatic Deposit:** Robots with full inventories will automatically pathfind to the nearest available Dropoff Chest.
+* **POI System:** The block is registered as a Point of Interest (POI), allowing robots to find it from a long distance (configurable via poi_search_range).
+* **Standard Chest:** It functions like a normal single or double chest for players. You can connect hoppers and other inventory systems to it to sort the items your robots collect.

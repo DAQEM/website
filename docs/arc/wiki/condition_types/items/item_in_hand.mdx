@@ -1,3 +1,44 @@
 ---
 title: Item In Hand
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:item_in_hand` condition type checks if the player is holding a specific item in their main hand, off-hand, or either hand.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example increases the player's destroy speed when they are breaking stone and holding a diamond pickaxe in their main hand.
+
+```json title="data/my_datapack/arc/fast_stone_mining.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_destroy_speed",
+    "conditions": [
+        { "type": "arc:block", "block": "minecraft:stone" },
+        {
+            "type": "arc:item_in_hand",
+            "hand": "MAIN_HAND",
+            "item": { "id": "minecraft:diamond_pickaxe" }
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:destroy_speed_multiplier",
+            "multiplier": 2.0
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

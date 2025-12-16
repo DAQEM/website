@@ -1,3 +1,44 @@
 ---
 title: Drop Item
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:drop_item` reward type drops an item at a specified location.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example will drop a diamond at the block's location every time a player breaks a stone block.
+
+```json title="data/my_datapack/arc/diamond_from_stone.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:stone"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:drop_item",
+            "item": {
+                "id": "minecraft:diamond"
+            }
+        }
+    ]
+}
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
+```

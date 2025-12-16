@@ -1,3 +1,45 @@
 ---
 title: Ready For Shearing
 ---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:ready_for_shearing` condition type checks if a shearable entity is ready to be sheared.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example will reward the player with a diamond when they shear a sheep.
+
+```json title="data/my_datapack/arc/diamond_for_shearing.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_interact_entity",
+    "conditions": [
+        {
+            "type": "arc:entity_type",
+            "entity_type": "minecraft:sheep"
+        },
+        {
+            "type": "arc:ready_for_shearing"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:diamond" }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

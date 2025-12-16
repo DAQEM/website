@@ -1,0 +1,55 @@
+---
+title: Automated Farming
+description: Learn how to use a robot to automatically harvest and replant your crops.
+---
+import RecipeGrid from '@site/src/components/crafting/recipe-grid';
+import Admonition from '@theme/Admonition';
+
+Tired of manually harvesting your fields? A robot can do it for you! This tutorial explains how to set up a fully automated farm.
+
+## Step 1: Required Items
+1.  A **Task Marker**
+2.  A **Task Table**
+3.  A **Dropoff Chest**
+4.  A **Crop Replant Module** (Essential for replanting)
+5.  A robot placed in the world.
+
+## Step 2: Prepare Your Farm and Define the Area
+1.  Make sure you have a field of tilled farmland with crops planted.
+2.  Use the **Task Marker** to define the area of your farm. **Left-click** one corner and **right-click** the opposite corner.
+
+## Step 3: Create the Farming Task
+1.  Open your **Task Table**.
+2.  Click the icon that looks like a hoe. This sets the task mode to **Farming**.
+3.  Place your configured **Task Marker** into the input slot.
+4.  Take the resulting **Task Item** from the output slot.
+
+## Step 4: Upgrade and Assign the Task
+1.  Craft a **Crop Replant Module**. This is crucial, as without it, the robot will only harvest and will not replant.
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shapeless",
+"ingredients": [
+"irobot:module_base",
+"minecraft:diamond_hoe",
+"minecraft:bone_meal",
+"minecraft:bone_meal",
+"minecraft:bone_meal",
+"minecraft:bone_meal"
+],
+"result": {
+"id": "irobot:crop_replant_module"
+}
+}} />
+
+2.  Right-click your robot to open its interface.
+3.  Install the **Crop Replant Module** in one of the module slots.
+4.  Ensure it has a charged **Battery**.
+5.  Place the **Task Item** for farming into the robot's task slot.
+
+## Step 5: Farming in Action
+The robot will now patrol the designated area. When it finds a fully mature crop, it will move to it, harvest it, and automatically replant the seed from its inventory.
+
+<Admonition type="warning" title="Keep Seeds in Stock!">
+    The robot uses seeds/crops from its own inventory to replant. Make sure it has a supply of the necessary seeds (wheat seeds, carrots, potatoes, etc.). The robot will pick up any items dropped during harvesting, so it should be self-sufficient as long as it doesn't run out. When its inventory is full, it will deposit everything into a **Dropoff Chest**.
+</Admonition>
