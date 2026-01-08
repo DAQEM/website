@@ -165,6 +165,7 @@ const config: Config = {
         },
     } satisfies Preset.ThemeConfig,
     plugins: [
+        "./src/plugins/webpack-alias.ts",
         "./src/plugins/tailwind-plugin.ts",
         [
             "@docusaurus/plugin-content-docs",
