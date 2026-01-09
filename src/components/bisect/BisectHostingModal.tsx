@@ -17,7 +17,7 @@ export default function BisectHostingDialog({}) {
                         Learn More
                     </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl">
+                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader className="md:h-24 md:flex-row gap-4 justify-center items-center">
                         <p className="font-bold text-4xl pt-3">
                             Partnered with
@@ -39,7 +39,7 @@ export default function BisectHostingDialog({}) {
                         able to switch between different games in just seconds.
                     </p>
                     <div className="grid md:grid-cols-2 gap-6">
-                        <div className="mc-card-reversed p-4 m-1">
+                        <div className="mc-card-reversed p-4 m-1 h-64 flex flex-col justify-center">
                             <h3 className="font-bold text-xl mb-2">
                                 Why BisectHosting?
                             </h3>
@@ -62,7 +62,7 @@ export default function BisectHostingDialog({}) {
                                 </li>
                             </ul>
                         </div>
-                        <div className="flex flex-col justify-evenly items-center mc-card-reversed p-4 m-1">
+                        <div className="flex flex-col justify-evenly items-center mc-card-reversed p-4 m-1 h-64">
                             <h3 className="font-bold text-xl mb-2">
                                 Your Discount Code
                             </h3>
