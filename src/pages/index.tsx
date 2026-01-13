@@ -82,7 +82,7 @@ export default function Home(): ReactNode {
     );
 }
 
-function Star(): ReactNode {
+export function Star(): ReactNode {
     return (
         <div className="size-8 flex justify-center items-center">
             <svg
