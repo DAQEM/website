@@ -1,7 +1,7 @@
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import {
-  useAnnouncementBar,
-  useScrollPosition,
+    useAnnouncementBar,
+    useScrollPosition,
 } from "@docusaurus/theme-common/internal";
 import { translate } from "@docusaurus/Translate";
 import type { Props } from "@theme/DocSidebar/Desktop/Content";
@@ -26,7 +26,7 @@ function useShowAnnouncementBar() {
                 setShowAnnouncementBar(scrollY === 0);
             }
         },
-        [isActive]
+        [isActive],
     );
     return isActive && showAnnouncementBar;
 }
@@ -46,9 +46,19 @@ export default function DocSidebarDesktopContent({
         : undefined;
 
     return (
-        <>
+        <div
+            className={clsx("flex flex-col", className)}
+            style={{
+                // 1. Constrain the total height to the viewport minus the header
+                height: "calc(100vh - var(--ifm-navbar-height))",
+                // 2. Ensure the sidebar stays sticky on the screen
+                position: "sticky",
+                top: "var(--ifm-navbar-height)",
+            }}
+        >
+            {/* Project Info Header (Static) */}
             {project && (
-                <div className="p-4 bg-card-background grid grid-cols-[64px_1fr] gap-4">
+                <div className="p-4 bg-card-background grid grid-cols-[64px_1fr] gap-4 shrink-0">
                     <Link
                         href={`/projects/${project.slug}`}
                         className="size-16"
@@ -101,6 +111,8 @@ export default function DocSidebarDesktopContent({
                     </div>
                 </div>
             )}
+
+            {/* Scrollable Navigation Menu */}
             <nav
                 aria-label={translate({
                     id: "theme.docs.sidebar.navAriaLabel",
@@ -111,13 +123,18 @@ export default function DocSidebarDesktopContent({
                     "menu thin-scrollbar",
                     styles.menu,
                     showAnnouncementBar && styles.menuWithAnnouncementBar,
-                    className
                 )}
+                style={{
+                    // 3. FORCE the nav to take only available space and scroll
+                    flex: "1 1 0px",
+                    overflowY: "auto",
+                    overflowX: "hidden",
+                }}
             >
                 <ul
                     className={clsx(
                         ThemeClassNames.docs.docSidebarMenu,
-                        "menu__list"
+                        "menu__list",
                     )}
                 >
                     <DocSidebarItems
@@ -127,6 +144,6 @@ export default function DocSidebarDesktopContent({
                     />
                 </ul>
             </nav>
-        </>
+        </div>
     );
 }

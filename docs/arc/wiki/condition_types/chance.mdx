@@ -1,0 +1,48 @@
+---
+title: Chance
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:chance` condition type applies a random percentage chance for the action to proceed.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example has a 50% chance to give a diamond when breaking dirt.
+
+```json title="data/my_datapack/arc/lucky_dirt.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:dirt"
+        },
+        {
+            "type": "arc:chance",
+            "chance": 50.0
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:diamond"
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

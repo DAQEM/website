@@ -76,7 +76,8 @@ export const actionDataTypes: {
         description: "Defines a crafting or smelting recipe used in an action.",
     },
     "arc:hand": {
-        description: "The hand used to perform the action (MAIN_HAND or OFF_HAND).",
+        description:
+            "The hand used to perform the action (MAIN_HAND or OFF_HAND).",
     },
     "arc:fall_distance": {
         description: "The distance the player fell.",
@@ -150,14 +151,25 @@ const actionTypesDefinition = {
         title: "On Harvest Crop",
         emoji: "🌾",
         category: "blocks",
-        producesData: ["arc:block_state", "arc:block_position", "arc:exp_drop", "arc:world"],
+        producesData: [
+            "arc:block_state",
+            "arc:block_position",
+            "arc:exp_drop",
+            "arc:world",
+        ],
     },
     "arc:on_interact_block": {
         id: "arc:on_interact_block",
         title: "On Interact Block",
         emoji: "🖱️",
         category: "blocks",
-        producesData: ["arc:block_state", "arc:block_position", "arc:world", "arc:item_stack", "arc:hand"],
+        producesData: [
+            "arc:block_state",
+            "arc:block_position",
+            "arc:world",
+            "arc:item_stack",
+            "arc:hand",
+        ],
     },
     "arc:on_place_block": {
         id: "arc:on_place_block",
@@ -178,7 +190,12 @@ const actionTypesDefinition = {
         title: "On Till Soil",
         emoji: "🌿",
         category: "blocks",
-        producesData: ["arc:block_state", "arc:block_position", "arc:world", "arc:item_stack"],
+        producesData: [
+            "arc:block_state",
+            "arc:block_position",
+            "arc:world",
+            "arc:item_stack",
+        ],
     },
     "arc:on_breed_animal": {
         id: "arc:on_breed_animal",
@@ -192,7 +209,13 @@ const actionTypesDefinition = {
         title: "On Death",
         emoji: "💀",
         category: "players",
-        producesData: ["arc:entity", "arc:damage_source", "arc:block_position", "arc:world", "arc:exp_drop"],
+        producesData: [
+            "arc:entity",
+            "arc:damage_source",
+            "arc:block_position",
+            "arc:world",
+            "arc:exp_drop",
+        ],
     },
     "arc:on_get_hurt": {
         id: "arc:on_get_hurt",
@@ -220,7 +243,13 @@ const actionTypesDefinition = {
         title: "On Interact Entity",
         emoji: "🖱️",
         category: "entities",
-        producesData: ["arc:item_stack", "arc:item", "arc:hand", "arc:entity", "arc:world"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:hand",
+            "arc:entity",
+            "arc:world",
+        ],
     },
     "arc:on_kill_entity": {
         id: "arc:on_kill_entity",
@@ -247,7 +276,12 @@ const actionTypesDefinition = {
         title: "On Trade With Villager",
         emoji: "🤝",
         category: "entities",
-        producesData: ["arc:entity", "arc:item_stack", "arc:trade_offer", "arc:world"],
+        producesData: [
+            "arc:entity",
+            "arc:item_stack",
+            "arc:trade_offer",
+            "arc:world",
+        ],
     },
     "arc:on_craft_item": {
         id: "arc:on_craft_item",
@@ -261,7 +295,13 @@ const actionTypesDefinition = {
         title: "On Drop Item",
         emoji: "🪣",
         category: "items",
-        producesData: ["arc:entity", "arc:item", "arc:item_stack", "arc:world", "arc:block_position"],
+        producesData: [
+            "arc:entity",
+            "arc:item",
+            "arc:item_stack",
+            "arc:world",
+            "arc:block_position",
+        ],
     },
     "arc:on_enchant_item": {
         id: "arc:on_enchant_item",
@@ -282,28 +322,50 @@ const actionTypesDefinition = {
         title: "On Grind Item",
         emoji: "⚙️",
         category: "items",
-        producesData: ["arc:item_stack", "arc:item", "arc:world", "arc:block_position", "arc:exp_drop"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:world",
+            "arc:block_position",
+            "arc:exp_drop",
+        ],
     },
     "arc:on_hurt_item": {
         id: "arc:on_hurt_item",
         title: "On Hurt Item",
         emoji: "🗡️",
         category: "items",
-        producesData: ["arc:item_stack", "arc:item", "arc:world", "arc:damage_amount"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:world",
+            "arc:damage_amount",
+        ],
     },
     "arc:on_item_break": {
         id: "arc:on_item_break",
         title: "On Item Break",
         emoji: "💔",
         category: "items",
-        producesData: ["arc:item_stack", "arc:item", "arc:block_position", "arc:world"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:block_position",
+            "arc:world",
+        ],
     },
     "arc:on_pickup_item": {
         id: "arc:on_pickup_item",
         title: "On Pickup Item",
         emoji: "🤲",
         category: "items",
-        producesData: ["arc:entity", "arc:item_stack", "arc:item", "arc:block_position", "arc:world"],
+        producesData: [
+            "arc:entity",
+            "arc:item_stack",
+            "arc:item",
+            "arc:block_position",
+            "arc:world",
+        ],
     },
     "arc:on_smelt_item": {
         id: "arc:on_smelt_item",
@@ -337,14 +399,26 @@ const actionTypesDefinition = {
         title: "On Fill Bucket",
         emoji: "💧",
         category: "items",
-        producesData: ["arc:item_stack", "arc:item", "arc:block_position", "arc:block_state", "arc:world"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:block_position",
+            "arc:block_state",
+            "arc:world",
+        ],
     },
     "arc:on_empty_bucket": {
         id: "arc:on_empty_bucket",
         title: "On Empty Bucket",
         emoji: "🪣",
         category: "items",
-        producesData: ["arc:item_stack", "arc:item", "arc:block_position", "arc:block_state", "arc:world"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:block_position",
+            "arc:block_state",
+            "arc:world",
+        ],
     },
     "arc:on_crouch": {
         id: "arc:on_crouch",
@@ -503,63 +577,112 @@ const actionTypesDefinition = {
         title: "On Drink",
         emoji: "🥤",
         category: "players",
-        producesData: ["arc:item_stack", "arc:item", "arc:world", "arc:block_position"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:world",
+            "arc:block_position",
+        ],
     },
     "arc:on_eat": {
         id: "arc:on_eat",
         title: "On Eat",
         emoji: "🍽️",
         category: "players",
-        producesData: ["arc:item_stack", "arc:item", "arc:world", "arc:block_position"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:world",
+            "arc:block_position",
+        ],
     },
     "arc:on_add_effect": {
         id: "arc:on_add_effect",
         title: "On Effect Added",
         emoji: "💉",
         category: "players",
-        producesData: ["arc:mob_effect_instance", "arc:entity", "arc:world", "arc:block_position"],
+        producesData: [
+            "arc:mob_effect_instance",
+            "arc:entity",
+            "arc:world",
+            "arc:block_position",
+        ],
     },
     "arc:on_get_attack_speed": {
         id: "arc:on_get_attack_speed",
         title: "On Get Attack Speed",
         emoji: "⚔️",
         category: "players",
-        producesData: ["arc:item_stack", "arc:item", "arc:world", "arc:block_position"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:world",
+            "arc:block_position",
+        ],
     },
     "arc:on_rod_reel_in": {
         id: "arc:on_rod_reel_in",
         title: "On Rod Reel In",
         emoji: "🎣",
         category: "players",
-        producesData: ["arc:entity", "arc:block_position", "arc:block_state", "arc:world"],
+        producesData: [
+            "arc:entity",
+            "arc:block_position",
+            "arc:block_state",
+            "arc:world",
+        ],
     },
     "arc:on_shoot_projectile": {
         id: "arc:on_shoot_projectile",
         title: "On Shoot Projectile",
         emoji: "🏹",
         category: "players",
-        producesData: ["arc:item_stack", "arc:entity", "arc:world", "arc:block_position"],
+        producesData: [
+            "arc:item_stack",
+            "arc:entity",
+            "arc:world",
+            "arc:block_position",
+        ],
     },
     "arc:on_strip_log": {
         id: "arc:on_strip_log",
         title: "On Strip Log",
         emoji: "🪵",
         category: "players",
-        producesData: ["arc:block_state", "arc:block_position", "arc:world", "arc:item_stack", "arc:item", "arc:hand"],
+        producesData: [
+            "arc:block_state",
+            "arc:block_position",
+            "arc:world",
+            "arc:item_stack",
+            "arc:item",
+            "arc:hand",
+        ],
     },
     "arc:on_use_anvil": {
         id: "arc:on_use_anvil",
         title: "On Use Anvil",
         emoji: "⚒️",
         category: "players",
-        producesData: ["arc:item_stack", "arc:item", "arc:world", "arc:block_position", "arc:exp_level"],
+        producesData: [
+            "arc:item_stack",
+            "arc:item",
+            "arc:world",
+            "arc:block_position",
+            "arc:exp_level",
+        ],
     },
     "arc:on_block_with_shield": {
         id: "arc:on_block_with_shield",
         title: "On Block With Shield",
         emoji: "🛡️",
         category: "players",
-        producesData: ["arc:damage_source", "arc:damage_amount", "arc:entity", "arc:block_position", "arc:world"],
+        producesData: [
+            "arc:damage_source",
+            "arc:damage_amount",
+            "arc:entity",
+            "arc:block_position",
+            "arc:world",
+        ],
     },
     "arc:on_change_dimension": {
         id: "arc:on_change_dimension",
@@ -582,17 +705,18 @@ export type ConditionType = {
     id: ConditionTypesKeys;
     category:
         | "none"
+        | "advancements"
         | "blocks"
         | "effects"
         | "entities"
         | "experience"
         | "items"
         | "movement"
+        | "players"
         | "recipes"
         | "scoreboard"
         | "teams"
-        | "world"
-        | "misc";
+        | "world";
     isActionCompatible: (action: ActionType) => boolean;
     readonly parameters: readonly {
         readonly name: string;
@@ -774,7 +898,8 @@ export const conditionTypesDefinition = {
                 types: [
                     {
                         type: "EffectCategory",
-                        typeURL: "/projects/arc/wiki/json_formats/#effect-category",
+                        typeURL:
+                            "/projects/arc/wiki/json_formats/#effect-category",
                     },
                 ],
                 required: true,
@@ -824,7 +949,8 @@ export const conditionTypesDefinition = {
                 types: [
                     {
                         type: "Block",
-                        typeURL: "https://minecraft.wiki/w/List_of_blocks_by_version",
+                        typeURL:
+                            "https://minecraft.wiki/w/List_of_blocks_by_version",
                     },
                 ],
                 required: true,
@@ -910,7 +1036,8 @@ export const conditionTypesDefinition = {
         title: "Critical Hit",
         emoji: "💥",
         category: "entities",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:is_critical_hit"),
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:is_critical_hit"),
         parameters: [],
     },
     "arc:target_health": {
@@ -918,7 +1045,8 @@ export const conditionTypesDefinition = {
         title: "Target Health",
         emoji: "❤️",
         category: "entities",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:entity"),
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:entity"),
         parameters: [
             {
                 name: "health",
@@ -1103,7 +1231,8 @@ export const conditionTypesDefinition = {
         title: "Item Durability",
         emoji: "📉",
         category: "items",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:item_stack"),
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:item_stack"),
         parameters: [
             {
                 name: "durability",
@@ -1132,7 +1261,8 @@ export const conditionTypesDefinition = {
         title: "Has Enchantment",
         emoji: "✨",
         category: "items",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:item_stack"),
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:item_stack"),
         parameters: [
             {
                 name: "enchantment",
@@ -1274,7 +1404,7 @@ export const conditionTypesDefinition = {
         id: "arc:chance",
         title: "Chance",
         emoji: "🎲",
-        category: "misc",
+        category: "none",
         isActionCompatible: (action: ActionType) => true,
         parameters: [
             {
@@ -1475,8 +1605,9 @@ export const conditionTypesDefinition = {
         id: "arc:advancement",
         title: "Advancement",
         emoji: "🏆",
-        category: "misc",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:advancement"),
+        category: "advancements",
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:advancement"),
         parameters: [
             {
                 name: "id",
@@ -1502,8 +1633,9 @@ export const conditionTypesDefinition = {
         id: "arc:hand",
         title: "Hand",
         emoji: "✋",
-        category: "misc",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:hand"),
+        category: "players",
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:hand"),
         parameters: [
             {
                 name: "hand",
@@ -1517,7 +1649,7 @@ export const conditionTypesDefinition = {
         id: "arc:on_fire",
         title: "On Fire",
         emoji: "🔥",
-        category: "misc",
+        category: "players",
         isActionCompatible: (action: ActionType) => true,
         parameters: [],
     },
@@ -1525,7 +1657,7 @@ export const conditionTypesDefinition = {
         id: "arc:health",
         title: "Health",
         emoji: "❤️",
-        category: "misc",
+        category: "players",
         isActionCompatible: (action: ActionType) => true,
         parameters: [
             {
@@ -1554,7 +1686,7 @@ export const conditionTypesDefinition = {
         id: "arc:food_level",
         title: "Food Level",
         emoji: "🍖",
-        category: "misc",
+        category: "players",
         isActionCompatible: (action: ActionType) => true,
         parameters: [
             {
@@ -1576,7 +1708,7 @@ export const conditionTypesDefinition = {
         id: "arc:saturation_level",
         title: "Saturation Level",
         emoji: "🥩",
-        category: "misc",
+        category: "players",
         isActionCompatible: (action: ActionType) => true,
         parameters: [
             {
@@ -1598,7 +1730,7 @@ export const conditionTypesDefinition = {
         id: "arc:is_sleeping",
         title: "Is Sleeping",
         emoji: "🛏️",
-        category: "misc",
+        category: "players",
         isActionCompatible: (action: ActionType) => true,
         parameters: [],
     },
@@ -1606,7 +1738,7 @@ export const conditionTypesDefinition = {
         id: "arc:is_blocking",
         title: "Is Blocking",
         emoji: "🛡️",
-        category: "misc",
+        category: "players",
         isActionCompatible: (action: ActionType) => true,
         parameters: [],
     },
@@ -1735,7 +1867,7 @@ export const rewardTypesDefinition = {
                 "arc:on_get_attack_speed",
                 "arc:on_land",
                 "arc:on_empty_bucket",
-                "arc:on_strip_log"
+                "arc:on_strip_log",
             ];
             return allowedActions.includes(action.id);
         },
@@ -1838,7 +1970,10 @@ export const rewardTypesDefinition = {
         emoji: "⚔️",
         category: "entities",
         isActionCompatible: (action: ActionType) =>
-            action.id === "arc:on_get_hurt" || action.id === "arc:on_hurt_player" || action.id === "arc:on_hurt_entity" || action.id === "arc:on_hurt_item",
+            action.id === "arc:on_get_hurt" ||
+            action.id === "arc:on_hurt_player" ||
+            action.id === "arc:on_hurt_entity" ||
+            action.id === "arc:on_hurt_item",
         parameters: [
             {
                 name: "multiplier",
@@ -1907,7 +2042,8 @@ export const rewardTypesDefinition = {
         title: "Disarm Entity",
         emoji: "🫳",
         category: "entities",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:entity"),
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:entity"),
         parameters: [
             {
                 name: "item_target",
@@ -1930,7 +2066,8 @@ export const rewardTypesDefinition = {
         title: "Freeze Entity",
         emoji: "🧊",
         category: "entities",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:entity"),
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:entity"),
         parameters: [
             {
                 name: "duration",
@@ -1946,7 +2083,8 @@ export const rewardTypesDefinition = {
         title: "Pull Entity",
         emoji: "🧲",
         category: "entities",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:entity"),
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:entity"),
         parameters: [
             {
                 name: "force",
@@ -1962,7 +2100,8 @@ export const rewardTypesDefinition = {
         title: "Push Entity",
         emoji: "💨",
         category: "entities",
-        isActionCompatible: (action: ActionType) => action.producesData.includes("arc:entity"),
+        isActionCompatible: (action: ActionType) =>
+            action.producesData.includes("arc:entity"),
         parameters: [
             {
                 name: "force",

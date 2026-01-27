@@ -9,20 +9,23 @@ const CompatibleConditionTypes = () => {
             {compatibleConditions
                 .sort((a, b) => a.title.localeCompare(b.title))
                 .map((condition) => (
-                    <article className="mb-8 col col--6">
+                    <article
+                        className="mb-8 col col--6"
+                        key={condition.id.replace(/\w+:/, "")}
+                    >
                         <DocCard
                             item={{
                                 docId: `wiki/condition_types/${
                                     condition.category === "none"
                                         ? ""
                                         : `${condition.category}/`
-                                }${condition.id}`,
+                                }${condition.id.replace(/\w+:/, "")}`,
                                 type: "link",
                                 href: `/projects/arc/wiki/condition_types/${
                                     condition.category === "none"
                                         ? ""
                                         : `${condition.category}/`
-                                }${condition.id}`,
+                                }${condition.id.replace(/\w+:/, "")}`,
                                 label: condition.title,
                                 customProps: { emoji: condition.emoji },
                             }}

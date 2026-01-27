@@ -1,0 +1,43 @@
+---
+title: Strike Lightning
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:strike_lightning` reward type summons a lightning bolt at a target location.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example strikes lightning on an entity when the player hits it with a trident.
+
+```json title="data/my_datapack/arc/zeus_trident.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_hurt_entity",
+    "conditions": [
+        {
+            "type": "arc:item_in_hand",
+            "item": "minecraft:trident"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:strike_lightning",
+            "position": "ENTITY",
+            "visual_only": false
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

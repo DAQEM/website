@@ -1,0 +1,50 @@
+---
+title: Create Explosion
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:create_explosion` reward type creates an explosion at the player's current location.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example creates a small, safe explosion when the player lands after a long fall.
+
+```json title="data/my_datapack/arc/explosive_landing.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_land",
+    "conditions": [
+        {
+            "type": "arc:entity_data",
+            "properties": [
+                {
+                    "id": "arc:fall_distance",
+                    "value": "10",
+                    "comparison": ">="
+                }
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:create_explosion",
+            "radius": 2.0,
+            "causes_fire": false,
+            "block_interaction": "NONE"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
