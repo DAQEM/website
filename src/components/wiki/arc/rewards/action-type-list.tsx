@@ -9,12 +9,15 @@ export default function CompatibleActionTypes() {
             {compatibleActions
                 .sort((a, b) => a.title.localeCompare(b.title))
                 .map((action) => (
-                    <article className="mb-8 col col--6">
+                    <article
+                        className="mb-8 col col--6"
+                        key={action.id.replace(/\w+:/, "")}
+                    >
                         <DocCard
                             item={{
-                                docId: `wiki/action_types/${action.category}/${action.id}`,
+                                docId: `wiki/action_types/${action.category}/${action.id.replace(/\w+:/, "")}`,
                                 type: "link",
-                                href: `/projects/arc/wiki/action_types/${action.category}/${action.id}`,
+                                href: `/projects/arc/wiki/action_types/${action.category}/${action.id.replace(/\w+:/, "")}`,
                                 label: action.title,
                                 customProps: { emoji: action.emoji },
                             }}
