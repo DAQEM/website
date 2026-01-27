@@ -4,13 +4,13 @@ import { rewardTypes, RewardTypesKeys } from "@site/docs/arc/data";
 const useReward = () => {
     const [_, __, category, id] = useDoc().metadata.id.split("/");
 
-    var newId = id;
+    var newId = id !== undefined ? id : category;
     if (category === "jobsplus") {
-        newId = `jobsplus:${id}`;
+        newId = `jobsplus:${newId}`;
     } else {
-        newId = `arc:${id}`;
+        newId = `arc:${newId}`;
     }
-    
+
     const reward = rewardTypes[newId as RewardTypesKeys];
     return reward;
 };
