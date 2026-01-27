@@ -1,0 +1,43 @@
+---
+title: Spawn Entity
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:spawn_entity` reward type spawns a specified entity near the player.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example spawns a zombie when a player breaks a grave stone (custom block example).
+
+```json title="data/my_datapack/arc/zombie_trap.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "conditions": [
+        {
+            "type": "arc:block",
+            "block": "minecraft:stone"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:spawn_entity",
+            "entity_type": "minecraft:zombie",
+            "count": 1
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

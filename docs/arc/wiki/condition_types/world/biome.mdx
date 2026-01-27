@@ -1,0 +1,47 @@
+---
+title: Biome
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:biome` condition type checks if the player is in one of the specified biomes.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives regeneration when standing in a desert.
+
+```json title="data/my_datapack/arc/desert_regen.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_walk",
+    "conditions": [
+        {
+            "type": "arc:biome",
+            "biomes": [
+                "minecraft:desert"
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:regeneration",
+                "duration": 20
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

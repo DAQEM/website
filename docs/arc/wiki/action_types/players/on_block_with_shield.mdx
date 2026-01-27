@@ -1,0 +1,49 @@
+---
+title: Block With Shield
+---
+
+import ActionDataTable from "@site/src/components/wiki/arc/actions/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/actions/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/actions/reward-type-list";
+
+The `arc:on_block_with_shield` action type is triggered when a player successfully blocks damage using a shield.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available:
+
+<ActionDataTable />
+
+## Example
+
+The following example pushes the attacker away when blocking a zombie.
+
+```json title="data/my_datapack/arc/shield_knockback.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_block_with_shield",
+    "conditions": [
+        {
+            "type": "arc:entity_type",
+            "entity_type": "minecraft:zombie"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:push_entity",
+            "force": 2.0
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+<CompatibleConditionTypes />
+
+## Compatible Reward Types
+
+<CompatibleRewardTypes />

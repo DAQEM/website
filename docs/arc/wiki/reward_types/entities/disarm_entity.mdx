@@ -1,0 +1,41 @@
+---
+title: Disarm Entity
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:disarm_entity` reward type causes the target entity to drop an item from a specific slot.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example disarms the opponent's main hand when dealing a critical hit.
+
+```json title="data/my_datapack/arc/crit_disarm.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_hurt_entity",
+    "conditions": [
+        {
+            "type": "arc:critical_hit"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:disarm_entity",
+            "item_target": "MAIN_HAND"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

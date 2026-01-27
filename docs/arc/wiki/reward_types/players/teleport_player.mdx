@@ -1,0 +1,42 @@
+---
+title: Teleport Player
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:teleport_player` reward type teleports the player randomly within a specified radius.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example randomly teleports the player when they eat a Chorus Fruit.
+
+```json title="data/my_datapack/arc/chorus_teleport.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_eat",
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": "minecraft:chorus_fruit"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:teleport_player",
+            "radius": 16
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

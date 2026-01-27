@@ -1,5 +1,6 @@
 {
     "[markdown][mdx]": {
         "editor.wordWrap": "on"
-    }
+    },
+    "cSpell.words": ["daqem", "elytra", "jobsplus", "powerup"]
 }

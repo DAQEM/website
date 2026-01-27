@@ -1,0 +1,38 @@
+---
+title: Repair Held Item
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:repair_held_item` reward type repairs the item held in a specific hand.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example repairs the main hand item by 5% when breaking a block.
+
+```json title="data/my_datapack/arc/tool_maintenance.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_break_block",
+    "rewards": [
+        {
+            "type": "arc:repair_held_item",
+            "amount": 5,
+            "is_percentage": true,
+            "hand": "MAIN_HAND"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

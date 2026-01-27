@@ -1,0 +1,43 @@
+---
+title: Advancement
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:advancement` condition type checks if the advancement involved in the action matches specific criteria.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives a reward when the player obtains the "Stone Age" advancement.
+
+```json title="data/my_datapack/arc/stone_age_reward.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_advancement",
+    "conditions": [
+        {
+            "type": "arc:advancement",
+            "id": "minecraft:story/mine_stone"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:exp",
+            "min": 50,
+            "max": 100
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

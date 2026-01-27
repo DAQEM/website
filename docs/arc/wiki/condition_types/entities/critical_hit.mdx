@@ -1,0 +1,41 @@
+---
+title: Critical Hit
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:critical_hit` condition type checks if an attack was a critical hit (e.g. jumping while attacking).
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example multiplies damage by 2 on a critical hit.
+
+```json title="data/my_datapack/arc/super_crit.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_hurt_entity",
+    "conditions": [
+        {
+            "type": "arc:critical_hit"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:damage_multiplier",
+            "multiplier": 2.0
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

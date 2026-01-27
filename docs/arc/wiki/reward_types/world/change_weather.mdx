@@ -1,0 +1,37 @@
+---
+title: Change Weather
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:change_weather` reward type sets the current weather in the world.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example makes it thunder when a player dies.
+
+```json title="data/my_datapack/arc/dramatic_death.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_death",
+    "rewards": [
+        {
+            "type": "arc:change_weather",
+            "weather": "THUNDER",
+            "duration": 6000
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

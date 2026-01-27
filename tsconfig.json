@@ -10,7 +10,8 @@
             "@lib/*": ["src/lib/*"],
             "@pages/*": ["src/pages/*"],
             "@plugins/*": ["src/plugins/*"],
-            "@theme/*": ["src/theme/*"]
+            "@theme/*": ["src/theme/*"],
+            "@site/*": ["./*"]
         }
     },
     "exclude": [".docusaurus", "build"]

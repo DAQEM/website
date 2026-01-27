@@ -1,0 +1,45 @@
+---
+title: Is Wet
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:is_wet` condition type checks if the player is wet (in water or rain).
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example increases damage taken from lightning if the player is wet.
+
+```json title="data/my_datapack/arc/wet_lightning.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_hurt",
+    "conditions": [
+        {
+            "type": "arc:damage_source",
+            "source": "lightningBolt"
+        },
+        {
+            "type": "arc:is_wet"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:damage_multiplier",
+            "multiplier": 1.5
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

@@ -1,0 +1,45 @@
+---
+title: Y Level
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:y_level` condition type checks if the player's vertical position is within a specified range.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives mining fatigue when below Y level 0.
+
+```json title="data/my_datapack/arc/deep_fatigue.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_walk",
+    "conditions": [
+        {
+            "type": "arc:y_level",
+            "max_y": 0
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:mining_fatigue",
+                "duration": 40
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

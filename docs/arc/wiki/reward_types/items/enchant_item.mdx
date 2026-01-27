@@ -1,0 +1,42 @@
+---
+title: Enchant Item
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:enchant_item` reward type applies enchantments to an item in a specific slot.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example enchants the held item with Sharpness 1 when killing a mob.
+
+```json title="data/my_datapack/arc/blood_lust.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_kill_entity",
+    "rewards": [
+        {
+            "type": "arc:enchant_item",
+            "target": "MAIN_HAND",
+            "enchantments": [
+                {
+                    "id": "minecraft:sharpness",
+                    "level": 1
+                }
+            ]
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

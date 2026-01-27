@@ -1,0 +1,44 @@
+---
+title: On Fire
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:on_fire` condition type checks if the player is currently on fire.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example grants fire resistance if the player catches fire.
+
+```json title="data/my_datapack/arc/auto_extinguish.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_hurt",
+    "conditions": [
+        {
+            "type": "arc:on_fire"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:fire_resistance",
+                "duration": 200
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

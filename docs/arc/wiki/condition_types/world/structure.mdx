@@ -1,0 +1,43 @@
+---
+title: Structure
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:structure` condition type checks if the player is inside a specific structure.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives a reward for entering a village.
+
+```json title="data/my_datapack/arc/village_reward.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_walk",
+    "conditions": [
+        {
+            "type": "arc:structure",
+            "structure": "minecraft:village"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:exp",
+            "min": 1,
+            "max": 1
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

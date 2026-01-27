@@ -1,0 +1,38 @@
+---
+title: Set Block
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:set_block` reward type places a specific block at a target location.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example turns the block under the player into ice when they walk.
+
+```json title="data/my_datapack/arc/frost_walker.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_walk",
+    "rewards": [
+        {
+            "type": "arc:set_block",
+            "block": "minecraft:ice",
+            "target": "PLAYER",
+            "place_as_player": false
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

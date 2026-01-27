@@ -1,0 +1,45 @@
+---
+title: Is Blocking
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:is_blocking` condition type checks if the player is currently using a shield.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example prevents knockback if the player is blocking.
+
+```json title="data/my_datapack/arc/steady_stance.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_hurt",
+    "conditions": [
+        {
+            "type": "arc:is_blocking"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:knockback_resistance",
+                "duration": 20,
+                "amplifier": 0
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

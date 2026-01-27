@@ -2,92 +2,243 @@
 title: JSON Formats
 ---
 
-## Effect
+This page details the specific JSON object structures and Enumeration values used throughout Arc's Action, Condition, and Reward files.
 
-The `Effect` JSON format is used to define status effects that can be applied to entities in Minecraft. Below is the structure of the `Effect` JSON format:
+## Complex Objects
 
-```json title="Effect JSON Format Example"
-"effect": {
-    "id": "<effect id>", // required, e.g. "minecraft:speed"
-    "amplifier": <amplifier>, // optional, default is 0
-    "duration": <duration in ticks>, // optional, default is 0 (ticks)
-    "ambient": <true|false>, // optional, default is false
-    "showParticles": <true|false>, // optional, default is true
-    "showIcon": <true|false> // optional, default is true
-}
+### ArcBlockState
+
+Represents a block and its properties. It can be defined as a simple string (Resource Location) if no properties are needed, or as an object for more specific matching.
+
+**As a String:**
+```json
+"minecraft:chest"
 ```
 
----
-
-## Effect Category
-
-The `MobEffectCategory` is used to classify status effects into different categories based on their nature. The following categories are available:
-
-| Value        | Description                                             |
-| ------------ | ------------------------------------------------------- |
-| `BENEFICIAL` | Effects that provide positive benefits to the entity.   |
-| `HARMFUL`    | Effects that inflict negative effects on the entity.    |
-| `NEUTRAL`    | Effects that neither provide benefits nor inflict harm. |
-
----
-
-## Comparison Type
-
-The `ComparisonType` is used in various condition parameters to specify how two values should be compared. The following comparison types are available:
-
-| Value | Description              |
-| ----- | ------------------------ |
-| `==`  | Equal to                 |
-| `!=`  | Not equal to             |
-| `>`   | Greater than             |
-| `<`   | Less than                |
-| `>=`  | Greater than or equal to |
-| `<=`  | Less than or equal to    |
-
----
-
-## Entity Type
-
-The `EntityType` is used to specify different types of entities in Minecraft. Below is a list of some common entity types:
-
-| Value                  | Description                            |
-| ---------------------- | -------------------------------------- |
-| `minecraft:player`     | The player entity.                     |
-| `minecraft:creeper`    | A hostile mob that explodes.           |
-| `minecraft:skeleton`   | A hostile mob that shoots arrows.      |
-| `minecraft:zombie`     | A hostile mob that attacks players.    |
-| `minecraft:cow`        | A passive mob that provides milk.      |
-| `minecraft:sheep`      | A passive mob that provides wool.      |
-| `minecraft:pig`        | A passive mob that provides pork.      |
-| `minecraft:villager`   | A passive mob that trades items.       |
-| `minecraft:iron_golem` | A neutral mob that protects villagers. |
-| `minecraft:witch`      | A hostile mob that uses potions.       |
-| `minecraft:enderman`   | A neutral mob that can teleport.       |
-| `minecraft:spider`     | A hostile mob that climbs walls.       |
-
-For a comprehensive list of all entity types, refer to the [Entity#Types_of_entities](https://minecraft.fandom.com/wiki/Entity#Types_of_entities) page on the Minecraft Wiki.
-
----
-
-## Item
-
-The `Item` JSON format is used to define items in Minecraft. Below is the structure of the `Item` JSON format:
-
-```json title="Item JSON Format Example"
-"item": {
-    "id": "<item id>", // required, e.g. "minecraft:stone"
-    "count": <item count>, // optional, default is 1
-    "components": { // optional, additional item components
-        "<component name>": { /* component data */ }
+**As an Object:**
+```json
+{
+    "id": "minecraft:chest", // The block ID
+    "properties": {          // Optional: Simple map for equality checks
+        "facing": "north",
+        "waterlogged": "false"
     }
 }
 ```
 
-## Hand
+**Advanced Properties:**
+For advanced comparisons (like checking if a property is *not* a value), `properties` can be a list of property objects:
+```json
+{
+    "id": "minecraft:chest",
+    "properties": [
+        {
+            "name": "facing",
+            "value": "south",
+            "comparison_type": "!="
+        }
+    ]
+}
+```
 
-The `Hand` enum is used to specify which hand an entity is using to perform an action. The following values are available:
+### ArcItemStack
 
-| Value       | Description                                          |
-| ----------- | ---------------------------------------------------- |
-| `MAIN_HAND` | The main hand (right hand for right-handed players). |
-| `OFF_HAND`  | The off hand (left hand for right-handed players).   |
+Represents an item stack. Can be a simple string or a full object including counts and components.
+
+**As a String:**
+```json
+"minecraft:diamond"
+```
+
+**As an Object:**
+```json
+{
+    "id": "minecraft:diamond_sword",
+    "count": 1, // Optional, defaults to 1
+    "components": { // Optional, standard Minecraft Data Components
+        "minecraft:enchantments": {
+            "levels": {
+                "minecraft:sharpness": 5
+            }
+        }
+    }
+}
+```
+
+### MobEffectInstance
+
+Represents a potion effect applied to an entity.
+
+**As a String:**
+```json
+"minecraft:speed"
+```
+
+**As an Object:**
+```json
+{
+    "id": "minecraft:speed",      // The effect ID
+    "amplifier": 0,               // Optional (0 = Level 1), default 0
+    "duration": 200,              // Optional, duration in ticks, default 200
+    "ambient": false,             // Optional, default false
+    "show_particles": true,       // Optional, default true
+    "show_icon": true             // Optional, default true
+}
+```
+
+### ArcEnchantment
+
+Represents an enchantment and its level.
+
+```json
+{
+    "id": "minecraft:sharpness",
+    "level": 3
+}
+```
+
+### EntityDataProperty
+
+Used in the `arc:entity_data` condition to check specific dynamic values on an entity.
+
+```json
+{
+    "id": "arc:health",        // The data type ID (see Entity Data Registry below)
+    "value": "10",             // The value to compare against (as a string)
+    "comparison": ">="         // Optional comparison type, default "=="
+}
+```
+
+---
+
+## Enums & Types
+
+### ComparisonType
+
+Used in various conditions (like health, experience, block properties) to compare numerical values.
+
+| Symbol | Description              |
+| :----: | ------------------------ |
+|  `==`  | Equal to                 |
+|  `!=`  | Not equal to             |
+|  `>`   | Greater than             |
+|  `<`   | Less than                |
+|  `>=`  | Greater than or equal to |
+|  `<=`  | Less than or equal to    |
+
+### InteractionHand
+
+Specifies which hand is being used or checked.
+
+*   `MAIN_HAND` (or `main`)
+*   `OFF_HAND` (or `off`)
+
+### ArcItemTarget
+
+Specifies which equipment slot to target for rewards like `enchant_item` or `disarm_entity`.
+
+*   `MAIN_HAND`
+*   `OFF_HAND`
+*   `HEAD`
+*   `CHEST`
+*   `LEGS`
+*   `FEET`
+
+### ArcPositionTarget
+
+Specifies the origin position for rewards like `spawn_entity`, `play_sound`, or `set_block`.
+
+*   `PLAYER` (The player's current position)
+*   `BLOCK` (The position of the block involved in the action)
+*   `ENTITY` (The position of the target entity involved in the action)
+
+### ArcWeatherType
+
+Used in weather conditions and rewards.
+
+*   `CLEAR`
+*   `RAIN`
+*   `THUNDER`
+
+### SoundSource
+
+Standard Minecraft sound categories.
+
+*   `MASTER`
+*   `MUSIC`
+*   `RECORDS`
+*   `WEATHER`
+*   `BLOCKS`
+*   `HOSTILE`
+*   `NEUTRAL`
+*   `PLAYERS`
+*   `AMBIENT`
+*   `VOICE`
+
+### EffectCategory
+
+Classifies potion effects.
+
+*   `BENEFICIAL`
+*   `HARMFUL`
+*   `NEUTRAL`
+
+### Entity Data Registry
+
+These are the valid IDs for `EntityDataProperty`.
+
+**General Entity**
+*   `arc:is_on_fire` (Boolean)
+*   `arc:is_crouching` (Boolean)
+*   `arc:is_sprinting` (Boolean)
+*   `arc:is_swimming` (Boolean)
+*   `arc:is_glowing` (Boolean)
+*   `arc:is_invisible` (Boolean)
+*   `arc:is_on_ground` (Boolean)
+*   `arc:is_in_water` (Boolean)
+*   `arc:is_in_lava` (Boolean)
+*   `arc:is_in_rain` (Boolean)
+*   `arc:air_supply` (Integer)
+*   `arc:fall_distance` (Float)
+*   `arc:ticks_frozen` (Integer)
+*   `arc:has_no_gravity` (Boolean)
+*   `arc:is_silent` (Boolean)
+*   `arc:pose` (String)
+
+**Living Entity**
+*   `arc:health` (Float)
+*   `arc:max_health` (Float)
+*   `arc:absorption_amount` (Float)
+*   `arc:is_baby` (Boolean)
+*   `arc:is_using_item` (Boolean)
+*   `arc:is_blocking` (Boolean)
+*   `arc:is_sleeping` (Boolean)
+*   `arc:arrow_count` (Integer)
+*   `arc:stinger_count` (Integer)
+*   `arc:main_arm` (String)
+*   `arc:is_fall_flying` (Boolean)
+
+**Player**
+*   `arc:score` (Integer)
+*   `arc:experience_level` (Integer)
+*   `arc:total_experience` (Integer)
+*   `arc:experience_progress` (Float)
+*   `arc:is_creative` (Boolean)
+*   `arc:is_spectator` (Boolean)
+*   `arc:food_level` (Integer)
+*   `arc:saturation_level` (Float)
+
+**Mob / Animal / Villager**
+*   `arc:has_no_ai` (Boolean)
+*   `arc:is_left_handed` (Boolean)
+*   `arc:is_aggressive` (Boolean)
+*   `arc:can_pickup_loot` (Boolean)
+*   `arc:is_leashed` (Boolean)
+*   `arc:has_target` (Boolean)
+*   `arc:in_love_time` (Integer)
+*   `arc:is_tame` (Boolean)
+*   `arc:is_sitting` (Boolean)
+*   `arc:has_owner` (Boolean)
+*   `arc:is_trading` (Boolean)
+*   `arc:villager_profession` (String)
+*   `arc:is_casting_spell` (Boolean)

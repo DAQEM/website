@@ -1,0 +1,40 @@
+---
+title: Is Sneaking
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:is_sneaking` condition type checks if the player is crouching/sneaking.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example cancels fall damage if the player lands while sneaking.
+
+```json title="data/my_datapack/arc/safe_landing.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_land",
+    "conditions": [
+        {
+            "type": "arc:is_sneaking"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:cancel_action"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

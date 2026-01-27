@@ -1,0 +1,41 @@
+---
+title: Smelt Inventory
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:smelt_inventory` reward type smelts all smeltable items currently in the player's inventory.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example smelts the player's inventory when they step into lava.
+
+```json title="data/my_datapack/arc/super_heat.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_hurt",
+    "conditions": [
+        {
+            "type": "arc:damage_source",
+            "source": "lava"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:smelt_inventory"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

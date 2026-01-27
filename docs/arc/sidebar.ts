@@ -32,12 +32,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(actionTypes)
                                 .filter(
                                     (action) =>
-                                        action.category === "advancements"
+                                        action.category === "advancements",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((action) => ({
                                     type: "doc" as const,
-                                    id: `wiki/action_types/advancements/${action.id}`,
+                                    id: `wiki/action_types/advancements/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
                                     customProps: {
                                         emoji: action.emoji,
@@ -55,12 +55,12 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(actionTypes)
                                 .filter(
-                                    (action) => action.category === "blocks"
+                                    (action) => action.category === "blocks",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((action) => ({
                                     type: "doc" as const,
-                                    id: `wiki/action_types/blocks/${action.id}`,
+                                    id: `wiki/action_types/blocks/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
                                     customProps: {
                                         emoji: action.emoji,
@@ -78,12 +78,12 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(actionTypes)
                                 .filter(
-                                    (action) => action.category === "entities"
+                                    (action) => action.category === "entities",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((action) => ({
                                     type: "doc" as const,
-                                    id: `wiki/action_types/entities/${action.id}`,
+                                    id: `wiki/action_types/entities/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
                                     customProps: {
                                         emoji: action.emoji,
@@ -104,7 +104,7 @@ const sidebar: SidebarsConfig = {
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((action) => ({
                                     type: "doc" as const,
-                                    id: `wiki/action_types/items/${action.id}`,
+                                    id: `wiki/action_types/items/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
                                     customProps: {
                                         emoji: action.emoji,
@@ -122,12 +122,12 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(actionTypes)
                                 .filter(
-                                    (action) => action.category === "movement"
+                                    (action) => action.category === "movement",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((action) => ({
                                     type: "doc" as const,
-                                    id: `wiki/action_types/movement/${action.id}`,
+                                    id: `wiki/action_types/movement/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
                                     customProps: {
                                         emoji: action.emoji,
@@ -145,12 +145,12 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(actionTypes)
                                 .filter(
-                                    (action) => action.category === "players"
+                                    (action) => action.category === "players",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((action) => ({
                                     type: "doc" as const,
-                                    id: `wiki/action_types/players/${action.id}`,
+                                    id: `wiki/action_types/players/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
                                     customProps: {
                                         emoji: action.emoji,
@@ -175,7 +175,7 @@ const sidebar: SidebarsConfig = {
                             .sort((a, b) => a.title.localeCompare(b.title))
                             .map((reward) => ({
                                 type: "doc" as const,
-                                id: `wiki/reward_types/${reward.id}`,
+                                id: `wiki/reward_types/${reward.id.replace(/\w+:/, "")}`,
                                 label: reward.title,
                                 customProps: {
                                     emoji: reward.emoji,
@@ -188,12 +188,12 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(rewardTypes)
                                 .filter(
-                                    (reward) => reward.category === "blocks"
+                                    (reward) => reward.category === "blocks",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((reward) => ({
                                     type: "doc" as const,
-                                    id: `wiki/reward_types/blocks/${reward.id}`,
+                                    id: `wiki/reward_types/blocks/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
                                     customProps: {
                                         emoji: reward.emoji,
@@ -211,12 +211,12 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(rewardTypes)
                                 .filter(
-                                    (reward) => reward.category === "effects"
+                                    (reward) => reward.category === "effects",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((reward) => ({
                                     type: "doc" as const,
-                                    id: `wiki/reward_types/effects/${reward.id}`,
+                                    id: `wiki/reward_types/effects/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
                                     customProps: {
                                         emoji: reward.emoji,
@@ -234,12 +234,12 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(rewardTypes)
                                 .filter(
-                                    (reward) => reward.category === "entities"
+                                    (reward) => reward.category === "entities",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((reward) => ({
                                     type: "doc" as const,
-                                    id: `wiki/reward_types/entities/${reward.id}`,
+                                    id: `wiki/reward_types/entities/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
                                     customProps: {
                                         emoji: reward.emoji,
@@ -257,12 +257,13 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(rewardTypes)
                                 .filter(
-                                    (reward) => reward.category === "experience"
+                                    (reward) =>
+                                        reward.category === "experience",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((reward) => ({
                                     type: "doc" as const,
-                                    id: `wiki/reward_types/experience/${reward.id}`,
+                                    id: `wiki/reward_types/experience/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
                                     customProps: {
                                         emoji: reward.emoji,
@@ -283,7 +284,7 @@ const sidebar: SidebarsConfig = {
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((reward) => ({
                                     type: "doc" as const,
-                                    id: `wiki/reward_types/items/${reward.id}`,
+                                    id: `wiki/reward_types/items/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
                                     customProps: {
                                         emoji: reward.emoji,
@@ -301,12 +302,12 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(rewardTypes)
                                 .filter(
-                                    (reward) => reward.category === "players"
+                                    (reward) => reward.category === "players",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((reward) => ({
                                     type: "doc" as const,
-                                    id: `wiki/reward_types/players/${reward.id}`,
+                                    id: `wiki/reward_types/players/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
                                     customProps: {
                                         emoji: reward.emoji,
@@ -324,12 +325,12 @@ const sidebar: SidebarsConfig = {
                             collapsed: true,
                             items: Object.values(rewardTypes)
                                 .filter(
-                                    (reward) => reward.category === "server"
+                                    (reward) => reward.category === "server",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((reward) => ({
                                     type: "doc" as const,
-                                    id: `wiki/reward_types/server/${reward.id}`,
+                                    id: `wiki/reward_types/server/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
                                     customProps: {
                                         emoji: reward.emoji,
@@ -338,6 +339,27 @@ const sidebar: SidebarsConfig = {
                             link: {
                                 type: "doc",
                                 id: "wiki/reward_types/server/index",
+                            },
+                        },
+                        {
+                            type: "category",
+                            label: "World",
+                            customProps: { emoji: "🌍" },
+                            collapsed: true,
+                            items: Object.values(rewardTypes)
+                                .filter((reward) => reward.category === "world")
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((reward) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/reward_types/world/${reward.id.replace(/\w+:/, "")}`,
+                                    label: reward.title,
+                                    customProps: {
+                                        emoji: reward.emoji,
+                                    },
+                                })),
+                            link: {
+                                type: "doc",
+                                id: "wiki/reward_types/world/index",
                             },
                         },
                     ],
@@ -351,17 +373,41 @@ const sidebar: SidebarsConfig = {
                     items: [
                         ...Object.values(conditionTypes)
                             .filter(
-                                (condition) => condition.category === "none"
+                                (condition) => condition.category === "none",
                             )
                             .sort((a, b) => a.title.localeCompare(b.title))
                             .map((condition) => ({
                                 type: "doc" as const,
-                                id: `wiki/condition_types/${condition.id}`,
+                                id: `wiki/condition_types/${condition.id.replace(/\w+:/, "")}`,
                                 label: condition.title,
                                 customProps: {
                                     emoji: condition.emoji,
                                 },
                             })),
+                        {
+                            type: "category",
+                            label: "Advancements",
+                            customProps: { emoji: "🏆" },
+                            collapsed: true,
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "advancements",
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/advancements/${condition.id.replace(/\w+:/, "")}`,
+                                    label: condition.title,
+                                    customProps: {
+                                        emoji: condition.emoji,
+                                    },
+                                })),
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/advancements/index",
+                            },
+                        },
                         {
                             type: "category",
                             label: "Blocks",
@@ -370,12 +416,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "blocks"
+                                        condition.category === "blocks",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/blocks/${condition.id}`,
+                                    id: `wiki/condition_types/blocks/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,
@@ -394,12 +440,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "effects"
+                                        condition.category === "effects",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/effects/${condition.id}`,
+                                    id: `wiki/condition_types/effects/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,
@@ -418,12 +464,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "entities"
+                                        condition.category === "entities",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/entities/${condition.id}`,
+                                    id: `wiki/condition_types/entities/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,
@@ -442,12 +488,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "experience"
+                                        condition.category === "experience",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/experience/${condition.id}`,
+                                    id: `wiki/condition_types/experience/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,
@@ -466,12 +512,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "items"
+                                        condition.category === "items",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/items/${condition.id}`,
+                                    id: `wiki/condition_types/items/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,
@@ -490,12 +536,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "movement"
+                                        condition.category === "movement",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/movement/${condition.id}`,
+                                    id: `wiki/condition_types/movement/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,
@@ -508,18 +554,42 @@ const sidebar: SidebarsConfig = {
                         },
                         {
                             type: "category",
+                            label: "Players",
+                            customProps: { emoji: "🧑" },
+                            collapsed: true,
+                            items: Object.values(conditionTypes)
+                                .filter(
+                                    (condition) =>
+                                        condition.category === "players",
+                                )
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((condition) => ({
+                                    type: "doc" as const,
+                                    id: `wiki/condition_types/players/${condition.id.replace(/\w+:/, "")}`,
+                                    label: condition.title,
+                                    customProps: {
+                                        emoji: condition.emoji,
+                                    },
+                                })),
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/players/index",
+                            },
+                        },
+                        {
+                            type: "category",
                             label: "Recipes",
                             customProps: { emoji: "🍲" },
                             collapsed: true,
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "recipes"
+                                        condition.category === "recipes",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/recipes/${condition.id}`,
+                                    id: `wiki/condition_types/recipes/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,
@@ -538,12 +608,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "scoreboard"
+                                        condition.category === "scoreboard",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/scoreboard/${condition.id}`,
+                                    id: `wiki/condition_types/scoreboard/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,
@@ -562,12 +632,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "teams"
+                                        condition.category === "teams",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/teams/${condition.id}`,
+                                    id: `wiki/condition_types/teams/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,
@@ -586,12 +656,12 @@ const sidebar: SidebarsConfig = {
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
-                                        condition.category === "world"
+                                        condition.category === "world",
                                 )
                                 .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((condition) => ({
                                     type: "doc" as const,
-                                    id: `wiki/condition_types/world/${condition.id}`,
+                                    id: `wiki/condition_types/world/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
                                     customProps: {
                                         emoji: condition.emoji,

@@ -5,7 +5,7 @@ title: Drop Item
 import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
 import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
 
-The `arc:drop_item` reward type drops an item at a specified location.
+The `arc:drop_item` reward type drops an item at the location of the action (e.g., where a block was broken).
 
 ## Parameters
 
@@ -13,9 +13,9 @@ The `arc:drop_item` reward type drops an item at a specified location.
 
 ## Example
 
-The following example will drop a diamond at the block's location every time a player breaks a stone block.
+The following example drops a Golden Apple when breaking leaves.
 
-```json title="data/my_datapack/arc/diamond_from_stone.json"
+```json title="data/my_datapack/arc/apple_drop.json"
 {
     "holder": {
         "type": "arc:player",
@@ -24,21 +24,22 @@ The following example will drop a diamond at the block's location every time a p
     "type": "arc:on_break_block",
     "conditions": [
         {
-            "type": "arc:block",
-            "block": "minecraft:stone"
+            "type": "arc:blocks",
+            "blocks": ["#minecraft:leaves"]
         }
     ],
     "rewards": [
         {
             "type": "arc:drop_item",
             "item": {
-                "id": "minecraft:diamond"
+                "id": "minecraft:golden_apple",
+                "count": 1
             }
         }
     ]
 }
+```
 
 ## Compatible Action Types
 
 <CompatibleActionTypes />
-```

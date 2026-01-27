@@ -1,0 +1,42 @@
+---
+title: Hand
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:hand` condition type checks which hand was used to perform an interaction.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example only allows a specific interaction if done with the off-hand.
+
+```json title="data/my_datapack/arc/offhand_interact.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_interact_block",
+    "conditions": [
+        {
+            "type": "arc:hand",
+            "hand": "OFF_HAND"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:command",
+            "command": "say You used your off-hand!"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

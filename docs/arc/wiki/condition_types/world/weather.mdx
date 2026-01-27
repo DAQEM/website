@@ -1,0 +1,45 @@
+---
+title: Weather
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:weather` condition type checks the current weather in the world.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives speed when it is thundering.
+
+```json title="data/my_datapack/arc/thunder_speed.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_walk",
+    "conditions": [
+        {
+            "type": "arc:weather",
+            "weather": "THUNDER"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:speed",
+                "duration": 40
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

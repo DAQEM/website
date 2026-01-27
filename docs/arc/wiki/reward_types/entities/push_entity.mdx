@@ -1,0 +1,36 @@
+---
+title: Push Entity
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:push_entity` reward type pushes the target entity away from the player.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example pushes enemies away when blocking with a shield.
+
+```json title="data/my_datapack/arc/shield_bash.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_block_with_shield",
+    "rewards": [
+        {
+            "type": "arc:push_entity",
+            "force": 1.5
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

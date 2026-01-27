@@ -1,0 +1,48 @@
+---
+title: Is Underwater
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:is_underwater` condition type checks if the player is fully submerged in water.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives water breathing when the player eats kelp underwater.
+
+```json title="data/my_datapack/arc/kelp_breath.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_eat",
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": "minecraft:dried_kelp"
+        },
+        {
+            "type": "arc:is_underwater"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:water_breathing",
+                "duration": 200
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

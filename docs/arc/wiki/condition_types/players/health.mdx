@@ -1,0 +1,48 @@
+---
+title: Health
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:health` condition type checks the player's current health.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives resistance when the player falls below 30% health.
+
+```json title="data/my_datapack/arc/low_health_resist.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_hurt",
+    "conditions": [
+        {
+            "type": "arc:health",
+            "health": 30,
+            "comparison": "<",
+            "is_percentage": true
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:resistance",
+                "duration": 200,
+                "amplifier": 1
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />
