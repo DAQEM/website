@@ -1,11 +1,11 @@
 ---
-title: Item
+title: Feed
 ---
 
 import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
 import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
 
-The `arc:item` reward type gives an item to the player.
+The `arc:feed` reward type restores hunger and saturation to the player.
 
 ## Parameters
 
@@ -13,28 +13,26 @@ The `arc:item` reward type gives an item to the player.
 
 ## Example
 
-The following example gives the player 5 Diamonds.
+The following example feeds the player 2 hunger points when they kill an animal.
 
-```json title="data/my_datapack/arc/give_diamonds.json"
+```json title="data/my_datapack/arc/carnivore.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_advancement",
+    "type": "arc:on_kill_entity",
     "conditions": [
         {
-            "type": "arc:advancement",
-            "id": "minecraft:story/mine_diamond"
+            "type": "arc:entity_types",
+            "entity_types": ["minecraft:pig", "minecraft:cow", "minecraft:chicken"]
         }
     ],
     "rewards": [
         {
-            "type": "arc:item",
-            "item": {
-                "id": "minecraft:diamond",
-                "count": 5
-            }
+            "type": "arc:feed",
+            "food_level": 2,
+            "saturation": 1.0
         }
     ]
 }

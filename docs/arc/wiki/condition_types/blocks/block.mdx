@@ -5,7 +5,7 @@ title: Block
 import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
 import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
 
-The `arc:block` condition type checks if the block involved in an action matches a specific block type.
+The `arc:block` condition type checks if the block involved in the action matches a specific block description.
 
 ## Parameters
 
@@ -13,25 +13,30 @@ The `arc:block` condition type checks if the block involved in an action matches
 
 ## Example
 
-The following example rewards the player with an apple when they place a dirt block.
+The following example checks for a Chest that is facing North. Note that properties are defined within the block object.
 
-```json title="data/my_datapack/arc/apple_for_dirt.json"
+```json title="data/my_datapack/arc/north_chest.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_place_block",
+    "type": "arc:on_interact_block",
     "conditions": [
         {
             "type": "arc:block",
-            "block": "minecraft:dirt"
+            "block": {
+                "id": "minecraft:chest",
+                "properties": {
+                    "facing": "north"
+                }
+            }
         }
     ],
     "rewards": [
         {
-            "type": "arc:item",
-            "item": { "id": "minecraft:apple" }
+            "type": "arc:command",
+            "command": "say You opened a North facing chest!"
         }
     ]
 }

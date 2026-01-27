@@ -1,0 +1,44 @@
+---
+title: Is Riding
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:is_riding` condition type checks if the player is currently riding an entity (horse, boat, minecart, etc.).
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives speed when shooting a projectile while riding.
+
+```json title="data/my_datapack/arc/mounted_archery.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_shoot_projectile",
+    "conditions": [
+        {
+            "type": "arc:is_riding"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:speed",
+                "duration": 100
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

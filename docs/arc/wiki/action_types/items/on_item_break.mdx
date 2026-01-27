@@ -1,0 +1,49 @@
+---
+title: Item Break
+---
+
+import ActionDataTable from "@site/src/components/wiki/arc/actions/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/actions/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/actions/reward-type-list";
+
+The `arc:on_item_break` action type is triggered when a tool or armor piece loses all durability and breaks.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available:
+
+<ActionDataTable />
+
+## Example
+
+The following example gives the player two sticks when a wooden pickaxe breaks.
+
+```json title="data/my_datapack/arc/sticks_refund.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_item_break",
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": "minecraft:wooden_pickaxe"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:stick", "count": 2 }
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+<CompatibleConditionTypes />
+
+## Compatible Reward Types
+
+<CompatibleRewardTypes />

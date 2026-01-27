@@ -1,0 +1,47 @@
+---
+title: Entity Data
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:entity_data` condition type checks specific properties of an entity using registered data resolvers.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example checks if the target entity is a baby.
+
+```json title="data/my_datapack/arc/no_harm_babies.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_hurt_entity",
+    "conditions": [
+        {
+            "type": "arc:entity_data",
+            "target": "entity",
+            "properties": [
+                {
+                    "id": "arc:is_baby",
+                    "value": "true"
+                }
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:cancel_action"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

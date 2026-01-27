@@ -1,11 +1,11 @@
 ---
-title: Effect
+title: Is Sneaking
 ---
 
 import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
 import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
 
-The `arc:effect` condition type checks for a specific mob effect.
+The `arc:is_sneaking` condition type checks if the player is crouching/sneaking.
 
 ## Parameters
 
@@ -13,25 +13,23 @@ The `arc:effect` condition type checks for a specific mob effect.
 
 ## Example
 
-The following example will give the player a feather every time they receive the Slow Falling effect.
+The following example cancels fall damage if the player lands while sneaking.
 
-```json title="data/my_datapack/arc/feather_for_slow_falling.json"
+```json title="data/my_datapack/arc/safe_landing.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_add_effect",
+    "type": "arc:on_land",
     "conditions": [
         {
-            "type": "arc:effect",
-            "effect": "minecraft:slow_falling"
+            "type": "arc:is_sneaking"
         }
     ],
     "rewards": [
         {
-            "type": "arc:item",
-            "item": { "id": "minecraft:feather" }
+            "type": "arc:cancel_action"
         }
     ]
 }

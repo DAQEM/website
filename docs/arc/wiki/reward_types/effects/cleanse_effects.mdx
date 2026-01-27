@@ -1,11 +1,11 @@
 ---
-title: Item
+title: Cleanse Effects
 ---
 
 import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
 import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
 
-The `arc:item` reward type gives an item to the player.
+The `arc:cleanse_effects` reward type removes specific categories of potion effects from the player.
 
 ## Parameters
 
@@ -13,28 +13,26 @@ The `arc:item` reward type gives an item to the player.
 
 ## Example
 
-The following example gives the player 5 Diamonds.
+The following example removes all negative effects when drinking milk.
 
-```json title="data/my_datapack/arc/give_diamonds.json"
+```json title="data/my_datapack/arc/milk_cleanse.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_advancement",
+    "type": "arc:on_drink",
     "conditions": [
         {
-            "type": "arc:advancement",
-            "id": "minecraft:story/mine_diamond"
+            "type": "arc:item",
+            "item": "minecraft:milk_bucket"
         }
     ],
     "rewards": [
         {
-            "type": "arc:item",
-            "item": {
-                "id": "minecraft:diamond",
-                "count": 5
-            }
+            "type": "arc:cleanse_effects",
+            "remove_negative": true,
+            "remove_positive": false
         }
     ]
 }

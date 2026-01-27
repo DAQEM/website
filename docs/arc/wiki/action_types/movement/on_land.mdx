@@ -1,0 +1,55 @@
+---
+title: Land on Ground
+---
+
+import ActionDataTable from "@site/src/components/wiki/arc/actions/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/actions/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/actions/reward-type-list";
+
+The `arc:on_land` action type is triggered when a player lands on the ground after falling or jumping.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available:
+
+<ActionDataTable />
+
+## Example
+
+The following example spawns a slime if the player falls more than 3 blocks.
+
+```json title="data/my_datapack/arc/slime_landing.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_land",
+    "conditions": [
+        {
+            "type": "arc:entity_data",
+            "properties": [
+                {
+                    "id": "arc:fall_distance",
+                    "value": "3",
+                    "comparison": ">"
+                }
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:spawn_entity",
+            "entity_type": "minecraft:slime"
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+<CompatibleConditionTypes />
+
+## Compatible Reward Types
+
+<CompatibleRewardTypes />

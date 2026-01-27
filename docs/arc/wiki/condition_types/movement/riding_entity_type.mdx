@@ -1,0 +1,45 @@
+---
+title: Riding Entity Type
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:riding_entity_type` condition type checks the type of entity the player is currently riding.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives speed when riding a pig.
+
+```json title="data/my_datapack/arc/fast_pig.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_horse_ride",
+    "conditions": [
+        {
+            "type": "arc:riding_entity_type",
+            "entity_type": "minecraft:pig"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:speed",
+                "duration": 20
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

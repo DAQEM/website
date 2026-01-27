@@ -1,0 +1,46 @@
+---
+title: Time of Day
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:time_of_day` condition type checks if the world time is within a specified range (0-24000).
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example gives strength during the night (13000-23000).
+
+```json title="data/my_datapack/arc/night_strength.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_walk",
+    "conditions": [
+        {
+            "type": "arc:time_of_day",
+            "min_time": 13000,
+            "max_time": 23000
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:effect",
+            "effect": {
+                "id": "minecraft:strength",
+                "duration": 40
+            }
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

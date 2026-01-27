@@ -1,0 +1,41 @@
+---
+title: Inventory Full
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:inventory_full` condition type checks if the player's inventory has no empty slots.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example warns the player when their inventory is full after picking up an item.
+
+```json title="data/my_datapack/arc/inventory_full_warn.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_pickup_item",
+    "conditions": [
+        {
+            "type": "arc:inventory_full"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:command",
+            "command": "tellraw %player% {\"text\":\"Your inventory is full!\",\"color\":\"red\"}"
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

@@ -1,0 +1,47 @@
+---
+title: Full Armor Set
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/conditions/action-type-list";
+import ConditionParameterTable from "@site/src/components/wiki/arc/conditions/condition-parameter-table";
+
+The `arc:full_armor_set` condition type checks if the player is wearing a specific set of armor in all four slots.
+
+## Parameters
+
+<ConditionParameterTable />
+
+## Example
+
+The following example grants resistance when wearing full iron armor.
+
+```json title="data/my_datapack/arc/iron_resistance.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_get_hurt",
+    "conditions": [
+        {
+            "type": "arc:full_armor_set",
+            "items": [
+                "minecraft:iron_helmet",
+                "minecraft:iron_chestplate",
+                "minecraft:iron_leggings",
+                "minecraft:iron_boots"
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:damage_multiplier",
+            "multiplier": 0.5
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

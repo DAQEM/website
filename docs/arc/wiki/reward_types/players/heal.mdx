@@ -1,0 +1,36 @@
+---
+title: Heal
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:heal` reward type restores health points to the player.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example heals the player for 2 hearts (4 points) when killing a mob.
+
+```json title="data/my_datapack/arc/lifesteal.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_kill_entity",
+    "rewards": [
+        {
+            "type": "arc:heal",
+            "amount": 4.0
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

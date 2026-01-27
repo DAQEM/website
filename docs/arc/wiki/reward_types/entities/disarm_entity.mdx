@@ -1,11 +1,11 @@
 ---
-title: Item
+title: Disarm Entity
 ---
 
 import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
 import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
 
-The `arc:item` reward type gives an item to the player.
+The `arc:disarm_entity` reward type causes the target entity to drop an item from a specific slot.
 
 ## Parameters
 
@@ -13,28 +13,24 @@ The `arc:item` reward type gives an item to the player.
 
 ## Example
 
-The following example gives the player 5 Diamonds.
+The following example disarms the opponent's main hand when dealing a critical hit.
 
-```json title="data/my_datapack/arc/give_diamonds.json"
+```json title="data/my_datapack/arc/crit_disarm.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_advancement",
+    "type": "arc:on_hurt_entity",
     "conditions": [
         {
-            "type": "arc:advancement",
-            "id": "minecraft:story/mine_diamond"
+            "type": "arc:critical_hit"
         }
     ],
     "rewards": [
         {
-            "type": "arc:item",
-            "item": {
-                "id": "minecraft:diamond",
-                "count": 5
-            }
+            "type": "arc:disarm_entity",
+            "item_target": "MAIN_HAND"
         }
     ]
 }

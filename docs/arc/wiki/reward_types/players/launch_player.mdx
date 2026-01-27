@@ -1,0 +1,36 @@
+---
+title: Launch Player
+---
+
+import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
+import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
+
+The `arc:launch_player` reward type applies a velocity vector to the player, launching them in a direction.
+
+## Parameters
+
+<RewardParameterTable />
+
+## Example
+
+The following example launches the player into the air when they jump.
+
+```json title="data/my_datapack/arc/super_jump.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_jump",
+    "rewards": [
+        {
+            "type": "arc:launch_player",
+            "y": 1.0
+        }
+    ]
+}
+```
+
+## Compatible Action Types
+
+<CompatibleActionTypes />

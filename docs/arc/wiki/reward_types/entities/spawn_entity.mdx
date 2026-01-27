@@ -1,11 +1,11 @@
 ---
-title: Drop Item
+title: Spawn Entity
 ---
 
 import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
 import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
 
-The `arc:drop_item` reward type drops an item at the location of the action (e.g., where a block was broken).
+The `arc:spawn_entity` reward type spawns a specified entity near the player.
 
 ## Parameters
 
@@ -13,9 +13,9 @@ The `arc:drop_item` reward type drops an item at the location of the action (e.g
 
 ## Example
 
-The following example drops a Golden Apple when breaking leaves.
+The following example spawns a zombie when a player breaks a grave stone (custom block example).
 
-```json title="data/my_datapack/arc/apple_drop.json"
+```json title="data/my_datapack/arc/zombie_trap.json"
 {
     "holder": {
         "type": "arc:player",
@@ -24,17 +24,15 @@ The following example drops a Golden Apple when breaking leaves.
     "type": "arc:on_break_block",
     "conditions": [
         {
-            "type": "arc:blocks",
-            "blocks": ["#minecraft:leaves"]
+            "type": "arc:block",
+            "block": "minecraft:stone"
         }
     ],
     "rewards": [
         {
-            "type": "arc:drop_item",
-            "item": {
-                "id": "minecraft:golden_apple",
-                "count": 1
-            }
+            "type": "arc:spawn_entity",
+            "entity_type": "minecraft:zombie",
+            "count": 1
         }
     ]
 }

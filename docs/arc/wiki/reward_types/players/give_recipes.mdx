@@ -1,11 +1,11 @@
 ---
-title: Item
+title: Give Recipes
 ---
 
 import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
 import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
 
-The `arc:item` reward type gives an item to the player.
+The `arc:give_recipes` reward type unlocks specific crafting recipes for the player.
 
 ## Parameters
 
@@ -13,28 +13,25 @@ The `arc:item` reward type gives an item to the player.
 
 ## Example
 
-The following example gives the player 5 Diamonds.
+The following example unlocks the iron pickaxe recipe when obtaining an iron ingot.
 
-```json title="data/my_datapack/arc/give_diamonds.json"
+```json title="data/my_datapack/arc/unlock_iron.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_advancement",
+    "type": "arc:on_pickup_item",
     "conditions": [
         {
-            "type": "arc:advancement",
-            "id": "minecraft:story/mine_diamond"
+            "type": "arc:item",
+            "item": "minecraft:iron_ingot"
         }
     ],
     "rewards": [
         {
-            "type": "arc:item",
-            "item": {
-                "id": "minecraft:diamond",
-                "count": 5
-            }
+            "type": "arc:give_recipes",
+            "recipes": ["minecraft:iron_pickaxe"]
         }
     ]
 }

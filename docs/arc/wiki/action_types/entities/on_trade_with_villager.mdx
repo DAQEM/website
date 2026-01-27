@@ -1,0 +1,57 @@
+---
+title: Trade With Villager
+---
+
+import ActionDataTable from "@site/src/components/wiki/arc/actions/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/actions/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/actions/reward-type-list";
+
+The `arc:on_trade_with_villager` action type is triggered when a player successfully completes a trade with a Villager or Wandering Trader.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available:
+
+<ActionDataTable />
+
+## Example
+
+The following example rewards the player with an emerald when they trade with a Librarian.
+
+```json title="data/my_datapack/arc/emerald_for_books.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_trade_with_villager",
+    "conditions": [
+        {
+            "type": "arc:entity_data",
+            "target": "entity",
+            "properties": [
+                {
+                    "id": "arc:villager_profession",
+                    "value": "minecraft:librarian"
+                }
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:emerald"
+            }
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+<CompatibleConditionTypes />
+
+## Compatible Reward Types
+
+<CompatibleRewardTypes />

@@ -1,0 +1,49 @@
+---
+title: Fill Bucket
+---
+
+import ActionDataTable from "@site/src/components/wiki/arc/actions/action-data-table";
+import CompatibleConditionTypes from "@site/src/components/wiki/arc/actions/condition-type-list";
+import CompatibleRewardTypes from "@site/src/components/wiki/arc/actions/reward-type-list";
+
+The `arc:on_fill_bucket` action type is triggered when a player picks up a liquid or fish with a bucket.
+
+## Action Data
+
+When this action is triggered, the following [action data](/docs/arc/wiki/action_data/index.mdx) is made available:
+
+<ActionDataTable />
+
+## Example
+
+The following example gives the player a raw cod when they fill a water bucket.
+
+```json title="data/my_datapack/arc/bonus_fish.json"
+{
+    "holder": {
+        "type": "arc:player",
+        "id": "arc:player"
+    },
+    "type": "arc:on_fill_bucket",
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": "minecraft:water_bucket"
+        }
+    ],
+    "rewards": [
+        {
+            "type": "arc:item",
+            "item": { "id": "minecraft:cod" }
+        }
+    ]
+}
+```
+
+## Compatible Condition Types
+
+<CompatibleConditionTypes />
+
+## Compatible Reward Types
+
+<CompatibleRewardTypes />

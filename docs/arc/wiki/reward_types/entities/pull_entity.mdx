@@ -1,11 +1,11 @@
 ---
-title: Item
+title: Pull Entity
 ---
 
 import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
 import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
 
-The `arc:item` reward type gives an item to the player.
+The `arc:pull_entity` reward type pulls the target entity towards the player.
 
 ## Parameters
 
@@ -13,28 +13,24 @@ The `arc:item` reward type gives an item to the player.
 
 ## Example
 
-The following example gives the player 5 Diamonds.
+The following example pulls enemies closer when hitting them while sneaking.
 
-```json title="data/my_datapack/arc/give_diamonds.json"
+```json title="data/my_datapack/arc/magnet_strike.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_advancement",
+    "type": "arc:on_hurt_entity",
     "conditions": [
         {
-            "type": "arc:advancement",
-            "id": "minecraft:story/mine_diamond"
+            "type": "arc:is_sneaking"
         }
     ],
     "rewards": [
         {
-            "type": "arc:item",
-            "item": {
-                "id": "minecraft:diamond",
-                "count": 5
-            }
+            "type": "arc:pull_entity",
+            "force": 0.5
         }
     ]
 }

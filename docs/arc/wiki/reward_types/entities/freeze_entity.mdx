@@ -1,11 +1,11 @@
 ---
-title: Item
+title: Freeze Entity
 ---
 
 import CompatibleActionTypes from "@site/src/components/wiki/arc/rewards/action-type-list";
 import RewardParameterTable from "@site/src/components/wiki/arc/rewards/reward-parameter-table";
 
-The `arc:item` reward type gives an item to the player.
+The `arc:freeze_entity` reward type applies a freezing effect (Slowness) to the target entity.
 
 ## Parameters
 
@@ -13,28 +13,25 @@ The `arc:item` reward type gives an item to the player.
 
 ## Example
 
-The following example gives the player 5 Diamonds.
+The following example freezes an entity for 5 seconds when hitting it with a snowball.
 
-```json title="data/my_datapack/arc/give_diamonds.json"
+```json title="data/my_datapack/arc/snowball_freeze.json"
 {
     "holder": {
         "type": "arc:player",
         "id": "arc:player"
     },
-    "type": "arc:on_advancement",
+    "type": "arc:on_hurt_entity",
     "conditions": [
         {
-            "type": "arc:advancement",
-            "id": "minecraft:story/mine_diamond"
+            "type": "arc:damage_source",
+            "direct_entity_type": "minecraft:snowball"
         }
     ],
     "rewards": [
         {
-            "type": "arc:item",
-            "item": {
-                "id": "minecraft:diamond",
-                "count": 5
-            }
+            "type": "arc:freeze_entity",
+            "duration": 100
         }
     ]
 }
