@@ -69,12 +69,12 @@ const config: Config = {
             {
                 name: "keywords",
                 content:
-                    "minecraft, mods, daqem, irobot, grief logger, grieflogger, jobsplus, jobs+, fabric, forge, neoforge",
+                    "minecraft, mods, daqem, grief logger, grieflogger, jobsplus, jobs+, fabric, forge, neoforge",
             },
             {
                 name: "description",
                 content:
-                    "DAQEM Studios creates high-quality Minecraft mods like Jobs+, GriefLogger and iRobot to enhance your gameplay experience.",
+                    "DAQEM Studios creates high-quality Minecraft mods like Jobs+ and GriefLogger to enhance your gameplay experience.",
             },
         ],
         image: "img/social-card.jpg",

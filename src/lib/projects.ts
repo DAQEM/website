@@ -66,14 +66,6 @@ export const projectsBySlug: Record<string, Project> = {
         modrinthSlug: "mod/tiny-mob-farm-remastered",
         githubSlug: "DAQEM/TinyMobFarmRemastered",
     },
-    irobot: {
-        name: "iRobot",
-        description: "Adds robots with batteries and modules for farming, protecting, and mining.",
-        slug: "irobot",
-        curseForgeSlug: "mc-mods/irobot",
-        modrinthSlug: "mod/irobot",
-        githubSlug: "DAQEM/iRobot",
-    },
     necessities: {
         name: "Necessities",
         description:
