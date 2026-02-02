@@ -23,6 +23,7 @@ import {
     TextureAtlas,
     TextureAtlasProvider,
 } from "deepslate/render";
+import { cacheManager } from "../cache-manager";
 import {
     AssetResources,
     MinecraftAssetsRepository,
@@ -169,10 +170,22 @@ export class ItemRendererService {
     ): Promise<string> {
         const cacheKey = `${itemId}:${size}`;
 
+        // 1. In-Memory Check (Fastest)
         if (this.renderCache.has(cacheKey)) {
             return this.renderCache.get(cacheKey)!;
         }
 
+        // 2. IndexedDB Check (Persistent)
+        const persistentCache = await cacheManager.get<string>(
+            "render-cache",
+            cacheKey,
+        );
+        if (persistentCache) {
+            this.renderCache.set(cacheKey, persistentCache);
+            return persistentCache;
+        }
+
+        // 3. Queue logic to prevent double-rendering the same item at the same time
         if (this.pendingRenders.has(cacheKey)) {
             return this.pendingRenders.get(cacheKey)!;
         }
@@ -182,7 +195,11 @@ export class ItemRendererService {
 
         try {
             const url = await promise;
-            this.renderCache.set(cacheKey, url);
+            if (url) {
+                this.renderCache.set(cacheKey, url);
+                // Save to IndexedDB for next session
+                await cacheManager.set("render-cache", cacheKey, url);
+            }
             return url;
         } finally {
             this.pendingRenders.delete(cacheKey);
@@ -207,22 +224,24 @@ export class ItemRendererService {
         }
 
         try {
-            const gl = this.glContext;
-            const resources = this.resourceManager;
+            const gl = this.glContext!;
+            const resources = this.resourceManager!;
             const id = Identifier.parse(itemId);
-            const itemStack = new ItemStack(id, 1, new Map());
 
+            if (!resources.getItemModel(id)) {
+                return "";
+            }
+
+            const itemStack = new ItemStack(id, 1, new Map());
             gl.clearColor(0, 0, 0, 0);
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
             const renderer = new ItemRenderer(gl, itemStack, resources, {
                 display_context: "gui",
             });
-
             renderer.drawItem();
 
-            const canvas = gl.canvas as HTMLCanvasElement;
-            return canvas.toDataURL();
+            return (gl.canvas as HTMLCanvasElement).toDataURL();
         } catch (e) {
             console.error(`Failed to render item ${itemId}`, e);
             return "";

@@ -1,5 +1,6 @@
 import { Identifier } from "deepslate/core";
 import { TextureAtlas, upperPowerOfTwo, UV } from "deepslate/render";
+import { cacheManager } from "../cache-manager";
 import { TextureStitcher } from "./texture-stitcher";
 
 const MCMETA_BASE = "https://raw.githubusercontent.com/misode/mcmeta";
@@ -110,37 +111,38 @@ export class MinecraftAssetsRepository {
 
         const modId = "tinymobfarm";
 
+        const fetchWithCache = async (url: string) => {
+            const cached = await cacheManager.get<any>("network-cache", url);
+            if (cached) return cached;
+            const data = await fetch(url).then((r) => r.json());
+            await cacheManager.set("network-cache", url, data);
+            return data;
+        };
+
         await Promise.all(
             MOD_FILES.blockstates.map(async (file) => {
-                const data = await fetch(
-                    `${MOD_BASE}/blockstates/${file}.json`,
-                ).then((r) => r.json());
+                const url = `${MOD_BASE}/blockstates/${file}.json`;
+                const data = await fetchWithCache(url);
                 blockDefs.set(`${modId}:${file}`, data);
             }),
         );
 
         await Promise.all(
             MOD_FILES.blockModels.map(async (file) => {
-                const data = await fetch(
-                    `${MOD_BASE}/models/block/${file}.json`,
-                ).then((r) => r.json());
+                const url = `${MOD_BASE}/models/block/${file}.json`;
+                const data = await fetchWithCache(url);
                 models.set(`${modId}:block/${file}`, data);
             }),
         );
 
         await Promise.all(
             MOD_FILES.itemModels.map(async (file) => {
-                const data = await fetch(
-                    `${MOD_BASE}/models/item/${file}.json`,
-                ).then((r) => r.json());
+                const url = `${MOD_BASE}/models/item/${file}.json`;
+                const data = await fetchWithCache(url);
                 const modelId = `${modId}:item/${file}`;
                 models.set(modelId, data);
-
                 itemDefs.set(`${modId}:${file}`, {
-                    model: {
-                        type: "minecraft:model",
-                        model: modelId,
-                    },
+                    model: { type: "minecraft:model", model: modelId },
                 });
             }),
         );
@@ -171,19 +173,38 @@ export class MinecraftAssetsRepository {
     }
 
     private async fetchJsonMap(url: string): Promise<Map<string, any>> {
+        const cached = await cacheManager.get<any>("network-cache", url);
+        if (cached) return new Map(Object.entries(cached));
+
         const res = await fetch(url);
         if (!res.ok) throw new Error(`Failed to fetch ${url}`);
         const data = await res.json();
+
+        await cacheManager.set("network-cache", url, data);
         return new Map(Object.entries(data));
     }
 
-    private loadImage(src: string): Promise<HTMLImageElement> {
+    private async loadImage(src: string): Promise<HTMLImageElement> {
+        const cachedBlob = await cacheManager.get<Blob>("network-cache", src);
+        let blob: Blob;
+
+        if (cachedBlob) {
+            blob = cachedBlob;
+        } else {
+            const res = await fetch(src);
+            blob = await res.blob();
+            await cacheManager.set("network-cache", src, blob);
+        }
+
         return new Promise((resolve, reject) => {
             const img = new Image();
             img.crossOrigin = "Anonymous";
-            img.onload = () => resolve(img);
+            img.src = URL.createObjectURL(blob);
+            img.onload = () => {
+                URL.revokeObjectURL(img.src);
+                resolve(img);
+            };
             img.onerror = reject;
-            img.src = src;
         });
     }
 
