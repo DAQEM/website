@@ -14,7 +14,6 @@ export default {
                 {
                     type: "category",
                     label: "Getting Started",
-                    collapsed: true,
                     items: [
                         {
                             type: "doc",
@@ -54,7 +53,6 @@ export default {
                 {
                     type: "category",
                     label: "Jobs",
-                    collapsed: true,
                     items: [
                         {
                             type: "doc",

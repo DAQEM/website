@@ -36,12 +36,12 @@ Here is the anatomy of a restriction file:
 
 ## Fields Explained
 
-| Field         | Type            | Required | Description                                                                                                     |
-| ------------- | --------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
-| `icon`        | Object          | No       | Defines an item to represent this restriction (mostly used for internal referencing or future UI).              |
-| `client_side` | Boolean         | No       | Default: `true`. If true, the restriction is checked on the client side to prevent ghost actions.               |
-| `types`       | Array\<String\> | **Yes**  | A list of actions to block. See [Restriction Types](./restriction-types).                                       |
-| `conditions`  | Array\<Object\> | **Yes**  | A list of **Arc Lib** conditions that must be met for the restriction to apply. See [Conditions](./conditions). |
+| Field         | Type            | Required | Description                                                                                                                           |
+| ------------- | --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `icon`        | Object          | No       | Defines an item to represent this restriction (mostly used for internal referencing or future UI).                                    |
+| `client_side` | Boolean         | No       | Default: `true`. If true, the restriction is checked on the client side to prevent ghost actions.                                     |
+| `types`       | Array\<String\> | **Yes**  | A list of actions to block. See [Restriction Types](./restriction-types).                                                             |
+| `conditions`  | Array\<Object\> | **Yes**  | A list of **Arc Lib** conditions that must be met for the restriction to apply. See [Conditions](/projects/arc/wiki/condition_types). |
 
 :::info
 **How Logic Works**
