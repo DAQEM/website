@@ -1,0 +1,96 @@
+---
+title: Quick Start
+---
+
+import RecipeGrid from '@/components/minecraft/crafting/recipe-grid';
+
+# Quick Start Guide
+
+Ready to start farming? Follow these simple steps to build your first farm.
+
+## Step 1: Craft a Lasso
+
+The **Lasso** is the core tool of the mod. It allows you to capture living entities.
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+" S",
+"DLD",
+" S "
+],
+"key": {
+"S": {
+"item": "minecraft:slime_ball"
+},
+"L": {
+"item": "minecraft:lead"
+},
+"D": {
+"item": "minecraft:diamond"
+}
+},
+"result": {
+"id": "tinymobfarm:lasso",
+}
+}} />
+
+## Step 2: Capture a Mob
+
+Find the mob you want to farm (e.g., a Cow, Chicken, or Zombie).
+1.  Hold the **Lasso** in your main hand.
+2.  **Right-Click** the mob.
+3.  The mob will disappear, and your Lasso will now be enchanted and display the name of the captured mob.
+
+:::warning Hostility
+By default, the **Wooden** and **Stone** farms cannot process hostile mobs (Zombies, Skeletons, etc.). You will need at least an **Iron Farm** for those.
+:::
+
+## Step 3: Craft a Farm
+
+Start with the **Wooden Mob Farm**.
+
+<RecipeGrid recipe={{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+"SRS",
+"GMB",
+"SWS"
+],
+"key": {
+"S": {
+"item": "minecraft:bookshelf"
+},
+"M": {
+"item": "minecraft:glass"
+},
+"R": {
+"item": "minecraft:rotten_flesh"
+},
+"B": {
+"item": "minecraft:bone"
+},
+"G": {
+"item": "minecraft:gunpowder"
+},
+"W": {
+"item": "minecraft:string"
+}
+},
+"result": {
+"id": "tinymobfarm:wood_farm",
+}
+}} />
+
+## Step 4: Activate the Farm
+
+1.  Place the **Mob Farm** block down.
+2.  **Right-Click** the farm to open the GUI.
+3.  Place your **Lasso (with mob)** into the left slot.
+4.  If the Lasso is compatible with the farm tier, the progress bar will start moving.
+
+## Step 5: Collect Loot
+
+Every time the progress bar fills up, loot is generated.
+*   **Manual:** Open the GUI to take items out.
+*   **Automatic:** Place a Chest or Hopper **directly underneath** the farm. The farm automatically ejects items downwards.

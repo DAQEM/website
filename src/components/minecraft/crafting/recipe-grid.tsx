@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React, { useState } from "react";
+import { MinecraftItem } from "../minecraft-item";
 
 // Helper to format item ID into a readable name for tooltips
 const formatItemName = (itemId: string): string => {
@@ -9,15 +10,6 @@ const formatItemName = (itemId: string): string => {
         .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
-};
-
-// Helper to get the correct image path
-const getImagePath = (itemId: string): string => {
-    if (!itemId) return "";
-    const [namespace, path] = itemId.includes(":")
-        ? itemId.split(":")
-        : ["minecraft", itemId];
-    return `/img/${namespace}/items/${path}.png`;
 };
 
 // Represents a single item in the grid
@@ -75,7 +67,7 @@ const Tooltip: React.FC<{ text: string; children: React.ReactNode }> = ({
                     className={clsx(
                         "whitespace-nowrap bg-[#100010]/94 font-bold",
                         "py-1 px-2 border-4 border-[#3300A1]/31",
-                        "z-10 pointer-events-none"
+                        "z-10 pointer-events-none",
                     )}
                 >
                     {text}
@@ -116,27 +108,18 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({ recipe }) => {
     const renderSlot = (
         item: GridItem | null,
         className?: string,
-        itemClassName?: string
+        itemClassName?: string,
     ) => (
         <Tooltip text={item ? formatItemName(item.id) : ""}>
             <div
                 className={clsx(
                     "size-10 mc-card-reversed p-0 m-1 flex items-center justify-center relative",
-                    className
+                    className,
                 )}
             >
                 {item && (
                     <>
-                        <img
-                            src={getImagePath(item.id)}
-                            alt={formatItemName(item.id)}
-                            className={clsx("size-8", itemClassName)}
-                            style={{ imageRendering: "pixelated" }}
-                            onError={(e) => {
-                                (e.target as HTMLImageElement).style.display =
-                                    "none";
-                            }}
-                        />
+                        <MinecraftItem id={item.id} size={32} />
                         {item.count && item.count > 1 && (
                             <span
                                 className="absolute right-0.5 bottom-0 text-sm font-bold text-white z-10"

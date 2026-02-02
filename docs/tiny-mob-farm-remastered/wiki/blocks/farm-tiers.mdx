@@ -1,0 +1,162 @@
+---
+title: Farm Tiers
+description: Information about the different tiers of Mob Farms
+---
+
+import RecipeGrid from '@site/src/components/minecraft/crafting/recipe-grid';
+
+# Farm Tiers
+
+Tiny Mob Farm Remastered features 8 different tiers of mob farms. Each tier improves upon the last by decreasing the operation time (speed) and reducing the durability damage taken by the Lasso.
+
+## Wooden Mob Farm
+
+The starting tier. Very slow and heavy on lasso durability. It cannot capture hostile mobs by default.
+
+*   **Speed:** 50.0 seconds per operation
+*   **Lasso Durability:** High damage (2 or 3 durability per operation)
+*   **Hostile Mobs:** No
+
+<RecipeGrid recipe={{
+type: "minecraft:crafting_shaped",
+pattern: ["SRS", "GMB", "SWS"],
+key: {
+"S": { item: "minecraft:bookshelf" },
+"M": { item: "minecraft:glass" },
+"R": { item: "minecraft:rotten_flesh" },
+"B": { item: "minecraft:bone" },
+"G": { item: "minecraft:gunpowder" },
+"W": { item: "minecraft:string" }
+},
+result: { id: "tinymobfarm:wood_farm" }
+}} />
+
+## Stone Mob Farm
+
+*   **Speed:** 40.0 seconds per operation
+*   **Lasso Durability:** Moderate damage (1, 2, or 3 durability)
+*   **Hostile Mobs:** No
+
+<RecipeGrid recipe={{
+type: "minecraft:crafting_shaped",
+pattern: ["CSC", "BMB", "CSC"],
+key: {
+"B": { item: "tinymobfarm:wood_farm" },
+"M": { item: "minecraft:bookshelf" },
+"C": { item: "minecraft:stone" },
+"S": { item: "minecraft:obsidian" }
+},
+result: { id: "tinymobfarm:stone_farm" }
+}} />
+
+## Iron Mob Farm
+
+The Iron tier is the first tier capable of processing hostile mobs.
+
+*   **Speed:** 30.0 seconds per operation
+*   **Lasso Durability:** Low damage (1 or 2 durability)
+*   **Hostile Mobs:** Yes
+
+<RecipeGrid recipe={{
+type: "minecraft:crafting_shaped",
+pattern: ["CSC", "BMB", "CSC"],
+key: {
+"B": { item: "tinymobfarm:stone_farm" },
+"M": { item: "minecraft:obsidian" },
+"C": { item: "minecraft:blaze_rod" },
+"S": { item: "minecraft:iron_block" }
+},
+result: { id: "tinymobfarm:iron_farm" }
+}} />
+
+## Gold Mob Farm
+
+*   **Speed:** 20.0 seconds per operation
+*   **Lasso Durability:** Very low damage (1 or 2 durability, 2 is rare)
+*   **Hostile Mobs:** Yes
+
+<RecipeGrid recipe={{
+type: "minecraft:crafting_shaped",
+pattern: ["CSC", "BMB", "CSC"],
+key: {
+"B": { item: "tinymobfarm:iron_farm" },
+"M": { item: "minecraft:blaze_rod" },
+"C": { item: "minecraft:ender_eye" },
+"S": { item: "minecraft:gold_block" }
+},
+result: { id: "tinymobfarm:gold_farm" }
+}} />
+
+## Diamond Mob Farm
+
+*   **Speed:** 10.0 seconds per operation
+*   **Lasso Durability:** Guaranteed 1 damage per operation
+*   **Hostile Mobs:** Yes
+
+<RecipeGrid recipe={{
+type: "minecraft:crafting_shaped",
+pattern: ["CSC", "BMB", "CSC"],
+key: {
+"B": { item: "tinymobfarm:gold_farm" },
+"M": { item: "minecraft:ender_eye" },
+"C": { item: "minecraft:ghast_tear" },
+"S": { item: "minecraft:diamond_block" }
+},
+result: { id: "tinymobfarm:diamond_farm" }
+}} />
+
+## Emerald Mob Farm
+
+*   **Speed:** 5.0 seconds per operation
+*   **Lasso Durability:** Chance to take 1 damage, chance to take 0
+*   **Hostile Mobs:** Yes
+
+<RecipeGrid recipe={{
+type: "minecraft:crafting_shaped",
+pattern: ["CSC", "BMB", "CSC"],
+key: {
+"B": { item: "tinymobfarm:diamond_farm" },
+"M": { item: "minecraft:ghast_tear" },
+"C": { item: "minecraft:nether_star" },
+"S": { item: "minecraft:emerald_block" }
+},
+result: { id: "tinymobfarm:emerald_farm" }
+}} />
+
+## Inferno Mob Farm
+
+*   **Speed:** 2.5 seconds per operation
+*   **Lasso Durability:** High chance to take 0 damage
+*   **Hostile Mobs:** Yes
+
+<RecipeGrid recipe={{
+type: "minecraft:crafting_shaped",
+pattern: ["CSC", "BMB", "CSC"],
+key: {
+"B": { item: "tinymobfarm:emerald_farm" },
+"M": { item: "minecraft:nether_star" },
+"C": { item: "minecraft:dragon_breath" },
+"S": { item: "minecraft:chorus_flower" }
+},
+result: { id: "tinymobfarm:inferno_farm" }
+}} />
+
+## Ultimate Mob Farm
+
+The pinnacle of mob farming. Lightning fast and completely preserves your Lasso.
+
+*   **Speed:** 0.5 seconds per operation
+*   **Lasso Durability:** 0 damage (Lasso never breaks)
+*   **Hostile Mobs:** Yes
+
+<RecipeGrid recipe={{
+type: "minecraft:crafting_shaped",
+pattern: ["CSC", "BMB", "CSC"],
+key: {
+"B": { item: "tinymobfarm:inferno_farm" },
+"M": { item: "minecraft:dragon_breath" },
+"C": { item: "minecraft:shulker_box" },
+"S": { item: "minecraft:elytra" }
+},
+result: { id: "tinymobfarm:ultimate_farm" }
+}} />

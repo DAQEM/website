@@ -1,0 +1,47 @@
+---
+title: Configuration
+---
+
+# Configuration
+
+Tiny Mob Farm Remastered uses **YAML Config** for easy configuration. You can find the config file at:
+`config/tinymobfarm/tinymobfarm_common.yml`
+
+## General Settings
+
+### Lasso
+*   **`lassoDurability`** *(Default: 256)*
+    *   Sets the maximum durability of the Lasso item.
+*   **`allowLassoLooting`** *(Default: true)*
+    *   If true, the **Looting** enchantment on a Lasso will increase drop rates.
+
+### Blacklist
+*   **`blacklisted_mobs`**
+    *   A list of Entity Resource Locations that cannot be captured.
+    *   Default:
+        *   `minecraft:ender_dragon`
+        *   `minecraft:wither`
+        *   `minecraft:warden`
+
+## Farm Settings
+
+For every tier (Wood, Stone, Iron, etc.), you can configure the following:
+
+*   **`speed`**: The time in seconds it takes to generate one drop.
+    *   *Example:* `50.0` means one drop every 50 seconds.
+*   **`enabled`**: If `false`, the farm cannot be crafted or used.
+*   **`allows_hostile`**: If `true`, the farm can process hostile mobs (Zombies, Creepers, etc.).
+
+### Example Snippet (Wood Farm)
+
+```yaml
+farms:
+  wood:
+    speed: 50.0
+    enabled: true
+    allows_hostile: false
+```
+
+:::tip Note on Updates
+If you change the configuration on a server, you must restart the server for changes to take effect. Clients must also match the server's configuration for tooltips to be accurate.
+:::
