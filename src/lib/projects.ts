@@ -24,14 +24,14 @@ export const projectsBySlug: Record<string, Project> = {
         modrinthSlug: "mod/grieflogger",
         githubSlug: "DAQEM/GriefLogger",
     },
-    challenges: {
-        name: "Challenges",
-        description: "A library mod that adds challenges to Minecraft.",
-        slug: "challenges",
-        curseForgeSlug: "mc-mods/challenges",
-        modrinthSlug: "mod/challenges",
-        githubSlug: "DAQEM/Challenges",
-    },
+    // challenges: {
+    //     name: "Challenges",
+    //     description: "A library mod that adds challenges to Minecraft.",
+    //     slug: "challenges",
+    //     curseForgeSlug: "mc-mods/challenges",
+    //     modrinthSlug: "mod/challenges",
+    //     githubSlug: "DAQEM/Challenges",
+    // },
     arc: {
         name: "Arc Lib",
         description: "Data driven action, reward, condition library.",
@@ -40,14 +40,14 @@ export const projectsBySlug: Record<string, Project> = {
         modrinthSlug: "mod/arc",
         githubSlug: "DAQEM/ArcLib",
     },
-    questlines: {
-        name: "Questlines",
-        description: "Adds data-driven quest lines to the game.",
-        slug: "questlines",
-        curseForgeSlug: "mc-mods/questlines",
-        modrinthSlug: "mod/questlines",
-        githubSlug: "DAQEM/Questlines",
-    },
+    // questlines: {
+    //     name: "Questlines",
+    //     description: "Adds data-driven quest lines to the game.",
+    //     slug: "questlines",
+    //     curseForgeSlug: "mc-mods/questlines",
+    //     modrinthSlug: "mod/questlines",
+    //     githubSlug: "DAQEM/Questlines",
+    // },
     jobsplus: {
         name: "Jobs+",
         description:

@@ -1,0 +1,33 @@
+---
+title: Restriction Types
+---
+
+# Restriction Types
+
+The `types` array in your JSON file determines *what* the player is prevented from doing when the conditions are met.
+
+## Available Types
+
+| Restriction Type        | Description                                                                                       |
+| ----------------------- | ------------------------------------------------------------------------------------------------- |
+| `cant_craft`            | Prevents the item from being crafted in a crafting table or player inventory.                     |
+| `cant_smelt`            | Prevents the item from being smelted in a furnace, blast furnace, or smoker.                      |
+| `cant_brew`             | Prevents the potion from being brewed in a brewing stand.                                         |
+| `cant_enchant`          | Prevents the item from being enchanted in an enchanting table.                                    |
+| `cant_repair`           | Prevents the item from being repaired or combined in an Anvil or Grindstone.                      |
+| `cant_use_item`         | Prevents the "right-click" usage of an item (e.g., eating food, throwing potions, using a bow).   |
+| `cant_break_block`      | Prevents the player from breaking the target block, regardless of the tool held.                  |
+| `cant_item_break_block` | Prevents the player from breaking a block *specifically* with the item defined in the conditions. |
+| `cant_place_block`      | Prevents the block/item from being placed in the world.                                           |
+| `cant_hurt_entity`      | Prevents the player from dealing damage to an entity using the restricted item.                   |
+| `cant_interact_entity`  | Prevents right-clicking on an entity (e.g., shearing a sheep, trading with a villager).           |
+| `cant_interact_block`   | Prevents right-clicking a block (e.g., opening a chest, pressing a button).                       |
+
+## Error Messages
+
+When a player attempts a restricted action, a translatable error message appears in the chat (red text).
+
+*   Example: `You can't craft this item yet.`
+*   Keys: `itemrestrictions.inventory.<restriction_type>`
+
+These can be customized via a resource pack modifying the language files.

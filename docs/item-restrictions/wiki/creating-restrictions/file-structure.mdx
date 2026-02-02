@@ -1,0 +1,51 @@
+---
+title: File Structure
+---
+
+# JSON File Structure
+
+Item Restrictions uses JSON files to define rules. These files can be placed in two locations:
+
+1.  **Global Config:** `config/itemrestrictions/restrictions/<namespace>/<filename>.json` (Recommended for modpack devs and server admins).
+2.  **Datapacks:** `data/<namespace>/itemrestrictions/restrictions/<filename>.json` (Recommended for datapack devs).
+
+## The JSON Format
+
+Here is the anatomy of a restriction file:
+
+```json
+{
+    "icon": {
+        "id": "minecraft:barrier"
+    },
+    "client_side": true,
+    "types": [
+        "cant_craft",
+        "cant_use_item"
+    ],
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:diamond_sword"
+            }
+        }
+    ]
+}
+```
+
+## Fields Explained
+
+| Field         | Type            | Required | Description                                                                                                     |
+| ------------- | --------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| `icon`        | Object          | No       | Defines an item to represent this restriction (mostly used for internal referencing or future UI).              |
+| `client_side` | Boolean         | No       | Default: `true`. If true, the restriction is checked on the client side to prevent ghost actions.               |
+| `types`       | Array\<String\> | **Yes**  | A list of actions to block. See [Restriction Types](./restriction-types).                                       |
+| `conditions`  | Array\<Object\> | **Yes**  | A list of **Arc Lib** conditions that must be met for the restriction to apply. See [Conditions](./conditions). |
+
+:::info
+**How Logic Works**
+If **ALL** conditions in the `conditions` list are met, the actions defined in `types` will be **BLOCKED**.
+
+Think of it as: "If [Conditions] are true, then [Restrict Actions]."
+:::

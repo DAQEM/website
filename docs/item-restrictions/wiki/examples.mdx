@@ -1,0 +1,165 @@
+---
+title: Examples
+---
+
+# Examples
+
+Here are several complete examples of restriction files. You can copy these into your `config/itemrestrictions/restrictions/` folder (ensure you create subfolders for namespaces, e.g., `config/itemrestrictions/restrictions/my_server/example.json`).
+
+### 1. Locked Diamond Sword (Job Level Requirement)
+
+Prevents crafting, using, or hurting entities with a Diamond Sword unless the player is at least level 30 Hunter.
+
+```json
+{
+    "icon": {
+        "id": "minecraft:diamond_sword"
+    },
+    "types": [
+        "cant_craft",
+        "cant_use_item",
+        "cant_hurt_entity",
+        "cant_repair",
+        "cant_enchant"
+    ],
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:diamond_sword"
+            }
+        },
+        {
+            "type": "jobsplus:job_level",
+            "inverted": true, // Restrict if NOT at level 30
+            "job": "jobsplus:hunter",
+            "level": 30
+        }
+    ]
+}
+```
+
+### 2. No TNT in the Overworld
+
+Prevents placing TNT blocks, but only if the player is in the Overworld.
+
+```json
+{
+    "icon": {
+        "id": "minecraft:tnt"
+    },
+    "types": [
+        "cant_place_block"
+    ],
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:tnt"
+            }
+        },
+        {
+            "type": "arc:dimension",
+            "dimension": "minecraft:overworld"
+        }
+    ]
+}
+```
+
+### 3. Disable Brewing Speed Potions
+
+Prevents brewing any potion that contains the "Swiftness" effect.
+
+```json
+{
+    "icon": {
+        "id": "minecraft:potion",
+        "components": {
+            "minecraft:potion_contents": {
+                "potion": "minecraft:swiftness"
+            }
+        }
+    },
+    "types": [
+        "cant_brew"
+    ],
+    "conditions": [
+        {
+            "type": "arc:item",
+            "item": {
+                "id": "minecraft:potion",
+                "components": {
+                    "minecraft:potion_contents": {
+                        "potion": "minecraft:swiftness"
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+
+### 4. Anti-Grief Tool
+
+Prevents breaking any block if the player is holding a specific "Admin" stick.
+
+```json
+{
+    "icon": {
+        "id": "minecraft:stick"
+    },
+    "types": [
+        "cant_item_break_block"
+    ],
+    "conditions": [
+        {
+            "type": "arc:item_in_hand",
+            "item": {
+                "id": "minecraft:stick",
+                "components": {
+                    "minecraft:display_name": {
+                        "name": "{\"text\":\"Admin Stick\",\"color\":\"red\",\"italic\":false}"
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+
+### 5. Grouping Items (Logical OR)
+
+Restrict multiple different items (stone and dirt) from being crafted in either the Overworld or Nether.
+
+```json
+{
+    "icon": {
+        "id": "minecraft:barrier"
+    },
+    "types": [
+        "cant_craft"
+    ],
+    "conditions": [
+        {
+            "type": "arc:items",
+            "items": [
+                "minecraft:stone", // Stone
+                "#minecraft:dirt" // dirt item tag, any dirt variant (coarse dirt, podzol, etc.)
+            ]
+        }
+        {
+            "type": "arc:or",
+            "conditions": [
+                {
+                    "type": "arc:dimension",
+                    "dimension": "minecraft:overworld"
+                },
+                {
+                    "type": "arc:dimension",
+                    "dimension": "minecraft:the_nether"
+                }
+            ]
+        }
+    ]
+}
+```

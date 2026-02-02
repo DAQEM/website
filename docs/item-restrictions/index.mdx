@@ -7,3 +7,21 @@ import ProjectHeader from "@site/src/components/projects/project-header"
 import { projectsBySlug } from "@site/src/lib/projects"
 
 <ProjectHeader {...projectsBySlug["item-restrictions"]} />
+
+**Item Restrictions** is a powerful, data-driven mod that allows server admins and modpack creators to restrict specific interactions with items and blocks based on custom conditions.
+
+Whether you want to prevent players from using diamond tools until they reach a certain experience level, stop players from placing lava in the Overworld, or disable crafting of specific endgame items, Item Restrictions handles it all through a simple JSON format.
+
+## Key Features
+
+*   **Data-Driven:** All restrictions are defined in JSON files. You can add them via **Datapacks** or the global **Config** folder.
+*   **Arc Lib Integration:** Powered by [Arc Lib](/projects/arc), allowing you to use an extensive list of conditions (XP level, dimension, biome, advancements, etc.) to trigger restrictions.
+*   **Granular Control:** Restrict specific actions like Crafting, Smelting, Brewing, Enchanting, Block Breaking, Entity Interaction, and more.
+*   **Client & Server Sync:** Restrictions are synced to the client to provide visual feedback and prevent "ghost" item usage.
+
+## Dependencies
+
+Item Restrictions requires the following mods:
+*   [**Arc Lib**](/projects/arc) - Provides the condition system and data handling.
+*   [**YAML Config**](/projects/yaml-config) - For global configuration.
+*   [**Architectury API**](https://docs.architectury.dev/) - For cross-platform compatibility (Forge/Fabric/NeoForge).
