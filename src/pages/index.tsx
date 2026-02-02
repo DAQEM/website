@@ -41,7 +41,7 @@ export default function Home(): ReactNode {
                                 </li>
                                 <li className="flex gap-2 items-center">
                                     <Star />
-                                    <span>4+ Years of Experience.</span>
+                                    <span>5+ Years of Experience.</span>
                                 </li>
                                 <li className="flex gap-2 items-center">
                                     <Star />

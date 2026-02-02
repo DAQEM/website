@@ -1,0 +1,83 @@
+# Version Strategy
+
+:::note
+This versioning strategy is applied to all DAQEM Studios projects from **2026 onward**.
+:::
+
+DAQEM Studios follows a structured **Major.Minor.Patch** versioning system. Our system is specifically designed to help players and server owners immediately identify Minecraft version compatibility.
+
+## How Versioning Works
+
+### 1. Major Version (Minecraft Version Compatibility)
+To simplify compatibility, our **Major version** always matches the **Major version of the Architectury API**.
+
+Since Architectury API releases a new major version for every significant Minecraft "Game Drop," our major version acts as a direct indicator of which Minecraft version the mod is for. Each time Minecraft releases a new Game Drop, our major version increases.
+
+| Minecraft Version | Major Version |
+| ----------------- | ------------- |
+| **1.21.1**        | `13.x.x`      |
+| **1.21.4**        | `15.x.x`      |
+| **1.21.11**       | `19.x.x`      |
+
+### 2. Minor Version (Feature Parity)
+The **Minor version** tracks new features and content.
+
+If we add a new feature to the latest Game Drop and decide to "down-port" that feature to older Minecraft versions, the Minor version will increase across **all** supported versions. This ensures that if you see `13.2.0` and `19.2.0`, you know they contain the exact same features, despite being on different Minecraft versions.
+
+### 3. Patch Version (Local Bug Fixes)
+The **Patch version** is for bug fixes. Unlike minor versions, patches are usually specific to a single Minecraft version. If a bug only exists on 1.21.1, we will update the patch number for that version only.
+
+---
+
+## Maintenance & Down-porting Policy
+
+Our goal is to keep our mods available on the newest versions of Minecraft as quickly as possible. However, we do not provide equal long-term support for every version.
+
+### Game Drop Updates
+When a new Minecraft Game Drop is released, we will update the mod to support it as soon as possible. This ensures the mod is always playable on the "bleeding edge" of Minecraft.
+
+### Feature Support (Minor Updates)
+While we update for every Game Drop, we only **down-port** new features (Minor version updates) to the **Latest Release** and the **most popular/widely-used Minecraft versions**.
+
+*   **Supported for Features:** The latest Game Drop (e.g., 1.21.11) and "Long-term" community favorites (e.g., 1.20.1, 1.21.1).
+*   **Unsupported for Features:** Intermediate versions (e.g., 1.20.4, 1.21.2, 1.21.6). While the mod may be released for these versions so you can play it, they will likely never receive "Minor" version updates or new features after the initial release because they are less commonly used and would require extra maintenance effort.
+
+**Example Scenario:**
+*   **1.21.11 (Latest):** Receives the mod, all bug fixes, and all new features.
+*   **1.21.1 (Popular):** Receives bug fixes and new features ported from the latest version.
+*   **1.21.6 (Intermediate):** Receives the initial mod release and critical bug fixes, but **no new features** (Minor version remains at `.0`).
+
+---
+
+## Summary Table
+
+| Change Type                 | Version Component | Example             |
+| --------------------------- | ----------------- | ------------------- |
+| **New Minecraft Game Drop** | Major             | `18.x.x` → `19.x.x` |
+| **New Feature / Down-port** | Minor             | `19.0.x` → `19.1.0` |
+| **Specific Bug Fix**        | Patch             | `13.0.0` → `13.0.1` |
+
+## Version Mapping Table
+Use this table to identify which DAQEM Studios **Major Version** corresponds to your Minecraft version.
+
+| Minecraft Version          | Major Version | Support Level¹                 |
+| -------------------------- | ------------- | ------------------------------ |
+| **1.16.4, 1.16.5**         | `1`           | Intermediate (Fixes only)      |
+| **1.17, 1.17.1**           | `2`           | Intermediate (Fixes only)      |
+| **1.18, 1.18.1**           | `3`           | Intermediate (Fixes only)      |
+| **1.18.2**                 | `4`           | Intermediate (Fixes only)      |
+| **1.19**                   | `5`           | Intermediate (Fixes only)      |
+| **1.19.1, 1.19.2**         | `6`           | Intermediate (Fixes only)      |
+| **1.19.3**                 | `7`           | Intermediate (Fixes only)      |
+| **1.19.4**                 | `8`           | Intermediate (Fixes only)      |
+| **1.20, 1.20.1**           | `9`           | **Popular** (Features & Fixes) |
+| **1.20.2**                 | `10`          | Intermediate (Fixes only)      |
+| **1.20.4**                 | `11`          | Intermediate (Fixes only)      |
+| **1.20.5, 1.20.6**         | `12`          | Intermediate (Fixes only)      |
+| **1.21, 1.21.1**           | `13`          | **Popular** (Features & Fixes) |
+| **1.21.2, 1.21.3**         | `14`          | Intermediate (Fixes only)      |
+| **1.21.4**                 | `15`          | Intermediate (Fixes only)      |
+| **1.21.5**                 | `16`          | Intermediate (Fixes only)      |
+| **1.21.6, 1.21.7, 1.21.8** | `17`          | Intermediate (Fixes only)      |
+| **1.21.9, 1.21.10**        | `18`          | Intermediate (Fixes only)      |
+| **1.21.11**                | `19`          | **Latest** (Full Support)      |
