@@ -1,0 +1,69 @@
+# Using the Interface
+
+The YAML Config interface is designed to be intuitive while powerful enough to handle complex data structures. Here is a breakdown of how to interact with the various elements.
+
+### Basic Elements
+
+#### 1. Categories
+Configuration files are often split into categories (e.g., "General", "Gameplay", "Rendering").
+*   Clicking a category name expands or collapses it.
+*   Nested categories are indented to show hierarchy.
+
+#### 2. Reset Button
+To the right of every single setting, you will see a small **Reload/Reset Icon** 🔄.
+*   **Grayed out:** The setting is currently at its default value.
+*   **Active (White/Highlighted):** The setting has been changed from the default.
+*   **Action:** Clicking this button instantly reverts that specific setting to the mod author's default value.
+
+### Editing Values
+
+#### Booleans (True/False)
+represented by a **Cycle Button**.
+*   Click to toggle between `True` and `False` (or `On` and `Off`).
+
+#### Numbers (Integers, Floats)
+Represented by a **Text Input Box**.
+*   **Validation:** If you type a letter in a number field, the box will outline in **Red**, indicating an error.
+*   **Ranges:** If the mod author set a minimum (e.g., 0) or maximum (e.g., 100) and you type `150`, the box will turn red. You cannot save until this is fixed.
+
+#### Strings (Text)
+Represented by a **Text Input Box**.
+*   Some strings enforce patterns (like hex colors `#FF0000`). If the pattern doesn't match, the box turns red.
+
+#### Enums (Dropdowns/Cycles)
+If a setting has a fixed list of options (e.g., `Difficulty: EASY, NORMAL, HARD`), it will appear as a **Cycle Button**. Click to cycle through the valid options.
+
+### Advanced Collections
+
+YAML Config is unique in its ability to easily edit Lists and Maps in-game.
+
+#### Lists
+A list entry (e.g., "Whitelisted Users") appears as a group.
+*   **Add Entry:** Click the long **"Add Entry"** button at the bottom of the list to create a new row.
+*   **Remove Entry:** Click the small **"X"** button next to a specific row to delete it.
+*   **Reordering:** Currently, lists are ordered by insertion.
+
+#### Maps (Key-Value Pairs)
+Maps appear as two text boxes side-by-side.
+*   **Left Box:** The Key (e.g., Item Name).
+*   **Right Box:** The Value (e.g., Price).
+*   **Duplicate Keys:** If you type a Key that already exists in the map, the box will turn red to warn you of a conflict.
+
+### Tooltips
+
+Hover over any setting name to see a **Tooltip**.
+*   **Description:** Explains what the setting does.
+*   **Default Value:** Shows what the original value was.
+*   **Constraints:** Shows Min/Max values or required Regex patterns.
+
+### Saving Changes
+
+At the bottom of the screen, you will see:
+
+1.  **Cancel:** Discards all changes made in the current session and closes the menu.
+2.  **Save Changes:**
+    *   Writes the changes to the file on the hard drive.
+    *   If applicable, sends the changes to the server.
+    *   Fires an update event so the mod can apply changes immediately without a restart.
+    
+    *Note: If any field on the screen has a red validation error, the Save button will be disabled.*

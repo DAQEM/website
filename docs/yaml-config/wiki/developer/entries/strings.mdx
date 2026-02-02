@@ -1,0 +1,41 @@
+# String Entries
+
+Strings are versatile and come with powerful validation tools to ensure users provide correct input.
+
+### Simple String
+
+```java
+IStringConfigEntry motd = builder.defineString("motd", "Welcome to the server!");
+```
+
+### Valid Values (Selection)
+
+You can force the user to pick from a specific list of strings. In the GUI, this might prompt validation errors if they type something else.
+
+```java
+IStringConfigEntry mode = builder.defineString(
+    "mode",
+    "fast",
+    0, 100, // Min/Max length
+    List.of("fast", "balanced", "fancy") // Valid options
+);
+```
+
+### Regex Pattern Validation
+
+You can enforce a format using Regular Expressions. This is extremely useful for things like hex colors, codes, or specific identifiers.
+
+```java
+// Ensures the string is a Hex Color (e.g., #FF0000)
+IStringConfigEntry color = builder.defineString(
+    "hex_color",
+    "#FFFFFF",
+    7, 7, // Fixed length of 7
+    "^#[0-9A-Fa-f]{6}$" // Regex Pattern
+);
+```
+
+### In the GUI
+
+*   **Pattern Mismatch:** If the user types a value matching the regex, the input field allows it. If it doesn't match, it highlights red.
+*   **Length:** The input field prevents typing more characters than `maxLength`.

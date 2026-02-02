@@ -1,0 +1,57 @@
+# TOML Format
+
+**Extension:** `.toml`
+**Library:** [NightConfig](https://github.com/TheElectronWill/Night-Config)
+
+TOML (Tom's Obvious, Minimal Language) is widely used in the Minecraft modding ecosystem (particularly by NeoForge and Rust projects). It focuses on unambiguous semantics and is easy to parse.
+
+### Features
+
+*   **Table-Based:** Uses `[headers]` to define sections (tables), making flat structures easy to read.
+*   **Strong Typing:** clear distinction between integers, floats, booleans, strings, and datetime arrays.
+*   **Comments:** Uses `#` for comments.
+*   **Standard:** Highly standardized format with strict parsing rules.
+
+### Implementation
+
+To use TOML, use `ConfigExtension.TOML`.
+
+```java
+import com.daqem.yamlconfig.api.config.ConfigExtension;
+import com.daqem.yamlconfig.impl.config.ConfigBuilder;
+
+ConfigBuilder builder = new ConfigBuilder(
+    "my_mod_id",
+    "common-config",
+    ConfigExtension.TOML // <--- Selects .toml format
+);
+```
+
+### Example Output
+
+```toml
+# General Mod Settings
+[general]
+# Is the mod enabled?
+enabled = true
+version = "1.0.0"
+
+# World Generation Settings
+[world_gen]
+generate_ores = true
+# Frequency of ore generation (0-100)
+ore_frequency = 15
+
+# Nested tables are represented with dots
+[world_gen.biomes]
+allow_desert = true
+allow_forest = true
+
+# Lists look like standard arrays
+[items]
+starting_gear = ["minecraft:stone_sword", "minecraft:bread"]
+```
+
+### Considerations
+
+TOML is excellent for configurations that have many flat key-value pairs grouped into categories. However, deeply nested structures (e.g., a map inside a map inside a map) can become verbose due to the need for repeated headers like `[a.b.c.d]`.

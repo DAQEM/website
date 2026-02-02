@@ -1,0 +1,67 @@
+# Installation
+
+**YAML Config** is a shared library. This means it is a dependency for other mods. If a mod requires YAML Config, you generally must install it, or the game will fail to launch.
+
+### Prerequisites
+
+Before installing, ensure you have the following:
+
+1.  **Minecraft Java Edition:** Version 1.21 or higher.
+2.  **Java 21:** Modern Minecraft versions require Java 21.
+3.  **A Mod Loader:** Either Fabric or NeoForge installed on your client/server.
+
+### Required Dependencies
+
+YAML Config has **one mandatory dependency**:
+
+*   **UI Lib**: This is the library DAQEM Studios uses to render the beautiful in-game menus. YAML Config *will not work* without it.
+
+### Installation Steps
+
+#### 1. Download the Mods
+Go to your preferred mod hosting site (CurseForge or Modrinth) and download the following `.jar` files for your specific Minecraft version:
+*   `yamlconfig-x.x.x.jar`
+*   `uilib-x.x.x.jar`
+
+#### 2. Locate your Mods Folder
+*   **Windows:** Press `Win + R`, type `%appdata%/.minecraft/mods`, and press Enter.
+*   **Mac:** In Finder, go to `Go > Go to Folder` and type `~/Library/Application Support/minecraft/mods`.
+*   **Linux:** Go to `~/.minecraft/mods`.
+
+#### 3. Install
+Drag and drop both the **YAML Config** and **UI Lib** jar files into the `mods` folder.
+
+#### 4. Platform Specifics
+
+<details>
+    <summary><strong>For Fabric Users</strong></summary>
+
+    If you are using the Fabric Loader, you must also ensure you have the **Fabric API** installed. Most mods require this, and YAML Config utilizes it for networking and resource management.
+
+    1.  Download **Fabric API**.
+    2.  Place it in the `mods` folder alongside YAML Config.
+</details>
+
+<details>
+    <summary><strong>For NeoForge Users</strong></summary>
+
+    No additional API mods are strictly required for NeoForge, as the functionality is built-in. Just ensure you have the correct version of the NeoForge loader installed.
+</details>
+
+### Server Installation
+
+If you are running a dedicated server, you **must install YAML Config and UI Lib on the server**.
+
+*   **Why?** The mod handles networking synchronization. When a player joins, the server sends its configuration values to the client. If the mod is missing on the server, this synchronization cannot happen, and clients may have desynchronized gameplay (e.g., recipes working on the client but failing on the server).
+
+### Troubleshooting
+
+**The game crashes on startup!**
+*   Check the crash report. Does it say `java.lang.NoClassDefFoundError: com/daqem/uilib/...`?
+*   **Solution:** You forgot to install **UI Lib**.
+*   Does it say `Mod 'examplemod' requires 'yamlconfig'`?
+*   **Solution:** You forgot to install **YAML Config**.
+
+**I can't see the config menu!**
+*   Ensure both YAML Config and the mod you are trying to configure are installed correctly.
+*   Check if there is a keybinding conflict (see [Accessing the Menu](./keybindings)).

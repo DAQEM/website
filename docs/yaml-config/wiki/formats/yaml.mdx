@@ -1,0 +1,63 @@
+# YAML Format
+
+**Extension:** `.yaml`
+**Library:** [SnakeYAML Engine](https://bitbucket.org/snakeyaml/snakeyaml-engine)
+
+YAML (YAML Ain't Markup Language) is the default and recommended format for **YAML Config**. It is designed to be human-readable and works excellently with hierarchical data structures, making it perfect for complex mod configurations.
+
+### Features
+
+*   **Whitespace Sensitive:** Structure is defined by indentation (spaces), eliminating the need for curly braces or brackets.
+*   **Native Comments:** Supports `#` comments which are preserved during save/load cycles.
+*   **Clean Syntax:** Minimal punctuation makes it easy for non-developers to read and edit.
+*   **Lists & Maps:** Natural syntax for defining lists (bullet points) and key-value maps.
+
+### Implementation
+
+To use YAML for your configuration file, pass `ConfigExtension.YAML` to your builder.
+
+```java
+import com.daqem.yamlconfig.api.config.ConfigExtension;
+import com.daqem.yamlconfig.impl.config.ConfigBuilder;
+
+ConfigBuilder builder = new ConfigBuilder(
+    "my_mod_id",
+    "general-config",
+    ConfigExtension.YAML // <--- Selects .yaml format
+);
+```
+
+### Example Output
+
+Here is how a complex configuration looks in YAML:
+
+```yaml
+# General settings for the mod
+general:
+  # Enable debug mode to see verbose logging
+  debug_mode: false
+
+  # Game mechanic settings
+  mechanics:
+    # Player speed multiplier
+    # Default value: 1.0
+    speed_multiplier: 1.5
+
+    # List of allowed user groups
+    allowed_groups:
+      - "admin"
+      - "moderator"
+      - "vip"
+
+# Database connection settings
+database:
+  host: "localhost"
+  port: 3306
+  # Time (in seconds) before connection timeout
+  timeout: 30
+```
+
+### Best Practices
+
+*   **Indentation:** Always use **2 spaces** for indentation. Tabs are generally not supported in strict YAML.
+*   **Strings:** Quotes are optional for simple strings, but recommended if your string contains special characters (like `:`, `{`, `[`, `#`).

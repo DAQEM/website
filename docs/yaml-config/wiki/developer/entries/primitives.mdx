@@ -1,0 +1,53 @@
+# Primitive Entries
+
+Primitive entries map directly to Java primitives. All numeric types support automatic validation (clamping).
+
+### Boolean
+
+Stores a simple `true` or `false`.
+
+```java
+IBooleanConfigEntry entry = builder.defineBoolean("is_active", true);
+```
+
+### Integer
+
+Supports standard Java `int`.
+
+```java
+// Method: defineInteger(key, default, [min], [max])
+
+// Unbounded
+IIntegerConfigEntry simple = builder.defineInteger("count", 64);
+
+// Bounded (0 to 100)
+IIntegerConfigEntry percent = builder.defineInteger("chance", 50, 0, 100);
+```
+
+### Double & Float
+
+Floating point numbers. Useful for multipliers or precise coordinates.
+
+```java
+// Method: defineDouble(key, default, [min], [max])
+IDoubleConfigEntry gravity = builder.defineDouble("gravity", 9.8, 0.0, 100.0);
+
+// Method: defineFloat(key, default, [min], [max])
+IFloatConfigEntry speed = builder.defineFloat("speed", 1.0f, 0.0f, 10.0f);
+```
+
+### Long
+
+For numbers larger than `2,147,483,647`.
+
+```java
+// Method: defineLong(key, default, [min], [max])
+ILongConfigEntry energy = builder.defineLong("max_energy", 10_000_000_000L);
+```
+
+### Validation Behavior
+
+If a user manually edits the config file and inputs a number outside the defined bounds (e.g., setting `chance` to 150 when max is 100):
+1.  A `ConfigEntryValidationException` is caught internally.
+2.  The GUI will display a validation error red cross.
+3.  The value used in-game will usually fallback to the **default value** or remain clamped (depending on the specific serializer logic) to prevent crashes.

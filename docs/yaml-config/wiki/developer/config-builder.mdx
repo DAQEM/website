@@ -1,0 +1,79 @@
+# The Config Builder
+
+The `ConfigBuilder` is the entry point for creating configurations. It handles the definition of keys, default values, file generation, and registration with the internal `ConfigManager`.
+
+### Initialization Lifecycle
+
+You should build your config during your mod's **initialization phase** (e.g., `onInitialize` in Fabric or the constructor/`FMLCommonSetupEvent` in NeoForge).
+
+When `builder.build()` is called:
+1.  The file is loaded from the disk (if it exists).
+2.  If keys are missing, defaults are populated.
+3.  The file is saved back to disk (ensuring new keys are written).
+4.  The config is registered to the `ConfigManager` for the in-game GUI.
+
+### Code Example
+
+```java
+package com.example.mymod.config;
+
+import com.daqem.yamlconfig.impl.config.ConfigBuilder;
+import com.daqem.yamlconfig.api.config.ConfigType;
+import com.daqem.yamlconfig.api.config.ConfigExtension;
+import com.daqem.yamlconfig.api.config.entry.IBooleanConfigEntry;
+
+public class MyModConfig {
+
+    // Hold static references to your entries to access them globally
+    public static IBooleanConfigEntry IS_ENABLED;
+
+    public static void init() {
+        // 1. Create the builder
+        ConfigBuilder builder = new ConfigBuilder(
+            "my_mod_id",       // Your Mod ID
+            "general-config",  // File name (without extension)
+            ConfigExtension.YAML,
+            ConfigType.COMMON
+        );
+
+        // 2. Define Entries
+        IS_ENABLED = builder.defineBoolean("enabled", true)
+            .withComments("Set to false to disable all mod features.");
+
+        // 3. Category Stacking
+        builder.push("mechanics"); // Start 'mechanics' section
+
+            builder.push("movement"); // Start 'mechanics.movement'
+                builder.defineFloat("speed_modifier", 1.5f);
+            builder.pop(); // End 'movement'
+
+            builder.defineInteger("max_health", 20);
+
+        builder.pop(); // End 'mechanics'
+
+        // 4. Build and Load
+        builder.build();
+    }
+}
+```
+
+### The Stack System (`push` / `pop`)
+
+YAML Config uses a stack to determine the current nesting level.
+
+*   **`push(String key)`**: Creates a new category (or "Map Node") under the current context and makes it the active context.
+*   **`pop()`**: Returns to the parent context.
+
+:::danger Important
+Always ensure you have an equal number of `push` and `pop` calls. If you call `pop()` on the root level, an exception will be thrown.
+:::
+
+### Accessing Values
+
+Once built, you can access values anywhere in your code using the entry reference:
+
+```java
+if (MyModConfig.IS_ENABLED.get()) {
+    // execute logic
+}
+```

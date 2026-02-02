@@ -1,0 +1,46 @@
+# Config Types & Networking
+
+The `ConfigType` enum determines where your config file lives, how it behaves in a multiplayer environment, and whether it automatically synchronizes.
+
+### 1. `ConfigType.CLIENT`
+
+**File Location:** `config/` folder on the client.
+
+**Behavior:**
+*   Loaded only on the physical client.
+*   Changes made in the GUI are saved immediately to disk.
+
+**NO networking.** The server knows nothing about this config.
+
+**Best For:** Rendering settings, GUI positioning, debug overlays, sound volumes.
+
+### 2. `ConfigType.COMMON`
+
+**File Location:** `config/` folder on both Client and Server.
+
+**Behavior:**
+*  **Server Authority:** The server's file is the source of truth.
+*  **Auto-Sync:** When a player joins, the server sends its values to the client via `ClientboundSyncConfigPacket`.
+*  **Client Override:** While connected to a server, the client's local file values are ignored in memory (but the file on disk is not overwritten). The client uses the server's values.
+*  **Editing:** If a player edits this in the GUI:
+    *   If Singleplayer: Saves to disk and updates immediately.
+    *   If Multiplayer (and Operator): Sends a `ServerboundSaveConfigPacket`. The server updates its file, and re-syncs all other players.
+    *   If Multiplayer (not Operator): Editing is disabled.
+
+**Best For:** Gameplay mechanics, recipe definitions, biome generation weights.
+
+### 3. `ConfigType.SERVER`
+
+**File Location:** `config/` folder on the Server (or Singleplayer internal server).
+
+**Behavior:**
+*   Never sent to the client.
+*   Can be edited via GUI by Operators, but the client doesn't hold a copy of the logic.
+
+**Best For:** Database passwords, discord bot tokens, sensitive admin settings, server-side only logic (like chunk loading rates).
+
+### Networking Implementation Details
+
+YAML Config handles the networking automatically.
+
+1.  **On Player Join:** The `PlayerJoinEvent` triggers. It iterates over all registered `COMMON` configs and sends a synchronization packet to the joining player.

@@ -1,0 +1,59 @@
+# Lists & Maps
+
+YAML Config provides deep support for collections.
+
+### Lists
+
+Lists are ordered collections of values. You can validate the **size** of the list (e.g., "must have at least 1 item") and the **values** inside the list (e.g., "all numbers must be positive").
+
+#### Numeric Lists
+When defining numeric lists, you define min/max for the *list size* AND min/max for the *values*.
+
+```java
+// List of integers
+// Default: [1, 2, 3]
+// List Size: Min 1, Max 10
+// Element Value: Min 0, Max 100
+IIntegerListConfigEntry numbers = builder.defineIntegerList(
+    "lucky_numbers",
+    List.of(1, 2, 3),
+    1, 10,
+    0, 100
+);
+```
+
+#### String Lists
+String lists support Regex patterns applied to *every* element.
+
+```java
+// List of usernames (must be alphanumeric)
+IStringListConfigEntry users = builder.defineStringList(
+    "allowed_users",
+    List.of("Admin", "User"),
+    "^[a-zA-Z0-9_]+$"
+);
+```
+
+### Maps
+
+Maps are key-value pairs where the Key is always a `String`.
+
+#### Numeric Maps
+Similar to lists, you can validate map size and value ranges.
+
+```java
+// Map<String, Double>
+// Default: { "base": 1.0 }
+// Map Size: 0 to 50
+// Values: 0.0 to 10.0
+IDoubleMapConfigEntry multipliers = builder.defineDoubleMap(
+    "damage_multipliers",
+    Map.of("base", 1.0D),
+    0, 50,
+    0.0D, 10.0D
+);
+```
+
+#### GUI Representation
+*   **Lists:** Represented as a dynamic list where users can click a "+" button to add entries and "x" to remove them.
+*   **Maps:** Represented as Key/Value input pairs. The Key field checks for duplicates automatically.
