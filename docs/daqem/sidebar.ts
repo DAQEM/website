@@ -12,6 +12,21 @@ const sidebar: SidebarsConfig = {
             label: "Wiki",
             items: [
                 {
+                    type: "doc",
+                    id: "wiki/platforms",
+                    label: "Platforms",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/versioning",
+                    label: "Version Strategy",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/maven",
+                    label: "Maven Repository",
+                },
+                {
                     type: "category",
                     label: "JSON Formats",
                     customProps: { emoji: "" },
@@ -21,12 +36,11 @@ const sidebar: SidebarsConfig = {
                             type: "doc",
                             id: "wiki/json_formats/block",
                             label: "Block",
-                        }
+                        },
                     ],
                     link: { type: "doc", id: "wiki/json_formats/index" },
                 },
             ],
-            link: { type: "doc", id: "wiki/index" },
         },
     ],
 };

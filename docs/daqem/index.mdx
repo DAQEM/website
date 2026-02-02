@@ -1,3 +1,17 @@
 ---
-title: DAQEM Studios
+title: Wiki
+hide_table_of_contents: true
 ---
+
+import ProjectCard from "@site/src/components/projects/project-card";
+import { projects } from "@site/src/lib/projects";
+
+# DAQEM Studios Wiki
+
+Welcome to our documentation hub. Select a project below to view its specific wiki, guides, and technical details.
+
+<div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 !mt-10">
+    {projects.map((project) => (
+    <ProjectCard key={project.slug} {...project} />
+    ))}
+</div>

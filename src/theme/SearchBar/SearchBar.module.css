@@ -11,7 +11,10 @@
     );
     margin-top: 8px;
     width: var(--search-local-modal-width, 560px);
-    position: relative;
+
+    position: absolute;
+
+    z-index: 1000;
 
     padding: var(--search-local-spacing, 12px);
 }

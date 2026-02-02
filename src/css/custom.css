@@ -74,10 +74,15 @@
 }
 
 @supports (scrollbar-gutter: stable) {
-    nav {
+    .menu,
+    .thin-scrollbar {
         overflow: hidden;
         scrollbar-gutter: stable;
     }
+}
+
+.navbar {
+    overflow: visible !important;
 }
 
 html:has(.no-scrollbar-gutter) {
