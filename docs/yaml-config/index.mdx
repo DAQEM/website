@@ -7,3 +7,22 @@ import ProjectHeader from "@site/src/components/projects/project-header"
 import { projectsBySlug } from "@site/src/lib/projects"
 
 <ProjectHeader {...projectsBySlug["yaml-config"]} />
+
+**YAML Config** is a powerful, multi-format configuration library for Minecraft mods. It provides a robust backend for handling configuration files and a built-in, user-friendly in-game GUI for editing them.
+
+Designed for both **Fabric** and **NeoForge**, YAML Config abstracts away the complexity of file I/O and networking, allowing developers to focus on adding features to their mods.
+
+### Key Features
+
+*   **Multi-Format Support:** Use YAML, JSON5, TOML, or HOCON for your configuration files.
+*   **In-Game GUI:** Press **F12** to open an automatically generated configuration screen. No extra coding required for UI.
+*   **Automatic Syncing:** Server-side configurations are automatically synced to clients upon joining.
+*   **Rich Entry Types:** Supports everything from basic booleans and integers to complex Lists, Maps, Enums, and Minecraft Registries.
+*   **Validation:** Built-in support for minimum/maximum values, regex patterns, and validity checks.
+*   **Hot-Reloading:** Configs can be reloaded on the fly (depending on specific implementation).
+
+### Supported Platforms
+
+*   Forge (1.20.1 and below)
+*   Fabric
+*   NeoForge (1.21.1 and up)

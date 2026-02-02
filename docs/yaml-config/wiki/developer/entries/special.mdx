@@ -1,0 +1,48 @@
+# Special Entries
+
+### Enums
+
+Map configuration values directly to Java Enums. The config file will store the `.name()` of the enum.
+
+```java
+public enum Mode {
+    PASSIVE,
+    AGGRESSIVE,
+    NEUTRAL
+}
+
+// ... inside config builder
+IEnumConfigEntry<Mode> mobMode = builder.defineEnum(
+    "ai_mode", 
+    Mode.PASSIVE, 
+    Mode.class
+);
+```
+
+**GUI Behavior:** Renders as a **Cycle Button** that cycles through all available Enum constants.
+
+### DateTime
+
+Stores a time stamp.
+
+```java
+IDateTimeConfigEntry startTime = builder.defineDateTime(
+    "event_start", 
+    LocalDateTime.now()
+);
+```
+
+**Format:** The file stores the string: `"yyyy-MM-dd HH:mm:ss"`.
+
+### Custom Entries
+
+You can create completely custom config types by implementing the `IConfigEntry<T>` interface and creating a Serializer.
+
+1.  **Create Entry Class:** Extend `BaseConfigEntry<T>`.
+2.  **Create Serializer:** Implement `IConfigEntrySerializer<Entry, T>`.
+    *   Implement `toNode` / `fromNode` for file I/O.
+    *   Implement `toNetwork` / `fromNetwork` for sync.
+3.  **Register:** Register your new `IConfigEntryType` in the `YamlConfigRegistry`.
+4.  **GUI:** Register a factory in `ConfigEntryComponentRegistry` to define how it renders in the menu.
+
+*(See the `testmod` source code in the repository for a full example of a custom entry).*

@@ -1,0 +1,24 @@
+---
+title: Global Configuration
+---
+
+# Global Configuration
+
+While the restrictions themselves are defined in individual JSON files, the mod has a main configuration file located at:
+
+`config/itemrestrictions/item-restrictions-common.yaml`
+
+## Configuration Options
+
+### Excluded Restrictions
+
+Sometimes you may want to temporarily disable a restriction without deleting the file, or disable a restriction added by a modpack via a Datapack.
+
+```yaml
+restrictions:
+  # A list of restriction IDs to exclude from the game.
+  # Format: ['<namespace>:<restriction_id>']
+  excluded_restrictions:
+    - "itemrestrictions:diamond_sword_usage"
+    - "packname:disable_tnt"
+```

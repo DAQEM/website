@@ -1,0 +1,66 @@
+# HOCON Format
+
+**Extension:** `.conf`
+**Library:** [Configurate](https://github.com/SpongePowered/Configurate) (wrapping TypeSafe Config)
+
+HOCON (Human-Optimized Config Object Notation) is a superset of JSON developed by Lightbend. It is extremely powerful and is the standard for the Sponge ecosystem and many server-side plugins.
+
+### Features
+
+*   **Less Noisy:** Commas, colons, and braces are often optional.
+*   **Substitutions:** You can refer to other values within the config using `${path.to.value}` syntax.
+*   **Includes:** Supports including other files, allowing you to split massive configs into multiple files.
+*   **Duration/Size Support:** Natively understands values like `10m` (10 minutes) or `512MB` (though YAML Config maps these to Strings or Numbers for generic compatibility).
+
+### Implementation
+
+To use HOCON, use `ConfigExtension.HOCON`.
+
+```java
+import com.daqem.yamlconfig.api.config.ConfigExtension;
+import com.daqem.yamlconfig.impl.config.ConfigBuilder;
+
+ConfigBuilder builder = new ConfigBuilder(
+    "my_mod_id",
+    "advanced-config",
+    ConfigExtension.HOCON // <--- Selects .conf format
+);
+```
+
+### Example Output
+
+HOCON can look very similar to JSON, but cleaner:
+
+```hocon
+# Server properties
+server {
+    # The port to listen on
+    port=8080
+
+    # Host address
+    host="0.0.0.0"
+}
+
+gameplay {
+    # Using substitution to reference the base difficulty
+    base-difficulty=10
+
+    # Calculated difficulty (conceptual example)
+    boss-difficulty=${gameplay.base-difficulty}0
+
+    features {
+        magic=true
+        tech=false
+    }
+}
+
+# Lists can be defined without commas if on newlines
+whitelist=[
+    "Notch"
+    "Jeb"
+]
+```
+
+### When to use HOCON?
+
+HOCON is ideal for very advanced users or server administrators who might want to utilize variable substitution or file inclusion to manage complex modpacks.

@@ -1,0 +1,58 @@
+# JSON5 Format
+
+**Extension:** `.json5`
+**Library:** [Jankson](https://github.com/falkreon/Jankson)
+
+JSON5 is a superset of JSON that aims to make it easier for humans to write and maintain. It alleviates many of the strict limitations of standard JSON while remaining familiar to JavaScript and web developers.
+
+### Features
+
+*   **Comments:** Supports both single-line (`//`) and multi-line (`/* ... */`) comments.
+*   **Trailing Commas:** You can leave a comma at the end of a list or object without causing a parsing error.
+*   **Unquoted Keys:** Object keys do not need quotes if they are valid identifiers (e.g., `{ key: "value" }` vs `{"key": "value"}`).
+*   **Single Quotes:** Strings can use single quotes `'` or double quotes `"`.
+
+### Implementation
+
+To use JSON5, use `ConfigExtension.JSON5`.
+
+```java
+import com.daqem.yamlconfig.api.config.ConfigExtension;
+import com.daqem.yamlconfig.impl.config.ConfigBuilder;
+
+ConfigBuilder builder = new ConfigBuilder(
+    "my_mod_id",
+    "client-settings",
+    ConfigExtension.JSON5 // <--- Selects .json5 format
+);
+```
+
+### Example Output
+
+```json
+{
+    // HUD Rendering options
+    "hud": {
+        "enabled": true,
+        "position": {
+            "x": 10,
+            "y": 10, // Trailing comma is allowed!
+        }
+    },
+    /*
+    Network settings.
+    Don't touch unless you know what you are doing.
+    */
+    "network": {
+        "packet_limit": 50,
+        "ignored_packets": [
+            "packet_a",
+            "packet_b"
+        ]
+    }
+}
+```
+
+### When to use JSON5?
+
+Use JSON5 if you prefer the bracket-structure of JSON but need comments to explain your settings to users. It is robust and less error-prone regarding whitespace than YAML.

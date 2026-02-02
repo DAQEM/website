@@ -1,0 +1,63 @@
+# Dependency Setup
+
+To use YAML Config, you must add it to your development environment. Note that **YAML Config** depends on **UI Lib**, so both must be present.
+
+### Gradle Properties
+
+Define the versions in your `gradle.properties` to manage updates easily.
+
+```properties
+# Check the project page for the latest versions
+yaml_config_version=19.0.1
+ui_lib_version=19.0.0
+```
+
+### Build Script (`build.gradle`)
+
+Add the Maven repository and the dependencies.
+
+```groovy
+repositories {
+    // DAQEM Studios Maven
+    maven { url "https://maven.daqem.com/" }
+}
+
+dependencies {
+    // 1. UI Library (Required Dependency)
+    modImplementation "com.daqem:uilib:${ui_lib_version}"
+
+    // 2. YAML Config
+    modImplementation "com.daqem:yamlconfig:${yaml_config_version}"
+}
+```
+
+### Fabric `fabric.mod.json`
+
+If you are developing for Fabric, add the dependency to your `fabric.mod.json` to ensure the game doesn't crash if the library is missing.
+
+```json
+"depends": {
+    "yamlconfig": ">=19.0.0",
+    "uilib": ">=19.0.0"
+}
+```
+
+### NeoForge `neoforge.mods.toml`
+
+For NeoForge, add the dependency block:
+
+```toml
+[[dependencies.your_mod_id]]
+    modId = "yamlconfig"
+    type = "required"
+    versionRange = "[19.0.0,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.your_mod_id]]
+    modId = "uilib"
+    type = "required"
+    versionRange = "[19.0.0,)"
+    ordering = "NONE"
+    side = "CLIENT"
+```

@@ -1,0 +1,25 @@
+# Developer Guide
+
+Welcome to the **YAML Config** Developer Guide. This library is designed to abstract the complexities of file I/O, networking, and user interfaces, allowing you to implement robust configuration systems in minutes.
+
+### Core Concepts
+
+1.  **The Builder Pattern:** You do not create config classes manually. You use the `ConfigBuilder` to define your structure programmatically.
+2.  **Entry Objects:** When you define a config option, you get back an `IConfigEntry<T>` object. You keep a reference to this object to access the value later.
+3.  **Automatic Networking:** If you use `ConfigType.COMMON`, the library handles synchronizing values from the logical server to connected clients automatically.
+4.  **The Stack:** The configuration structure is hierarchical. You use a stack-based approach (`push`/`pop`) to create categories and sub-categories.
+
+### Getting Started
+
+*   [**Dependency Setup**](setup.mdx) - Adding the library to your Gradle project.
+*   [**The Config Builder**](config-builder.mdx) - Learning the syntax to create configs.
+*   [**Config Types & Networking**](config-types.mdx) - Understanding Client vs. Common vs. Server scopes.
+*   [**Validation & Comments**](validation.mdx) - Adding constraints and user guidance.
+
+### API Reference
+
+*   [Primitives](entries/primitives.mdx) - Booleans, Integers, Floats, Doubles, Longs.
+*   [Strings](entries/strings.mdx) - Text validation, Regex, and Enumerated Strings.
+*   [Lists & Maps](entries/lists-maps.mdx) - Handling collections of data.
+*   [Minecraft Types](entries/minecraft.mdx) - ResourceLocations and Registry entries.
+*   [Special Types](entries/special.mdx) - Enums, DateTimes, and Custom implementations.

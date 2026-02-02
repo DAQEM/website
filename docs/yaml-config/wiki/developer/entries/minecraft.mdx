@@ -1,0 +1,49 @@
+# Minecraft Types
+
+These entries integrate directly with Minecraft's data structures, ensuring configuration safety and reducing parsing errors.
+
+### Identifier (ResourceLocation)
+
+Use this instead of a String when you need a `namespace:path`.
+
+```java
+// Default: minecraft:dirt
+IIdentifierConfigEntry blockId = builder.defineIdentifier(
+    "target_block",
+    Identifier.fromNamespaceAndPath("minecraft", "dirt")
+);
+
+// Accessing
+Identifier id = blockId.get();
+if (id.getNamespace().equals("minecraft")) { ... }
+```
+
+**GUI Behavior:** The input field validates that the text follows the `namespace:path` format (lowercase, valid characters).
+
+### Registry Entries
+
+This is a powerful feature that links a config entry directly to a Minecraft Registry (like Items, Blocks, Biomes, SoundEvents, etc.).
+
+It validates that the input string actually exists in the registry.
+
+```java
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+
+// Define an entry that returns an Item object
+IRegistryConfigEntry<Item> rewardItem = builder.defineRegistry(
+    "reward_item",
+    Items.DIAMOND,
+    BuiltInRegistries.ITEM
+);
+
+// Usage
+Item item = rewardItem.get(); // Returns actual Item object, not a string
+```
+
+**Validation:**
+If a user types `minecraft:non_existent_item` in the config file:
+1.  The library attempts to look it up in `BuiltInRegistries.ITEM`.
+2.  It fails to find it.
+3.  A validation error occurs, and it falls back to the default (`Items.DIAMOND`).

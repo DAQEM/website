@@ -1,0 +1,37 @@
+# Accessing the Menu
+
+Unlike older modding standards that required you to restart the game to change settings, YAML Config provides a unified, in-game dashboard to manage everything on the fly.
+
+### The Default Keybinding
+
+By default, the global configuration menu can be opened by pressing:
+
+# **F12**
+
+### Changing the Keybinding
+
+If **F12** conflicts with another mod (or a system screenshot key), you can easily rebind it:
+
+1.  Open the Minecraft **Pause Menu** (`Esc`).
+2.  Go to **Options** > **Controls** > **Key Binds**.
+3.  Scroll down to the **YAML Config** category.
+4.  Click on **Open Configs Screen** and press your desired key.
+
+### The Configs Screen
+
+When you press the hotkey, you will be greeted by the **Configs Screen**. This screen acts as a hub for all installed mods that utilize the YAML Config library.
+
+*   **Mod List:** You will see cards for every supported mod.
+*   **Search/Navigation:** If you have many mods installed, they will be organized in a grid.
+*   **Opening a Config:** Simply click the button corresponding to the mod name (e.g., "Jobs+", "GriefLogger") to enter its specific settings.
+
+### Server-Side vs. Client-Side
+
+When you click a mod in the list:
+
+1.  **Client Configs:** These open immediately. You are editing the file located on your own computer.
+2.  **Common/Server Configs:**
+    *   If you are in **Singleplayer**, it opens immediately.
+    *   If you are in **Multiplayer**:
+        *   **If you are OP (Operator):** The client requests the config from the server. The menu opens, allowing you to edit global server settings.
+        *   **If you are NOT OP:** You will only be able to view client side configs. Common and server configs will be hidden, as you do not have permission to edit them.

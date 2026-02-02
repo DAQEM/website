@@ -1,0 +1,52 @@
+# Validation & Comments
+
+A good configuration file documents itself. YAML Config allows you to add extensive comments and metadata to your entries.
+
+### Adding Comments
+
+Comments are added using the `.withComments(...)` method on any entry object.
+
+```java
+builder.defineBoolean("enable_features", true)
+       .withComments(
+           "Master switch for all features.",
+           "If false, the mod does nothing."
+       );
+```
+
+**Result (YAML):**
+```yaml
+# Master switch for all features.
+# If false, the mod does nothing.
+# Default value: true
+enable_features: true
+```
+
+### Controlling Metadata
+
+By default, YAML Config appends the **Default Value** and **Validation Constraints** (like Min/Max) to the comments automatically. You can toggle this.
+
+```java
+builder.defineInteger("secret_value", 123)
+       .withComments(
+           false, // showDefaultValues
+           false, // showValidationParameters
+           "This is a secret."
+       );
+```
+
+### In-Game Tooltips
+
+The comments you define here are **automatically** converted into tooltips in the Configuration GUI. When a user hovers over the text of an entry, they will see your comments, making it easy to understand what the setting does without leaving the game.
+
+### Validation Logic
+
+Every `IConfigEntry` has a `validate(T value)` method.
+*   **Primitive Entries:** Check min/max bounds.
+*   **String Entries:** Check length and Regex.
+*   **Registry Entries:** Check registry existence.
+
+If `validate` throws a `ConfigEntryValidationException`:
+1.  The error is logged.
+2.  The value is rejected.
+3.  The entry reverts to its previous valid state or default.
