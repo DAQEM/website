@@ -1,0 +1,103 @@
+---
+title: Abstract Screen
+description: The foundation for creating standard, non-container user interfaces.
+---
+
+import Admonition from '@theme/Admonition';
+
+`AbstractScreen` is the entry point for most custom UIs in UI Lib. It extends the vanilla `net.minecraft.client.gui.screens.Screen` class but implements the UI Lib `IScreen` interface.
+
+This class is intended for GUIs that **do not** involve an inventory (Container/Menu), such as:
+*   Main Menus
+*   Configuration Screens
+*   Lore Books
+*   Skill Trees
+*   Selection Wheels
+
+## The `IScreen` Interface
+
+The magic of UI Lib happens through the `IScreen` interface. When your screen implements this (which `AbstractScreen` does automatically), UI Lib's Mixins (`ScreenMixin`, `ScreenAccessor`) hook into the vanilla rendering and event logic.
+
+This provides you with:
+1.  **Component Management:** A centralized list of `IComponent` objects.
+2.  **Widget Integration:** Seamless handling of `IWidget` objects (Vanilla widgets with relative positioning).
+3.  **Background Rendering:** An API to replace the default "Dirt" background with Blur, Gradients, or Panoramas.
+
+## Implementation Guide
+
+To create a screen, create a class extending `AbstractScreen`.
+
+### 1. Constructor
+You must pass a `Component` title to the super constructor. This title is used by the Narrator.
+
+```java
+public class MyCustomScreen extends AbstractScreen {
+    public MyCustomScreen() {
+        super(Component.literal("My Screen Title"));
+        
+        // Optional: Set a background immediately
+        this.setBackground(new BlurredBackground());
+    }
+}
+```
+
+### 2. Initialization (`init`)
+The `init()` method is called when the screen is opened and **every time the window is resized**.
+
+<Admonition type="danger" title="Do not use the constructor for layout!">
+    Never create your components or widgets inside the constructor. The screen width and height are not guaranteed to be correct until `init()` is called.
+</Admonition>
+
+Use `init()` to instantiate and add your components.
+
+```java
+@Override
+protected void init() {
+    // 1. Clear previous elements (handled by super, but good practice to know)
+    super.init();
+
+    // 2. Define Layout Variables
+    int centerX = this.width / 2;
+    int centerY = this.height / 2;
+
+    // 3. Add Components
+    TextComponent title = new TextComponent(0, 0, Component.literal("Settings"));
+    title.setTextAlign(TextAlign.CENTER);
+    title.updateParentPosition(centerX, centerY - 50, this.width, this.height);
+    this.addComponent(title);
+
+    // 4. Add Widgets
+    ButtonWidget closeBtn = new ButtonWidget(0, 0, 100, 20, Component.literal("Close"), (b) -> onClose());
+    closeBtn.uilib$updateParentPosition(centerX - 50, centerY + 20);
+    this.addWidget(closeBtn);
+}
+```
+
+## Adding Elements
+
+### `addComponent(IComponent component)`
+Adds a visual component. These are added to the internal render list.
+*   **Note:** Components are rendered in the order they are added.
+
+### `addWidget(IWidget widget)`
+Adds an interactive widget.
+*   **Crucial:** This method adds the widget to the **Renderable**, **GuiEventListener**, and **NarratableEntry** lists of the screen.
+*   **Why?** In vanilla, you often have to call `addRenderableWidget` or `addRenderableOnly`. UI Lib simplifies this into one method that detects the widget's capabilities.
+
+## Background Management
+
+You do not need to override `renderBackground` manually. Use the setter methods:
+
+*   `setBackground(IBackground bg)`: Sets the renderer.
+*   `getBackground()`: Retrieves current background.
+*   `clearBackground()`: Removes the background (renders nothing behind components).
+
+See [Backgrounds](../backgrounds) for available types.
+
+## Lifecycle Methods
+
+While `AbstractScreen` handles most things, you can still override vanilla methods if needed:
+
+*   **`render(GuiGraphics, int mouseX, int mouseY, float partialTick)`**: The main loop. Call `super.render` to draw your components.
+*   **`onClose()`**: Called when ESC is pressed or the screen is closed.
+*   **`tick()`**: Called every game tick (20 times/second). Useful for animation logic.

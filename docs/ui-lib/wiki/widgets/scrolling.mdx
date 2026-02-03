@@ -1,0 +1,107 @@
+---
+title: Scroll Containers
+description: Viewports for displaying large lists of content.
+---
+
+import Admonition from '@theme/Admonition';
+
+Scroll Containers are specialized widgets that act as a viewport. They render content that is larger than their own bounds and allow the user to pan around using scrollbars or mouse drag.
+
+## `ScrollContainerWidget`
+
+The standard container. Supports **Vertical Scrolling** only.
+
+**Constructor:**
+```java
+// width, height, contentSpacing
+new ScrollContainerWidget(int width, int height, int contentSpacing);
+```
+
+### How to use
+1.  **Add Components:** You add `IComponent` objects to it.
+2.  **Automatic Layout:** The container stacks these components vertically based on their height and the `contentSpacing`.
+3.  **Scroll:** If the total height exceeds the container height, a scrollbar appears.
+
+```java
+ScrollContainerWidget list = new ScrollContainerWidget(200, 100, 5);
+
+for (int i = 0; i < 20; i++) {
+    // Add components at (0, 0). The container handles the Y offset automatically.
+    list.addComponent(new TextComponent(0, 0, Component.literal("Item " + i)));
+}
+
+this.addWidget(list);
+```
+
+---
+
+## `ScrollContainer2DWidget`
+
+An advanced container that supports **Bidirectional Scrolling** (Vertical and Horizontal). This is ideal for node editors, skill trees, or large map displays.
+
+**Constructor:**
+```java
+// width, height, contentSpacing
+new ScrollContainer2DWidget(int width, int height, int contentSpacing);
+```
+
+### Features
+*   **Dual Scrollbars:** Renders horizontal and vertical scrollbars only when needed.
+*   **Mouse Drag:** Users can click and drag the background to pan (if components inside capture the click, dragging won't start).
+*   **Mouse Wheel:** Scrolls vertically by default. (Shift+Scroll for horizontal is not standard behavior here, usually handled via drag).
+
+### Adding Content
+Unlike the vertical container, the 2D container **does not** automatically stack items. You must define the X/Y coordinates of your components relative to the container's origin (0,0).
+
+```java
+ScrollContainer2DWidget map = new ScrollContainer2DWidget(300, 200);
+
+// Add a component at a specific position on the virtual canvas
+TextComponent label = new TextComponent(0, 0, Component.literal("Start"));
+label.setX(500); // Far to the right
+label.setY(500); // Far down
+
+map.addComponent(label);
+```
+
+The container calculates the "Content Width" and "Content Height" by finding the furthest component edge.
+
+---
+
+## Technical Constraints
+
+<Admonition type="danger" title="Do not add Widgets directly!">
+    You generally **cannot** add an `IWidget` (like a Button) directly to a Scroll Container via `addWidget()`.
+    
+    **Why?**
+    Scroll Containers rely on the `IComponent.setY(...)` method to move elements up and down during rendering. Widgets do not have this relative positioning logic exposed in the same way.
+    
+    **The Solution:**
+    Wrap your widgets inside an `AbstractComponent`.
+</Admonition>
+
+### The Wrapper Pattern
+
+If you need a list of buttons, create a `Component` that holds the button.
+
+```java
+public class ButtonWrapper extends AbstractComponent {
+    public ButtonWrapper(Component label, OnPress action) {
+        super(0, 0, 100, 20); // Define size
+        
+        // Add the widget to this component
+        ButtonWidget btn = new ButtonWidget(0, 0, 100, 20, label, action);
+        this.addWidget(btn);
+    }
+    
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, int parentWidth, int parentHeight) {
+        // We don't need to render anything ourselves, the button widget handles it.
+        // But we MUST override this to ensure children render.
+        super.render(guiGraphics, mouseX, mouseY, partialTick, parentWidth, parentHeight);
+    }
+}
+
+// Usage
+scrollContainer.addComponent(new ButtonWrapper(Component.literal("Click Me"), ...));
+```

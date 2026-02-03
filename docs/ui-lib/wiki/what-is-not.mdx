@@ -1,0 +1,73 @@
+---
+title: What UI Lib Is Not
+description: Clarifying the design philosophy and limitations of UI Lib vs React/Web frameworks.
+---
+
+import Admonition from '@theme/Admonition';
+
+As UI Lib has grown, developers coming from web development backgrounds (React, Vue, Svelte) or modern declarative UI frameworks often ask why UI Lib doesn't behave in a specific way.
+
+This page exists to clarify the design philosophy of UI Lib and, more importantly, **what it is not**.
+
+## It is NOT a Reactive Framework (Like React)
+
+If you are used to **React**, you might expect to write code like this:
+
+```jsx
+// ❌ This is NOT how UI Lib works
+const MyScreen = () => {
+    const [count, setCount] = useState(0);
+    return <Button onClick={() => setCount(count + 1)}>Count: {count}</Button>
+}
+```
+
+In React, the UI is a *function of state*. When state changes, the framework "reacts", diffs the Virtual DOM, and re-renders the UI automatically.
+
+**UI Lib is Imperative and Object-Oriented.**
+It is built on top of Minecraft's rendering engine, which is effectively an "Immediate Mode" GUI system wrapped in Java objects.
+
+In UI Lib, you create persistent instances of objects (`Components` and `Widgets`) during the `init()` phase and manage them manually.
+
+**The UI Lib Way:**
+```java
+public class MyScreen extends AbstractScreen {
+    private int count = 0;
+
+    @Override
+    protected void init() {
+        // 1. Create the button instance once
+        ButtonWidget button = new ButtonWidget(10, 10, 100, 20, Component.literal("Count: 0"), (btn) -> {
+            // 2. Manually update state
+            this.count++;
+
+            // 3. Manually update the UI element to reflect the state
+            btn.setMessage(Component.literal("Count: " + this.count));
+        });
+
+        this.addWidget(button);
+    }
+}
+```
+
+You are responsible for telling the UI *when* to update and *what* to change.
+
+## It is NOT HTML/CSS (Flexbox/Grid)
+
+UI Lib does not use a complex constraint-based layout engine like Flexbox or CSS Grid.
+
+*   **HTML/CSS:** "Put this div inside that div, add padding, and let the browser calculate where it goes."
+*   **UI Lib:** "Put this component at `x=10, y=20` relative to its parent."
+
+While UI Lib offers relative positioning (e.g., `parentX + x`), it does **not** have a constraint solver.
+
+**Implications:**
+1.  **No Auto-Flow:** If you add two buttons at `(0,0)`, they will render on top of each other. You must calculate the Y position for the second button manually (e.g., `y = button1.y + button1.height + spacing`).
+2.  **No Auto-Wrap:** If you add a text component that is 200 pixels wide into a container that is 100 pixels wide, it will not automatically wrap or shrink unless you explicitly use a specialized component designed for that (like `MultiLineTextComponent`).
+
+## Can I make it Reactive?
+
+**Yes.** While the library does not enforce a specific architecture, you can implement the **Screen State Pattern**.
+
+By separating your data into a `State` object and passing it to your components, you can mimic reactivity. Your components can check this state object during the `render()` loop (which runs every frame) or `tick()` loop to see if data has changed, and rebuild/update themselves accordingly.
+
+See the **[Screen State Pattern](patterns/screen-state.mdx)** guide for a detailed implementation of this architecture.

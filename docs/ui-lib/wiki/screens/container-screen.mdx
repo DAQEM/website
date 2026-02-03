@@ -1,0 +1,91 @@
+---
+title: Container Screen
+description: Integrating UI Lib components with Inventory Menus.
+---
+
+import Admonition from '@theme/Admonition';
+
+`AbstractContainerScreen<T>` is the base class for GUIs that interact with block entities or items (e.g., Chests, Furnaces, Backpacks). It extends the vanilla `AbstractContainerScreen` but implements `IScreen`.
+
+## The Coordinate System
+
+Container screens differ from standard screens because they have a "Game Window" (usually 176x166 pixels) that floats in the center of the screen.
+
+UI Lib provides two helper fields (inherited from vanilla) to help you position components relative to this window:
+
+*   **`leftPos`**: The absolute X coordinate of the left edge of the container window.
+*   **`topPos`**: The absolute Y coordinate of the top edge of the container window.
+
+### Setting the Size
+In your constructor, you must define the size of your GUI texture so Minecraft can calculate `leftPos` and `topPos` correctly.
+
+```java
+public class MyMachineScreen extends AbstractContainerScreen<MyMachineMenu> {
+    public MyMachineScreen(MyMachineMenu menu, Inventory inventory, Component title) {
+        super(menu, inventory, title);
+        this.imageWidth = 176;
+        this.imageHeight = 166;
+    }
+}
+```
+
+## Adding Components
+
+When adding components to a container screen, you almost **always** want them to move with the GUI window when the user resizes their game.
+
+To do this, use `leftPos` and `topPos` in your `init()` method.
+
+```java
+@Override
+protected void init() {
+    super.init(); // Calculates leftPos/topPos
+
+    // Add a background sprite (The GUI texture)
+    SpriteComponent bg = new SpriteComponent(
+        leftPos, topPos, 
+        imageWidth, imageHeight, 
+        ResourceLocation.fromNamespaceAndPath("mymod", "container/machine_gui")
+    );
+    this.addComponent(bg);
+
+    // Add a label relative to the GUI
+    TextComponent label = new TextComponent(leftPos + 8, topPos + 6, this.title);
+    this.addComponent(label);
+}
+```
+
+<Admonition type="tip" title="Use Components for the GUI Background">
+    In vanilla Minecraft, you usually override `renderBg` to draw your texture.
+    In UI Lib, it is recommended to add a `SpriteComponent` (or `AbstractSpriteComponent` subclass) as the <b>first</b> component in `init()`. This treats the GUI background just like any other UI element.
+</Admonition>
+
+## Handling Slots & Tooltips
+
+Vanilla `AbstractContainerScreen` handles the rendering of Item Slots and Item Tooltips automatically in `super.render()`.
+
+*   **Slots:** Rendered *after* `renderBg` but *before* `renderTooltip`.
+*   **Components:** UI Lib renders components during the standard render phase.
+
+### Z-Index Considerations
+If you add a `SpriteComponent` for your background, ensure it is added **first**. If you add it last, it might draw *over* the slots or items depending on the specific render phase hook.
+
+### `renderBg`
+UI Lib leaves `renderBg` empty by default. If you prefer the vanilla way, you can still use it:
+
+```java
+@Override
+protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+    // Vanilla style rendering
+    int x = (width - imageWidth) / 2;
+    int y = (height - imageHeight) / 2;
+    guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+}
+```
+
+## Advanced: Dynamic Integration
+
+Because `AbstractContainerScreen` implements `IScreen`, you can use all UI Lib features alongside your inventory:
+
+1.  **Blurred Backgrounds:** `setBackground(new BlurredBackground())` works perfectly here to blur the world behind your inventory.
+2.  **Validation Widgets:** You can add `EditBoxWidget` to a container screen (e.g., for searching items) and use the validation API.
+3.  **Skill Trees in Inventories:** You can even embed a `SkillTreeComponent` inside a container screen tab.

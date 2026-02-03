@@ -1,0 +1,114 @@
+---
+title: Text Components
+description: Detailed guide to the advanced text rendering capabilities of UI Lib.
+---
+
+UI Lib provides a suite of text components that extend `AbstractTextComponent`. These handle font rendering, color, shadows, and alignment automatically.
+
+## Common Features
+
+All text components share these settings:
+
+### Alignment
+You can align text relative to its insertion point (X, Y).
+
+*   `TextAlign.LEFT` (Default): The text starts at X.
+*   `TextAlign.CENTER`: The text is centered on X. (Effectively draws at `X - (width / 2)`).
+*   `TextAlign.RIGHT`: The text ends at X. (Effectively draws at `X - width`).
+
+```java
+component.setTextAlign(TextAlign.CENTER);
+```
+
+### Color & Shadow
+*   **Color:** ARGB integer (e.g., `0xFFFFFFFF` for white).
+*   **Shadow:** Boolean to draw the dark drop-shadow behind text.
+
+```java
+component.setColor(0xFFFF0000); // Red
+component.setDrawShadow(true);
+```
+
+---
+
+## `TextComponent`
+
+The simplest component. Renders a single line of text. It automatically calculates its `width` and `height` based on the font provided.
+
+**Constructor:**
+```java
+new TextComponent(int x, int y, Component text, int color);
+```
+
+**Use Case:** Labels, Headers, simple value displays.
+
+---
+
+## `ScrollingTextComponent`
+
+A "Marquee" style component. If the text is wider than the specified `maxWidth`, it will smoothly scroll back and forth using a sine-wave animation.
+
+**Constructor:**
+```java
+new ScrollingTextComponent(int x, int y, int maxWidth, Component text, int color);
+```
+
+**Technical Details:**
+*   Uses `GuiGraphics.enableScissor` to clip text outside the `maxWidth`.
+*   The animation logic uses `Util.getMillis()` to ensure smooth movement regardless of framerate.
+*   **Debug:** If debug borders are enabled, the scissor area is outlined in Blue.
+
+**Use Case:** Displaying long item names, file paths, or user descriptions in a confined sidebar.
+
+---
+
+## `TruncatedTextComponent`
+
+If the text is wider than `maxWidth`, it is cut off and appended with an ellipsis (`...`).
+
+**Constructor:**
+```java
+new TruncatedTextComponent(int x, int y, int maxWidth, Component text, int color);
+```
+
+**Customization:**
+You can change the suffix string (default is `...`).
+```java
+component.setEllipsis(" [more]");
+```
+
+**Use Case:** Leaderboards, player lists, or UI headers where strict layout compliance is required.
+
+---
+
+## `MultiLineTextComponent`
+
+Renders text that automatically wraps to a new line if it exceeds `maxWidth`.
+
+**Constructor:**
+```java
+new MultiLineTextComponent(int x, int y, int maxWidth, Component text, int color);
+```
+
+**Technical Details:**
+*   Uses Minecraft's `StringSplitter` to find optimal break points (spaces/hyphens).
+*   The component's **height** is dynamic! It is calculated as `lineHeight * numberOfLines`. Be careful when placing components below this one; you may need to adjust their Y position dynamically.
+
+**Use Case:** Tooltips, lore descriptions, chat logs, or instruction manuals.
+
+---
+
+## `TruncatedMultiLineTextComponent`
+
+A combination of MultiLine and Truncated. It wraps text, but only up to a specific number of lines (`maxLines`). If there is still more text after the final line, the last line is truncated with an ellipsis.
+
+**Constructor:**
+```java
+new TruncatedMultiLineTextComponent(int x, int y, int maxWidth, int maxLines, Component text, int color);
+```
+
+**Technical Details:**
+*   The height is fixed to `lineHeight * maxLines` (unless fewer lines are needed).
+*   Logic: It generates all wrapped lines, keeps the top `maxLines`, and if the list was shortened, it forcefully truncates the final visible line to fit the ellipsis.
+
+**Use Case:** Item descriptions in a grid view, blog post previews.
