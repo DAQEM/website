@@ -1,0 +1,154 @@
+---
+title: Screen State Pattern
+description: A design pattern for managing complex UI state and reactivity in UI Lib.
+---
+
+import Admonition from '@theme/Admonition';
+
+As your User Interfaces grow in complexity, managing variables inside the `Screen` class becomes messy. If you have multiple tabs, scroll lists, and dynamic widgets that all need to talk to each other, you need a single source of truth.
+
+The **Screen State Pattern** is a powerful architectural approach (used in mods like [Jobs+](/projects/jobsplus)) that separates your **Data** from your **Visuals**.
+
+## The Concept
+
+1.  **State Class:** A POJO (Plain Old Java Object) that holds all the data for the current screen (Tabs, Selections, Coins, XP).
+2.  **Screen:** Initializes the State and passes it down.
+3.  **Components:** Hold a reference to the State. They "poll" the state during the render loop to see if they need to update.
+
+## 1. The State Class
+
+Create a class that holds your data. It should have getters and setters.
+
+```java
+public class MyScreenState {
+    // Data
+    private int coins;
+    private String selectedTab;
+    private Item selectedItem;
+
+    public MyScreenState(int coins) {
+        this.coins = coins;
+        this.selectedTab = "home"; // Default
+    }
+
+    // Getters and Setters
+    public int getCoins() { return coins; }
+    public void setCoins(int coins) { this.coins = coins; }
+
+    public String getSelectedTab() { return selectedTab; }
+    public void setSelectedTab(String tab) { this.selectedTab = tab; }
+    
+    // Logic can also live here
+    public boolean canBuyItem() {
+        return coins > 10;
+    }
+}
+```
+
+## 2. The Screen
+
+The Screen constructs the state and passes it to the main root component.
+
+```java
+public class MyScreen extends AbstractScreen {
+    private final MyScreenState state;
+
+    public MyScreen(int currentCoins) {
+        super(Component.literal("My Shop"));
+        // Initialize State
+        this.state = new MyScreenState(currentCoins);
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+        // Pass state to components
+        this.addComponent(new MainLayoutComponent(this.state));
+    }
+}
+```
+
+## 3. The Reactive Component
+
+This is where the magic happens. A component can hold a **Cached** version of a value. In the `render` method (which runs every frame), it compares the Cache vs the State. If they differ, the component updates.
+
+```java
+public class TabSwitcherComponent extends EmptyComponent {
+    
+    private final MyScreenState state;
+    private String cachedTab; // To track changes
+
+    public TabSwitcherComponent(MyScreenState state) {
+        super(0, 0, 100, 100);
+        this.state = state;
+        
+        // Initial build
+        this.cachedTab = state.getSelectedTab();
+        rebuild();
+    }
+
+    private void rebuild() {
+        this.clearComponents(); // Remove old tab content
+        
+        // Add content based on the state
+        if (state.getSelectedTab().equals("home")) {
+            this.addComponent(new HomeComponent(state));
+        } else if (state.getSelectedTab().equals("shop")) {
+            this.addComponent(new ShopComponent(state));
+        }
+    }
+
+    @Override
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick, int parentWidth, int parentHeight) {
+        // --- The Dirty Check ---
+        // Check if the state has changed since the last frame
+        if (!this.cachedTab.equals(state.getSelectedTab())) {
+            
+            // Update cache
+            this.cachedTab = state.getSelectedTab();
+            
+            // React to the change
+            this.rebuild();
+            
+            // Ensure positioning is correct after rebuild
+            this.updateParentPosition(getParentX(), getParentY(), parentWidth, parentHeight);
+        }
+
+        super.render(graphics, mouseX, mouseY, partialTick, parentWidth, parentHeight);
+    }
+}
+```
+
+### Why do this?
+
+Imagine you have a button in a completely different part of the UI (e.g., a "Back" button in a header).
+
+```java
+// Inside HeaderComponent
+new ButtonWidget(..., (btn) -> {
+    // Modifying the state here...
+    state.setSelectedTab("home");
+});
+```
+
+Because `TabSwitcherComponent` checks the state every frame, it will **automatically** see this change and switch the view, without the Header needing to know that the TabSwitcher exists.
+
+## 4. Networking Integration
+
+This pattern works beautifully with networking. When your client receives a packet (e.g., `ClientboundSyncCoinsPacket`), you can update the state.
+
+```java
+// In your Packet Handler
+public static void handle(ClientboundSyncCoinsPacket packet) {
+    if (Minecraft.getInstance().screen instanceof MyScreen screen) {
+        // Update the Single Source of Truth
+        screen.getState().setCoins(packet.getCoins());
+    }
+}
+```
+
+Any component displaying the coin count (like a label) will update automatically in the next frame if it is checking `state.getCoins()`.
+
+<Admonition type="tip" title="Optimization">
+    For simple values (like coins), you don't need to `rebuild()` the whole component. You can just update the text of a `TextComponent` inside the render loop or create a custom `DynamicTextComponent`.
+</Admonition>

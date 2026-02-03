@@ -1,0 +1,45 @@
+---
+title: Widgets Overview
+description: Interactive elements and event handling.
+---
+
+import Admonition from '@theme/Admonition';
+
+**Widgets** (`IWidget`) are the interactive elements of your GUI. While [Components](../components/index.mdx) handle visuals and layout, Widgets handle **User Input** (clicks, typing, focus, and narration).
+
+In UI Lib, standard Minecraft widgets (like `Button`, `EditBox`, `CycleButton`) are fully compatible, but they are enhanced via the `IWidget` interface.
+
+## The `IWidget` Interface
+
+This interface combines four key vanilla interfaces into one:
+1.  `Renderable`: Can be drawn to the screen.
+2.  `GuiEventListener`: Receives mouse and keyboard events.
+3.  `LayoutElement`: Has a position and size (`ScreenRectangle`).
+4.  `NarratableEntry`: Supports the text-to-speech narrator for accessibility.
+
+## Relative Positioning Magic
+
+Standard Minecraft widgets usually rely on absolute X/Y coordinates (e.g., `x=100, y=50`). This makes nesting them inside other components difficult.
+
+UI Lib uses a **Mixin** (`AbstractWidgetMixin`) to inject relative positioning logic into *every* widget class that implements `IWidget` (or extends `AbstractWidget`).
+
+*   **`uilib$getParentX()`**: The absolute X position of the container holding this widget.
+*   **`getX()` (Modified)**: Returns `this.x + parentX`.
+
+<Admonition type="info" title="What this means for you">
+    You don't need to manually calculate screen coordinates. If you add a button at `x=10, y=10` inside a Component located at `x=50, y=50`, the button will automatically render and detect clicks at `60, 60`.
+</Admonition>
+
+## Adding Widgets
+
+Always use the `addWidget(...)` method provided by `AbstractScreen` or `AbstractComponent`.
+
+```java
+// Correct
+this.addWidget(new ButtonWidget(...));
+
+// Incorrect - Input listeners won't be registered!
+this.renderables.add(new ButtonWidget(...));
+```
+
+This ensures the widget is added to the screen's event listener list, narration list, and render list simultaneously.

@@ -1,0 +1,64 @@
+---
+title: Backgrounds
+description: Using the IBackground system to create immersive screen backdrops.
+---
+
+UI Lib creates a unified system for rendering screen backgrounds via the `IBackground` interface. Instead of manually drawing rectangles in your `render` method, you simply assign a background object to your screen.
+
+## Setting a Background
+
+In your screen's constructor or `init` method, call `setBackground`:
+
+```java
+this.setBackground(new DarkenedBackground());
+```
+
+## Available Background Types
+
+### `ColorBackground`
+Renders a solid color filling the entire screen.
+
+```java
+// Red background
+new ColorBackground(0xFFFF0000);
+```
+
+### `GradientBackground`
+Renders a vertical gradient from top to bottom.
+
+```java
+// Fade from black (top) to transparent (bottom)
+new GradientBackground(0xFF000000, 0x00000000);
+```
+
+### `DarkenedBackground`
+A preset `GradientBackground` that mimics the standard Minecraft "dimmed" background used in many vanilla screens. It creates a subtle fade from dark gray to slightly lighter gray.
+
+```java
+new DarkenedBackground();
+```
+
+### `BlurredBackground`
+Renders a high-quality blur effect over the game world. This is highly recommended for modern UIs as it improves text readability while keeping the game visible.
+
+```java
+new BlurredBackground();
+```
+
+### `PanoramaBackground`
+Renders the rotating panorama cube map found in the Main Menu.
+
+```java
+new PanoramaBackground();
+```
+
+### `CombinedBackground`
+Allows you to layer multiple backgrounds on top of each other.
+
+```java
+// Layers a blur effect, then puts a darkened gradient on top of it
+new CombinedBackground(
+    new BlurredBackground(),
+    new DarkenedBackground()
+);
+```

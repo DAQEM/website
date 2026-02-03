@@ -1,0 +1,130 @@
+---
+title: Input & Buttons
+description: Buttons, Text Fields, and Input Validation.
+---
+
+import Admonition from '@theme/Admonition';
+
+UI Lib provides wrappers around standard Minecraft widgets to make them easier to construct and more powerful.
+
+## Buttons
+
+### `ButtonWidget`
+A standard vanilla Minecraft button with the default gray texture.
+
+**Constructor:**
+```java
+new ButtonWidget(int x, int y, int width, int height, Component label, OnPress onPress);
+```
+
+**Example:**
+```java
+ButtonWidget btn = new ButtonWidget(10, 10, 100, 20, Component.literal("Save"), (b) -> {
+    saveData();
+    b.setMessage(Component.literal("Saved!"));
+});
+```
+
+### `CustomButtonWidget`
+A button that uses your own custom textures instead of the vanilla gray button. It uses the `WidgetSprites` system introduced in modern Minecraft versions.
+
+**Constructor:**
+```java
+new CustomButtonWidget(int x, int y, int width, int height, Component label, WidgetSprites sprites, OnPress onPress);
+```
+
+**Defining Sprites:**
+You need three textures in your assets: enabled, disabled, and hovered.
+
+```java
+WidgetSprites sprites = new WidgetSprites(
+    ResourceLocation.fromNamespaceAndPath("mymod", "widget/my_btn"),          // Enabled
+    ResourceLocation.fromNamespaceAndPath("mymod", "widget/my_btn_disabled"), // Disabled
+    ResourceLocation.fromNamespaceAndPath("mymod", "widget/my_btn_hovered")   // Hovered/Focused
+);
+```
+
+### `CycleButtonWidget<T>`
+A button that cycles through a list of values when clicked. This mirrors the vanilla `CycleButton` but implements `IWidget` for compatibility.
+
+**Example (Cycling Enums):**
+```java
+CycleButtonWidget<Difficulty> difficultyBtn = new CycleButtonWidget<>(
+    0, 0, 150, 20,
+    Component.literal("Difficulty"),
+    Component.literal("Difficulty"),
+    0,
+    Difficulty.NORMAL, // Initial
+    () -> Difficulty.NORMAL, // Default
+    CycleButton.ValueListSupplier.create(Arrays.asList(Difficulty.values())), // Values
+    (val) -> Component.literal(val.getKey()) // Label Provider
+);
+```
+
+---
+
+## Input Fields (Edit Boxes)
+
+UI Lib significantly enhances text boxes by adding an **Input Validation API**.
+
+### `EditBoxWidget`
+A single-line text input field.
+
+**Constructor:**
+```java
+new EditBoxWidget(Font font, int x, int y, int width, int height, Component label);
+```
+
+### `MultiLineEditBoxWidget`
+A multi-line text area (like the Book and Quill interface).
+
+**Constructor:**
+```java
+new MultiLineEditBoxWidget(Font font, int x, int y, int width, int height, Component placeholder, Component label);
+```
+
+---
+
+## Input Validation API
+
+Both `EditBoxWidget` and `MultiLineEditBoxWidget` implement `IInputValidatable`. This allows you to define rules for what text is allowed. If validation fails, the widget visually indicates an error.
+
+### How it works
+1.  Override the `validateInput(String input)` method.
+2.  Return a list of error `Component`s.
+3.  If the list is not empty, the widget enters **Error Mode**.
+
+### Error Mode Features
+*   **Visuals:** The background texture changes to `uilib:widget/text_field_error` (a red outline).
+*   **Tooltip:** Hovering over the box displays the error messages in Red.
+
+### Example: Validating a Number
+```java
+EditBoxWidget numberInput = new EditBoxWidget(font, 0, 0, 100, 20, Component.literal("Age")) {
+    @Override
+    public List<Component> validateInput(String input) {
+        List<Component> errors = new ArrayList<>();
+        
+        try {
+            int age = Integer.parseInt(input);
+            if (age < 0) {
+                // Use built-in helper
+                errors.add(ValidationErrors.minValue(0));
+            }
+        } catch (NumberFormatException e) {
+            errors.add(ValidationErrors.invalidNumber());
+        }
+        
+        return errors;
+    }
+};
+```
+
+### Built-in Validation Helpers
+The `ValidationErrors` class provides pre-translated error messages for common scenarios:
+*   `minLength(int)` / `maxLength(int)`
+*   `minValue(Number)` / `maxValue(Number)`
+*   `pattern(String regex)`
+*   `invalidNumber()`
+*   `invalidIdentifier()` (ResourceLocation)
+*   `duplicateKey()`

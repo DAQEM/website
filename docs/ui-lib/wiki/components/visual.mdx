@@ -1,0 +1,100 @@
+---
+title: Visual Components
+description: Rendering sprites, items, gradients, and shapes.
+---
+
+import Admonition from '@theme/Admonition';
+
+These components handle the graphical elements of your interface.
+
+## `SpriteComponent`
+
+Renders a texture from your mod's resources.
+
+**Constructor:**
+```java
+new SpriteComponent(int x, int y, int width, int height, ResourceLocation spriteLocation);
+```
+
+### The Sprite System (1.21+)
+Modern Minecraft uses an Atlas system for GUI textures. `SpriteComponent` uses `guiGraphics.blitSprite`, which means your textures **MUST** be registered in the GUI atlas.
+
+1.  **Location:** Place your texture `.png` in `src/main/resources/assets/<modid>/textures/gui/sprites/`.
+2.  **ResourceLocation:** When referencing it in code, omit the `textures/gui/sprites/` prefix and the `.png` extension.
+*   File: `assets/mymod/textures/gui/sprites/backgrounds/panel.png`
+*   Code: `ResourceLocation.fromNamespaceAndPath("mymod", "backgrounds/panel")`
+
+### Nine-Slice Scaling
+UI Lib supports Nine-Slice scaling automatically if you provide a `.mcmeta` file for your sprite.
+
+**File:** `panel.png.mcmeta`
+```json
+{
+    "gui": {
+        "scaling": {
+            "type": "nine_slice",
+            "width": 100, // Original image width
+            "height": 100, // Original image height
+            "border": 10 // Border thickness
+        }
+    }
+}
+```
+This allows you to stretch a small texture (like a button background) to any size without distorting the corners.
+
+---
+
+## `ItemComponent`
+
+Renders a standard Minecraft `ItemStack`.
+
+**Constructor:**
+```java
+new ItemComponent(int x, int y, ItemStack stack, boolean decorated);
+```
+
+**Parameters:**
+*   `stack`: The item to render.
+*   `decorated`: If `true`, renders the "Decorations" (Stack count overlay, Durability bar, Cooldown overlay).
+
+**Use Case:** Slot ghosts, recipe viewers, reward displays.
+
+---
+
+## `ColorComponent`
+
+Fills a rectangle with a solid color.
+
+**Constructor:**
+```java
+new ColorComponent(int x, int y, int width, int height, int color);
+```
+
+**Color Format:**
+Colors are integers in **ARGB** format (Alpha, Red, Green, Blue).
+*   Solid Red: `0xFFFF0000`
+*   Semi-transparent Black: `0x80000000`
+
+**Use Case:** Debugging, simple backgrounds, dimming overlays.
+
+---
+
+## `GradientComponent`
+
+Fills a rectangle with a vertical gradient.
+
+**Constructor:**
+```java
+new GradientComponent(int x, int y, int width, int height, int startColor, int endColor);
+```
+
+**Technical Details:**
+*   `startColor`: The color at the **top**.
+*   `endColor`: The color at the **bottom**.
+*   Uses `GuiGraphics.fillGradient`.
+
+<Admonition type="info" title="Horizontal Gradients?">
+    Currently, this component only supports vertical gradients (Top to Bottom).
+</Admonition>
+
+**Use Case:** Tooltip backgrounds, list slot highlights, shadow effects.

@@ -1,0 +1,113 @@
+---
+title: Getting Started
+description: How to add UI Lib to your development environment.
+---
+
+import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+
+To start building GUIs with UI Lib, you need to add the library to your project's dependencies.
+
+## Dependency Setup
+
+UI Lib is hosted on the DAQEM Studios Maven.
+
+### 1. Add Repository
+
+Add the following maven repository to your `build.gradle` file:
+
+```groovy
+repositories {
+    maven {
+        name = "DAQEM Studios Maven"
+        url = "https://maven.daqem.com/releases"
+    }
+}
+```
+
+### 2. Add Dependencies
+
+Add the dependency corresponding to your loader. Replace `${uilib_version}` with the latest version found on the [Project Page](/projects/ui-lib) or Maven.
+
+<Tabs>
+    <TabItem value="fabric" label="Fabric" default>
+
+        ```groovy
+        dependencies {
+            // UI Lib Fabric
+            modImplementation "com.daqem.uilib:uilib-fabric:${uilib_version}"
+        }
+        ```
+
+    </TabItem>
+    <TabItem value="neoforge" label="NeoForge (1.21+)">
+
+        ```groovy
+        dependencies {
+            // UI Lib NeoForge
+            modImplementation "com.daqem.uilib:uilib-neoforge:${uilib_version}"
+        }
+        ```
+
+    </TabItem>
+    <TabItem value="forge" label="Forge (1.20.1-)">
+
+        ```groovy
+        dependencies {
+            // UI Lib Forge
+            modImplementation "com.daqem.uilib:uilib-forge:${uilib_version}"
+        }
+        ```
+
+    </TabItem>
+    <TabItem value="common" label="Common">
+
+        ```groovy
+        dependencies {
+            // UI Lib Common
+            modImplementation "com.daqem.uilib:uilib-common:${uilib_version}"
+        }
+        ```
+
+    </TabItem>
+</Tabs>
+
+## Basic Concepts
+
+UI Lib introduces a few core interfaces that you should be familiar with:
+
+1.  **`IScreen`**: The root of any UI. It holds a list of components and widgets.
+2.  **`IComponent`**: A visual element that can contain other components. It handles relative positioning (`parentX + x`).
+3.  **`IWidget`**: An interactive element (buttons, text fields) that usually extends standard Minecraft widgets but implements UI Lib positioning logic.
+4.  **`IBackground`**: A dedicated renderer for the screen background (blur, color, gradient).
+
+### Your First Screen
+
+To create a screen, extend `AbstractScreen`.
+
+```java
+public class MyFirstScreen extends AbstractScreen {
+
+    public MyFirstScreen() {
+        super(Component.literal("My First Screen"));
+    }
+
+    @Override
+    protected void init() {
+        // Create a text component at 10, 10
+        TextComponent hello = new TextComponent(10, 10, Component.literal("Hello World"));
+
+        // Add it to the screen
+        this.addComponent(hello);
+
+        // Add a standard button
+        ButtonWidget button = new ButtonWidget(10, 30, 100, 20, Component.literal("Click Me"), (btn) -> {
+            System.out.println("Clicked!");
+        });
+
+        this.addWidget(button);
+
+        super.init();
+    }
+}
+```

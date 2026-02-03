@@ -1,0 +1,47 @@
+---
+title: Components Overview
+description: Understanding the IComponent system and layout engine.
+---
+
+import Admonition from '@theme/Admonition';
+
+In UI Lib, **Components** (`IComponent`) are the building blocks of your user interface. Unlike Widgets (Buttons, Text Fields), Components are primarily designed for **visual representation** and **layout structure**, though they can contain interactive widgets inside them.
+
+## The Hierarchy
+
+Every component extends `AbstractComponent`. This base class handles the heavy lifting for:
+1.  **Positioning:** Calculating absolute screen coordinates based on parent offsets.
+2.  **Nesting:** Holding a list of child components and widgets.
+3.  **Debugging:** Rendering debug borders to help you visualize layout bounds.
+
+## Coordinate System
+
+UI Lib uses a relative positioning system that makes creating complex, nested UIs much easier.
+
+*   **`x` / `y`**: The position relative to the **Parent**.
+*   **`parentX` / `parentY`**: The absolute screen position of the parent element.
+*   **`getTotalX()` / `getTotalY()`**: The final absolute coordinate used for rendering (`parentX + x`).
+
+<Admonition type="tip" title="Dynamic Resizing">
+    When the screen is resized, `updateParentPosition(...)` is called recursively down the tree. If you center a component, it will stay centered automatically without you needing to recalculate coordinates manually in a `render` loop.
+</Admonition>
+
+## Debug Mode
+
+Having trouble getting your layout right? You can enable debug borders on any component.
+
+```java
+myComponent.setRenderDebugBorder(true);
+```
+
+This will draw a **Red** outline around the component's bounds, allowing you to see exactly where it is located and how much space it occupies. Complex text components (like Scrolling Text) use a **Blue** border to indicate their "scissor" (clipping) area.
+
+## Rendering Order
+
+Components have a `renderBase` method which dictates the draw order:
+
+1.  **Pre-Parent Components:** Child components marked with `setRenderBeforeParent(true)`.
+2.  **Self:** The component renders itself (e.g., the text or sprite).
+3.  **Debug Borders:** If enabled.
+4.  **Post-Parent Components:** Standard child components.
+5.  **Widgets:** Interactive widgets (buttons) are usually rendered last to appear on top.

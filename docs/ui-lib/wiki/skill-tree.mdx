@@ -1,0 +1,180 @@
+---
+title: Skill Trees
+description: Implementing draggable, auto-arranging node graphs.
+---
+
+import Admonition from '@theme/Admonition';
+
+UI Lib provides a complete engine for rendering hierarchical node graphs, commonly known as **Skill Trees** or **Tech Trees**.
+
+Inspired by the vanilla Advancements screen, this system improves upon it by decoupling the rendering logic from the data, allowing for arbitrary placement, custom node widgets, and 2D multidirectional scrolling.
+
+## Architecture
+
+The system is split into three layers:
+
+1.  **Data Layer (`ISkillTree`, `ISkillTreeItem`)**: Defines the structure of the tree (parent-child relationships) and configuration (spacing, margins).
+2.  **Positioning Layer (`SkillTreePositioner`)**: An implementation of the Reingold-Tilford algorithm. It automatically calculates the X/Y coordinates of every node so they are spaced evenly without overlapping.
+3.  **Rendering Layer (`SkillTreeComponent`)**: A composite component that handles the viewport, input dragging, line drawing, and widget rendering.
+
+---
+
+## Step 1: The Node Widget
+
+First, you must define how a single node looks. You do this by implementing `ISkillTreeItemWidget`. Usually, you will extend `CustomButtonWidget` or `ButtonWidget`.
+
+```java
+public class MyNodeWidget extends CustomButtonWidget implements ISkillTreeItemWidget {
+
+    private final ISkillTreeItem item;
+
+    public MyNodeWidget(ISkillTreeItem item, int x, int y) {
+        // Initialize with a custom background sprite
+        // Note: Coordinates here are handled by the tree, usually set to 0 initially
+        super(0, 0, 26, 26, Component.empty(), new WidgetSprites(
+            ResourceLocation.fromNamespaceAndPath("mymod", "widget/node_unlocked"),
+            ResourceLocation.fromNamespaceAndPath("mymod", "widget/node_locked"),
+            ResourceLocation.fromNamespaceAndPath("mymod", "widget/node_hovered")
+        ));
+        this.item = item;
+        
+        // Add a tooltip or click action
+        this.setTooltip(Tooltip.create(Component.literal("My Skill")));
+    }
+
+    @Override
+    public ISkillTreeItem getSkillTreeItem() {
+        return this.item;
+    }
+
+    @Override
+    public void renderTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        // Called explicitly by the tree component after everything else renders
+        // This ensures tooltips draw OVER other nodes
+        if (isHoveredOrFocused()) {
+            // Render custom tooltip logic here
+        }
+    }
+}
+```
+
+---
+
+## Step 2: The Data Structure
+
+Next, define your data classes by extending the abstract implementations.
+
+### The Item (Node)
+This class represents a single node in the graph. It is responsible for creating its own widget.
+
+```java
+public class MySkillItem extends AbstractSkillTreeItem {
+
+    public MySkillItem(boolean isRoot, List<ISkillTreeItem> children) {
+        super(isRoot, children);
+    }
+
+    @Override
+    public ISkillTreeItemWidget createWidget() {
+        // Factory method to create the visual representation
+        return new MyNodeWidget(this, 0, 0);
+    }
+}
+```
+
+### The Tree (Container)
+This class holds the root node and configuration settings.
+
+```java
+public class MySkillTree extends AbstractSkillTree {
+
+    public MySkillTree(List<ISkillTreeItem> items) {
+        super(items);
+        
+        // --- Configuration ---
+        
+        // The size of your widgets (used for spacing calculations)
+        this.setSkillTreeItemWidth(26);
+        this.setSkillTreeItemHeight(26);
+        
+        // Gap between nodes
+        this.setHorizontalSpacing(32);
+        this.setVerticalSpacing(16);
+        
+        // Padding around the entire tree
+        this.setHorizontalMargin(20);
+        this.setVerticalMargin(20);
+    }
+}
+```
+
+---
+
+## Step 3: Construction & Rendering
+
+Now you can build the hierarchy and add it to your screen.
+
+```java
+// 1. Construct the Hierarchy
+MySkillItem root = new MySkillItem(true, new ArrayList<>());
+MySkillItem childA = new MySkillItem(false, new ArrayList<>());
+MySkillItem childB = new MySkillItem(false, new ArrayList<>());
+
+root.addChild(childA);
+root.addChild(childB);
+
+// 2. Create the Tree Container
+// Note: We pass a list of ALL items for internal tracking
+MySkillTree treeData = new MySkillTree(List.of(root, childA, childB));
+
+// 3. Create the UI Component
+// This component handles the viewport window (200x200 in this example)
+SkillTreeComponent treeView = new SkillTreeComponent(10, 10, 200, 200, treeData);
+
+// 4. Add to Screen
+this.addComponent(treeView);
+```
+
+### What happens internally?
+1.  `new SkillTreeComponent(...)` calls `treeData.runPositioner()`.
+2.  The `SkillTreePositioner` walks the hierarchy.
+3.  It assigns relative X/Y coordinates to `root`, `childA`, and `childB` based on the spacing settings defined in `MySkillTree`.
+4.  The component creates a `SkillTreeWidget` (which is a scrollable viewport).
+5.  It creates a `SkillTreeMovingComponent` which acts as the canvas.
+6.  It instantiates widgets for every item via `createWidget()`.
+
+---
+
+## Visuals & Lines
+
+The connection lines between nodes are drawn automatically by the `SkillTreeMovingComponent`.
+
+*   **Logic:** It draws lines from a Parent node to its Children.
+*   **Style:** It mimics the vanilla advancement lines (Right-angle connections).
+*   **Colors:**
+    *   **Border:** Black (`0xFF000000`)
+    *   **Center:** White (`0xFFFFFFFF`)
+
+<Admonition type="info" title="Custom Lines">
+    Currently, the line rendering logic is hardcoded in `SkillTreeMovingComponent#renderConnections`. To customize line colors or styles, you would need to create a custom subclass of `SkillTreeComponent` that instantiates your own version of `SkillTreeMovingComponent`.
+</Admonition>
+
+## Interaction
+
+The `SkillTreeComponent` utilizes the **ScrollContainer2DWidget** backend.
+
+*   **Pan:** Click and drag anywhere on the background to move the tree.
+*   **Scroll:** Mouse wheel scrolls vertically.
+*   **Click:** Clicking a node passes the event to your `MyNodeWidget`.
+
+## Troubleshooting
+
+**The tree is empty/blank.**
+*   Ensure you added the root node to the items list passed to the `AbstractSkillTree` constructor.
+*   Ensure `isRoot` is `true` for exactly one node.
+
+**Nodes overlap.**
+*   Increase `setHorizontalSpacing` or `setSkillTreeItemWidth` in your tree class.
+
+**Widgets appear at (0,0).**
+*   Ensure you are using the provided `AbstractSkillTree` logic. The `SkillTreeMovingComponent` sets the widget X/Y coordinates during initialization based on the calculations from `runPositioner()`.
