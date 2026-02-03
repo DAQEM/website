@@ -1,0 +1,58 @@
+---
+title: Teleportation Commands
+---
+
+These commands handle movement across the world.
+
+## Spawn
+Teleports you to the world spawn point.
+
+*   **Usage:** `/spawn`
+*   **Permission:** `necessities.command.spawn`
+*   **Default Level:** 0 (Everyone)
+
+## Set Spawn
+Sets the world spawn point to your current location.
+
+*   **Usage:** `/setspawn`
+*   **Permission:** `necessities.command.setspawn`
+*   **Default Level:** 2 (OP)
+
+## RTP (Random Teleport)
+Teleports you to a random location in the world within the configured radius.
+
+*   **Usage:** `/rtp`
+*   **Permission:** `necessities.command.rtp`
+*   **Bypass Cooldown:** `necessities.command.rtp.bypass_cooldown`
+*   **Default Level:** 0 (Everyone)
+
+## Back
+Returns you to your last location. This location is saved when you teleport or when you die (if `allowBackOnDeath` is enabled).
+
+*   **Usage:** `/back`
+*   **Permission:** `necessities.command.back`
+*   **Default Level:** 0 (Everyone)
+
+## TPA (Teleport Ask)
+Request to teleport to another player.
+
+*   **Usage:** `/tpa <player>`
+*   **Permission:** `necessities.command.tpa`
+*   **Default Level:** 0 (Everyone)
+
+## TPA Here
+Request another player to teleport to you.
+
+*   **Usage:** `/tpahere <player>`
+*   **Permission:** `necessities.command.tpahere`
+*   **Default Level:** 0 (Everyone)
+
+## TPA Responses
+Manage incoming requests.
+
+*   **/tpaccept**: Accept a pending request.
+    *   Permission: `necessities.command.tpaccept`
+*   **/tpadeny**: Deny a pending request.
+    *   Permission: `necessities.command.tpadeny`
+*   **/tpatoggle**: Toggle whether you can receive TPA requests.
+    *   Permission: `necessities.command.tpatoggle`
