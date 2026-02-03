@@ -1,0 +1,26 @@
+---
+title: Homes System
+---
+
+The Homes system allows players to save locations and teleport back to them later.
+
+## Commands
+
+*   **/sethome [name]**: Saves your current location. If no name is provided, it defaults to "home".
+*   **/home [name]**: Teleports you to the saved home.
+*   **/delhome [name]**: Deletes a saved home.
+
+## Home Limits
+
+By default, the number of homes a player can set is defined in `necessities.yml` under `homesLimit`.
+
+However, you can give specific players or ranks different limits using permissions.
+
+### Permission Nodes
+
+The mod checks permissions in a specific order:
+
+1.  **Unlimited:** `necessities.home.limit.unlimited`
+2.  **Specific Count:** `necessities.home.limit.<number>`
+
+You can assign permissions like `necessities.home.limit.10` to VIPs to allow them to set 10 homes, while default players are restricted to the config limit. It supports limits up to 50 via permissions.

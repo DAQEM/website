@@ -1,0 +1,37 @@
+---
+title: Inventory & Utility
+---
+
+## Ender Chest
+Opens your ender chest (or another player's).
+
+*   **Usage:** `/enderchest [player]`
+*   **Alias:** `/ec`
+*   **Permission:** `necessities.command.enderchest` (Self), `necessities.command.enderchest.others` (Others)
+*   **Default Level:** 2 (OP)
+
+## Inventory See
+View and interact with another player's inventory in real-time.
+
+*   **Usage:** `/invsee <player>`
+*   **Permission:** `necessities.command.invsee`
+*   **Default Level:** 2 (OP)
+
+:::info
+You can move items in and out of the target player's inventory.
+:::
+
+## Vanish
+Become completely invisible to other players on the server.
+
+*   **Usage:** `/vanish`
+*   **Alias:** `/v`
+*   **Permission:** `necessities.command.vanish`
+*   **Default Level:** 2 (OP)
+
+**Behavior:**
+*   You are removed from the Tab list (for non-admins).
+*   A fake "Left the game" message is broadcast when enabling.
+*   A fake "Joined the game" message is broadcast when disabling.
+*   You are invisible to entities and players.
+*   Other players with permission `minecraft.command.gamemaster` (OPs) can still see you.

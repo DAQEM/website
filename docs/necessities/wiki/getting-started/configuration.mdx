@@ -1,0 +1,52 @@
+---
+title: Configuration
+---
+
+Necessities generates two configuration files in your `config/necessities/` folder.
+
+## 1. `necessities.yml`
+
+This file controls the logic and behavior of the mod.
+
+### General
+*   **prefix**: The text displayed before system messages (e.g., `[Necessities]`).
+*   **primaryColor**: The hex color code for the prefix brackets and main text.
+*   **maxNickLength**: The maximum character length for `/nick`.
+*   **allowColorsInNick**: Whether players can use color codes (e.g., `&6`) in their nicknames.
+*   **godModeAllow**: Globally enable/disable the `/god` command.
+*   **flyAllow**: Globally enable/disable the `/fly` command.
+
+### Teleportation
+Control cooldowns (how long you must wait between uses) and delays (how long you must stand still before teleporting).
+
+| Setting                                | Description            |
+| -------------------------------------- | ---------------------- |
+| `spawnTeleportDelay` / `spawnCooldown` | Settings for `/spawn`. |
+| `warpTeleportDelay` / `warpCooldown`   | Settings for `/warp`.  |
+| `homeTeleportDelay` / `homeCooldown`   | Settings for `/home`.  |
+| `tpaTeleportDelay` / `tpaCooldown`     | Settings for `/tpa`.   |
+| `backTeleportDelay` / `backCooldown`   | Settings for `/back`.  |
+| `rtpCooldown` / `rtpDelay`             | Settings for `/rtp`.   |
+
+### RTP (Random Teleport)
+*   **minRadius**: The minimum distance from spawn to teleport.
+*   **maxRadius**: The maximum distance from spawn to teleport.
+
+### Homes
+*   **homesLimit**: The default maximum number of homes a player can set. This can be overridden with permissions (see [Homes System](../commands/homes.mdx)).
+
+## 2. `commands.yml`
+
+This file allows you to enable or disable specific commands and define custom aliases.
+
+**Example Structure:**
+```yaml
+gamemode:
+  # Whether the command is registered
+  enabled: true
+  # List of alternate commands that trigger this
+  aliases:
+    - "gm"
+```
+
+If you want to disable `/tpa` entirely or change `/gmc` to run `/gamemode creative`, you can do it here.

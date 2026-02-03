@@ -3,7 +3,29 @@ title: Necessities
 sidebar_position: 1
 hide_title: true
 ---
-import ProjectHeader from "@site/src/components/projects/project-header"
-import { projectsBySlug } from "@site/src/lib/projects"
+
+import ProjectHeader from "@site/src/components/projects/project-header";
+import { projectsBySlug } from "@site/src/lib/projects";
+import Admonition from '@theme/Admonition';
 
 <ProjectHeader {...projectsBySlug["necessities"]} />
+
+<Admonition type="info" title="What is Necessities?">
+    **Necessities** is a modern, cross-platform equivalent to the classic "Essentials" plugins found on Bukkit/Spigot servers. It provides the core commands and utilities that every server needs: teleportation, homes, kits, moderation tools, and more.
+</Admonition>
+
+## Key Features
+
+*   **Teleportation:** Robust `/tpa`, `/home`, `/warp`, and `/spawn` systems with configurable delays and cooldowns.
+*   **Player Utilities:** Heal, feed, fly, god mode, and speed management.
+*   **Inventory Management:** Access Ender Chests (`/enderchest`) and view other players' inventories (`/invsee`) remotely.
+*   **Kits:** Create custom kits using JSON files to give players starter gear or rewards.
+*   **Moderation:** Vanish mode, broadcasting, and nickname management.
+*   **World Control:** Easily change time and weather with shorthand commands.
+*   **Cross-Platform:** Works on both **Fabric** and **NeoForge** using the same codebase.
+
+## Integration
+
+Necessities integrates seamlessly with:
+*   **Fabric Permissions API** (Fabric) / **PermissionAPI** (NeoForge) for granular command control.
+*   **YAML Config** for easy-to-read configuration files.

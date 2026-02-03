@@ -1,0 +1,52 @@
+---
+title: Installation
+---
+
+import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+
+Necessities is a server-side mod. While it can be installed on the client for single-player use, its primary function is for multiplayer servers.
+
+## Requirements
+
+To run Necessities, you must have the following installed:
+
+1.  **[Architectury API](https://www.curseforge.com/minecraft/mc-mods/architectury-api)**
+2.  **[YAML Config](https://www.curseforge.com/minecraft/mc-mods/yaml-config)**
+3.  **[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)** (Fabric Users Only)
+
+## Installation Steps
+
+1.  Download the `.jar` file for **Necessities** from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/necessities) or [Modrinth](https://modrinth.com/mod/necessities).
+2.  Download the matching versions of **Architectury API** and **YAML Config**.
+3.  Place all files into your server's `mods` folder.
+4.  Restart the server.
+
+<Tabs>
+    <TabItem value="fabric" label="Fabric" default>
+        **Structure:**
+        ```
+        /mods
+        ├── architectury-x.x.x-fabric.jar
+        ├── fabric-api-x.x.x.jar
+        ├── necessities-x.x.x-fabric.jar
+        └── yaml-config-x.x.x-fabric.jar
+        ```
+    </TabItem>
+    <TabItem value="neoforge" label="NeoForge">
+        **Structure:**
+        ```
+        /mods
+        ├── architectury-x.x.x-neoforge.jar
+        ├── necessities-x.x.x-neoforge.jar
+        └── yaml-config-x.x.x-neoforge.jar
+        ```
+    </TabItem>
+</Tabs>
+
+## Permissions Setup
+
+Necessities uses the standard permissions API for each platform.
+
+*   **Fabric:** It is highly recommended to install a permissions manager mod like **LuckPerms**. If no permissions mod is installed, commands will default to Vanilla OP levels (Level 2 for most commands, Level 4 for admin commands).
+*   **NeoForge:** Uses the internal NeoForge permission system. A manager like **LuckPerms** is also recommended here to utilize specific permission nodes.
