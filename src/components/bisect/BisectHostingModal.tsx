@@ -73,7 +73,7 @@ export default function BisectHostingDialog({}) {
                                 asChild
                             >
                                 <a
-                                    href="https://bisecthosting.com/DAQEM"
+                                    href="https://bisecthosting.com/DAQEM?ref=Modal"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -99,7 +99,7 @@ export default function BisectHostingDialog({}) {
                             asChild
                         >
                             <a
-                                href="https://bisecthosting.com/DAQEM"
+                                href="https://bisecthosting.com/DAQEM?ref=Modal"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
