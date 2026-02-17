@@ -283,14 +283,6 @@ const config: Config = {
             },
         ],
     ],
-    scripts: [
-        {
-            src: 'https://s.nitropay.com/ads-YOUR_ID_HERE.js', // GET THIS URL FROM NITROPAY DASHBOARD
-            async: true,
-            'data-cfasync': 'false',
-            id: 'nitropay_script' // Optional ID
-        },
-    ],
 };
 
 export default config;
