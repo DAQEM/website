@@ -9,6 +9,7 @@ import DocSidebarItems from "@theme/DocSidebarItems";
 import clsx from "clsx";
 import { type ReactNode, useState } from "react";
 
+import { Button } from "@/components/ui/button";
 import Link from "@docusaurus/Link";
 import CurseForge from "@site/src/components/icons/curseforge";
 import GitHub from "@site/src/components/icons/github";
@@ -144,6 +145,18 @@ export default function DocSidebarDesktopContent({
                     />
                 </ul>
             </nav>
+
+            <div className="p-4 bg-card-background border-t border-border mt-auto shrink-0 flex flex-col gap-4">
+                <p className="text-sm m-0">
+                    Need a server for{" "}
+                    <strong>{project?.name || "Minecraft"}</strong>?
+                </p>
+                <Button variant="default" size="sm" asChild className="w-full">
+                    <a href="https://bisecthosting.com/DAQEM?r=Sidebar" target="_blank">
+                        Use code <span>'DAQEM'</span> (25% off)
+                    </a>
+                </Button>
+            </div>
         </div>
     );
 }

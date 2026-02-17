@@ -176,7 +176,7 @@ const config: Config = {
         },
         announcementBar: {
             id: "bisect_hosting_partner",
-            content: `Partnered with <strong class="text-white">BisectHosting</strong>! Use code <span class="font-mono bg-white/10 px-1 rounded mx-1 text-base">DAQEM</span> for <strong class="text-green-400">25% OFF</strong>. <a href="https://bisecthosting.com/DAQEM" target="_blank" rel="noopener noreferrer" class="underline decoration-blue-400 hover:text-blue-300 mx-2 font-bold">Get Server</a> <button id="bisect-learn-more" class="underline decoration-zinc-400 hover:text-white cursor-pointer bg-transparent border-0 p-0 text-inherit font-medium">Learn More</button>`,
+            content: `Partnered with <strong class="text-white">BisectHosting</strong>! Use code <span class="font-mono bg-white/10 px-1 rounded mx-1 text-base">DAQEM</span> for <strong class="text-green-400">25% OFF</strong>. <a href="https://bisecthosting.com/DAQEM?r=AnnouncementBar" target="_blank" rel="noopener noreferrer" class="underline decoration-blue-400 hover:text-blue-300 mx-2 font-bold">Get Server</a> <button id="bisect-learn-more" class="underline decoration-zinc-400 hover:text-white cursor-pointer bg-transparent border-0 p-0 text-inherit font-medium">Learn More</button>`,
             backgroundColor: "var(--ifm-color-primary)",
             textColor: "#ffffff",
             isCloseable: true,
@@ -282,6 +282,14 @@ const config: Config = {
                 ],
             },
         ],
+    ],
+    scripts: [
+        {
+            src: 'https://s.nitropay.com/ads-YOUR_ID_HERE.js', // GET THIS URL FROM NITROPAY DASHBOARD
+            async: true,
+            'data-cfasync': 'false',
+            id: 'nitropay_script' // Optional ID
+        },
     ],
 };
 
