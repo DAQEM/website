@@ -1,0 +1,53 @@
+---
+title: Project Setup
+description: Initializing the Knot API in your mod.
+---
+
+Once the dependencies are installed, you need to initialize Knot in your Common source set.
+
+### 1. Create the API Instance
+
+In your main mod class (Common), create a static instance of `Knot`. This object will be your gateway to all Knot features.
+
+```java title="MyMod.java"
+public class MyMod {
+    public static final String MOD_ID = "my_mod";
+
+    // Create the API instance
+    public static final Knot API = new Knot(MOD_ID);
+
+    public static void init() {
+        // Initialize your registries, networking, etc. here
+        MyRegistries.init();
+        MyNetworking.init();
+    }
+}
+```
+
+### 2. Platform Entrypoints
+
+You must call your `init()` method from the platform-specific loaders.
+
+**Fabric (`MyModFabric.java`):**
+```java
+public class MyModFabric implements ModInitializer {
+    @Override
+    public void onInitialize() {
+        MyMod.init();
+    }
+}
+```
+
+**NeoForge (`MyModNeoForge.java`):**
+```java
+@Mod(MyMod.MOD_ID)
+public class MyModNeoForge {
+    public MyModNeoForge() {
+        MyMod.init();
+    }
+}
+```
+
+:::info
+Knot automatically detects the platform it is running on. You do not need to pass platform information to the `Knot` constructor.
+:::

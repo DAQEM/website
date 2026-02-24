@@ -1,0 +1,73 @@
+---
+title: Networking
+description: Sending packets between Client and Server.
+---
+
+Knot utilizes modern Minecraft `record` packets and `StreamCodec`s.
+
+### Defining a Packet
+
+Packets must implement `CustomPacketPayload`.
+
+```java
+public record MyPacket(String message, int number) implements CustomPacketPayload {
+
+    public static final Type<MyPacket> TYPE = new Type<>(MyMod.API.getId("my_packet"));
+
+    // Codec defines how to write/read the data
+    public static final StreamCodec<RegistryFriendlyByteBuf, MyPacket> CODEC = StreamCodec.composite(
+        ByteBufCodecs.STRING_UTF8, MyPacket::message,
+        ByteBufCodecs.INT, MyPacket::number,
+        MyPacket::new
+    );
+
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
+    }
+}
+```
+
+### Handling Packets
+
+Create a handler method.
+
+**Clientbound:**
+```java
+public static void handleClient(MyPacket payload, ClientboundContext context) {
+    Player player = context.player();
+    MyMod.API.info("Received on client: " + payload.message());
+}
+```
+
+**Serverbound:**
+```java
+public static void handleServer(MyPacket payload, ServerboundContext context) {
+    ServerPlayer player = context.player();
+    // Verify permissions, log logic, etc.
+}
+```
+
+### Registration
+
+Register your packets during your mod initialization.
+
+```java
+public static void init() {
+    Knot.NETWORKING.registerClientbound(MyPacket.TYPE, MyPacket.CODEC, MyPacketHandler::handleClient);
+    Knot.NETWORKING.registerServerbound(MyOtherPacket.TYPE, MyOtherPacket.CODEC, MyPacketHandler::handleServer);
+}
+```
+
+### Sending Packets
+
+```java
+// Send to Server
+Knot.NETWORKING.sendToServer(new MyPacket("Hello", 1));
+
+// Send to Player
+Knot.NETWORKING.sendToPlayer(serverPlayer, new MyPacket("Welcome", 2));
+
+// Send to All
+Knot.NETWORKING.sendToPlayers(serverLevel.players(), new MyPacket("Broadcast", 3));
+```

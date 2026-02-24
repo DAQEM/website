@@ -67,7 +67,7 @@ export default function DocSidebarDesktopContent({
                         <img
                             src={`/img/projects/${project.slug}.webp`}
                             alt={project.name}
-                            className="size-16"
+                            className="size-16 rounded-lg"
                         />
                     </Link>
                     <div className="flex flex-col justify-between gap-2">
@@ -152,7 +152,10 @@ export default function DocSidebarDesktopContent({
                     <strong>{project?.name || "Minecraft"}</strong>?
                 </p>
                 <Button variant="default" size="sm" asChild className="w-full">
-                    <a href="https://bisecthosting.com/DAQEM?r=Sidebar" target="_blank">
+                    <a
+                        href="https://bisecthosting.com/DAQEM?r=Sidebar"
+                        target="_blank"
+                    >
                         Use code <span>'DAQEM'</span> (25% off)
                     </a>
                 </Button>
