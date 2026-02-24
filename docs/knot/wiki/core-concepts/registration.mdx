@@ -1,0 +1,67 @@
+---
+title: Registration
+description: Unified registration for Blocks, Items, Entities, and more.
+---
+
+Knot provides a wrapper around vanilla registries that works seamlessly across Fabric and NeoForge.
+
+### Creating a Registry
+
+Use `Knot.REGISTRAR` (or `API.register(...)`) to create a wrapper for a vanilla registry.
+
+```java
+public class MyItems {
+    // Create a registry wrapper for Items
+    public static final KnotRegistry<Item> ITEMS = MyMod.API.register(BuiltInRegistries.ITEM);
+
+    // ... registration entries ...
+
+    public static void register() {
+        // Finalize registration
+        ITEMS.register();
+    }
+}
+```
+
+### Registering Entries
+
+There are two ways to register entries.
+
+#### 1. Standard Supplier
+Useful for objects that do not require their own ResourceKey during construction.
+
+```java
+public static final RegistryEntry<Item> MY_ITEM = ITEMS.register("my_item",
+    () -> new Item(new Item.Properties()));
+```
+
+#### 2. Key-Aware Function (1.21.2+)
+Modern Minecraft Blocks and Items often require their `ResourceKey` (ID) to be set in properties. Knot facilitates this.
+
+```java
+public static final RegistryEntry<Block> MY_BLOCK = BLOCKS.register("my_block",
+    key -> new Block(BlockBehaviour.Properties.of().setId(key))
+);
+```
+
+### Registering Entity Attributes
+
+Registering Entity Attributes (like max health or speed) is notoriously different between loaders. Knot unifies this:
+
+```java
+public static void registerAttributes() {
+    MyMod.API.registerAttribute(
+        MyEntityTypes.MY_ENTITY,
+        MyEntity::createAttributes
+    );
+}
+```
+
+### Accessing Entries
+
+The `RegistryEntry<T>` object works like a Supplier.
+
+```java
+Item item = MyItems.MY_ITEM.get();
+ResourceLocation id = MyItems.MY_ITEM.getId();
+```

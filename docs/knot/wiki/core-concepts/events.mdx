@@ -1,0 +1,44 @@
+---
+title: Events
+description: Hooking into game logic using the Knot Event Bus.
+---
+
+Knot abstracts common game events so you don't have to write Mixins for basic interactions.
+
+### Registering a Listener
+
+Events are accessed via static fields in event classes.
+
+```java
+// Listen for a player jumping
+KnotPlayerEvent.JUMP.register(player -> {
+    MyMod.API.info(player.getName().getString() + " jumped!");
+});
+```
+
+### Event Result
+
+Some events are cancellable or require a return value. These return an `EventResult`.
+
+*   `EventResult.PASS`: Continue processing other listeners/vanilla logic.
+*   `EventResult.INTERRUPT`: Stop processing (Cancel the event).
+*   `EventResult.INTERRUPT_TRUE` / `INTERRUPT_FALSE`: Stop processing and return a specific boolean value (e.g., for interaction results).
+
+```java
+// Prevent breaking diamond blocks
+KnotBlockEvent.BREAK_BLOCK.register((level, pos, state, player, xp) -> {
+    if (state.is(Blocks.DIAMOND_BLOCK)) {
+        return EventResult.INTERRUPT; // Cancel break
+    }
+    return EventResult.PASS;
+});
+```
+
+### Available Event Categories
+
+*   **`KnotTickEvent`**: Server, Level, and Player ticks.
+*   **`KnotBlockEvent`**: Break, Place, Right-Click, Crop Harvest/Plant, Farmland Tilling.
+*   **`KnotPlayerEvent`**: Jump, Death, Respawn, Dimension Change, Sleep, Eat/Drink.
+*   **`KnotEntityEvent`**: Hurt, Death, Interaction, Taming, Breeding.
+*   **`KnotItemEvent`**: Craft, Smelt, Drop, Pickup, Use.
+*   **`KnotMovementEvent`**: Walk, Sprint, Swim, Elytra, Horse Riding (with distance calculations).

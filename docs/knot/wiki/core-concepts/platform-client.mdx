@@ -1,0 +1,50 @@
+---
+title: Platform & Client
+description: Handling environment specifics and client-side rendering.
+---
+
+### Platform Info
+
+Use `Knot.PLATFORM` to query information about the running environment.
+
+```java
+// Check if a specific mod is loaded
+if (Knot.PLATFORM.isModLoaded("jei")) {
+    // ...
+}
+
+// Check if we are in dev environment
+if (Knot.PLATFORM.isDevelopmentEnvironment()) {
+    // ...
+}
+
+// Get config folder
+Path configDir = Knot.PLATFORM.getConfigFolder();
+```
+
+### Side Execution
+
+To prevent `ClassNotFoundException` on dedicated servers, use the safe execution helpers:
+
+```java
+// Only runs on the physical client
+Knot.PLATFORM.executeOnPhysicalClient(() -> MyClientSetup::init);
+
+// Only runs on the dedicated server
+Knot.PLATFORM.executeOnDedicatedServer(() -> MyServerSetup::init);
+```
+
+### Entity Renderers
+
+Registering Entity Renderers must be done on the client side.
+
+```java
+public class MyClientSetup {
+    public static void init() {
+        MyMod.API.registerEntityRenderer(
+            MyEntityTypes.TEST_ENTITY,
+            PigRenderer::new
+        );
+    }
+}
+```

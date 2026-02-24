@@ -1,0 +1,49 @@
+---
+title: Installation
+description: How to add Knot to your development environment.
+---
+
+To use Knot in your multi-loader project (Fabric/NeoForge), you need to add it to your `build.gradle` and `gradle.properties`.
+
+### Repositories
+
+First, add the DAQEM Studios Maven to your build script.
+
+```groovy
+repositories {
+    maven { url "https://maven.daqem.com/releases" }
+}
+```
+
+### Dependencies
+
+Add the dependency for **Knot**.
+
+```groovy
+dependencies {
+    // Replace ${knot_version} with the latest version (e.g. 19.0.0)
+    modImplementation "com.daqem.knot:knot-common:${knot_version}"
+}
+```
+
+If you are using an Architectury-style setup, ensure you add the platform-specific jars to your Fabric and NeoForge subprojects:
+
+**Fabric `build.gradle`:**
+```groovy
+dependencies {
+    modImplementation "com.daqem.knot:knot-fabric:${knot_version}"
+}
+```
+
+**NeoForge `build.gradle`:**
+```groovy
+dependencies {
+    modImplementation "com.daqem.knot:knot-neoforge:${knot_version}"
+}
+```
+
+### Versioning
+
+Knot follows the DAQEM Studios versioning strategy:
+*   **Major Version:** Matches the Minecraft "Game Drop" / Architectury Major version (e.g., `19.x.x` for Minecraft 1.21.11).
+*   **Minor/Patch:** Feature updates and bug fixes.

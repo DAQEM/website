@@ -13,7 +13,11 @@ const ProjectCard = ({ name, description, slug }: ProjectCardProps) => {
             className="grid grid-cols-[64px_1fr] md:grid-cols-[96px_1fr] grid-rows-[max-content_max-content] mc-button gap-4 no-underline"
         >
             <div className="size-16 md:size-24">
-                <img src={`/img/projects/${slug}.webp`} alt={name} />
+                <img
+                    src={`/img/projects/${slug}.webp`}
+                    alt={name}
+                    className="rounded-lg"
+                />
             </div>
             <div>
                 <h3 className="m-0 text-3xl leading-8 text-white">{name}</h3>

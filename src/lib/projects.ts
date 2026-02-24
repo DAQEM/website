@@ -57,6 +57,15 @@ export const projectsBySlug: Record<string, Project> = {
         modrinthSlug: "mod/jobs-remastered",
         githubSlug: "DAQEM/JobsPlusRemastered",
     },
+    knot: {
+        name: "Knot",
+        description:
+            "A lightweight unified API tying Fabric and NeoForge together.",
+        slug: "knot",
+        curseForgeSlug: "mc-mods/knot",
+        modrinthSlug: "mod/knot",
+        githubSlug: "DAQEM/Knot",
+    },
     "tiny-mob-farm-remastered": {
         name: "Tiny Mob Farm Remastered",
         description:

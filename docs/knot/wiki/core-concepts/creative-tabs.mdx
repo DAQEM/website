@@ -1,0 +1,54 @@
+---
+title: Creative Tabs
+description: Creating custom tabs and modifying vanilla tabs.
+---
+
+Knot unifies the Creative Mode Tab system, which differs significantly between loaders regarding registration order and modifying existing tabs.
+
+### Creating a Custom Tab
+
+You register tabs just like Items or Blocks.
+
+```java
+public static final RegistryEntry<CreativeModeTab> MY_TAB = TABS.register("my_tab", () ->
+    Knot.CREATIVE_TABS.buildTab(
+        Component.translatable("itemGroup.my_mod.my_tab"), 
+        () -> new ItemStack(MyItems.MY_ICON_ITEM.get())
+    )
+);
+```
+
+### Adding Items to Tabs
+
+#### 1. In Item Properties (Recommended)
+Knot injects a helper method into `Item.Properties` to assign an item to a tab immediately upon creation.
+
+```java
+RegistryEntry<Item> MY_SWORD = ITEMS.register("my_sword", key ->
+    new Item(new Item.Properties()
+        .setId(key)
+        .knot$tab(MyCreativeTabs.MY_TAB.getKey()) // Add to custom tab
+    )
+);
+```
+
+#### 2. Modifying Vanilla Tabs
+To add your items to standard tabs (like Ingredients or Combat):
+
+```java
+public static void registerTabs() {
+    Knot.CREATIVE_TABS.modifyTab(VanillaTabs.INGREDIENTS, populator -> {
+        populator.add(MyItems.MY_DUST.get());
+        populator.addAfter(Items.IRON_INGOT, MyItems.MY_INGOT.get());
+    });
+}
+```
+
+### Vanilla Tab Keys
+Since vanilla `CreativeModeTabs` keys are private/hard to access directly in common code, Knot provides `VanillaTabs`:
+
+*   `VanillaTabs.BUILDING_BLOCKS`
+*   `VanillaTabs.COMBAT`
+*   `VanillaTabs.INGREDIENTS`
+*   `VanillaTabs.FOOD_AND_DRINKS`
+*   ...and more.
