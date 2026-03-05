@@ -9,14 +9,13 @@ DAQEM Studios follows a structured **Major.Minor.Patch** versioning system. Our 
 ## How Versioning Works
 
 ### 1. Major Version (Minecraft Version Compatibility)
-To simplify compatibility, our **Major version** always matches the **Major version of the Architectury API**.
-
-Since Architectury API releases a new major version for every significant Minecraft "Game Drop," our major version acts as a direct indicator of which Minecraft version the mod is for. Each time Minecraft releases a new Game Drop, our major version increases.
+To simplify compatibility, our **Major version** starts at 1 for Minecraft 1.20 and increments by 1 for each new Minecraft Update/Game Drop. This means that if you see a mod version `19.x.x`, you can immediately know it is compatible with Minecraft 1.21.11, regardless of the minor or patch numbers.
 
 | Minecraft Version | Major Version |
 | ----------------- | ------------- |
-| **1.21.1**        | `13.x.x`      |
-| **1.21.4**        | `15.x.x`      |
+| **1.20**          | `1.x.x`       |
+| **1.21**          | `8.x.x`       |
+| **1.21.4**        | `12.x.x`      |
 | **1.21.11**       | `19.x.x`      |
 
 ### 2. Minor Version (Feature Parity)
@@ -51,33 +50,33 @@ While we update for every Game Drop, we only **down-port** new features (Minor v
 
 ## Summary Table
 
-| Change Type                 | Version Component | Example             |
-| --------------------------- | ----------------- | ------------------- |
-| **New Minecraft Game Drop** | Major             | `18.x.x` → `19.x.x` |
-| **New Feature / Down-port** | Minor             | `19.0.x` → `19.1.0` |
-| **Specific Bug Fix**        | Patch             | `13.0.0` → `13.0.1` |
+| Change Type                  | Version Component | Example             |
+| ---------------------------- | ----------------- | ------------------- |
+| **New Minecraft Game Drop**  | Major             | `18.x.x` → `19.x.x` |
+| **New Feature / Down-port**  | Minor             | `19.0.x` → `19.1.0` |
+| **Version Specific Bug Fix** | Patch             | `13.0.0` → `13.0.1` |
 
 ## Version Mapping Table
 Use this table to identify which DAQEM Studios **Major Version** corresponds to your Minecraft version.
 
-| Minecraft Version          | Major Version | Support Level¹                 |
-| -------------------------- | ------------- | ------------------------------ |
-| **1.16.4, 1.16.5**         | `1`           | Intermediate (Fixes only)      |
-| **1.17, 1.17.1**           | `2`           | Intermediate (Fixes only)      |
-| **1.18, 1.18.1**           | `3`           | Intermediate (Fixes only)      |
-| **1.18.2**                 | `4`           | Intermediate (Fixes only)      |
-| **1.19**                   | `5`           | Intermediate (Fixes only)      |
-| **1.19.1, 1.19.2**         | `6`           | Intermediate (Fixes only)      |
-| **1.19.3**                 | `7`           | Intermediate (Fixes only)      |
-| **1.19.4**                 | `8`           | Intermediate (Fixes only)      |
-| **1.20, 1.20.1**           | `9`           | **Popular** (Features & Fixes) |
-| **1.20.2**                 | `10`          | Intermediate (Fixes only)      |
-| **1.20.4**                 | `11`          | Intermediate (Fixes only)      |
-| **1.20.5, 1.20.6**         | `12`          | Intermediate (Fixes only)      |
-| **1.21, 1.21.1**           | `13`          | **Popular** (Features & Fixes) |
-| **1.21.2, 1.21.3**         | `14`          | Intermediate (Fixes only)      |
-| **1.21.4**                 | `15`          | Intermediate (Fixes only)      |
-| **1.21.5**                 | `16`          | Intermediate (Fixes only)      |
-| **1.21.6, 1.21.7, 1.21.8** | `17`          | Intermediate (Fixes only)      |
-| **1.21.9, 1.21.10**        | `18`          | Intermediate (Fixes only)      |
-| **1.21.11**                | `19`          | **Latest** (Full Support)      |
+| Minecraft Version | Major Version | Support Level¹                 |
+| ----------------- | ------------- | ------------------------------ |
+| **1.20**          | `1`           | **Popular** (Features & Fixes) |
+| **1.20.1**        | `2`           | **Popular** (Features & Fixes) |
+| **1.20.2**        | `3`           | Intermediate (Fixes only)      |
+| **1.20.3**        | `4`           | Intermediate (Fixes only)      |
+| **1.20.4**        | `5`           | Intermediate (Fixes only)      |
+| **1.20.5**        | `6`           | Intermediate (Fixes only)      |
+| **1.20.6**        | `7`           | Intermediate (Fixes only)      |
+| **1.21**          | `8`           | **Popular** (Features & Fixes) |
+| **1.21.1**        | `9`           | **Popular** (Features & Fixes) |
+| **1.21.2**        | `10`          | Intermediate (Fixes only)      |
+| **1.21.3**        | `11`          | Intermediate (Fixes only)      |
+| **1.21.4**        | `12`          | Intermediate (Fixes only)      |
+| **1.21.5**        | `13`          | Intermediate (Fixes only)      |
+| **1.21.6**        | `14`          | Intermediate (Fixes only)      |
+| **1.21.7**        | `15`          | Intermediate (Fixes only)      |
+| **1.21.8**        | `16`          | Intermediate (Fixes only)      |
+| **1.21.9**        | `17`          | Intermediate (Fixes only)      |
+| **1.21.10**       | `18`          | Intermediate (Fixes only)      |
+| **1.21.11**       | `19`          | **Latest** (Full Support)      |
