@@ -7,6 +7,7 @@ The `ConfigBuilder` is the entry point for creating configurations. It handles t
 You should build your config during your mod's **initialization phase** (e.g., `onInitialize` in Fabric or the constructor/`FMLCommonSetupEvent` in NeoForge).
 
 When `builder.build()` is called:
+
 1.  The file is loaded from the disk (if it exists).
 2.  If keys are missing, defaults are populated.
 3.  The file is saved back to disk (ensuring new keys are written).
@@ -61,10 +62,10 @@ public class MyModConfig {
 
 YAML Config uses a stack to determine the current nesting level.
 
-*   **`push(String key)`**: Creates a new category (or "Map Node") under the current context and makes it the active context.
-*   **`pop()`**: Returns to the parent context.
+- **`push(String key)`**: Creates a new category (or "Map Node") under the current context and makes it the active context.
+- **`pop()`**: Returns to the parent context.
 
-:::danger Important
+:::danger[Important]
 Always ensure you have an equal number of `push` and `pop` calls. If you call `pop()` on the root level, an exception will be thrown.
 :::
 

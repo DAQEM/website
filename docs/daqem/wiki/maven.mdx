@@ -5,7 +5,7 @@ description: How to use DAQEM Studios' public Maven repository for mod and libra
 
 DAQEM Studios hosts a public Maven repository for developers to depend on our libraries and mods.
 
-:::important 2026 Versioning Strategy
+:::important[2026 Versioning Strategy]
 Only mods and libraries that follow our [2026 Versioning Strategy](/docs/daqem/wiki/versioning) are hosted on this Maven. Legacy versions are not available on our Maven Repository. For legacy versions, use [CurseMaven](https://www.cursemaven.com/) or [Modrinth Maven](https://support.modrinth.com/en/articles/8801191-modrinth-maven).
 :::
 
@@ -25,6 +25,7 @@ We provide two repositories based on the stability of the build.
 Add the following to your `build.gradle` or `settings.gradle` file:
 
 ### Groovy
+
 ```kotlin
 repositories {
     maven {
@@ -35,6 +36,7 @@ repositories {
 ```
 
 ### Kotlin
+
 ```kotlin
 repositories {
     maven {
@@ -81,6 +83,7 @@ dependencies {
 ```
 
 ## Snapshot Versions
+
 Snapshot versions should not be used in production environments. They are intended for development purposes only. We mainly use snapshots when porting to new Minecraft versions so we can publish all mods at the same time since a lot of them depend on each other. To use snapshot versions, change the repository URL to the snapshots URL:
 
 ```kotlin

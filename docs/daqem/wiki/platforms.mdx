@@ -10,8 +10,8 @@ At DAQEM Studios, we strive to make our mods accessible to as many players as po
 
 Our support strategy helps us maintain stability while embracing the future of Minecraft modding. We adhere to the following strict platform split:
 
-| Minecraft Version     | Supported Mod Loaders         |
-| --------------------- | ----------------------------- |
+| Minecraft Version     | Supported Mod Loaders           |
+| --------------------- | ------------------------------- |
 | **1.21.1 and Higher** | ✅ **NeoForge** & ✅ **Fabric** |
 | **1.20.1 and Lower**  | ✅ **Forge** & ✅ **Fabric**    |
 
@@ -22,14 +22,16 @@ Our support strategy helps us maintain stability while embracing the future of M
 To maintain high-quality mods across multiple platforms simultaneously without slowing down development, we utilize **Architectury API**.
 
 ### What is Architectury?
+
 Architectury API is an intermediate library that acts as a bridge between our mod code and the specific mod loader (Forge, Fabric, or NeoForge). Instead of writing the same code three times for three different platforms, we write our logic once using Architectury's events and hooks. The API then translates that logic into instructions the specific mod loader understands.
 
 ### Why do we use it?
+
 1.  **Faster Updates:** When a new Minecraft version is released, we can update our mods significantly faster because the core logic often remains compatible.
 2.  **Unified Codebase:** Bugs are fixed in one place and applied to all platforms instantly. This reduces platform-specific bugs.
 3.  **Feature Parity:** Users on Fabric get the exact same features as users on NeoForge/Forge, ensuring a consistent experience regardless of your loader preference.
 
-:::warning Dependency Required
+:::warning[Dependency Required]
 Because our mods rely on this abstraction layer, **Architectury API is a required dependency** for almost all DAQEM Studios mods. You must install the version of Architectury API matching your Minecraft version and Mod Loader.
 :::
 
@@ -38,39 +40,46 @@ Because our mods rely on this abstraction layer, **Architectury API is a require
 ## Platform Details
 
 ### Fabric
+
 **Supported Versions:** All
 
 **Fabric** is a lightweight, modular mod loader known for its speed and efficient update cycle. We support Fabric across all maintained versions of our mods (both 1.20.1- and 1.21+).
 
-*   **Requirements:** You will typically need the **Fabric Loader** and the **Fabric API** mod installed alongside **Architectury API** and our projects.
+- **Requirements:** You will typically need the **Fabric Loader** and the **Fabric API** mod installed alongside **Architectury API** and our projects.
 
 ### NeoForge
+
 **Supported Versions:** 1.21.1+
 
 **NeoForge** is a fork of Forge created by nearly the entire original Forge team. It represents the modern standard for the "Forge-style" modding ecosystem.
 Starting with Minecraft 1.21, DAQEM Studios has migrated exclusively to NeoForge for our heavier mod loader support.
 
-*   **Why the switch?** NeoForge offers a cleaner development environment and a robust community structure that aligns with our goals for long-term maintenance.
-*   **Compatibility:** NeoForge is **not** compatible with standard Forge.
+- **Why the switch?** NeoForge offers a cleaner development environment and a robust community structure that aligns with our goals for long-term maintenance.
+- **Compatibility:** NeoForge is **not** compatible with standard Forge.
 
 ### Forge
+
 **Supported Versions:** 1.20.1 and older
 
 **Minecraft Forge** was the standard mod loader for many years. We continue to support Forge for our "Legacy" versions (1.20.1, 1.19.x, etc.).
 
-*   **Future Support:** We do not plan to develop new updates for Forge on Minecraft versions 1.21 or higher. Our focus for those versions is strictly NeoForge.
+- **Future Support:** We do not plan to develop new updates for Forge on Minecraft versions 1.21 or higher. Our focus for those versions is strictly NeoForge.
 
 ---
 
 ## Frequently Asked Questions
 
 ### Can I use your 1.21 mod on standard Forge?
+
 No. For Minecraft 1.21 and above, we only release files for **NeoForge** and **Fabric**. The internal architecture differences between Forge and NeoForge in modern versions are significant enough that we cannot support both simultaneously.
 
 ### Does "Fabric" support include Quilt?
+
 While we do not officially test against **Quilt**, most of our Fabric mods should work on Quilt due to its backward compatibility with Fabric mods. However, if you encounter a crash specific to Quilt, we may not be able to offer support.
 
 ### Where can I find the correct file?
+
 When downloading our mods from CurseForge or Modrinth, pay close attention to the **Game Version** and the **Mod Loader** tag.
-*   For **1.21+**: Look for the NeoForge or Fabric tag.
-*   For **1.20.1-**: Look for the Forge or Fabric tag.
+
+- For **1.21+**: Look for the NeoForge or Fabric tag.
+- For **1.20.1-**: Look for the Forge or Fabric tag.

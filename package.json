@@ -16,10 +16,11 @@
         "preview": "npm run build && wrangler pages dev ./build"
     },
     "dependencies": {
-        "@docusaurus/core": "^3.9.2",
-        "@docusaurus/plugin-google-gtag": "^3.9.2",
-        "@docusaurus/plugin-pwa": "^3.9.2",
-        "@docusaurus/preset-classic": "^3.9.2",
+        "@docusaurus/core": "^3.10.1",
+        "@docusaurus/faster": "^3.10.1",
+        "@docusaurus/plugin-google-gtag": "^3.10.1",
+        "@docusaurus/plugin-pwa": "^3.10.1",
+        "@docusaurus/preset-classic": "^3.10.1",
         "@easyops-cn/docusaurus-search-local": "^0.52.1",
         "@mdx-js/react": "^3.0.0",
         "@radix-ui/react-alert-dialog": "^1.1.15",
@@ -68,5 +69,9 @@
     },
     "engines": {
         "node": ">=18.0"
+    },
+    "overrides": {
+        "serialize-javascript": "^7.0.7",
+        "uuid": "^11.1.1"
     }
 }
