@@ -34,6 +34,11 @@ const sidebar: SidebarsConfig = {
                     id: "wiki/gradle-setup",
                     label: "Gradle Setup",
                 },
+                {
+                    type: "doc",
+                    id: "wiki/development/contributing",
+                    label: "Contributing",
+                },
             ],
         },
         {
@@ -50,9 +55,22 @@ const sidebar: SidebarsConfig = {
             ],
         },
         {
-            type: "link",
+            type: "category",
             label: "🆘 Support",
-            href: "/docs/daqem/wiki/support/",
+            collapsed: false,
+            link: { type: "doc", id: "wiki/support/index" },
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/support/discord",
+                    label: "Discord",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/support/reporting-issues",
+                    label: "Reporting Issues",
+                },
+            ],
         },
     ],
 };

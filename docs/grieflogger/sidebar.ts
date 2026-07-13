@@ -160,8 +160,8 @@ const sidebar: SidebarsConfig = {
                     label: "Gradle Setup",
                 },
                 {
-                    type: "doc",
-                    id: "wiki/development/contributing",
+                    type: "link",
+                    href: "/docs/daqem/wiki/development/contributing",
                     label: "Contributing",
                 },
                 {
