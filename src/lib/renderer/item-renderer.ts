@@ -218,6 +218,7 @@ export class ItemRendererService {
             canvas.height = 128;
             const gl = canvas.getContext("webgl2", {
                 preserveDrawingBuffer: true,
+                premultipliedAlpha: false,
             });
             if (!gl) throw new Error("WebGL2 not supported");
             this.glContext = gl;
@@ -239,6 +240,8 @@ export class ItemRendererService {
             const renderer = new ItemRenderer(gl, itemStack, resources, {
                 display_context: "gui",
             });
+            
+            gl.disable(gl.CULL_FACE);
             renderer.drawItem();
 
             return (gl.canvas as HTMLCanvasElement).toDataURL();

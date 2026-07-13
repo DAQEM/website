@@ -9,7 +9,8 @@ const sidebar: SidebarsConfig = {
         },
         {
             type: "category",
-            label: "Wiki",
+            label: "🚀 Getting Started",
+            collapsed: false,
             items: [
                 {
                     type: "doc",
@@ -21,26 +22,37 @@ const sidebar: SidebarsConfig = {
                     id: "wiki/versioning",
                     label: "Version Strategy",
                 },
+            ],
+        },
+        {
+            type: "category",
+            label: "🛠️ Development / API",
+            collapsed: false,
+            items: [
                 {
                     type: "doc",
-                    id: "wiki/maven",
-                    label: "Maven Repository",
-                },
-                {
-                    type: "category",
-                    label: "JSON Formats",
-                    customProps: { emoji: "" },
-                    collapsed: true,
-                    items: [
-                        {
-                            type: "doc",
-                            id: "wiki/json_formats/block",
-                            label: "Block",
-                        },
-                    ],
-                    link: { type: "doc", id: "wiki/json_formats/index" },
+                    id: "wiki/gradle-setup",
+                    label: "Gradle Setup",
                 },
             ],
+        },
+        {
+            type: "category",
+            label: "📄 JSON Formats",
+            collapsed: false,
+            link: { type: "doc", id: "wiki/json_formats/index" },
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/json_formats/block",
+                    label: "Block",
+                },
+            ],
+        },
+        {
+            type: "link",
+            label: "🆘 Support",
+            href: "/docs/daqem/wiki/support/",
         },
     ],
 };

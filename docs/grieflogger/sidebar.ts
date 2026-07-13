@@ -1,7 +1,7 @@
 import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
-export default {
-    wikiSidebar: [
+const sidebar: SidebarsConfig = {
+    sidebar: [
         {
             type: "doc",
             id: "index",
@@ -9,111 +9,85 @@ export default {
         },
         {
             type: "category",
-            label: "Wiki",
+            label: "🚀 Getting Started",
+            collapsed: false,
+            link: { type: "doc", id: "wiki/getting-started/index" },
             items: [
                 {
-                    type: "category",
-                    label: "Getting Started",
-                    collapsed: false,
-                    customProps: {
-                        emoji: "🚀",
-                    },
-                    items: [
-                        {
-                            type: "doc",
-                            id: "wiki/getting-started/installation",
-                            label: "Installation",
-                            customProps: {
-                                emoji: "🚀",
-                            },
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/getting-started/configuration",
-                            label: "Configuration",
-                            customProps: {
-                                emoji: "⚙️",
-                            },
-                        },
-                    ],
-                    link: {
-                        type: "doc",
-                        id: "wiki/getting-started/index",
-                    },
+                    type: "doc",
+                    id: "wiki/getting-started/installation",
+                    label: "Installation",
                 },
+                {
+                    type: "doc",
+                    id: "wiki/getting-started/configuration",
+                    label: "Configuration",
+                },
+            ],
+        },
+        {
+            type: "category",
+            label: "🧩 Core Mechanics / Features",
+            collapsed: false,
+            items: [
                 {
                     type: "category",
                     label: "Player Actions",
                     collapsed: true,
-                    customProps: {
-                        emoji: "🎮",
+                    link: {
+                        type: "doc",
+                        id: "wiki/player-actions/index",
                     },
                     items: [
                         {
                             type: "doc",
                             id: "wiki/player-actions/block-interactions",
                             label: "Block Interactions",
-                            customProps: {
-                                emoji: "🧱",
-                            },
                         },
                         {
                             type: "doc",
                             id: "wiki/player-actions/item-usage",
                             label: "Item Usage",
-                            customProps: {
-                                emoji: "💎",
-                            },
                         },
                         {
                             type: "doc",
                             id: "wiki/player-actions/player-sessions",
                             label: "Player Sessions",
-                            customProps: {
-                                emoji: "➡️",
-                            },
                         },
                         {
                             type: "doc",
                             id: "wiki/player-actions/chat-commands",
                             label: "Chat & Commands",
-                            customProps: {
-                                emoji: "💬",
-                            },
                         },
                     ],
-                    link: {
-                        type: "doc",
-                        id: "wiki/player-actions/index",
-                    },
                 },
                 {
                     type: "category",
                     label: "Inspecting & Lookup",
                     collapsed: true,
-                    customProps: {
-                        emoji: "🔍",
+                    link: {
+                        type: "doc",
+                        id: "wiki/inspecting-lookup/index",
                     },
                     items: [
                         {
                             type: "doc",
                             id: "wiki/inspecting-lookup/inspect-command",
                             label: "Inspect Command",
-                            customProps: {
-                                emoji: "👆",
-                            },
                         },
                         {
                             type: "doc",
                             id: "wiki/inspecting-lookup/lookup-command",
                             label: "Lookup Command",
-                            customProps: {
-                                emoji: "🔎",
-                            },
                         },
                         {
                             type: "category",
                             label: "Filters",
+                            collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/inspecting-lookup/filters/index",
+                            },
                             items: [
                                 {
                                     type: "doc",
@@ -146,117 +120,58 @@ export default {
                                     label: "User Filter",
                                 },
                             ],
-                            link: {
-                                type: "doc",
-                                id: "wiki/inspecting-lookup/filters/index",
-                            },
                         },
                         {
                             type: "doc",
                             id: "wiki/inspecting-lookup/pages",
                             label: "Pages",
-                            customProps: {
-                                emoji: "📖",
-                            },
                         },
                     ],
-                    link: {
-                        type: "doc",
-                        id: "wiki/inspecting-lookup/index",
-                    },
                 },
                 {
                     type: "category",
                     label: "Database",
                     collapsed: true,
-                    customProps: {
-                        emoji: "🗄️",
-                    },
+                    link: { type: "doc", id: "wiki/database/index" },
                     items: [
                         {
                             type: "doc",
                             id: "wiki/database/sqlite",
                             label: "SQLite",
-                            customProps: {
-                                emoji: "📄",
-                            },
                         },
                         {
                             type: "doc",
                             id: "wiki/database/mysql",
                             label: "MySQL / MariaDB",
-                            customProps: {
-                                emoji: "🐬",
-                            },
                         },
                     ],
-                    link: {
-                        type: "doc",
-                        id: "wiki/database/index",
-                    },
-                },
-                {
-                    type: "category",
-                    label: "Development",
-                    collapsed: true,
-                    customProps: {
-                        emoji: "🛠️",
-                    },
-                    items: [
-                        {
-                            type: "doc",
-                            id: "wiki/development/contributing",
-                            label: "Contributing",
-                            customProps: {
-                                emoji: "🧑‍💻",
-                            },
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/development/api",
-                            label: "API",
-                            customProps: {
-                                emoji: "🔌",
-                            },
-                        },
-                    ],
-                    link: {
-                        type: "doc",
-                        id: "wiki/development/index",
-                    },
-                },
-                {
-                    type: "category",
-                    label: "Support",
-                    collapsed: true,
-                    customProps: {
-                        emoji: "🆘",
-                    },
-                    items: [
-                        {
-                            type: "doc",
-                            id: "wiki/support/reporting-issues",
-                            label: "Reporting Issues",
-                            customProps: {
-                                emoji: "🐞",
-                            },
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/support/discord",
-                            label: "Discord",
-                            customProps: {
-                                emoji: "💬",
-                            },
-                        },
-                    ],
-                    link: {
-                        type: "doc",
-                        id: "wiki/support/index",
-                    },
                 },
             ],
-            link: { type: "doc", id: "wiki/index" },
+        },
+        {
+            type: "category",
+            label: "🛠️ Development / API",
+            collapsed: false,
+            link: { type: "doc", id: "wiki/development/index" },
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/development/contributing",
+                    label: "Contributing",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/development/api",
+                    label: "API",
+                },
+            ],
+        },
+        {
+            type: "link",
+            label: "🆘 Support",
+            href: "/docs/daqem/wiki/support/",
         },
     ],
-} as SidebarsConfig;
+};
+
+export default sidebar;

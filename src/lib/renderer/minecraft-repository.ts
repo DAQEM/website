@@ -3,10 +3,9 @@ import { TextureAtlas, upperPowerOfTwo, UV } from "deepslate/render";
 import { cacheManager } from "../cache-manager";
 import { TextureStitcher } from "./texture-stitcher";
 
-const MCMETA_BASE = "https://raw.githubusercontent.com/misode/mcmeta";
-const SUMMARY_BASE = "https://raw.githubusercontent.com/misode/mcmeta/summary";
+const MCMETA_BASE = "https://cdn.jsdelivr.net/gh/misode/mcmeta@";
 const MOD_BASE =
-    "https://raw.githubusercontent.com/DAQEM/TinyMobFarmRemastered/1.21.11/common/src/main/resources/assets/tinymobfarm";
+    "https://cdn.jsdelivr.net/gh/DAQEM/TinyMobFarmRemastered@1.21.11/common/src/main/resources/assets/tinymobfarm";
 
 const MOD_FILES = {
     blockstates: [
@@ -94,18 +93,20 @@ export class MinecraftAssetsRepository {
         const [blockDefs, models, uvMapping, atlasImage, itemDefs, itemComps] =
             await Promise.all([
                 this.fetchJsonMap(
-                    `${SUMMARY_BASE}/assets/block_definition/data.min.json`,
+                    `${MCMETA_BASE}summary/assets/block_definition/data.min.json`,
                 ),
-                this.fetchJsonMap(`${SUMMARY_BASE}/assets/model/data.min.json`),
-                fetch(`${MCMETA_BASE}/atlas/all/data.min.json`).then((r) =>
+                this.fetchJsonMap(
+                    `${MCMETA_BASE}summary/assets/model/data.min.json`,
+                ),
+                fetch(`${MCMETA_BASE}atlas/all/data.min.json`).then((r) =>
                     r.json(),
                 ),
-                this.loadImage(`${MCMETA_BASE}/atlas/all/atlas.png`),
+                this.loadImage(`${MCMETA_BASE}atlas/all/atlas.png`),
                 this.fetchJsonMap(
-                    `${SUMMARY_BASE}/assets/item_definition/data.min.json`,
+                    `${MCMETA_BASE}summary/assets/item_definition/data.min.json`,
                 ),
                 this.fetchJsonMap(
-                    `${SUMMARY_BASE}/item_components/data.min.json`,
+                    `${MCMETA_BASE}summary/item_components/data.min.json`,
                 ),
             ]);
 
@@ -162,6 +163,75 @@ export class MinecraftAssetsRepository {
 
         const { image: combinedAtlasImg, map: combinedMap } =
             await stitcher.getStitchedOutput();
+
+        for (const model of models.values()) {
+            if (model && typeof model === "object") {
+                if (model.textures && typeof model.textures === "object") {
+                    const safeTextures = Object.create(null);
+                    for (const key of Object.keys(model.textures)) {
+                        let val = model.textures[key];
+                        if (Array.isArray(val)) val = val[0];
+                        if (val && typeof val === "object") {
+                            val =
+                                val.id ||
+                                val.texture ||
+                                val.value ||
+                                val.name ||
+                                val.path ||
+                                Object.values(val).find(
+                                    (v) => typeof v === "string",
+                                ) ||
+                                String(val);
+                        }
+                        if (typeof val !== "string") {
+                            safeTextures[key] = String(val ?? "");
+                        } else {
+                            safeTextures[key] = val;
+                        }
+                    }
+                    model.textures = safeTextures;
+                }
+                if (Array.isArray(model.elements)) {
+                    for (const el of model.elements) {
+                        if (
+                            el &&
+                            typeof el === "object" &&
+                            el.faces &&
+                            typeof el.faces === "object"
+                        ) {
+                            for (const fKey of Object.keys(el.faces)) {
+                                const face = el.faces[fKey];
+                                if (
+                                    face &&
+                                    typeof face === "object" &&
+                                    face.texture
+                                ) {
+                                    let val = face.texture;
+                                    if (Array.isArray(val)) val = val[0];
+                                    if (val && typeof val === "object") {
+                                        val =
+                                            val.id ||
+                                            val.texture ||
+                                            val.value ||
+                                            val.name ||
+                                            val.path ||
+                                            Object.values(val).find(
+                                                (v) => typeof v === "string",
+                                            ) ||
+                                            String(val);
+                                    }
+                                    if (typeof val !== "string") {
+                                        face.texture = String(val ?? "");
+                                    } else {
+                                        face.texture = val;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         return {
             blockDefinitions: blockDefs,

@@ -9,30 +9,35 @@ const sidebar: SidebarsConfig = {
         },
         {
             type: "category",
-            label: "Wiki",
+            label: "🚀 Getting Started",
+            collapsed: false,
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/getting-started/installation",
+                    label: "Installation",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/getting-started/quick-start",
+                    label: "Quick Start Guide",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/configuration/index",
+                    label: "Configuration",
+                },
+            ],
+        },
+        {
+            type: "category",
+            label: "🧩 Core Mechanics / Features",
             collapsed: false,
             items: [
                 {
                     type: "category",
-                    label: "Getting Started",
-                    collapsed: false,
-                    items: [
-                        {
-                            type: "doc",
-                            id: "wiki/getting-started/installation",
-                            label: "Installation",
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/getting-started/quick-start",
-                            label: "Quick Start Guide",
-                        },
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Items & Tools",
-                    collapsed: false,
+                    collapsed: true,
                     items: [
                         {
                             type: "doc",
@@ -44,7 +49,7 @@ const sidebar: SidebarsConfig = {
                 {
                     type: "category",
                     label: "Farms & Mechanics",
-                    collapsed: false,
+                    collapsed: true,
                     items: [
                         {
                             type: "doc",
@@ -58,12 +63,12 @@ const sidebar: SidebarsConfig = {
                         },
                     ],
                 },
-                {
-                    type: "doc",
-                    id: "wiki/configuration/index",
-                    label: "Configuration",
-                },
             ],
+        },
+        {
+            type: "link",
+            label: "🆘 Support",
+            href: "/docs/daqem/wiki/support/",
         },
     ],
 };

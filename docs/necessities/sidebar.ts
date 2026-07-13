@@ -9,62 +9,30 @@ const sidebar: SidebarsConfig = {
         },
         {
             type: "category",
-            label: "Wiki",
+            label: "🚀 Getting Started",
+            collapsed: false,
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/getting-started/installation",
+                    label: "Installation",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/getting-started/configuration",
+                    label: "Configuration",
+                },
+            ],
+        },
+        {
+            type: "category",
+            label: "🧩 Core Mechanics / Features",
             collapsed: false,
             items: [
                 {
                     type: "category",
-                    label: "Getting Started",
-                    collapsed: false,
-                    items: [
-                        {
-                            type: "doc",
-                            id: "wiki/getting-started/installation",
-                            label: "Installation",
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/getting-started/configuration",
-                            label: "Configuration",
-                        },
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Commands & Permissions",
-                    collapsed: false,
-                    items: [
-                        {
-                            type: "doc",
-                            id: "wiki/commands/teleportation",
-                            label: "Teleportation",
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/commands/player-management",
-                            label: "Player Management",
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/commands/world-management",
-                            label: "World Management",
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/commands/inventory-utility",
-                            label: "Inventory & Utility",
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/commands/chat",
-                            label: "Chat",
-                        },
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Features",
-                    collapsed: false,
+                    collapsed: true,
                     items: [
                         {
                             type: "doc",
@@ -84,6 +52,43 @@ const sidebar: SidebarsConfig = {
                     ],
                 },
             ],
+        },
+        {
+            type: "category",
+            label: "💻 Commands & Permissions",
+            collapsed: false,
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/commands/teleportation",
+                    label: "Teleportation",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/commands/player-management",
+                    label: "Player Management",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/commands/world-management",
+                    label: "World Management",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/commands/inventory-utility",
+                    label: "Inventory & Utility",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/commands/chat",
+                    label: "Chat",
+                },
+            ],
+        },
+        {
+            type: "link",
+            label: "🆘 Support",
+            href: "/docs/daqem/wiki/support/",
         },
     ],
 };

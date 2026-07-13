@@ -9,33 +9,42 @@ const sidebar: SidebarsConfig = {
         },
         {
             type: "category",
-            label: "Wiki",
+            label: "🚀 Getting Started",
             collapsed: false,
             items: [
                 {
                     type: "doc",
                     id: "wiki/getting-started",
                     label: "Getting Started",
-                    customProps: { emoji: "🚀" },
                 },
                 {
                     type: "doc",
                     id: "wiki/what-is-not",
                     label: "What UI Lib Is Not",
-                    customProps: { emoji: "🛑" },
                 },
+            ],
+        },
+        {
+            type: "category",
+            label: "🛠️ Development / API",
+            collapsed: false,
+            items: [
                 {
                     type: "category",
                     label: "Design Patterns",
-                    collapsed: false,
+                    collapsed: true,
                     items: [
-                        { type: "doc", id: "wiki/patterns/screen-state", label: "Screen State Pattern" },
+                        {
+                            type: "doc",
+                            id: "wiki/patterns/screen-state",
+                            label: "Screen State Pattern",
+                        },
                     ],
                 },
                 {
                     type: "category",
                     label: "Screens",
-                    collapsed: false,
+                    collapsed: true,
                     items: [
                         {
                             type: "doc",
@@ -52,7 +61,8 @@ const sidebar: SidebarsConfig = {
                 {
                     type: "category",
                     label: "Components",
-                    collapsed: false,
+                    collapsed: true,
+                    link: { type: "doc", id: "wiki/components/index" },
                     items: [
                         {
                             type: "doc",
@@ -65,15 +75,12 @@ const sidebar: SidebarsConfig = {
                             label: "Visual Components",
                         },
                     ],
-                    link: {
-                        type: "doc",
-                        id: "wiki/components/index",
-                    },
                 },
                 {
                     type: "category",
                     label: "Widgets",
-                    collapsed: false,
+                    collapsed: true,
+                    link: { type: "doc", id: "wiki/widgets/index" },
                     items: [
                         {
                             type: "doc",
@@ -86,24 +93,23 @@ const sidebar: SidebarsConfig = {
                             label: "Scroll Containers",
                         },
                     ],
-                    link: {
-                        type: "doc",
-                        id: "wiki/widgets/index",
-                    },
                 },
                 {
                     type: "doc",
                     id: "wiki/backgrounds",
                     label: "Backgrounds",
-                    customProps: { emoji: "🎨" },
                 },
                 {
                     type: "doc",
                     id: "wiki/skill-tree",
                     label: "Skill Trees",
-                    customProps: { emoji: "🌳" },
                 },
             ],
+        },
+        {
+            type: "link",
+            label: "🆘 Support",
+            href: "/docs/daqem/wiki/support/",
         },
     ],
 };

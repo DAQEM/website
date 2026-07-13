@@ -8,27 +8,54 @@ const sidebar: SidebarsConfig = {
             id: "index",
             label: "Arc Lib",
         },
+
         {
             type: "category",
-            label: "Wiki",
+            label: "🧩 Core Mechanics / Features",
+            collapsed: false,
             items: [
                 {
                     type: "doc",
                     id: "wiki/actions/index",
                     label: "Actions",
-                    customProps: { emoji: "⚡" },
+                },
+                {
+                    type: "doc",
+                    id: "wiki/action_holders/index",
+                    label: "Action Holders",
                 },
                 {
                     type: "category",
-                    label: "Action Types",
-                    customProps: { emoji: "🎬" },
+                    label: "Action Data",
                     collapsed: true,
+                    link: { type: "doc", id: "wiki/action_data/index" },
+                    items: [],
+                },
+            ],
+        },
+        {
+            type: "category",
+            label: "📄 JSON Formats",
+            collapsed: false,
+            link: { type: "doc", id: "wiki/json_formats/index" },
+            items: [
+                {
+                    type: "category",
+                    label: "Action Types",
+                    collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "wiki/action_types/index",
+                    },
                     items: [
                         {
                             type: "category",
                             label: "Advancements",
-                            customProps: { emoji: "🏆" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/action_types/advancements/index",
+                            },
                             items: Object.values(actionTypes)
                                 .filter(
                                     (action) =>
@@ -39,20 +66,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/action_types/advancements/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
-                                    customProps: {
-                                        emoji: action.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/action_types/advancements/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Blocks",
-                            customProps: { emoji: "🧊" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/action_types/blocks/index",
+                            },
                             items: Object.values(actionTypes)
                                 .filter(
                                     (action) => action.category === "blocks",
@@ -62,20 +85,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/action_types/blocks/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
-                                    customProps: {
-                                        emoji: action.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/action_types/blocks/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Entities",
-                            customProps: { emoji: "👤" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/action_types/entities/index",
+                            },
                             items: Object.values(actionTypes)
                                 .filter(
                                     (action) => action.category === "entities",
@@ -85,20 +104,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/action_types/entities/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
-                                    customProps: {
-                                        emoji: action.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/action_types/entities/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Items",
-                            customProps: { emoji: "🎒" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/action_types/items/index",
+                            },
                             items: Object.values(actionTypes)
                                 .filter((action) => action.category === "items")
                                 .sort((a, b) => a.title.localeCompare(b.title))
@@ -106,20 +121,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/action_types/items/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
-                                    customProps: {
-                                        emoji: action.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/action_types/items/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Movement",
-                            customProps: { emoji: "👟" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/action_types/movement/index",
+                            },
                             items: Object.values(actionTypes)
                                 .filter(
                                     (action) => action.category === "movement",
@@ -129,20 +140,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/action_types/movement/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
-                                    customProps: {
-                                        emoji: action.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/action_types/movement/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Players",
-                            customProps: { emoji: "🧑" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/action_types/players/index",
+                            },
                             items: Object.values(actionTypes)
                                 .filter(
                                     (action) => action.category === "players",
@@ -152,23 +159,18 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/action_types/players/${action.id.replace(/\w+:/, "")}`,
                                     label: action.title,
-                                    customProps: {
-                                        emoji: action.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/action_types/players/index",
-                            },
                         },
                     ],
-                    link: { type: "doc", id: "wiki/action_types/index" },
                 },
                 {
                     type: "category",
                     label: "Reward Types",
-                    customProps: { emoji: "🎁" },
                     collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "wiki/reward_types/index",
+                    },
                     items: [
                         ...Object.values(rewardTypes)
                             .filter((reward) => reward.category === "none")
@@ -177,15 +179,15 @@ const sidebar: SidebarsConfig = {
                                 type: "doc" as const,
                                 id: `wiki/reward_types/${reward.id.replace(/\w+:/, "")}`,
                                 label: reward.title,
-                                customProps: {
-                                    emoji: reward.emoji,
-                                },
                             })),
                         {
                             type: "category",
                             label: "Blocks",
-                            customProps: { emoji: "🧊" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/reward_types/blocks/index",
+                            },
                             items: Object.values(rewardTypes)
                                 .filter(
                                     (reward) => reward.category === "blocks",
@@ -195,20 +197,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/reward_types/blocks/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
-                                    customProps: {
-                                        emoji: reward.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/reward_types/blocks/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Effects",
-                            customProps: { emoji: "💊" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/reward_types/effects/index",
+                            },
                             items: Object.values(rewardTypes)
                                 .filter(
                                     (reward) => reward.category === "effects",
@@ -218,20 +216,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/reward_types/effects/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
-                                    customProps: {
-                                        emoji: reward.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/reward_types/effects/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Entities",
-                            customProps: { emoji: "👤" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/reward_types/entities/index",
+                            },
                             items: Object.values(rewardTypes)
                                 .filter(
                                     (reward) => reward.category === "entities",
@@ -241,20 +235,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/reward_types/entities/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
-                                    customProps: {
-                                        emoji: reward.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/reward_types/entities/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Experience",
-                            customProps: { emoji: "✨" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/reward_types/experience/index",
+                            },
                             items: Object.values(rewardTypes)
                                 .filter(
                                     (reward) =>
@@ -265,20 +255,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/reward_types/experience/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
-                                    customProps: {
-                                        emoji: reward.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/reward_types/experience/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Items",
-                            customProps: { emoji: "🎒" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/reward_types/items/index",
+                            },
                             items: Object.values(rewardTypes)
                                 .filter((reward) => reward.category === "items")
                                 .sort((a, b) => a.title.localeCompare(b.title))
@@ -286,20 +272,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/reward_types/items/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
-                                    customProps: {
-                                        emoji: reward.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/reward_types/items/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Players",
-                            customProps: { emoji: "🧑" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/reward_types/players/index",
+                            },
                             items: Object.values(rewardTypes)
                                 .filter(
                                     (reward) => reward.category === "players",
@@ -309,20 +291,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/reward_types/players/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
-                                    customProps: {
-                                        emoji: reward.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/reward_types/players/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Server",
-                            customProps: { emoji: "🌐" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/reward_types/server/index",
+                            },
                             items: Object.values(rewardTypes)
                                 .filter(
                                     (reward) => reward.category === "server",
@@ -332,20 +310,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/reward_types/server/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
-                                    customProps: {
-                                        emoji: reward.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/reward_types/server/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "World",
-                            customProps: { emoji: "🌍" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/reward_types/world/index",
+                            },
                             items: Object.values(rewardTypes)
                                 .filter((reward) => reward.category === "world")
                                 .sort((a, b) => a.title.localeCompare(b.title))
@@ -353,23 +327,18 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/reward_types/world/${reward.id.replace(/\w+:/, "")}`,
                                     label: reward.title,
-                                    customProps: {
-                                        emoji: reward.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/reward_types/world/index",
-                            },
                         },
                     ],
-                    link: { type: "doc", id: "wiki/reward_types/index" },
                 },
                 {
                     type: "category",
                     label: "Condition Types",
-                    customProps: { emoji: "📑" },
                     collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "wiki/condition_types/index",
+                    },
                     items: [
                         ...Object.values(conditionTypes)
                             .filter(
@@ -380,15 +349,15 @@ const sidebar: SidebarsConfig = {
                                 type: "doc" as const,
                                 id: `wiki/condition_types/${condition.id.replace(/\w+:/, "")}`,
                                 label: condition.title,
-                                customProps: {
-                                    emoji: condition.emoji,
-                                },
                             })),
                         {
                             type: "category",
                             label: "Advancements",
-                            customProps: { emoji: "🏆" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/advancements/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -399,20 +368,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/advancements/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/advancements/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Blocks",
-                            customProps: { emoji: "🧊" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/blocks/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -423,20 +388,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/blocks/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/blocks/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Effects",
-                            customProps: { emoji: "💊" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/effects/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -447,20 +408,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/effects/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/effects/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Entities",
-                            customProps: { emoji: "👤" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/entities/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -471,20 +428,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/entities/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/entities/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Experience",
-                            customProps: { emoji: "✨" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/experience/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -495,20 +448,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/experience/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/experience/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Items",
-                            customProps: { emoji: "🎒" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/items/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -519,20 +468,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/items/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/items/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Movement",
-                            customProps: { emoji: "👟" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/movement/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -543,20 +488,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/movement/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/movement/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Players",
-                            customProps: { emoji: "🧑" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/players/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -567,20 +508,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/players/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/players/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Recipes",
-                            customProps: { emoji: "🍲" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/recipes/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -591,20 +528,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/recipes/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/recipes/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Scoreboard",
-                            customProps: { emoji: "📊" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/scoreboard/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -615,20 +548,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/scoreboard/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/scoreboard/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "Team",
-                            customProps: { emoji: "👥" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/teams/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -639,20 +568,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/teams/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/teams/index",
-                            },
                         },
                         {
                             type: "category",
                             label: "World",
-                            customProps: { emoji: "🌍" },
                             collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "wiki/condition_types/world/index",
+                            },
                             items: Object.values(conditionTypes)
                                 .filter(
                                     (condition) =>
@@ -663,42 +588,16 @@ const sidebar: SidebarsConfig = {
                                     type: "doc" as const,
                                     id: `wiki/condition_types/world/${condition.id.replace(/\w+:/, "")}`,
                                     label: condition.title,
-                                    customProps: {
-                                        emoji: condition.emoji,
-                                    },
                                 })),
-                            link: {
-                                type: "doc",
-                                id: "wiki/condition_types/world/index",
-                            },
                         },
                     ],
-                    link: { type: "doc", id: "wiki/condition_types/index" },
-                },
-                {
-                    type: "doc",
-                    id: "wiki/action_holders/index",
-                    label: "Action Holders",
-                    customProps: { emoji: "👤" },
-                },
-                {
-                    type: "category",
-                    label: "Action Data",
-                    customProps: { emoji: "📊" },
-                    collapsed: true,
-                    items: [],
-                    link: { type: "doc", id: "wiki/action_data/index" },
-                },
-                {
-                    type: "category",
-                    label: "JSON Formats",
-                    customProps: { emoji: "📄" },
-                    collapsed: true,
-                    items: [],
-                    link: { type: "doc", id: "wiki/json_formats/index" },
                 },
             ],
-            link: { type: "doc", id: "wiki/index" },
+        },
+        {
+            type: "link",
+            label: "🆘 Support",
+            href: "/docs/daqem/wiki/support/",
         },
     ],
 };

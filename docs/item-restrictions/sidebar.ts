@@ -9,30 +9,30 @@ const sidebar: SidebarsConfig = {
         },
         {
             type: "category",
-            label: "Wiki",
+            label: "🚀 Getting Started",
+            collapsed: false,
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/getting-started/installation",
+                    label: "Installation",
+                },
+                {
+                    type: "doc",
+                    id: "wiki/getting-started/configuration",
+                    label: "Global Configuration",
+                },
+            ],
+        },
+        {
+            type: "category",
+            label: "📄 JSON Formats",
             collapsed: false,
             items: [
                 {
                     type: "category",
-                    label: "Getting Started",
-                    collapsed: false,
-                    items: [
-                        {
-                            type: "doc",
-                            id: "wiki/getting-started/installation",
-                            label: "Installation",
-                        },
-                        {
-                            type: "doc",
-                            id: "wiki/getting-started/configuration",
-                            label: "Global Configuration",
-                        },
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Creating Restrictions",
-                    collapsed: false,
+                    collapsed: true,
                     items: [
                         {
                             type: "doc",
@@ -44,19 +44,20 @@ const sidebar: SidebarsConfig = {
                             id: "wiki/creating-restrictions/restriction-types",
                             label: "Restriction Types",
                         },
-                        {
-                            type: "link",
-                            label: "Conditions (Arc)",
-                            href: "/projects/arc/wiki/condition_types",
-                        },
                     ],
                 },
+                { type: "doc", id: "wiki/examples", label: "Examples" },
                 {
-                    type: "doc",
-                    id: "wiki/examples",
-                    label: "Examples",
+                    type: "link",
+                    label: "Conditions (Arc)",
+                    href: "/projects/arc/wiki/condition_types",
                 },
             ],
+        },
+        {
+            type: "link",
+            label: "🆘 Support",
+            href: "/docs/daqem/wiki/support/",
         },
     ],
 };
