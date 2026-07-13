@@ -66,6 +66,18 @@ const sidebar: SidebarsConfig = {
             ],
         },
         {
+            type: "category",
+            label: "🛠️ Development / API",
+            collapsed: false,
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/gradle-setup",
+                    label: "Gradle Setup",
+                },
+            ],
+        },
+        {
             type: "link",
             label: "🆘 Support",
             href: "/docs/daqem/wiki/support/",

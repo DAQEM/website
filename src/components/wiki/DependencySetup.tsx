@@ -1,15 +1,8 @@
-import { Label } from "@/components/ui/label";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import CodeBlock from "../impl/code-block";
+import Select from "../impl/select";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 const PROJECT_MAP: Record<
@@ -21,6 +14,12 @@ const PROJECT_MAP: Record<
         modrinth: "arc",
         group: "com.daqem.arc",
         artifact: "arc",
+    },
+    "grieflogger": {
+        name: "GriefLogger",
+        modrinth: "grieflogger",
+        group: "com.daqem.grieflogger",
+        artifact: "grieflogger",
     },
     "item-restrictions": {
         name: "Item Restrictions",
@@ -327,67 +326,36 @@ export default function DependencySetup({
     return (
         <div className="flex flex-col gap-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
-                <div className="flex flex-col gap-2">
-                    <Label>Project</Label>
-                    <Select
-                        value={selectedProject}
-                        onValueChange={setSelectedProject}
-                    >
-                        <SelectTrigger className="mc-button-primary">
-                            <SelectValue placeholder="Select a project" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {Object.entries(PROJECT_MAP).map(([key, val]) => (
-                                <SelectItem key={key} value={key}>
-                                    {val.name}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                    <Label>Minecraft Version</Label>
-                    <Select
-                        value={selectedMcVersion}
-                        onValueChange={setSelectedMcVersion}
-                        disabled={mcVersions.length === 0}
-                    >
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select MC version" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {mcVersions.map((v) => (
-                                <SelectItem key={v} value={v}>
-                                    {v}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                    <Label>Mod Version</Label>
-                    <Select
-                        value={selectedModVersion}
-                        onValueChange={setSelectedModVersion}
-                        disabled={modVersions.length === 0}
-                    >
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select mod version" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {modVersions.map((v) => (
-                                <SelectItem
-                                    key={v.version_number}
-                                    value={v.version_number}
-                                >
-                                    {v.version_number}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
+                <Select
+                    label="Project"
+                    defaultValue={selectedProject}
+                    onValueChange={setSelectedProject}
+                    options={Object.entries(PROJECT_MAP).map(([key, val]) => ({
+                        value: key,
+                        label: val.name,
+                    }))}
+                    placeholder="Select a project"
+                />
+                <Select
+                    label="Minecraft Version"
+                    defaultValue={selectedMcVersion}
+                    onValueChange={setSelectedMcVersion}
+                    options={mcVersions.map((v) => ({
+                        value: v,
+                        label: v,
+                    }))}
+                    placeholder="Select MC version"
+                />
+                <Select
+                    label="Mod Version"
+                    defaultValue={selectedModVersion}
+                    onValueChange={setSelectedModVersion}
+                    options={modVersions.map((v) => ({
+                        value: v.version_number,
+                        label: v.version_number,
+                    }))}
+                    placeholder="Select mod version"
+                />
             </div>
 
             {selectedModVersion ? (

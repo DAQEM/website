@@ -66,6 +66,29 @@ export class MinecraftAssetsRepository {
         return this.instance;
     }
 
+    public async getRecipe(id: string): Promise<any> {
+        const [namespace, path] = id.split(":");
+        let url = "";
+
+        if (namespace === "minecraft") {
+            url = `https://cdn.jsdelivr.net/gh/misode/mcmeta@data/data/minecraft/recipe/${path}.json`;
+        } else if (namespace === "tinymobfarm") {
+            url = `https://cdn.jsdelivr.net/gh/DAQEM/TinyMobFarmRemastered@1.21.11/common/src/main/resources/data/tinymobfarm/recipe/${path}.json`;
+        } else {
+            throw new Error(`Unsupported namespace for recipe: ${namespace}`);
+        }
+
+        const cached = await cacheManager.get<any>("network-cache", url);
+        if (cached) return cached;
+
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Failed to fetch recipe ${id} from ${url}`);
+        const data = await res.json();
+
+        await cacheManager.set("network-cache", url, data);
+        return data;
+    }
+
     public async loadVersion(version: string): Promise<AssetResources> {
         const versionKey = "summary";
 

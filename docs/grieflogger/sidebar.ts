@@ -156,6 +156,11 @@ const sidebar: SidebarsConfig = {
             items: [
                 {
                     type: "doc",
+                    id: "wiki/gradle-setup",
+                    label: "Gradle Setup",
+                },
+                {
+                    type: "doc",
                     id: "wiki/development/contributing",
                     label: "Contributing",
                 },

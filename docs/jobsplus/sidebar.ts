@@ -97,6 +97,18 @@ const sidebar: SidebarsConfig = {
         },
         {
             type: "category",
+            label: "🛠️ Development / API",
+            collapsed: false,
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/gradle-setup",
+                    label: "Gradle Setup",
+                },
+            ],
+        },
+        {
+            type: "category",
             label: "💻 Commands & Permissions",
             collapsed: false,
             items: [

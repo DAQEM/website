@@ -31,6 +31,11 @@ const sidebar: SidebarsConfig = {
             collapsed: false,
             items: [
                 {
+                    type: "doc",
+                    id: "wiki/gradle-setup",
+                    label: "Gradle Setup",
+                },
+                {
                     type: "category",
                     label: "Core Concepts",
                     collapsed: true,

@@ -62,7 +62,7 @@ const sidebar: SidebarsConfig = {
             items: [
                 {
                     type: "doc",
-                    id: "wiki/developer/setup",
+                    id: "wiki/gradle-setup",
                     label: "Gradle Setup",
                 },
                 {

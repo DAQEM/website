@@ -35,6 +35,18 @@ const sidebar: SidebarsConfig = {
         },
         {
             type: "category",
+            label: "🛠️ Development / API",
+            collapsed: false,
+            items: [
+                {
+                    type: "doc",
+                    id: "wiki/gradle-setup",
+                    label: "Gradle Setup",
+                },
+            ],
+        },
+        {
+            type: "category",
             label: "📄 JSON Formats",
             collapsed: false,
             link: { type: "doc", id: "wiki/json_formats/index" },

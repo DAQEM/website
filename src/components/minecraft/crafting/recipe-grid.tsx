@@ -1,5 +1,6 @@
+import { MinecraftAssetsRepository } from "@/lib/renderer/minecraft-repository";
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MinecraftItem } from "../minecraft-item";
 
 // Helper to format item ID into a readable name for tooltips
@@ -20,18 +21,7 @@ interface GridItem {
 
 // Props for the component
 interface RecipeGridProps {
-    recipe: {
-        type: "minecraft:crafting_shaped" | "minecraft:crafting_shapeless";
-        pattern?: string[];
-        key?: {
-            [key: string]: { item: string } | { tag: string };
-        };
-        ingredients?: ({ item: string } | { tag: string } | string)[];
-        result: {
-            id: string;
-            count?: number;
-        };
-    };
+    id?: string;
 }
 
 const Tooltip: React.FC<{ text: string; children: React.ReactNode }> = ({
@@ -77,32 +67,121 @@ const Tooltip: React.FC<{ text: string; children: React.ReactNode }> = ({
     );
 };
 
-const RecipeGrid: React.FC<RecipeGridProps> = ({ recipe }) => {
+const RecipeGrid: React.FC<RecipeGridProps> = ({ id }) => {
+    const [recipe, setRecipe] = useState<any>(null);
+    const [isLoading, setIsLoading] = useState(!!id);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (id) {
+            setIsLoading(true);
+            MinecraftAssetsRepository.getInstance()
+                .getRecipe(id)
+                .then((data) => {
+                    setRecipe(data);
+                    setIsLoading(false);
+                })
+                .catch((err) => {
+                    console.error(err);
+                    setError(err.message);
+                    setIsLoading(false);
+                });
+        }
+    }, [id]);
+
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center gap-6 my-4 mc-card w-fit h-[144px]">
+                <div className="animate-pulse text-muted-foreground">
+                    Loading recipe...
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex items-center justify-center gap-6 my-4 mc-card w-fit h-[144px]">
+                <div className="text-destructive">
+                    Error loading recipe: {error}
+                </div>
+            </div>
+        );
+    }
+
+    if (!recipe) {
+        return null;
+    }
+
     const gridItems: (GridItem | null)[] = Array(9).fill(null);
     const { type, result } = recipe;
 
-    if (type === "minecraft:crafting_shaped" && recipe.pattern && recipe.key) {
+    if (
+        type === "minecraft:crafting_shaped" &&
+        recipe.pattern &&
+        recipe.key
+    ) {
         const { pattern, key } = recipe;
-        pattern.forEach((row, rowIndex) => {
+        pattern.forEach((row: string, rowIndex: number) => {
             for (let colIndex = 0; colIndex < row.length; colIndex++) {
                 const char = row[colIndex];
                 if (char !== " " && key[char]) {
                     const gridIndex = rowIndex * 3 + colIndex;
-                    const keyEntry = key[char];
-                    const itemId = "item" in keyEntry ? keyEntry.item : null;
+                    let keyEntry = key[char];
+                    if (Array.isArray(keyEntry)) {
+                        keyEntry = keyEntry[0];
+                    }
+                    const itemId =
+                        typeof keyEntry === "string"
+                            ? keyEntry
+                            : "item" in keyEntry
+                              ? keyEntry.item
+                              : "tag" in keyEntry
+                                ? keyEntry.tag
+                                : "id" in keyEntry
+                                  ? keyEntry.id
+                                  : null;
                     if (itemId) {
                         gridItems[gridIndex] = { id: itemId };
                     }
                 }
             }
         });
-    } else if (type === "minecraft:crafting_shapeless" && recipe.ingredients) {
+    } else if (
+        type === "minecraft:crafting_shapeless" &&
+        recipe.ingredients
+    ) {
         const { ingredients } = recipe;
-        ingredients.forEach((ingredient, index) => {
+        ingredients.forEach((ingredient: any, index: number) => {
             if (index < 9) {
-                gridItems[index] = { id: ingredient as string };
+                let ing = ingredient;
+                if (Array.isArray(ing)) {
+                    ing = ing[0];
+                }
+                const itemId =
+                    typeof ing === "string"
+                        ? ing
+                        : "item" in ing
+                          ? ing.item
+                          : "tag" in ing
+                            ? ing.tag
+                            : "id" in ing
+                              ? ing.id
+                              : null;
+                if (itemId) {
+                    gridItems[index] = { id: itemId };
+                }
             }
         });
+    }
+
+    let resultItem: GridItem | null = null;
+    if (result) {
+        if (typeof result === "string") {
+            resultItem = { id: result };
+        } else if (typeof result === "object") {
+            resultItem = { id: result.id || result.item, count: result.count };
+        }
     }
 
     const renderSlot = (
@@ -135,7 +214,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({ recipe }) => {
     );
 
     return (
-        <div className="flex items-center justify-center gap-6 my-4 mc-card">
+        <div className="flex items-center justify-center gap-6 my-4 mc-card w-fit">
             <div className="grid grid-cols-3 grid-rows-3">
                 {gridItems.map((item, index) => (
                     <React.Fragment key={index}>
@@ -150,7 +229,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({ recipe }) => {
                     className="size-12"
                 />
             </div>
-            {renderSlot(result, "size-14", "size-10")}
+            {renderSlot(resultItem, "size-14", "size-10")}
         </div>
     );
 };
